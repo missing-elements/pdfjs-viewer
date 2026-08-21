@@ -29,6 +29,30 @@ function runQuiet(command, args) {
   return spawnSync(command, args, { encoding: 'utf8' })
 }
 
+function getHeadCommit() {
+  return (runQuiet('git', ['rev-parse', 'HEAD']).stdout || '').trim()
+}
+
+function getLocalTagCommit(tagName) {
+  const exists = runQuiet('git', ['rev-parse', '-q', '--verify', `refs/tags/${tagName}`]).status === 0
+  if (!exists) {
+    return null
+  }
+  return (runQuiet('git', ['rev-list', '-n', '1', tagName]).stdout || '').trim()
+}
+
+function getRemoteTagCommit(tagName) {
+  const remoteTag = runQuiet('git', ['ls-remote', '--tags', 'origin', `refs/tags/${tagName}^{}`])
+  if (remoteTag.status !== 0) {
+    return undefined
+  }
+  const line = (remoteTag.stdout || '').trim()
+  if (!line) {
+    return null
+  }
+  return line.split('\t')[0]
+}
+
 const rawArgs = process.argv.slice(2)
 const dryRun = rawArgs.includes('--dry-run')
 const allowDirty = rawArgs.includes('--allow-dirty')
@@ -57,14 +81,6 @@ if (status.status !== 0) {
 }
 if (!allowDirty && (status.stdout || '').trim().length > 0) {
   fail('Working tree is not clean. Commit or stash changes before releasing.')
-}
-
-const remoteTagCheck = runQuiet('git', ['ls-remote', '--tags', 'origin', tagName])
-if (remoteTagCheck.status !== 0) {
-  fail('Could not verify remote tags from origin')
-}
-if ((remoteTagCheck.stdout || '').trim().length > 0) {
-  fail(`Tag ${tagName} already exists on origin`)
 }
 
 const npmWhoAmI = runQuiet('npm', ['whoami'])
@@ -107,12 +123,11 @@ if (shouldBumpVersion) {
 }
 
 if (!dryRun) {
-  const localTagExists = runQuiet('git', ['rev-parse', '-q', '--verify', `refs/tags/${tagName}`]).status === 0
-  if (localTagExists) {
-    const tagSha = (runQuiet('git', ['rev-list', '-n', '1', tagName]).stdout || '').trim()
-    const headSha = (runQuiet('git', ['rev-parse', 'HEAD']).stdout || '').trim()
+  const headSha = getHeadCommit()
+  const localTagCommit = getLocalTagCommit(tagName)
 
-    if (tagSha !== headSha) {
+  if (localTagCommit) {
+    if (localTagCommit !== headSha) {
       fail(
         `Tag ${tagName} already exists locally, but points to a different commit. ` +
           `Delete it with "git tag -d ${tagName}" and retry.`
@@ -124,9 +139,29 @@ if (!dryRun) {
     run('git', ['tag', '-a', tagName, '-m', tagName])
   }
 
+  const remoteTagCommit = getRemoteTagCommit(tagName)
+  if (remoteTagCommit === undefined) {
+    fail('Could not verify remote tags from origin')
+  }
+
+  let shouldPushTag = true
+  if (remoteTagCommit) {
+    if (remoteTagCommit !== headSha) {
+      fail(
+        `Tag ${tagName} already exists on origin and points to a different commit. ` +
+          `Delete it with "git push origin :refs/tags/${tagName}" and retry.`
+      )
+    }
+
+    shouldPushTag = false
+    console.log(`\n[release] Reusing existing remote tag ${tagName} (already points to HEAD)`)
+  }
+
   run('npm', ['publish', '--access', 'public'])
   run('git', ['push', 'origin', 'HEAD'])
-  run('git', ['push', 'origin', tagName])
+  if (shouldPushTag) {
+    run('git', ['push', 'origin', tagName])
+  }
   console.log(`\n[release] Release ${tagName} completed`)
 } else {
   console.log(`\n[release] Dry-run: would create tag ${tagName}`)
