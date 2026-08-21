@@ -46,6 +46,7 @@ if (!semverPattern.test(normalizedVersion)) {
 }
 
 const packageJson = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
+const packageName = packageJson.name
 const currentVersion = packageJson.version
 const tagName = `v${normalizedVersion}`
 const shouldBumpVersion = currentVersion !== normalizedVersion
@@ -69,6 +70,21 @@ if (remoteTagCheck.status !== 0) {
 }
 if ((remoteTagCheck.stdout || '').trim().length > 0) {
   fail(`Tag ${tagName} already exists on origin`)
+}
+
+const npmWhoAmI = runQuiet('npm', ['whoami'])
+if (npmWhoAmI.status !== 0) {
+  const authMessage = 'NPM auth is missing or expired. Run "npm login" and retry.'
+  if (dryRun) {
+    console.warn(`\n[release] ${authMessage}`)
+  } else {
+    fail(authMessage)
+  }
+}
+
+const publishedVersionCheck = runQuiet('npm', ['view', `${packageName}@${normalizedVersion}`, 'version'])
+if (publishedVersionCheck.status === 0 && (publishedVersionCheck.stdout || '').trim() === normalizedVersion) {
+  fail(`Version ${normalizedVersion} is already published for ${packageName}`)
 }
 
 console.log(`\n[release] Preparing release ${tagName}`)
@@ -97,9 +113,9 @@ if (shouldBumpVersion) {
 
 if (!dryRun) {
   run('git', ['tag', '-a', tagName, '-m', tagName])
+  run('npm', ['publish', '--access', 'public'])
   run('git', ['push', 'origin', 'HEAD'])
   run('git', ['push', 'origin', tagName])
-  run('npm', ['publish', '--access', 'public'])
   console.log(`\n[release] Release ${tagName} completed`)
 } else {
   console.log(`\n[release] Dry-run: would create tag ${tagName}`)
