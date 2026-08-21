@@ -1,6 +1,6 @@
 {
   "name": "pdfjs-viewer-element",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "license": "MIT",
   "author": {
     "name": "Oleksandr Shevchuk",
@@ -47,18 +47,20 @@
     "dev": "vite",
     "build": "tsc && vite build && node scripts/copy-worker.mjs",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "release": "node scripts/release.mjs",
+    "release:dry": "node scripts/release.mjs --dry-run"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^1.0.0",
-    "@types/node": "^25.5.0",
-    "@vitest/browser": "^4.1.0",
-    "@vitest/browser-webdriverio": "^4.1.0",
-    "jsdom": "^29.0.0",
-    "terser": "^5.46.1",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "vitest": "^4.1.0",
-    "webdriverio": "^9.26.1"
+    "@types/node": "^26.2.0",
+    "@vitest/browser": "^4.1.11",
+    "@vitest/browser-webdriverio": "^4.1.11",
+    "jsdom": "^30.0.1",
+    "terser": "^5.50.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11",
+    "webdriverio": "^9.31.2"
   }
 }

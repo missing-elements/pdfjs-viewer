@@ -46,6 +46,30 @@ npm install pdfjs-viewer-element
 pnpm add pdfjs-viewer-element
 ```
 
+## Release
+
+Release automation is available through npm scripts.
+
+Dry-run (builds and prints release actions without changing git tags, pushing, or publishing):
+
+```bash
+pnpm release:dry v3.2.3 --allow-dirty
+```
+
+Real release (requires clean working tree):
+
+```bash
+pnpm release v3.2.3
+```
+
+What `pnpm release` does:
+
+- runs a fresh build
+- bumps package version (if needed)
+- creates a release commit (if version changed)
+- creates and pushes git tag `v<version>`
+- publishes to npm as a public package
+
 ```javascript
 import 'pdfjs-viewer-element'
 ```
