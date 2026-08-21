@@ -59,11 +59,6 @@ if (!allowDirty && (status.stdout || '').trim().length > 0) {
   fail('Working tree is not clean. Commit or stash changes before releasing.')
 }
 
-const localTagExists = runQuiet('git', ['rev-parse', '-q', '--verify', `refs/tags/${tagName}`]).status === 0
-if (localTagExists) {
-  fail(`Tag ${tagName} already exists locally`)
-}
-
 const remoteTagCheck = runQuiet('git', ['ls-remote', '--tags', 'origin', tagName])
 if (remoteTagCheck.status !== 0) {
   fail('Could not verify remote tags from origin')
@@ -112,7 +107,23 @@ if (shouldBumpVersion) {
 }
 
 if (!dryRun) {
-  run('git', ['tag', '-a', tagName, '-m', tagName])
+  const localTagExists = runQuiet('git', ['rev-parse', '-q', '--verify', `refs/tags/${tagName}`]).status === 0
+  if (localTagExists) {
+    const tagSha = (runQuiet('git', ['rev-list', '-n', '1', tagName]).stdout || '').trim()
+    const headSha = (runQuiet('git', ['rev-parse', 'HEAD']).stdout || '').trim()
+
+    if (tagSha !== headSha) {
+      fail(
+        `Tag ${tagName} already exists locally, but points to a different commit. ` +
+          `Delete it with "git tag -d ${tagName}" and retry.`
+      )
+    }
+
+    console.log(`\n[release] Reusing existing local tag ${tagName} (already points to HEAD)`)
+  } else {
+    run('git', ['tag', '-a', tagName, '-m', tagName])
+  }
+
   run('npm', ['publish', '--access', 'public'])
   run('git', ['push', 'origin', 'HEAD'])
   run('git', ['push', 'origin', tagName])
