@@ -1,6 +1,6 @@
 # pdfjs-viewer
 
-Standalone, isolated, drop-in [PDF.js default viewer](https://mozilla.github.io/pdf.js/web/viewer.html).
+Standalone, isolated, drop-in PDF viewer web component, based on [PDF.js default viewer](https://mozilla.github.io/pdf.js/web/viewer.html).
 
 [![npm version](https://img.shields.io/npm/v/pdfjs-viewer-element?logo=npm&logoColor=fff)](https://www.npmjs.com/package/pdfjs-viewer-element)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/alekswebnet/pdfjs-viewer-element)
