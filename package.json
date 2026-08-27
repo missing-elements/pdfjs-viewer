@@ -53,9 +53,11 @@
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^1.0.0",
+    "@types/html-minifier-terser": "^7.0.2",
     "@types/node": "^26.2.0",
     "@vitest/browser": "^4.1.11",
     "@vitest/browser-webdriverio": "^4.1.11",
+    "html-minifier-terser": "^7.2.0",
     "jsdom": "^30.0.1",
     "terser": "^5.50.0",
     "typescript": "^7.0.2",

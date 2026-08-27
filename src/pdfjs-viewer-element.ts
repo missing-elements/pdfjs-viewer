@@ -1,6 +1,24 @@
-const DEFAULT_WORKER_SRC = import.meta.env.DEV
+const DEFAULT_BUILT_IN_WORKER_SRC = import.meta.env.DEV
   ? new URL('./build/pdf.worker.mjs', import.meta.url).href
   : new URL('./pdf.worker.min.mjs', import.meta.url).href
+
+const DEFAULT_WORKER_SRC = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs'
+
+const DEFAULT_PDF_SRC = import.meta.env.DEV
+  ? new URL('./build/pdf.mjs', import.meta.url).href
+  : new URL('./pdf.mjs', import.meta.url).href
+
+const DEFAULT_VIEWER_SRC = import.meta.env.DEV
+  ? new URL('./web/viewer.mjs', import.meta.url).href
+  : new URL('./viewer.mjs', import.meta.url).href
+
+const DEFAULT_VIEWER_CSS_SRC = import.meta.env.DEV
+  ? new URL('./web/viewer.css', import.meta.url).href
+  : new URL('./viewer.css', import.meta.url).href
+
+const DEFAULT_PAPER_AND_INK_THEME_CSS_SRC = import.meta.env.DEV
+  ? new URL('./themes/paper-and-ink.css', import.meta.url).href
+  : new URL('./paper-and-ink.css', import.meta.url).href
 
 const DEFAULTS = {
   src: '',
@@ -45,10 +63,23 @@ export class PdfjsViewerElement extends HTMLElement {
   static get observedAttributes() {
     return[
       'src', 'locale', 'viewer-css-theme', 'worker-src',
+      'use-built-in-worker',
       'debugger-src', 'c-map-url', 'icc-url', 'image-resources-path',
       'sandbox-bundle-src', 'standard-font-data-url', 'wasm-url',
       'page', 'search', 'phrase', 'zoom', 'pagemode', 'iframe-title'
     ]
+  }
+
+  private isBuiltInWorkerEnabled() {
+    const attrValue = this.getAttribute('use-built-in-worker')
+    if (attrValue === null) return false
+    if (attrValue === '' || attrValue === '1') return true
+
+    return attrValue.toLowerCase() === 'true'
+  }
+
+  private getDefaultWorkerSrc() {
+    return this.isBuiltInWorkerEnabled() ? DEFAULT_BUILT_IN_WORKER_SRC : DEFAULTS.workerSrc
   }
 
   private formatTemplate(template: string, params: Record<string, any>) {
@@ -59,7 +90,13 @@ export class PdfjsViewerElement extends HTMLElement {
   }
 
   private getFullPath(path: string) {
-    return path.startsWith('/') ? `${window.location.origin}${path}` : path
+    if (!path) return path
+
+    try {
+      return new URL(path, window.location.href).href
+    } catch {
+      return path
+    }
   }
 
   private getCssThemeOption() {
@@ -70,12 +107,29 @@ export class PdfjsViewerElement extends HTMLElement {
   }
 
   private applyIframeHash = async () =>{
-    return new Promise<void>((resolve) => {
-      if (!this.iframe?.contentWindow) return resolve()
-      this.iframe.contentWindow?.addEventListener('hashchange', () => {
+    const contentWindow = this.iframe?.contentWindow
+    if (!contentWindow) return
+
+    const hash = this.getIframeLocationHash()
+    if (contentWindow.location.hash === hash) return
+
+    await new Promise<void>((resolve) => {
+      let settled = false
+      const onHashChange = () => {
+        if (settled) return
+        settled = true
+        contentWindow.removeEventListener('hashchange', onHashChange)
         resolve()
-      }, { once: true })
-      this.iframe.contentWindow.location.hash = this.getIframeLocationHash()
+      }
+
+      contentWindow.addEventListener('hashchange', onHashChange)
+      contentWindow.location.hash = hash
+
+      queueMicrotask(() => {
+        if (contentWindow.location.hash === hash) {
+          onHashChange()
+        }
+      })
     })
   }
 
@@ -114,17 +168,59 @@ export class PdfjsViewerElement extends HTMLElement {
     })
   }
 
-  private injectScript(value: string, type = 'module') {
+  private injectScript(src: string, type = 'module') {
     const doc = this.iframe.contentDocument
-    if (!doc) return
+    if (!doc) return Promise.resolve()
     if (!doc.head) {
       const head = doc.createElement('head')
       doc.documentElement?.prepend(head)
     }
-    const script = document.createElement('script')
-    script.type = type
-    script.textContent = value
-    doc.head?.appendChild(script)
+
+    return new Promise<void>((resolve, reject) => {
+      const script = doc.createElement('script')
+      script.type = type
+      script.src = src
+      script.addEventListener('load', () => resolve(), { once: true })
+      script.addEventListener('error', () => {
+        reject(new Error(`Unable to load script: ${src}`))
+      }, { once: true })
+      doc.head?.appendChild(script)
+    })
+  }
+
+  private applyLocaleAtRuntime = async () => {
+    const viewerApp = this.iframe.contentWindow?.PDFViewerApplication as unknown as {
+      initializedPromise?: Promise<void>
+      externalServices?: { createL10n?: () => Promise<any> }
+      l10n?: { destroy?: () => Promise<void> }
+      appConfig?: { appContainer?: HTMLElement }
+    }
+
+    const doc = this.iframe.contentDocument
+    if (!viewerApp || !doc) return false
+
+    await viewerApp.initializedPromise
+    const createL10n = viewerApp.externalServices?.createL10n
+    if (typeof createL10n !== 'function') return false
+
+    const nextL10n = await createL10n()
+    if (!nextL10n) return false
+
+    await viewerApp.l10n?.destroy?.()
+    viewerApp.l10n = nextL10n
+
+    const root = viewerApp.appConfig?.appContainer || doc.documentElement
+    if (!root) return false
+
+    if (typeof nextL10n.getDirection === 'function') {
+      doc.documentElement?.setAttribute('dir', nextL10n.getDirection())
+    }
+
+    if (typeof nextL10n.translate === 'function') {
+      await nextL10n.translate(root)
+    }
+
+    return true
   }
 
   private injectLocaleData = async () => {
@@ -191,7 +287,7 @@ export class PdfjsViewerElement extends HTMLElement {
 
   private applyViewerOptions = () => {
     const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-    viewerOptions?.set('workerSrc', this.getAttribute('worker-src') || DEFAULTS.workerSrc)
+    viewerOptions?.set('workerSrc', this.getAttribute('worker-src') || this.getDefaultWorkerSrc())
     viewerOptions?.set('debuggerSrc', this.getAttribute('debugger-src') || DEFAULTS.debuggerSrc)
     viewerOptions?.set('cMapUrl', this.getAttribute('c-map-url') || DEFAULTS.cMapUrl)
     viewerOptions?.set('iccUrl', this.getAttribute('icc-url') || DEFAULTS.iccUrl)
@@ -224,15 +320,11 @@ export class PdfjsViewerElement extends HTMLElement {
 
   private buildViewerEntry = async () => {
     return new Promise<void>(async (resolve) => {
-      const [viewerEntry, viewerCss, paperAndInkTheme] = await Promise.all([
-        import('./web/viewer.html?raw'),
-        import('./web/viewer.css?inline'),
-        import('./themes/paper-and-ink.css?inline')
-      ])
+      const viewerEntry = await import('virtual:pdfjs-viewer-html')
       const completeHtml = viewerEntry.default
         .replace('</head>', `
-          <style>${viewerCss.default}</style>
-          <style>${paperAndInkTheme.default}</style>
+          <link rel="stylesheet" href="${DEFAULT_VIEWER_CSS_SRC}">
+          <link rel="stylesheet" href="${DEFAULT_PAPER_AND_INK_THEME_CSS_SRC}">
           ${Array.from(this.viewerStyles).map(style => `<style>${style}</style>`).join('\n')}
         </head>`)
       this.iframe.addEventListener('load', () => resolve(), { once: true })
@@ -245,6 +337,7 @@ export class PdfjsViewerElement extends HTMLElement {
     this.applyViewerOptions()
     await viewerApp?.initializedPromise
 
+    this.applyViewerTheme()
     this.applyQueuedRuntimeStyles()
 
     return {
@@ -255,15 +348,15 @@ export class PdfjsViewerElement extends HTMLElement {
   private buildViewerApp = async () => {
     await this.applyIframeHash()
 
-    const [pdfjsBuild, viewerBuild] = await Promise.all([
-      import('./build/pdf.mjs?raw'),
-      import('./web/viewer.mjs?raw')
-    ])
-    await this.injectLocaleData()
-    this.injectScript(pdfjsBuild.default)
-    this.injectScript(viewerBuild.default)
+    // Set viewer options as soon as PDFViewerApplication is created.
+    const setupPromise = this.setupViewerApp()
 
-    return await this.setupViewerApp()
+    await this.injectLocaleData()
+
+    await this.injectScript(DEFAULT_PDF_SRC)
+    await this.injectScript(DEFAULT_VIEWER_SRC)
+
+    return await setupPromise
   }
 
   async connectedCallback() {
@@ -288,7 +381,6 @@ export class PdfjsViewerElement extends HTMLElement {
     if (!this.iframe) return
 
     const optionByAttribute = {
-      'worker-src': { key: 'workerSrc', fallback: DEFAULTS.workerSrc },
       'debugger-src': { key: 'debuggerSrc', fallback: DEFAULTS.debuggerSrc },
       'c-map-url': { key: 'cMapUrl', fallback: DEFAULTS.cMapUrl },
       'icc-url': { key: 'iccUrl', fallback: DEFAULTS.iccUrl },
@@ -297,6 +389,20 @@ export class PdfjsViewerElement extends HTMLElement {
       'standard-font-data-url': { key: 'standardFontDataUrl', fallback: DEFAULTS.standardFontDataUrl },
       'wasm-url': { key: 'wasmUrl', fallback: DEFAULTS.wasmUrl }
     } as const
+
+    if (name === 'worker-src') {
+      const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
+      viewerOptions?.set('workerSrc', newValue || this.getDefaultWorkerSrc())
+      return
+    }
+
+    if (name === 'use-built-in-worker') {
+      if (!this.hasAttribute('worker-src')) {
+        const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
+        viewerOptions?.set('workerSrc', this.getDefaultWorkerSrc())
+      }
+      return
+    }
 
     if (name in optionByAttribute) {
       const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
@@ -317,13 +423,25 @@ export class PdfjsViewerElement extends HTMLElement {
         }
         return
       }
-      case 'locale':
+      case 'locale': {
+        const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
+        viewerOptions?.set('localeProperties', { lang: newValue || DEFAULTS.locale })
         this.cleanupLocaleResource()
-        this.initPromise = (async () => {
-          await this.buildViewerEntry()
-          return await this.buildViewerApp()
-        })()
-        await this.initPromise
+
+        await this.injectLocaleData()
+        const didApplyRuntimeLocale = await this.applyLocaleAtRuntime()
+        if (!didApplyRuntimeLocale) {
+          this.initPromise = (async () => {
+            await this.buildViewerEntry()
+            return await this.buildViewerApp()
+          })()
+          await this.initPromise
+        }
+        await this.applyIframeHash()
+        return
+      }
+      case 'iframe-title':
+        this.iframe.setAttribute('title', newValue || DEFAULTS.iframeTitle)
         return
       case 'viewer-css-theme':
         this.applyViewerTheme()

@@ -12,6 +12,8 @@ export declare class PdfjsViewerElement extends HTMLElement {
     private viewerStyles;
     private optionsToSet;
     static get observedAttributes(): string[];
+    private isBuiltInWorkerEnabled;
+    private getDefaultWorkerSrc;
     private formatTemplate;
     private getFullPath;
     private getCssThemeOption;
@@ -20,6 +22,7 @@ export declare class PdfjsViewerElement extends HTMLElement {
     private appendRuntimeStyle;
     private applyQueuedRuntimeStyles;
     private injectScript;
+    private applyLocaleAtRuntime;
     private injectLocaleData;
     private cleanupLocaleResource;
     private onViewerAppCreated;

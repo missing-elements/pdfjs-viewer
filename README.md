@@ -110,7 +110,8 @@ The element is block-level and needs an explicit height.
 | `locale` | Viewer UI locale (for example `en-US`, `de`, `uk`). [Available locales](https://github.com/mozilla/pdf.js/tree/master/l10n) | `''` |
 | `locale-src-template` | Locale file URL template. Must contain `{locale}` placeholder. Used together with `locale`. | `https://cdn.jsdelivr.net/gh/mozilla-l10n/firefox-l10n@main/{locale}/toolkit/toolkit/pdfviewer/viewer.ftl` |
 | `viewer-css-theme` | Viewer theme: `AUTOMATIC`, `LIGHT`, `DARK`. | `AUTOMATIC` |
-| `worker-src` | PDF.js worker URL override. | `<package-url>/pdf.worker.min.mjs` |
+| `worker-src` | PDF.js worker URL override. | `https://cdn.jsdelivr.net/npm/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs` |
+| `use-built-in-worker` | Use the worker bundled with this package when `worker-src` is not set (`true`, `1`, or empty attribute). | `false` |
 | `debugger-src` | PDF.js debugger script URL (`debuggerSrc` option). | `./debugger.mjs` |
 | `c-map-url` | CMap directory URL (`cMapUrl` option). | `../web/cmaps/` |
 | `icc-url` | ICC profile directory URL (`iccUrl` option). | `../web/iccs/` |
@@ -133,7 +134,18 @@ Most attributes can be updated dynamically:
 
 ## Worker source
 
-By default, the component resolves `worker-src` to the worker shipped with this package (`pdf.worker.min.mjs` in `dist`).
+By default, the component uses the official PDF.js CDN worker URL:
+
+`https://cdn.jsdelivr.net/npm/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs`
+
+To use the worker shipped with this package (`pdf.worker.min.mjs` in `dist`), set `use-built-in-worker`:
+
+```html
+<pdfjs-viewer-element
+  src="/file.pdf"
+  use-built-in-worker>
+</pdfjs-viewer-element>
+```
 
 Set `worker-src` only if you want to serve the worker from a custom location (for example your own CDN or static assets path).
 
