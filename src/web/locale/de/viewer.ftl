@@ -153,6 +153,27 @@ pdfjs-document-properties-linearized = Schnelle Webanzeige:
 pdfjs-document-properties-linearized-yes = Ja
 pdfjs-document-properties-linearized-no = Nein
 pdfjs-document-properties-close-button = Schließen
+pdfjs-digital-signature-properties-view-certificate = Zertifikat ansehen
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = Grund: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = Zeitstempel: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures =
+    { $count ->
+        [one] ({ $count }) Untersignatur
+       *[other] ({ $count }) Untersignaturen
+    }
 
 ## Print
 
@@ -201,6 +222,15 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Miniaturansicht von Seite { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox1 =
+    .title = Seite { $page } auswählen
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Seite { $page } von { $total }
 
 ## Find panel button title and messages
 
@@ -641,20 +671,22 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = Sidebar umschalten
 pdfjs-toggle-views-manager-notification-button =
     .title = Sidebar umschalten (Dokument enthält Miniaturansichten/Dokumentstruktur/Anhänge/Ebenen)
-pdfjs-toggle-views-manager-button-label = Sidebar umschalten
+pdfjs-toggle-views-manager-button1-label = Seiten verwalten
 pdfjs-views-manager-sidebar =
     .aria-label = Sidebar
+pdfjs-views-manager-sidebar-resizer =
+    .aria-label = Größenanpassung der Sidebar
 pdfjs-views-manager-view-selector-button =
     .title = Ansichten
 pdfjs-views-manager-view-selector-button-label = Ansichten
 pdfjs-views-manager-pages-title = Seiten
-pdfjs-views-manager-outlines-title = Dokumentstruktur
+pdfjs-views-manager-outlines-title1 = Dokumentstruktur
+    .title = Dokumentstruktur (Doppelklick zum Ein- bzw. Ausblenden aller Einträge)
 pdfjs-views-manager-attachments-title = Anhänge
-pdfjs-views-manager-layers-title = Ebenen
+pdfjs-views-manager-layers-title1 = Ebenen
+    .title = Ebenen (Doppelklick, um alle Ebenen auf den Standard-Zustand zurückzusetzen)
 pdfjs-views-manager-pages-option-label = Seiten
 pdfjs-views-manager-outlines-option-label = Dokumentstruktur
 pdfjs-views-manager-attachments-option-label = Anhänge
@@ -674,7 +706,7 @@ pdfjs-views-manager-pages-status-action-button-label = Verwalten
 pdfjs-views-manager-pages-status-copy-button-label = Kopieren
 pdfjs-views-manager-pages-status-cut-button-label = Ausschneiden
 pdfjs-views-manager-pages-status-delete-button-label = Löschen
-pdfjs-views-manager-pages-status-save-as-button-label = Speichern unter…
+pdfjs-views-manager-pages-status-export-selected-button-label = Ausgewählte exportieren…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label =
@@ -703,10 +735,91 @@ pdfjs-views-manager-status-warning-copy-label = Kopieren nicht möglich. Aktuali
 pdfjs-views-manager-status-warning-delete-label = Löschen war nicht möglich. Aktualisieren Sie die Seite und versuchen Sie es erneut.
 pdfjs-views-manager-status-warning-save-label = Speichern nicht möglich. Aktualisieren Sie die Seite und versuchen Sie es erneut.
 pdfjs-views-manager-status-undo-button-label = Rückgängig
+pdfjs-views-manager-status-done-button-label = Fertig
 pdfjs-views-manager-status-close-button =
     .title = Schließen
 pdfjs-views-manager-status-close-button-label = Schließen
 pdfjs-views-manager-paste-button-label = Einfügen
+pdfjs-views-manager-paste-button-before =
+    .title = Vor der ersten Seite einfügen
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Nach Seite { $page } einfügen
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = NEU
+pdfjs-views-manager-waiting-for-file = Datei wird hochgeladen…
+pdfjs-toggle-views-manager-button1 =
+    .title = Seiten verwalten
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = Eigenschaften digitaler Signatur
+    .aria-label = Eigenschaften digitaler Signatur
+pdfjs-digital-signature-properties-button-label = Eigenschaften digitaler Signatur
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = Dokument wurde mit einer gültigen digitalen Signatur signiert
+pdfjs-digital-signature-properties-banner-unknown =
+    { $count ->
+        [one] Dokument signiert, aber { $count } digitale Signatur konnte nicht verifiziert werden
+       *[other] Dokument signiert, aber { $count } digitale Signaturen konnten nicht verifiziert werden
+    }
+pdfjs-digital-signature-properties-banner-untrusted =
+    { $count ->
+        [one] Dokument mit { $count } Zertifikat signiert, das nicht vertrauenswürdig ist
+       *[other] Dokument mit { $count } Zertifikaten signiert, die nicht vertrauenswürdig sind
+    }
+pdfjs-digital-signature-properties-banner-expired =
+    { $count ->
+        [one] Dokument mit { $count } abgelaufenen Zertifikat signiert
+       *[other] Dokument mit { $count } abgelaufenen Zertifikaten signiert
+    }
+pdfjs-digital-signature-properties-banner-invalid =
+    { $count ->
+        [one] Dokument hat { $count } ungültige digitale Signatur
+       *[other] Dokument hat { $count } ungültige digitale Signaturen
+    }
+pdfjs-digital-signature-properties-banner-revoked =
+    { $count ->
+        [one] Dokument mit { $count } gesperrten Zertifikat signiert
+       *[other] Dokument mit { $count } gesperrten Zertifikaten signiert
+    }
+
+## Per-signature status row. Only three distinct strings are needed:
+## the signature crypto either verified (the cert chain may still be
+## untrusted/expired/revoked, but that's surfaced on the cert row
+## below), or it failed, or its sub-format isn't supported.
+
+pdfjs-digital-signature-properties-status-verified = Status: Signatur überprüft
+pdfjs-digital-signature-properties-status-invalid = Status: Signatur ungültig
+pdfjs-digital-signature-properties-status-unknown = Status: Verifizieren nicht möglich (nicht unterstützt)
+
+## Per-signature certificate row. The variants with an issuer / date in
+## parentheses embed fully-localized context — no English fall-through.
+##
+## Variables:
+##   $issuer (String) - issuer or subject common name from the cert.
+##   $dateObj (Date)  - notAfter date for the expired-with-date form.
+
+pdfjs-digital-signature-properties-certificate-trusted = Zertifikat: Vertrauenswürdig ({ $issuer })
+pdfjs-digital-signature-properties-certificate-unknown = Zertifikat: Nicht verfügbar
+pdfjs-digital-signature-properties-certificate-untrusted = Zertifikat: Nicht vertrauenswürdig
+pdfjs-digital-signature-properties-certificate-untrusted-unknown-issuer = Zertifikat: Unbekannter Aussteller ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-self-signed = Zertifikat: Selbstsigniert ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-untrusted-issuer = Zertifikat: Nicht vertrauenswürdiger Aussteller ({ $issuer })
+pdfjs-digital-signature-properties-certificate-expired = Zertifikat: Abgelaufen
+pdfjs-digital-signature-properties-certificate-expired-with-date = Zertifikat: Abgelaufen ({ DATETIME($dateObj, dateStyle: "medium") })
+pdfjs-digital-signature-properties-certificate-revoked = Zertifikat: Widerrufen
 
 ## Main menu for adding/removing signatures
 

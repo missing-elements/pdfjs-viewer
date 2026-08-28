@@ -2,8 +2,6 @@ const DEFAULT_BUILT_IN_WORKER_SRC = import.meta.env.DEV
   ? new URL('./build/pdf.worker.mjs', import.meta.url).href
   : new URL('./pdf.worker.min.mjs', import.meta.url).href
 
-const DEFAULT_WORKER_SRC = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs'
-
 const DEFAULT_PDF_SRC = import.meta.env.DEV
   ? new URL('./build/pdf.mjs', import.meta.url).href
   : new URL('./pdf.mjs', import.meta.url).href
@@ -30,7 +28,7 @@ const DEFAULTS = {
   pagemode: 'none',
   locale: '',
   viewerCssTheme: 'AUTOMATIC',
-  workerSrc: DEFAULT_WORKER_SRC,
+  workerSrc: DEFAULT_BUILT_IN_WORKER_SRC,
   debuggerSrc: './debugger.mjs',
   cMapUrl: '../web/cmaps/',
   iccUrl: '../web/iccs/',
@@ -63,23 +61,10 @@ export class PdfjsViewerElement extends HTMLElement {
   static get observedAttributes() {
     return[
       'src', 'locale', 'viewer-css-theme', 'worker-src',
-      'use-built-in-worker',
       'debugger-src', 'c-map-url', 'icc-url', 'image-resources-path',
       'sandbox-bundle-src', 'standard-font-data-url', 'wasm-url',
       'page', 'search', 'phrase', 'zoom', 'pagemode', 'iframe-title'
     ]
-  }
-
-  private isBuiltInWorkerEnabled() {
-    const attrValue = this.getAttribute('use-built-in-worker')
-    if (attrValue === null) return false
-    if (attrValue === '' || attrValue === '1') return true
-
-    return attrValue.toLowerCase() === 'true'
-  }
-
-  private getDefaultWorkerSrc() {
-    return this.isBuiltInWorkerEnabled() ? DEFAULT_BUILT_IN_WORKER_SRC : DEFAULTS.workerSrc
   }
 
   private formatTemplate(template: string, params: Record<string, any>) {
@@ -177,12 +162,30 @@ export class PdfjsViewerElement extends HTMLElement {
     }
 
     return new Promise<void>((resolve, reject) => {
+      let cspViolationDetails = ''
+
+      const onSecurityPolicyViolation = (event: SecurityPolicyViolationEvent) => {
+        const directive = event.effectiveDirective || event.violatedDirective || 'unknown-directive'
+        const blockedUri = event.blockedURI || 'unknown-uri'
+        cspViolationDetails = ` (CSP ${directive} blocked ${blockedUri})`
+      }
+
+      const cleanup = () => {
+        doc.removeEventListener('securitypolicyviolation', onSecurityPolicyViolation)
+      }
+
+      doc.addEventListener('securitypolicyviolation', onSecurityPolicyViolation)
+
       const script = doc.createElement('script')
       script.type = type
       script.src = src
-      script.addEventListener('load', () => resolve(), { once: true })
+      script.addEventListener('load', () => {
+        cleanup()
+        resolve()
+      }, { once: true })
       script.addEventListener('error', () => {
-        reject(new Error(`Unable to load script: ${src}`))
+        cleanup()
+        reject(new Error(`Unable to load script: ${src}${cspViolationDetails}`))
       }, { once: true })
       doc.head?.appendChild(script)
     })
@@ -287,7 +290,7 @@ export class PdfjsViewerElement extends HTMLElement {
 
   private applyViewerOptions = () => {
     const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-    viewerOptions?.set('workerSrc', this.getAttribute('worker-src') || this.getDefaultWorkerSrc())
+    viewerOptions?.set('workerSrc', this.getAttribute('worker-src') || DEFAULTS.workerSrc)
     viewerOptions?.set('debuggerSrc', this.getAttribute('debugger-src') || DEFAULTS.debuggerSrc)
     viewerOptions?.set('cMapUrl', this.getAttribute('c-map-url') || DEFAULTS.cMapUrl)
     viewerOptions?.set('iccUrl', this.getAttribute('icc-url') || DEFAULTS.iccUrl)
@@ -321,7 +324,27 @@ export class PdfjsViewerElement extends HTMLElement {
   private buildViewerEntry = async () => {
     return new Promise<void>(async (resolve) => {
       const viewerEntry = await import('virtual:pdfjs-viewer-html')
-      const completeHtml = viewerEntry.default
+      const origin = window.location.origin
+      const srcdocCsp = [
+        "default-src 'none'",
+        `script-src 'self' 'wasm-unsafe-eval' ${origin}`,
+        `script-src-elem ${origin}`,
+        `worker-src ${origin} blob:`,
+        `style-src ${origin} 'unsafe-inline'`,
+        `img-src ${origin} blob: data:`,
+        'media-src blob:',
+        `font-src ${origin} data:`,
+        'connect-src * blob: data:',
+        "base-uri 'none'",
+        "form-action 'none'"
+      ].join('; ')
+
+      const viewerHtmlWithSrcdocCsp = viewerEntry.default.replace(
+        /<meta\s+http-equiv="Content-Security-Policy"[^>]*>/i,
+        `<meta http-equiv="Content-Security-Policy" content="${srcdocCsp};" />`
+      )
+
+      const completeHtml = viewerHtmlWithSrcdocCsp
         .replace('</head>', `
           <link rel="stylesheet" href="${DEFAULT_VIEWER_CSS_SRC}">
           <link rel="stylesheet" href="${DEFAULT_PAPER_AND_INK_THEME_CSS_SRC}">
@@ -392,15 +415,7 @@ export class PdfjsViewerElement extends HTMLElement {
 
     if (name === 'worker-src') {
       const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-      viewerOptions?.set('workerSrc', newValue || this.getDefaultWorkerSrc())
-      return
-    }
-
-    if (name === 'use-built-in-worker') {
-      if (!this.hasAttribute('worker-src')) {
-        const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-        viewerOptions?.set('workerSrc', this.getDefaultWorkerSrc())
-      }
+      viewerOptions?.set('workerSrc', newValue || DEFAULTS.workerSrc)
       return
     }
 

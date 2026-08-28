@@ -153,6 +153,27 @@ pdfjs-document-properties-linearized = Nopea web-katselu:
 pdfjs-document-properties-linearized-yes = Kyllä
 pdfjs-document-properties-linearized-no = Ei
 pdfjs-document-properties-close-button = Sulje
+pdfjs-digital-signature-properties-view-certificate = Näytä varmenne
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = Syy: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = Aikaleima: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures =
+    { $count ->
+        [one] Aliallekirjoitus ({ $count })
+       *[other] Aliallekirjoitukset ({ $count })
+    }
 
 ## Print
 
@@ -201,6 +222,15 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Pienoiskuva sivusta { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox1 =
+    .title = Valitse sivu { $page }
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Sivu { $page }/{ $total }
 
 ## Find panel button title and messages
 
@@ -641,20 +671,22 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = Näytä/piilota sivupaneeli
 pdfjs-toggle-views-manager-notification-button =
     .title = Näytä/piilota sivupaneeli (dokumentissa on pienoiskuvat/sisällys/liitteitä/tasoja)
-pdfjs-toggle-views-manager-button-label = Näytä/piilota sivupaneeli
+pdfjs-toggle-views-manager-button1-label = Hallitse sivuja
 pdfjs-views-manager-sidebar =
     .aria-label = Sivupaneeli
+pdfjs-views-manager-sidebar-resizer =
+    .aria-label = Sivupaneelin koon muuttaja
 pdfjs-views-manager-view-selector-button =
     .title = Näkymät
 pdfjs-views-manager-view-selector-button-label = Näkymät
 pdfjs-views-manager-pages-title = Sivut
-pdfjs-views-manager-outlines-title = Dokumentin sisällys
+pdfjs-views-manager-outlines-title1 = Dokumentin sisällys
+    .title = Dokumentin sisällys (napsauta kahdesti laajentaaksesi/supistaaksesi kohteet)
 pdfjs-views-manager-attachments-title = Liitteet
-pdfjs-views-manager-layers-title = Tasot
+pdfjs-views-manager-layers-title1 = Tasot
+    .title = Tasot (napsauta kahdesti nollataksesi tasot niiden oletustilaan)
 pdfjs-views-manager-pages-option-label = Sivut
 pdfjs-views-manager-outlines-option-label = Dokumentin sisällys
 pdfjs-views-manager-attachments-option-label = Liitteet
@@ -674,7 +706,7 @@ pdfjs-views-manager-pages-status-action-button-label = Hallitse
 pdfjs-views-manager-pages-status-copy-button-label = Kopioi
 pdfjs-views-manager-pages-status-cut-button-label = Leikkaa
 pdfjs-views-manager-pages-status-delete-button-label = Poista
-pdfjs-views-manager-pages-status-save-as-button-label = Tallenna nimellä…
+pdfjs-views-manager-pages-status-export-selected-button-label = Vie valitut…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label =
@@ -703,9 +735,91 @@ pdfjs-views-manager-status-warning-copy-label = Kopiointi epäonnistui. Päivit�
 pdfjs-views-manager-status-warning-delete-label = Poisto epäonnistui. Päivitä sivu ja yritä uudelleen.
 pdfjs-views-manager-status-warning-save-label = Tallentaminen epäonnistui. Päivitä sivu ja yritä uudelleen.
 pdfjs-views-manager-status-undo-button-label = Kumoa
+pdfjs-views-manager-status-done-button-label = Valmis
 pdfjs-views-manager-status-close-button =
     .title = Sulje
 pdfjs-views-manager-status-close-button-label = Sulje
+pdfjs-views-manager-paste-button-label = Liitä
+pdfjs-views-manager-paste-button-before =
+    .title = Liitä ennen ensimmäistä sivua
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Liitä sivun { $page } jälkeen
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = UUTTA
+pdfjs-views-manager-waiting-for-file = Lähetetään tiedostoa…
+pdfjs-toggle-views-manager-button1 =
+    .title = Hallitse sivuja
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = Digitaalisen allekirjoituksen ominaisuudet
+    .aria-label = Digitaalisen allekirjoituksen ominaisuudet
+pdfjs-digital-signature-properties-button-label = Digitaalisen allekirjoituksen ominaisuudet
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = Asiakirja allekirjoitettiin kelvollisella digitaalisella allekirjoituksella
+pdfjs-digital-signature-properties-banner-unknown =
+    { $count ->
+        [one] Asiakirja allekirjoitettu, mutta { $count } digitaalista allekirjoitusta ei voitu vahvistaa
+       *[other] Asiakirja allekirjoitettu, mutta { $count } digitaalista allekirjoitusta ei voitu vahvistaa
+    }
+pdfjs-digital-signature-properties-banner-untrusted =
+    { $count ->
+        [one] Asiakirja on allekirjoitettu { $count } varmenteella, johon ei luoteta
+       *[other] Asiakirja on allekirjoitettu { $count } varmenteella, joihin ei luoteta
+    }
+pdfjs-digital-signature-properties-banner-expired =
+    { $count ->
+        [one] Asiakirja allekirjoitettu { $count } vanhentuneella varmenteella
+       *[other] Asiakirja allekirjoitettu { $count } vanhentuneella varmenteella
+    }
+pdfjs-digital-signature-properties-banner-invalid =
+    { $count ->
+        [one] Asiakirjassa on { $count } virheellinen digitaalinen allekirjoitus
+       *[other] Asiakirjassa on { $count } virheellistä digitaalista allekirjoitusta
+    }
+pdfjs-digital-signature-properties-banner-revoked =
+    { $count ->
+        [one] Asiakirja allekirjoitettu { $count } kumotulla varmenteella
+       *[other] Asiakirja allekirjoitettu { $count } kumotulla varmenteella
+    }
+
+## Per-signature status row. Only three distinct strings are needed:
+## the signature crypto either verified (the cert chain may still be
+## untrusted/expired/revoked, but that's surfaced on the cert row
+## below), or it failed, or its sub-format isn't supported.
+
+pdfjs-digital-signature-properties-status-verified = Tila: Allekirjoitus vahvistettu
+pdfjs-digital-signature-properties-status-invalid = Tila: Allekirjoitus virheellinen
+pdfjs-digital-signature-properties-status-unknown = Tila: Vahvistus epäonnistui (ei tuettu)
+
+## Per-signature certificate row. The variants with an issuer / date in
+## parentheses embed fully-localized context — no English fall-through.
+##
+## Variables:
+##   $issuer (String) - issuer or subject common name from the cert.
+##   $dateObj (Date)  - notAfter date for the expired-with-date form.
+
+pdfjs-digital-signature-properties-certificate-trusted = Varmenne: Luotettu ({ $issuer })
+pdfjs-digital-signature-properties-certificate-unknown = Varmenne: Ei saatavilla
+pdfjs-digital-signature-properties-certificate-untrusted = Varmenne: Ei-luotettu
+pdfjs-digital-signature-properties-certificate-untrusted-unknown-issuer = Varmenne: Tuntematon myöntäjä ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-self-signed = Varmenne: Itse allekirjoitettu ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-untrusted-issuer = Varmenne: Ei-luotettu myöntäjä ({ $issuer })
+pdfjs-digital-signature-properties-certificate-expired = Varmenne: Vanhentunut
+pdfjs-digital-signature-properties-certificate-expired-with-date = Varmenne: Vanhentunut ({ DATETIME($dateObj, dateStyle: "medium") })
+pdfjs-digital-signature-properties-certificate-revoked = Varmenne: Kumottu
 
 ## Main menu for adding/removing signatures
 

@@ -15,6 +15,7 @@ Standalone, isolated, drop-in PDF viewer web component, based on [PDF.js default
 - Works with same-origin and cross-origin PDF documents
 - Configure via attributes (page, zoom, search, pagemode, locale)
 - Resource path attributes for PDF.js internals (`worker-src`, `c-map-url`, `icc-url`, `standard-font-data-url`, `wasm-url`, and more)
+- Built-in worker is enabled by default for stricter CSP compatibility
 - Configure `PDFViewerApplicationOptions` via the `setViewerOptions` method
 - Access to `PDFViewerApplication` via the `initPromise` property
 - Built-in Paper & Ink default theme, with theme control (automatic/light/dark) and custom CSS injection
@@ -44,34 +45,6 @@ Standalone, isolated, drop-in PDF viewer web component, based on [PDF.js default
 npm install pdfjs-viewer-element
 # With pnpm
 pnpm add pdfjs-viewer-element
-```
-
-## Release
-
-Release automation is available through npm scripts.
-
-Dry-run (builds and prints release actions without changing git tags, pushing, or publishing):
-
-```bash
-pnpm release:dry v3.2.3 --allow-dirty
-```
-
-Real release (requires clean working tree):
-
-```bash
-pnpm release v3.2.3
-```
-
-What `pnpm release` does:
-
-- runs a fresh build
-- bumps package version (if needed)
-- creates a release commit (if version changed)
-- creates and pushes git tag `v<version>`
-- publishes to npm as a public package
-
-```javascript
-import 'pdfjs-viewer-element'
 ```
 
 ### Using browser and CDN:
@@ -110,8 +83,7 @@ The element is block-level and needs an explicit height.
 | `locale` | Viewer UI locale (for example `en-US`, `de`, `uk`). [Available locales](https://github.com/mozilla/pdf.js/tree/master/l10n) | `''` |
 | `locale-src-template` | Locale file URL template. Must contain `{locale}` placeholder. Used together with `locale`. | `https://cdn.jsdelivr.net/gh/mozilla-l10n/firefox-l10n@main/{locale}/toolkit/toolkit/pdfviewer/viewer.ftl` |
 | `viewer-css-theme` | Viewer theme: `AUTOMATIC`, `LIGHT`, `DARK`. | `AUTOMATIC` |
-| `worker-src` | PDF.js worker URL override. | `https://cdn.jsdelivr.net/npm/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs` |
-| `use-built-in-worker` | Use the worker bundled with this package when `worker-src` is not set (`true`, `1`, or empty attribute). | `false` |
+| `worker-src` | PDF.js worker URL override. | bundled worker (`./build/pdf.worker.mjs` in dev, `./pdf.worker.min.mjs` in dist) |
 | `debugger-src` | PDF.js debugger script URL (`debuggerSrc` option). | `./debugger.mjs` |
 | `c-map-url` | CMap directory URL (`cMapUrl` option). | `../web/cmaps/` |
 | `icc-url` | ICC profile directory URL (`iccUrl` option). | `../web/iccs/` |
@@ -134,18 +106,10 @@ Most attributes can be updated dynamically:
 
 ## Worker source
 
-By default, the component uses the official PDF.js CDN worker URL:
+By default, the component uses the bundled worker (same-origin), which is CSP-friendly in strict `script-src 'self'` environments.
 
-`https://cdn.jsdelivr.net/npm/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs`
-
-To use the worker shipped with this package (`pdf.worker.min.mjs` in `dist`), set `use-built-in-worker`:
-
-```html
-<pdfjs-viewer-element
-  src="/file.pdf"
-  use-built-in-worker>
-</pdfjs-viewer-element>
-```
+- Dev mode default: `./build/pdf.worker.mjs`
+- Dist/default package default: `./pdf.worker.min.mjs`
 
 Set `worker-src` only if you want to serve the worker from a custom location (for example your own CDN or static assets path).
 
@@ -155,7 +119,7 @@ Set `worker-src` only if you want to serve the worker from a custom location (fo
 ```html
 <pdfjs-viewer-element
   src="/file.pdf"
-  worker-src="https://cdn.jsdelivr.net/npm/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs">
+  worker-src="https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/build/pdf.worker.min.mjs">
 </pdfjs-viewer-element>
 ```
 

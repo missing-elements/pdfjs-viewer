@@ -49,7 +49,7 @@ pdfjs-download-button =
 # Length of the translation matters since we are in a mobile context, with limited screen estate.
 pdfjs-download-button-label = 다운로드
 pdfjs-bookmark-button =
-    .title = 현재 페이지 (현재 페이지에서 URL 보기)
+    .title = 현재 페이지 (URL 보기)
 pdfjs-bookmark-button-label = 현재 페이지
 
 ##  Secondary toolbar and context menu
@@ -85,8 +85,8 @@ pdfjs-scroll-horizontal-button =
     .title = 가로 스크롤 사용
 pdfjs-scroll-horizontal-button-label = 가로 스크롤
 pdfjs-scroll-wrapped-button =
-    .title = 래핑(자동 줄 바꿈) 스크롤 사용
-pdfjs-scroll-wrapped-button-label = 래핑 스크롤
+    .title = 자동 줄바꿈 스크롤 사용
+pdfjs-scroll-wrapped-button-label = 자동 줄바꿈 스크롤
 pdfjs-spread-none-button =
     .title = 한 페이지 보기
 pdfjs-spread-none-button-label = 펼침 없음
@@ -153,6 +153,23 @@ pdfjs-document-properties-linearized = 빠른 웹 보기:
 pdfjs-document-properties-linearized-yes = 예
 pdfjs-document-properties-linearized-no = 아니요
 pdfjs-document-properties-close-button = 닫기
+pdfjs-digital-signature-properties-view-certificate = 인증서 보기
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = 이유: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = 타임스탬프: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures = 하위 서명 ({ $count }개)
 
 ## Print
 
@@ -203,8 +220,13 @@ pdfjs-thumb-page-canvas =
     .aria-label = { $page } 페이지 미리보기
 # Variables:
 #   $page (Number) - the page number
-pdfjs-thumb-page-checkbox =
-    .aria-label = { $page } 페이지 선택
+pdfjs-thumb-page-checkbox1 =
+    .title = { $page } 페이지 선택
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = { $page } / { $total } 페이지
 
 ## Find panel button title and messages
 
@@ -564,7 +586,7 @@ pdfjs-editor-add-signature-draw-thickness-range-label = 두께
 #   $thickness (Number) - the thickness (in pixels) of the line used to draw a signature.
 pdfjs-editor-add-signature-draw-thickness-range =
     .title = 그리기 두께: { $thickness }
-pdfjs-editor-add-signature-image-placeholder = 이미지 파일을 여기에 끌어서 놓으세요
+pdfjs-editor-add-signature-image-placeholder = 이미지 파일을 여기에 끌어다 놓으세요
 pdfjs-editor-add-signature-image-browse-link =
     { PLATFORM() ->
         [macos] 또는 이미지 파일 찾아보기
@@ -629,11 +651,9 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = 사이드바 표시/숨기기
 pdfjs-toggle-views-manager-notification-button =
     .title = 사이드바 표시/숨기기 (문서에 미리보기/아웃라인/첨부파일/레이어 포함됨)
-pdfjs-toggle-views-manager-button-label = 사이드바 표시/숨기기
+pdfjs-toggle-views-manager-button1-label = 페이지 관리
 pdfjs-views-manager-sidebar =
     .aria-label = 사이드바
 pdfjs-views-manager-sidebar-resizer =
@@ -642,9 +662,11 @@ pdfjs-views-manager-view-selector-button =
     .title = 보기
 pdfjs-views-manager-view-selector-button-label = 보기
 pdfjs-views-manager-pages-title = 페이지
-pdfjs-views-manager-outlines-title = 문서 아웃라인
+pdfjs-views-manager-outlines-title1 = 문서 아웃라인
+    .title = 문서 아웃라인 (더블 클릭해서 모든 항목 펼치기/접기)
 pdfjs-views-manager-attachments-title = 첨부파일
-pdfjs-views-manager-layers-title = 레이어
+pdfjs-views-manager-layers-title1 = 레이어
+    .title = 레이어 (더블 클릭해서 모든 레이어를 기본 상태로 재설정)
 pdfjs-views-manager-pages-option-label = 페이지
 pdfjs-views-manager-outlines-option-label = 문서 아웃라인
 pdfjs-views-manager-attachments-option-label = 첨부파일
@@ -660,7 +682,7 @@ pdfjs-views-manager-pages-status-action-button-label = 관리
 pdfjs-views-manager-pages-status-copy-button-label = 복사
 pdfjs-views-manager-pages-status-cut-button-label = 잘라내기
 pdfjs-views-manager-pages-status-delete-button-label = 삭제
-pdfjs-views-manager-pages-status-save-as-button-label = 다른 이름으로 저장…
+pdfjs-views-manager-pages-status-export-selected-button-label = 선택한 페이지 내보내기…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label = { $count }개 페이지 잘림
@@ -677,10 +699,71 @@ pdfjs-views-manager-status-warning-copy-label = 복사할 수 없습니다. 페�
 pdfjs-views-manager-status-warning-delete-label = 삭제할 수 없습니다. 페이지를 새로 고침하고 다시 시도하세요.
 pdfjs-views-manager-status-warning-save-label = 저장할 수 없습니다. 페이지를 새로 고침하고 다시 시도하세요.
 pdfjs-views-manager-status-undo-button-label = 실행 취소
+pdfjs-views-manager-status-done-button-label = 완료
 pdfjs-views-manager-status-close-button =
     .title = 닫기
 pdfjs-views-manager-status-close-button-label = 닫기
 pdfjs-views-manager-paste-button-label = 붙여넣기
+pdfjs-views-manager-paste-button-before =
+    .title = 첫 페이지 앞에 붙여넣기
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = { $page } 페이지 뒤에 붙여넣기
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = 신규
+pdfjs-views-manager-waiting-for-file = 파일 업로드 중…
+pdfjs-toggle-views-manager-button1 =
+    .title = 페이지 관리
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = 디지털 서명 속성
+    .aria-label = 디지털 서명 속성
+pdfjs-digital-signature-properties-button-label = 디지털 서명 속성
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = 유효한 디지털 서명으로 문서에 서명되었습니다
+pdfjs-digital-signature-properties-banner-unknown = 문서에 서명되었지만 { $count }개의 디지털 서명을 확인할 수 없음
+pdfjs-digital-signature-properties-banner-untrusted = 신뢰할 수 없는 { $count }개의 인증서로 서명된 문서
+pdfjs-digital-signature-properties-banner-expired = { $count }개의 만료된 인증서로 서명된 문서
+pdfjs-digital-signature-properties-banner-invalid = 문서에 잘못된 { $count }개의 디지털 서명이 있음
+pdfjs-digital-signature-properties-banner-revoked = 폐기된 인증서 { $count }개로 서명된 문서
+
+## Per-signature status row. Only three distinct strings are needed:
+## the signature crypto either verified (the cert chain may still be
+## untrusted/expired/revoked, but that's surfaced on the cert row
+## below), or it failed, or its sub-format isn't supported.
+
+pdfjs-digital-signature-properties-status-verified = 상태: 서명 확인됨
+pdfjs-digital-signature-properties-status-invalid = 상태: 유효하지 않은 서명
+pdfjs-digital-signature-properties-status-unknown = 상태: 확인할 수 없음 (지원되지 않음)
+
+## Per-signature certificate row. The variants with an issuer / date in
+## parentheses embed fully-localized context — no English fall-through.
+##
+## Variables:
+##   $issuer (String) - issuer or subject common name from the cert.
+##   $dateObj (Date)  - notAfter date for the expired-with-date form.
+
+pdfjs-digital-signature-properties-certificate-trusted = 인증서: 신뢰할 수 있음 ({ $issuer })
+pdfjs-digital-signature-properties-certificate-unknown = 인증서: 사용할 수 없음
+pdfjs-digital-signature-properties-certificate-untrusted = 인증서: 신뢰할 수 없음
+pdfjs-digital-signature-properties-certificate-untrusted-unknown-issuer = 인증서: 알 수 없는 발급자 ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-self-signed = 인증서: 자체 서명 ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-untrusted-issuer = 인증서: 신뢰할 수 없는 발급자 ({ $issuer })
+pdfjs-digital-signature-properties-certificate-expired = 인증서: 만료됨
+pdfjs-digital-signature-properties-certificate-expired-with-date = 인증서: 만료됨 ({ DATETIME($dateObj, dateStyle: "medium") })
+pdfjs-digital-signature-properties-certificate-revoked = 인증서: 폐기됨
 
 ## Main menu for adding/removing signatures
 

@@ -645,20 +645,17 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = Перемкнути бічну панель
 pdfjs-toggle-views-manager-notification-button =
     .title = Перемкнути бічну панель (документ містить мініатюри/ескіз/вкладення/шари)
-pdfjs-toggle-views-manager-button-label = Перемкнути бічну панель
 pdfjs-views-manager-sidebar =
     .aria-label = Бічна панель
+pdfjs-views-manager-sidebar-resizer =
+    .aria-label = Зміна розміру бічної панелі
 pdfjs-views-manager-view-selector-button =
     .title = Вигляд
 pdfjs-views-manager-view-selector-button-label = Вигляд
 pdfjs-views-manager-pages-title = Сторінки
-pdfjs-views-manager-outlines-title = Схема документа
 pdfjs-views-manager-attachments-title = Вкладення
-pdfjs-views-manager-layers-title = Шари
 pdfjs-views-manager-pages-option-label = Сторінки
 pdfjs-views-manager-outlines-option-label = Схема документа
 pdfjs-views-manager-attachments-option-label = Вкладення
@@ -679,7 +676,6 @@ pdfjs-views-manager-pages-status-action-button-label = Керувати
 pdfjs-views-manager-pages-status-copy-button-label = Копіювати
 pdfjs-views-manager-pages-status-cut-button-label = Вирізати
 pdfjs-views-manager-pages-status-delete-button-label = Видалити
-pdfjs-views-manager-pages-status-save-as-button-label = Зберегти як…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label =
@@ -714,6 +710,7 @@ pdfjs-views-manager-status-undo-button-label = Повернути
 pdfjs-views-manager-status-close-button =
     .title = Закрити
 pdfjs-views-manager-status-close-button-label = Закрити
+pdfjs-views-manager-paste-button-label = Вставити
 
 ## Main menu for adding/removing signatures
 

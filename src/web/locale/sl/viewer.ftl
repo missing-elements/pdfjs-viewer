@@ -153,6 +153,29 @@ pdfjs-document-properties-linearized = Hitri spletni ogled:
 pdfjs-document-properties-linearized-yes = Da
 pdfjs-document-properties-linearized-no = Ne
 pdfjs-document-properties-close-button = Zapri
+pdfjs-digital-signature-properties-view-certificate = Ogled digitalnega potrdila
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = Razlog: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = Časovni žig: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures =
+    { $count ->
+        [one] Podpodpis ({ $count })
+        [two] Podpodpisi ({ $count })
+        [few] Podpodpisi ({ $count })
+       *[other] Podpodpisi ({ $count })
+    }
 
 ## Print
 
@@ -201,6 +224,15 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Sličica strani { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox1 =
+    .title = Izberi stran { $page }
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Stran { $page } od { $total }
 
 ## Find panel button title and messages
 
@@ -649,20 +681,22 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = Preklopi stransko vrstico
 pdfjs-toggle-views-manager-notification-button =
     .title = Preklopi stransko vrstico (dokument vsebuje sličice/oris/priponke/plasti)
-pdfjs-toggle-views-manager-button-label = Preklopi stransko vrstico
+pdfjs-toggle-views-manager-button1-label = Upravljanje strani
 pdfjs-views-manager-sidebar =
     .aria-label = Stranska vrstica
+pdfjs-views-manager-sidebar-resizer =
+    .aria-label = Sprememba velikosti stranske vrstice
 pdfjs-views-manager-view-selector-button =
     .title = Pogledi
 pdfjs-views-manager-view-selector-button-label = Pogledi
 pdfjs-views-manager-pages-title = Strani
-pdfjs-views-manager-outlines-title = Oris dokumenta
+pdfjs-views-manager-outlines-title1 = Oris dokumenta
+    .title = Oris dokumenta (dvokliknite za razširitev ali strnitev vseh elementov)
 pdfjs-views-manager-attachments-title = Priponke
-pdfjs-views-manager-layers-title = Plasti
+pdfjs-views-manager-layers-title1 = Plasti
+    .title = Plasti (dvokliknite za ponastavitev vseh plasti na privzeto stanje)
 pdfjs-views-manager-pages-option-label = Strani
 pdfjs-views-manager-outlines-option-label = Oris dokumenta
 pdfjs-views-manager-attachments-option-label = Priponke
@@ -684,7 +718,7 @@ pdfjs-views-manager-pages-status-action-button-label = Upravljaj
 pdfjs-views-manager-pages-status-copy-button-label = Kopiraj
 pdfjs-views-manager-pages-status-cut-button-label = Izreži
 pdfjs-views-manager-pages-status-delete-button-label = Izbriši
-pdfjs-views-manager-pages-status-save-as-button-label = Shrani kot …
+pdfjs-views-manager-pages-status-export-selected-button-label = Izvozi izbor …
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label =
@@ -719,9 +753,40 @@ pdfjs-views-manager-status-warning-copy-label = Kopiranje ni bilo mogoče. Osve�
 pdfjs-views-manager-status-warning-delete-label = Brisanje ni bilo mogoče. Osvežite stran in poskusite znova.
 pdfjs-views-manager-status-warning-save-label = Shranjevanje ni bilo mogoče. Osvežite stran in poskusite znova.
 pdfjs-views-manager-status-undo-button-label = Razveljavi
+pdfjs-views-manager-status-done-button-label = Končano
 pdfjs-views-manager-status-close-button =
     .title = Zapri
 pdfjs-views-manager-status-close-button-label = Zapri
+pdfjs-views-manager-paste-button-label = Prilepi
+pdfjs-views-manager-paste-button-before =
+    .title = Prilepi pred prvo stran
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Prilepi za stranjo { $page }
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = NOVO
+pdfjs-views-manager-waiting-for-file = Nalaganje datoteke …
+pdfjs-toggle-views-manager-button1 =
+    .title = Upravljanje strani
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = Lastnosti digitalnega podpisa
+    .aria-label = Lastnosti digitalnega podpisa
+pdfjs-digital-signature-properties-button-label = Lastnosti digitalnega podpisa
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = Dokument je bil podpisan z veljavnim digitalnim podpisom
 
 ## Main menu for adding/removing signatures
 

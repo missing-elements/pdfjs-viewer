@@ -116,18 +116,9 @@ describe('Basic tests', async () => {
     expect(options.workerSrc).eq(workerSrc)
   })
 
-  it('should use CDN worker by default', async () => {
+  it('should use built-in worker by default', async () => {
     await mountViewer(`
       <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
-    )
-
-    const options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
-    expect(options.workerSrc).eq('https://cdn.jsdelivr.net/npm/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs')
-  })
-
-  it('should use built-in worker when use-built-in-worker attribute is enabled', async () => {
-    await mountViewer(`
-      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf" use-built-in-worker></pdfjs-viewer-element>`
     )
 
     const options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll()

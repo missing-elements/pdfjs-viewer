@@ -153,6 +153,27 @@ pdfjs-document-properties-linearized = Rapida tekstaĵa vido:
 pdfjs-document-properties-linearized-yes = Jes
 pdfjs-document-properties-linearized-no = Ne
 pdfjs-document-properties-close-button = Fermi
+pdfjs-digital-signature-properties-view-certificate = Vidi atestilon
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = Kialo: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = Tempindiko: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures =
+    { $count ->
+        [one] Duaranga subskribo ({ $count })
+       *[other] Duarangaj subskriboj ({ $count })
+    }
 
 ## Print
 
@@ -201,6 +222,15 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Miniaturo de paĝo { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox1 =
+    .title = Elekti paĝon { $page }
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Paĝo { $page } el { $total }
 
 ## Find panel button title and messages
 
@@ -214,7 +244,7 @@ pdfjs-find-next-button =
     .title = Serĉi la venontan aperon de la frazo
 pdfjs-find-next-button-label = Antaŭen
 pdfjs-find-highlight-checkbox = Elstarigi ĉiujn
-pdfjs-find-match-case-checkbox-label = Distingi inter majuskloj kaj minuskloj
+pdfjs-find-match-case-checkbox-label = Distingi usklecon
 pdfjs-find-match-diacritics-checkbox-label = Respekti supersignojn
 pdfjs-find-entire-word-checkbox-label = Tutaj vortoj
 pdfjs-find-reached-top = Komenco de la dokumento atingita, daŭrigado ekde la fino
@@ -641,20 +671,22 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = Montri/kaŝi flankan strion
 pdfjs-toggle-views-manager-notification-button =
     .title = Montri/kaŝi flankan strion (la dokumento enhavas miniaturojn/konturon/kunsendaĵojn/tavolojn)
-pdfjs-toggle-views-manager-button-label = Montri/kaŝi flankan strion
+pdfjs-toggle-views-manager-button1-label = Administri paĝojn
 pdfjs-views-manager-sidebar =
     .aria-label = Flanka strio
+pdfjs-views-manager-sidebar-resizer =
+    .aria-label = Dimensiigilo por la flanka strio
 pdfjs-views-manager-view-selector-button =
     .title = Vidoj
 pdfjs-views-manager-view-selector-button-label = Vidoj
 pdfjs-views-manager-pages-title = Paĝoj
-pdfjs-views-manager-outlines-title = Konturo de dokumento
+pdfjs-views-manager-outlines-title1 = Konturo de dokumento
+    .title = Konturo de dokumento (alklaku duoble por faldi/malfaldi ĉiujn elementojn)
 pdfjs-views-manager-attachments-title = Kunsendaĵoj
-pdfjs-views-manager-layers-title = Tavoloj
+pdfjs-views-manager-layers-title1 = Tavoloj
+    .title = Tavoloj (alklaku duoble por ke ĉiuj tavoloj reiru al la norma stato)
 pdfjs-views-manager-pages-option-label = Paĝoj
 pdfjs-views-manager-outlines-option-label = Konturo de dokumento
 pdfjs-views-manager-attachments-option-label = Kunsendaĵoj
@@ -674,7 +706,7 @@ pdfjs-views-manager-pages-status-action-button-label = Administri
 pdfjs-views-manager-pages-status-copy-button-label = Kopii
 pdfjs-views-manager-pages-status-cut-button-label = Eltondi
 pdfjs-views-manager-pages-status-delete-button-label = Forigi
-pdfjs-views-manager-pages-status-save-as-button-label = Konservi kiel…
+pdfjs-views-manager-pages-status-export-selected-button-label = Eksporti elektitajn…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label =
@@ -703,9 +735,91 @@ pdfjs-views-manager-status-warning-copy-label = Ne eblis kopii. Refreŝigu la pa
 pdfjs-views-manager-status-warning-delete-label = Ne eblis forigi. Refreŝigu la paĝon kaj provu denove.
 pdfjs-views-manager-status-warning-save-label = Ne eblis konservi. Refreŝigu la paĝon kaj provu denove.
 pdfjs-views-manager-status-undo-button-label = Malfari
+pdfjs-views-manager-status-done-button-label = Farita
 pdfjs-views-manager-status-close-button =
     .title = Fermi
 pdfjs-views-manager-status-close-button-label = Fermi
+pdfjs-views-manager-paste-button-label = Alglui
+pdfjs-views-manager-paste-button-before =
+    .title = Alglui antaŭ la unua paĝo
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Alglui post la paĝo { $page }
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = NOVA
+pdfjs-views-manager-waiting-for-file = Dosiero alŝutata…
+pdfjs-toggle-views-manager-button1 =
+    .title = Administri paĝojn
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = Atributoj de cifereca subskribo
+    .aria-label = Atributoj de cifereca subskribo
+pdfjs-digital-signature-properties-button-label = Atributoj de cifereca subskribo
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = La dokumento estis subskribita de valida cifereca subskribo
+pdfjs-digital-signature-properties-banner-unknown =
+    { $count ->
+        [one] Dokumento subskribita, tamen { $count } cifereca subskribo ne povis esti kontrolita
+       *[other] Dokumento subskribita, tamen { $count } ciferecaj subskriboj ne povis esti kontrolita
+    }
+pdfjs-digital-signature-properties-banner-untrusted =
+    { $count ->
+        [one] Dokumento subskribita de { $count } nefidata atestilo
+       *[other] Dokumento subskribita de { $count } nefidataj atestiloj
+    }
+pdfjs-digital-signature-properties-banner-expired =
+    { $count ->
+        [one] Dokumento subskribita de { $count } senvalidiĝinta atestilo
+       *[other] Dokumento subskribita de { $count } senvalidiĝintaj atestiloj
+    }
+pdfjs-digital-signature-properties-banner-invalid =
+    { $count ->
+        [one] La dokumento havas { $count } nevalidan ciferecan subskribon
+       *[other] La dokumento havas { $count } nevalidajn ciferecajn subskribojn
+    }
+pdfjs-digital-signature-properties-banner-revoked =
+    { $count ->
+        [one] Dokumento subskribita de { $count } senvalidigita atestilo
+       *[other] Dokumento subskribita de { $count } senvalidigitaj atestiloj
+    }
+
+## Per-signature status row. Only three distinct strings are needed:
+## the signature crypto either verified (the cert chain may still be
+## untrusted/expired/revoked, but that's surfaced on the cert row
+## below), or it failed, or its sub-format isn't supported.
+
+pdfjs-digital-signature-properties-status-verified = Stato: Subskribo kontrolita
+pdfjs-digital-signature-properties-status-invalid = Stato: Subskribo nevalida
+pdfjs-digital-signature-properties-status-unknown = Stato: Ne eblas kontroli (nesubtenata)
+
+## Per-signature certificate row. The variants with an issuer / date in
+## parentheses embed fully-localized context — no English fall-through.
+##
+## Variables:
+##   $issuer (String) - issuer or subject common name from the cert.
+##   $dateObj (Date)  - notAfter date for the expired-with-date form.
+
+pdfjs-digital-signature-properties-certificate-trusted = Atestilo: Fidata ({ $issuer })
+pdfjs-digital-signature-properties-certificate-unknown = Atestilo: Nedisponebla
+pdfjs-digital-signature-properties-certificate-untrusted = Atestilo: Ne fidata
+pdfjs-digital-signature-properties-certificate-untrusted-unknown-issuer = Atestilo: Nekonata eldoninto ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-self-signed = Atestilo: Memsubskribita ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-untrusted-issuer = Atestilo: Nefidata eldoninto ({ $issuer })
+pdfjs-digital-signature-properties-certificate-expired = Atestilo: Senvalidiĝinta
+pdfjs-digital-signature-properties-certificate-expired-with-date = Atestilo: Senvalidiĝinta ({ DATETIME($dateObj, dateStyle: "medium") })
+pdfjs-digital-signature-properties-certificate-revoked = Atestilo: Senvalidigita
 
 ## Main menu for adding/removing signatures
 

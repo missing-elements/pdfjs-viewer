@@ -153,6 +153,27 @@ pdfjs-document-properties-linearized = Snabb webbvisning:
 pdfjs-document-properties-linearized-yes = Ja
 pdfjs-document-properties-linearized-no = Nej
 pdfjs-document-properties-close-button = Stäng
+pdfjs-digital-signature-properties-view-certificate = Visa certifikat
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = Orsak: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = Tidsstämpel: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures =
+    { $count ->
+        [one] Undersignatur ({ $count })
+       *[other] Undersignaturer ({ $count })
+    }
 
 ## Print
 
@@ -203,8 +224,13 @@ pdfjs-thumb-page-canvas =
     .aria-label = Miniatyr av sida { $page }
 # Variables:
 #   $page (Number) - the page number
-pdfjs-thumb-page-checkbox =
-    .aria-label = Välj sida { $page }
+pdfjs-thumb-page-checkbox1 =
+    .title = Välj sida { $page }
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Sida { $page } av { $total }
 
 ## Find panel button title and messages
 
@@ -645,11 +671,9 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = Visa/dölj sidofält
 pdfjs-toggle-views-manager-notification-button =
     .title = Visa/dölj sidofält (dokument innehåller miniatyrer/översikt/bilagor/lager)
-pdfjs-toggle-views-manager-button-label = Visa/dölj sidofält
+pdfjs-toggle-views-manager-button1-label = Hantera sidor
 pdfjs-views-manager-sidebar =
     .aria-label = Sidofält
 pdfjs-views-manager-sidebar-resizer =
@@ -658,9 +682,11 @@ pdfjs-views-manager-view-selector-button =
     .title = Vyer
 pdfjs-views-manager-view-selector-button-label = Vyer
 pdfjs-views-manager-pages-title = Sidor
-pdfjs-views-manager-outlines-title = Dokumentöversikt
+pdfjs-views-manager-outlines-title1 = Dokumentöversikt
+    .title = Dokumentöversikt (dubbelklicka för att expandera/komprimera alla objekt)
 pdfjs-views-manager-attachments-title = Bilagor
-pdfjs-views-manager-layers-title = Lager
+pdfjs-views-manager-layers-title1 = Lager
+    .title = Lager (dubbelklicka för att återställa alla lager till standardläge)
 pdfjs-views-manager-pages-option-label = Sidor
 pdfjs-views-manager-outlines-option-label = Dokumentöversikt
 pdfjs-views-manager-attachments-option-label = Bilagor
@@ -680,7 +706,7 @@ pdfjs-views-manager-pages-status-action-button-label = Hantera
 pdfjs-views-manager-pages-status-copy-button-label = Kopiera
 pdfjs-views-manager-pages-status-cut-button-label = Klipp ut
 pdfjs-views-manager-pages-status-delete-button-label = Ta bort
-pdfjs-views-manager-pages-status-save-as-button-label = Spara som…
+pdfjs-views-manager-pages-status-export-selected-button-label = Exportera markerad…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label =
@@ -709,10 +735,91 @@ pdfjs-views-manager-status-warning-copy-label = Det gick inte att kopiera. Uppda
 pdfjs-views-manager-status-warning-delete-label = Det gick inte att ta bort. Uppdatera sidan och försök igen.
 pdfjs-views-manager-status-warning-save-label = Det gick inte att spara. Uppdatera sidan och försök igen.
 pdfjs-views-manager-status-undo-button-label = Ångra
+pdfjs-views-manager-status-done-button-label = Klar
 pdfjs-views-manager-status-close-button =
     .title = Stäng
 pdfjs-views-manager-status-close-button-label = Stäng
 pdfjs-views-manager-paste-button-label = Klistra in
+pdfjs-views-manager-paste-button-before =
+    .title = Klistra in före den första sidan
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Klistra in efter sida { $page }
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = NYTT
+pdfjs-views-manager-waiting-for-file = Överför fil…
+pdfjs-toggle-views-manager-button1 =
+    .title = Hantera sidor
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = Egenskaper för digital signatur
+    .aria-label = Egenskaper för digital signatur
+pdfjs-digital-signature-properties-button-label = Egenskaper för digital signatur
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = Dokumentet signerades med en giltig digital signatur
+pdfjs-digital-signature-properties-banner-unknown =
+    { $count ->
+        [one] Dokument signerat men { $count } digital signatur kunde inte verifieras
+       *[other] Dokument signerat men { $count } digitala signaturer kunde inte verifieras
+    }
+pdfjs-digital-signature-properties-banner-untrusted =
+    { $count ->
+        [one] Dokument signerat med { $count } certifikat som inte är tillförlitligt
+       *[other] Dokument signerat med { $count } certifikat som inte är tillförlitliga
+    }
+pdfjs-digital-signature-properties-banner-expired =
+    { $count ->
+        [one] Dokument signerat med { $count } utgånget certifikat
+       *[other] Dokument signerat med { $count } utgångna certifikat
+    }
+pdfjs-digital-signature-properties-banner-invalid =
+    { $count ->
+        [one] Dokumentet har { $count } ogiltig digital signatur
+       *[other] Dokumentet har { $count } ogiltiga digitala signaturer
+    }
+pdfjs-digital-signature-properties-banner-revoked =
+    { $count ->
+        [one] Dokument signerat med { $count } återkallat certifikat
+       *[other] Dokument signerat med { $count } återkallade certifikat
+    }
+
+## Per-signature status row. Only three distinct strings are needed:
+## the signature crypto either verified (the cert chain may still be
+## untrusted/expired/revoked, but that's surfaced on the cert row
+## below), or it failed, or its sub-format isn't supported.
+
+pdfjs-digital-signature-properties-status-verified = Status: Signatur verifierad
+pdfjs-digital-signature-properties-status-invalid = Status: Ogiltig signatur
+pdfjs-digital-signature-properties-status-unknown = Status: Kan inte verifiera (stöds inte)
+
+## Per-signature certificate row. The variants with an issuer / date in
+## parentheses embed fully-localized context — no English fall-through.
+##
+## Variables:
+##   $issuer (String) - issuer or subject common name from the cert.
+##   $dateObj (Date)  - notAfter date for the expired-with-date form.
+
+pdfjs-digital-signature-properties-certificate-trusted = Certifikat: Tillförlitligt ({ $issuer })
+pdfjs-digital-signature-properties-certificate-unknown = Certifikat: Ej tillgänglig
+pdfjs-digital-signature-properties-certificate-untrusted = Certifikat: Otillförlitligt
+pdfjs-digital-signature-properties-certificate-untrusted-unknown-issuer = Certifikat: Okänd utfärdare ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-self-signed = Certifikat: Självsignerat ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-untrusted-issuer = Certifikat: Otillförlitlig utfärdare ({ $issuer })
+pdfjs-digital-signature-properties-certificate-expired = Certifikat: Utgånget
+pdfjs-digital-signature-properties-certificate-expired-with-date = Certifikat: Utgånget ({ DATETIME($dateObj, dateStyle: "medium") })
+pdfjs-digital-signature-properties-certificate-revoked = Certifikat: Återkallat
 
 ## Main menu for adding/removing signatures
 

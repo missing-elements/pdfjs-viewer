@@ -153,6 +153,23 @@ pdfjs-document-properties-linearized = Xem nhanh trên web:
 pdfjs-document-properties-linearized-yes = Có
 pdfjs-document-properties-linearized-no = Không
 pdfjs-document-properties-close-button = Ðóng
+pdfjs-digital-signature-properties-view-certificate = Xem chứng chỉ
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = Nguyên nhân: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = Timestamp: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures = Chữ ký thành phần ({ $count })
 
 ## Print
 
@@ -203,8 +220,13 @@ pdfjs-thumb-page-canvas =
     .aria-label = Ảnh thu nhỏ của trang { $page }
 # Variables:
 #   $page (Number) - the page number
-pdfjs-thumb-page-checkbox =
-    .aria-label = Chọn trang { $page }
+pdfjs-thumb-page-checkbox1 =
+    .title = Chọn trang { $page }
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Trang { $page } / { $total }
 
 ## Find panel button title and messages
 
@@ -629,11 +651,9 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = Bật/tắt thanh lề
 pdfjs-toggle-views-manager-notification-button =
     .title = Bật tắt thanh lề (tài liệu bao gồm hình thu nhỏ/phác thảo/tập tin đính kèm/lớp)
-pdfjs-toggle-views-manager-button-label = Bật/tắt thanh lề
+pdfjs-toggle-views-manager-button1-label = Quản lý trang
 pdfjs-views-manager-sidebar =
     .aria-label = Thanh lề
 pdfjs-views-manager-sidebar-resizer =
@@ -642,9 +662,11 @@ pdfjs-views-manager-view-selector-button =
     .title = Chế độ hiển thị
 pdfjs-views-manager-view-selector-button-label = Chế độ hiển thị
 pdfjs-views-manager-pages-title = Trang
-pdfjs-views-manager-outlines-title = Bản phác thảo tài liệu
+pdfjs-views-manager-outlines-title1 = Bản phác thảo tài liệu
+    .title = Bản phác thảo tài liệu (nhấp đúp chuột để mở rộng/thu gọn tất cả các mục)
 pdfjs-views-manager-attachments-title = Đính kèm
-pdfjs-views-manager-layers-title = Lớp
+pdfjs-views-manager-layers-title1 = Lớp
+    .title = Lớp (nhấp đúp chuột để đặt lại tất cả các lớp về trạng thái mặc định.)
 pdfjs-views-manager-pages-option-label = Trang
 pdfjs-views-manager-outlines-option-label = Bản phác thảo tài liệu
 pdfjs-views-manager-attachments-option-label = Đính kèm
@@ -660,7 +682,7 @@ pdfjs-views-manager-pages-status-action-button-label = Quản lý
 pdfjs-views-manager-pages-status-copy-button-label = Sao chép
 pdfjs-views-manager-pages-status-cut-button-label = Cắt
 pdfjs-views-manager-pages-status-delete-button-label = Dán
-pdfjs-views-manager-pages-status-save-as-button-label = Lưu thành…
+pdfjs-views-manager-pages-status-export-selected-button-label = Xuất các mục đã chọn…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label = Đã cắt { $count } trang
@@ -677,10 +699,71 @@ pdfjs-views-manager-status-warning-copy-label = Không thể sao chép. Vui lòn
 pdfjs-views-manager-status-warning-delete-label = Không thể xoá. Vui lòng làm mới trang và thử lại.
 pdfjs-views-manager-status-warning-save-label = Không thể lưu. Vui lòng làm mới trang và thử lại.
 pdfjs-views-manager-status-undo-button-label = Hoàn tác
+pdfjs-views-manager-status-done-button-label = Xong
 pdfjs-views-manager-status-close-button =
     .title = Đóng
 pdfjs-views-manager-status-close-button-label = Đóng
 pdfjs-views-manager-paste-button-label = Dán
+pdfjs-views-manager-paste-button-before =
+    .title = Dán trước trang đầu
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Dán sau trang { $page }
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = MỚI
+pdfjs-views-manager-waiting-for-file = Đang tải lên tập tin…
+pdfjs-toggle-views-manager-button1 =
+    .title = Quản lý trang
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = Thuộc tính chữ ký điện tử
+    .aria-label = Thuộc tính chữ ký điện tử
+pdfjs-digital-signature-properties-button-label = Thuộc tính chữ ký điện tử
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = Tài liệu đã được ký bằng chữ ký điện tử hợp lệ
+pdfjs-digital-signature-properties-banner-unknown = Tài liệu đã được ký nhưng không thể xác minh { $count } chữ ký điện tử
+pdfjs-digital-signature-properties-banner-untrusted = Tài liệu được ký bằng { $count } chứng chỉ không đáng tin cậy
+pdfjs-digital-signature-properties-banner-expired = Tài liệu được ký bằng { $count } chứng chỉ đã hết hạn
+pdfjs-digital-signature-properties-banner-invalid = Tài liệu có { $count } chữ ký điện tử không hợp lệ
+pdfjs-digital-signature-properties-banner-revoked = Tài liệu được ký bằng { $count } chứng chỉ đã bị thu hồi
+
+## Per-signature status row. Only three distinct strings are needed:
+## the signature crypto either verified (the cert chain may still be
+## untrusted/expired/revoked, but that's surfaced on the cert row
+## below), or it failed, or its sub-format isn't supported.
+
+pdfjs-digital-signature-properties-status-verified = Trạng thái: Chữ ký đã được xác minh
+pdfjs-digital-signature-properties-status-invalid = Trạng thái: Chữ ký không hợp lệ
+pdfjs-digital-signature-properties-status-unknown = Trạng thái: Không thể xác minh (không được hỗ trợ)
+
+## Per-signature certificate row. The variants with an issuer / date in
+## parentheses embed fully-localized context — no English fall-through.
+##
+## Variables:
+##   $issuer (String) - issuer or subject common name from the cert.
+##   $dateObj (Date)  - notAfter date for the expired-with-date form.
+
+pdfjs-digital-signature-properties-certificate-trusted = Chứng chỉ: Đáng tin cậy ({ $issuer })
+pdfjs-digital-signature-properties-certificate-unknown = Chứng chỉ: Không khả dụng
+pdfjs-digital-signature-properties-certificate-untrusted = Chứng chỉ: Không đáng tin cậy
+pdfjs-digital-signature-properties-certificate-untrusted-unknown-issuer = Chứng chỉ: Người cấp không xác định ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-self-signed = Chứng chỉ: Tự ký ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-untrusted-issuer = Chứng chỉ: Người cấp không đáng tin cậy ({ $issuer })
+pdfjs-digital-signature-properties-certificate-expired = Chứng chỉ: Đã hết hạn
+pdfjs-digital-signature-properties-certificate-expired-with-date = Chứng chỉ: Đã hết hạn ({ DATETIME($dateObj, dateStyle: "medium") })
+pdfjs-digital-signature-properties-certificate-revoked = Chứng chỉ: Đã bị thu hồi
 
 ## Main menu for adding/removing signatures
 

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-const { OPS } = globalThis.pdfjsLib || (await import("pdfjs-lib"));
+const { makeSet, OPS } = globalThis.pdfjsLib || (await import("pdfjs-lib"));
 
 const opMap = Object.create(null);
 for (const key in OPS) {
@@ -459,11 +459,9 @@ class Stepper {
     const dependents = new Map();
     for (const [dependentIdx, { dependencies: ownDependencies }] of metadata) {
       for (const dependencyIdx of ownDependencies) {
-        let ownDependents = dependents.get(dependencyIdx);
-        if (!ownDependents) {
-          dependents.set(dependencyIdx, (ownDependents = new Set()));
-        }
-        ownDependents.add(dependentIdx);
+        dependents
+          .getOrInsertComputed(dependencyIdx, makeSet)
+          .add(dependentIdx);
       }
     }
 
@@ -519,8 +517,7 @@ class Stepper {
       return 0;
     });
 
-    for (let i = 0; i < operatorsGroupsByZindex.length; i++) {
-      const group = operatorsGroupsByZindex[i];
+    for (const group of operatorsGroupsByZindex) {
       if (group.minX !== null) {
         const el = this.#c("div");
         el.style.left = `${group.minX * 100}%`;
@@ -659,6 +656,10 @@ class Stepper {
     this.goTo(idx);
   }
 
+  shouldSkip(idx) {
+    return false;
+  }
+
   goTo(idx) {
     const allRows = this.panel.getElementsByClassName("line");
     for (const row of allRows) {
@@ -672,7 +673,7 @@ class Stepper {
   }
 }
 
-const Stats = (function Stats() {
+const Stats = (function () {
   let stats = [];
   function clear(node) {
     node.textContent = ""; // Remove any `node` contents from the DOM.

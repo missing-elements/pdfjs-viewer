@@ -153,6 +153,27 @@ pdfjs-document-properties-linearized = Ñanduti jahecha pya’e:
 pdfjs-document-properties-linearized-yes = Añete
 pdfjs-document-properties-linearized-no = Ahániri
 pdfjs-document-properties-close-button = Mboty
+pdfjs-digital-signature-properties-view-certificate = Mboajapyre jehecha
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = Mba’ére: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = Ára: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures =
+    { $count ->
+        [one] Mboheraguapy’i ({ $count })
+       *[other] Mboheraguapy’ieta ({ $count })
+    }
 
 ## Print
 
@@ -201,6 +222,15 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Kuatiarogue mba’emirĩ { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox1 =
+    .title = Eiporavo kuatiarogue { $page }
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Kuatiarogue { $page } { $total } mba’e
 
 ## Find panel button title and messages
 
@@ -551,6 +581,7 @@ pdfjs-editor-undo-bar-close-button-label = Mboty
 
 ## Add a signature dialog
 
+pdfjs-editor-add-signature-dialog-label = Ko modal omoneĩ poruhárape omoheñóivo mboheraguapy ombojuaju hag̃ua PDF rehe. Upe poruhára ombosako’ikuaa téra (oikóva avei moñe’ẽrã mokõihávarõ) ha, ejaposérõ, eñongatu mboheraguapy eiporujey hag̃ua.
 pdfjs-editor-add-signature-dialog-title = Embojuaju teraguapy
 
 ## Tab names
@@ -640,11 +671,9 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = Emoambue tenda yke
 pdfjs-toggle-views-manager-notification-button =
     .title = Embojopyru tenda ykegua (kuatia oguereko mba’e’i, kuaakaha/moirũha/ñuãha)
-pdfjs-toggle-views-manager-button-label = Emoambue tenda yke
+pdfjs-toggle-views-manager-button1-label = Eñangareko kuotiarogue
 pdfjs-views-manager-sidebar =
     .aria-label = Ta’ãngarupa yke
 pdfjs-views-manager-sidebar-resizer =
@@ -653,9 +682,11 @@ pdfjs-views-manager-view-selector-button =
     .title = Hechaha
 pdfjs-views-manager-view-selector-button-label = Hechaha
 pdfjs-views-manager-pages-title = Kuatiarogue
-pdfjs-views-manager-outlines-title = Kuatiaite jejapopy
+pdfjs-views-manager-outlines-title1 = Kuatiaite jejapopy
+    .title = Kuatiaite jejapopy (eikutu jo’a emyasãi hag̃ua/emomichĩmbaite mba’eporuita)
 pdfjs-views-manager-attachments-title = Moirũha
-pdfjs-views-manager-layers-title = Ñuãha
+pdfjs-views-manager-layers-title1 = Ñuãhaita
+    .title = Ñuãhaita (eikutu jo’a erupaite jey hag̃ua ñuãhaita oĩ haguepevoi)
 pdfjs-views-manager-pages-option-label = Kuatiarogueita
 pdfjs-views-manager-outlines-option-label = Kuatiaite jejapopy
 pdfjs-views-manager-attachments-option-label = Moirũhaita
@@ -675,7 +706,7 @@ pdfjs-views-manager-pages-status-action-button-label = Ñangareko
 pdfjs-views-manager-pages-status-copy-button-label = Monguatia
 pdfjs-views-manager-pages-status-cut-button-label = Kytĩ
 pdfjs-views-manager-pages-status-delete-button-label = Mboguete
-pdfjs-views-manager-pages-status-save-as-button-label = Ñongatu pyahu…
+pdfjs-views-manager-pages-status-export-selected-button-label = Eguerahauka poravopyre…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label =
@@ -704,10 +735,66 @@ pdfjs-views-manager-status-warning-copy-label = Ndaikatúi oñembokuatia. Embopy
 pdfjs-views-manager-status-warning-delete-label = Ndaikatúi embogue. Embopyahu kuatiarogue ha eha’ã jey.
 pdfjs-views-manager-status-warning-save-label = Ndaikatúi eñongatu. Embopyahu kuatiarogue ha eha’ã jey.
 pdfjs-views-manager-status-undo-button-label = Mboguevi
+pdfjs-views-manager-status-done-button-label = Oĩma
 pdfjs-views-manager-status-close-button =
     .title = Mboty
 pdfjs-views-manager-status-close-button-label = Mboty
 pdfjs-views-manager-paste-button-label = Mboja
+pdfjs-views-manager-paste-button-before =
+    .title = Emboja togue peteĩha mboyve
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Emboja kuatiarogue { $page } rire
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = PYAHU
+pdfjs-views-manager-waiting-for-file = Ehupihína marandurenda…
+pdfjs-toggle-views-manager-button1 =
+    .title = Eñangareko kuotiarogue
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = Firma digital oguerekóva
+    .aria-label = Firma digital oguerekóva
+pdfjs-digital-signature-properties-button-label = Firma digital oguerekóva
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = Pe kuatia oñemboheraguapy firma digital oikóvape
+
+## Per-signature status row. Only three distinct strings are needed:
+## the signature crypto either verified (the cert chain may still be
+## untrusted/expired/revoked, but that's surfaced on the cert row
+## below), or it failed, or its sub-format isn't supported.
+
+pdfjs-digital-signature-properties-status-verified = Heko: Mboheraguapy hechajeypyre
+pdfjs-digital-signature-properties-status-invalid = Heko: Mboheraguapy oiko’ỹva
+pdfjs-digital-signature-properties-status-unknown = Heko: Ndojehechajeykuaái (ndojokupytýi)
+
+## Per-signature certificate row. The variants with an issuer / date in
+## parentheses embed fully-localized context — no English fall-through.
+##
+## Variables:
+##   $issuer (String) - issuer or subject common name from the cert.
+##   $dateObj (Date)  - notAfter date for the expired-with-date form.
+
+pdfjs-digital-signature-properties-certificate-trusted = Mboajapyre: Jeroviaha ({ $issuer })
+pdfjs-digital-signature-properties-certificate-unknown = Mboajapyre: Oĩ’ỹva
+pdfjs-digital-signature-properties-certificate-untrusted = Mboajapyre: Jerovia’ỹha
+pdfjs-digital-signature-properties-certificate-untrusted-unknown-issuer = Mboajapyre: Guenohẽha jekuaa’ỹva ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-self-signed = Mboajapyre: Heraguapejeheguíva { $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-untrusted-issuer = Mboajapyre: Guenohẽha jerovia’ỹha ({ $issuer })
+pdfjs-digital-signature-properties-certificate-expired = Mboajapyre: Oikove’ỹmava
+pdfjs-digital-signature-properties-certificate-expired-with-date = Mboajapyre: Oikove’ỹmava ({ DATETIME($dateObj, dateStyle: "medium") })
+pdfjs-digital-signature-properties-certificate-revoked = Mboajapyre: Mbojevypyre
 
 ## Main menu for adding/removing signatures
 

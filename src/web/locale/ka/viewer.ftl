@@ -153,6 +153,27 @@ pdfjs-document-properties-linearized = მსუბუქი ვებჩვე�
 pdfjs-document-properties-linearized-yes = დიახ
 pdfjs-document-properties-linearized-no = არა
 pdfjs-document-properties-close-button = დახურვა
+pdfjs-digital-signature-properties-view-certificate = სერტიფიკატის ნახვა
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = მიზეზი: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = დროის ნიშნული: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures =
+    { $count ->
+        [one] ქვეხელმოწერები ({ $count })
+       *[other] ქვეხელმოწერები ({ $count })
+    }
 
 ## Print
 
@@ -201,6 +222,15 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = გვერდის შეთვალიერება { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox1 =
+    .title = მონიშნეთ { $page } გვერდი
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = გვერდი { $page }, სულ { $total }
 
 ## Find panel button title and messages
 
@@ -641,20 +671,22 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = გვერდითა ზოლის გამოჩენა/დამალვა
 pdfjs-toggle-views-manager-notification-button =
     .title = გვერდითი ზოლის გამოჩენა (შეიცავს შესათვალიერებელს/სარჩევს/დანართს)
-pdfjs-toggle-views-manager-button-label = გვერდითა ზოლის გამოჩენა/დამალვა
+pdfjs-toggle-views-manager-button1-label = გვერდების მართვა
 pdfjs-views-manager-sidebar =
     .aria-label = გვერდითი ზოლი
+pdfjs-views-manager-sidebar-resizer =
+    .aria-label = გვერდითი ზოლის ზომაცვლა
 pdfjs-views-manager-view-selector-button =
     .title = ხედები
 pdfjs-views-manager-view-selector-button-label = ხედები
 pdfjs-views-manager-pages-title = გვერდები
-pdfjs-views-manager-outlines-title = დოკუმენტის სარჩევი
+pdfjs-views-manager-outlines-title1 = დოკუმენტის სარჩევი
+    .title = დოკუმენტის სარჩევი (ორმაგი წკაპით ყველა ჩანაწერის ჩამოშლა/აკეცვა)
 pdfjs-views-manager-attachments-title = დანართები
-pdfjs-views-manager-layers-title = შრეები
+pdfjs-views-manager-layers-title1 = შრეები
+    .title = შრეები (ორმაგი წკაპით ყველა შრის ნაგულისხმევზე დაბრუნება)
 pdfjs-views-manager-pages-option-label = გვერდები
 pdfjs-views-manager-outlines-option-label = დოკუმენტის სარჩევი
 pdfjs-views-manager-attachments-option-label = დანართები
@@ -674,7 +706,7 @@ pdfjs-views-manager-pages-status-action-button-label = მართვა
 pdfjs-views-manager-pages-status-copy-button-label = ასლი
 pdfjs-views-manager-pages-status-cut-button-label = ამოჭრა
 pdfjs-views-manager-pages-status-delete-button-label = წაშლა
-pdfjs-views-manager-pages-status-save-as-button-label = შენახვა როგორც…
+pdfjs-views-manager-pages-status-export-selected-button-label = შერჩეულის გატანა…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label =
@@ -703,9 +735,91 @@ pdfjs-views-manager-status-warning-copy-label = ასლი ვერ აიღ
 pdfjs-views-manager-status-warning-delete-label = ვერ წაიშალა. განაახლეთ გვერდი და კვლავ სცადეთ.
 pdfjs-views-manager-status-warning-save-label = ვერ შეინახა. განაახლეთ გვერდი და კვლავ სცადეთ.
 pdfjs-views-manager-status-undo-button-label = დაბრუნება
+pdfjs-views-manager-status-done-button-label = მზადაა
 pdfjs-views-manager-status-close-button =
     .title = დახურვა
 pdfjs-views-manager-status-close-button-label = დახურვა
+pdfjs-views-manager-paste-button-label = ჩასმა
+pdfjs-views-manager-paste-button-before =
+    .title = ჩასმა პირველი გვერდის წინ
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = ჩასმა { $page } გვერდის შემდეგ
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = ᲡᲘᲐᲮᲚᲔ
+pdfjs-views-manager-waiting-for-file = ფაილი აიტვირთება…
+pdfjs-toggle-views-manager-button1 =
+    .title = გვერდების მართვა
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = ციფრული ხელმოწერის პარამეტრები
+    .aria-label = ციფრული ხელმოწერის პარამეტრები
+pdfjs-digital-signature-properties-button-label = ციფრული ხელმოწერის პარამეტრები
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = დოკუმენტი ხელმოწერილია მართებული ციფრული ხელმოწერით
+pdfjs-digital-signature-properties-banner-unknown =
+    { $count ->
+        [one] დოკუმენტი ხელმოწერილია, მაგრამ { $count } ციფრული ხელმოწერა ვერ დამოწმდა
+       *[other] დოკუმენტი ხელმოწერილია, მაგრამ { $count } ციფრული ხელმოწერა ვერ დამოწმდა
+    }
+pdfjs-digital-signature-properties-banner-untrusted =
+    { $count ->
+        [one] დოკუმენტი ხელმოწერილია { $count } არასანდო სერტიფიკატით
+       *[other] დოკუმენტი ხელმოწერილია { $count } არასანდო სერტიფიკატით
+    }
+pdfjs-digital-signature-properties-banner-expired =
+    { $count ->
+        [one] დოკუმენტი ხელმოწერილია { $count } ვადაგასული სერტიფიკატით
+       *[other] დოკუმენტი ხელმოწერილია { $count } ვადაგასული სერტიფიკატით
+    }
+pdfjs-digital-signature-properties-banner-invalid =
+    { $count ->
+        [one] დოკუმენტი ხელმოწერილია { $count } უმართებულო ციფრული სერტიფიკატით
+       *[other] დოკუმენტი ხელმოწერილია { $count } უმართებულო ციფრული სერტიფიკატით
+    }
+pdfjs-digital-signature-properties-banner-revoked =
+    { $count ->
+        [one] დოკუმენტი ხელმოწერილია { $count } ძალადაკარგული სერტიფიკატით
+       *[other] დოკუმენტი ხელმოწერილია { $count } ძალადაკარგული სერტიფიკატით
+    }
+
+## Per-signature status row. Only three distinct strings are needed:
+## the signature crypto either verified (the cert chain may still be
+## untrusted/expired/revoked, but that's surfaced on the cert row
+## below), or it failed, or its sub-format isn't supported.
+
+pdfjs-digital-signature-properties-status-verified = მდგომარეობა: ხელმოწერა დამოწმებულია
+pdfjs-digital-signature-properties-status-invalid = მდგომარეობა: ხელმოწერა უმართებულოა
+pdfjs-digital-signature-properties-status-unknown = მდგომარეობა: ვერ მოწმდება (მხარდაუჭერელია)
+
+## Per-signature certificate row. The variants with an issuer / date in
+## parentheses embed fully-localized context — no English fall-through.
+##
+## Variables:
+##   $issuer (String) - issuer or subject common name from the cert.
+##   $dateObj (Date)  - notAfter date for the expired-with-date form.
+
+pdfjs-digital-signature-properties-certificate-trusted = სერტიფიკატი: სანდოა ({ $issuer })
+pdfjs-digital-signature-properties-certificate-unknown = სერტიფიკატი: მიუწვდომელია
+pdfjs-digital-signature-properties-certificate-untrusted = სერტიფიკატი: არასანდოა
+pdfjs-digital-signature-properties-certificate-untrusted-unknown-issuer = სერტიფიკატი: უცნობი გამცემი ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-self-signed = სერტიფიკატი: თვითხელმოწერით ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-untrusted-issuer = სერტიფიკატი: არასანდო გამცემი ({ $issuer })
+pdfjs-digital-signature-properties-certificate-expired = სერტიფიკატი: ვადაგასული
+pdfjs-digital-signature-properties-certificate-expired-with-date = სერტიფიკატი: ვადაგასული ({ DATETIME($dateObj, dateStyle: "medium") })
+pdfjs-digital-signature-properties-certificate-revoked = სერტიფიკატი: ძალადაკარგულია
 
 ## Main menu for adding/removing signatures
 

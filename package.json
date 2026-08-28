@@ -44,10 +44,11 @@
     "types"
   ],
   "scripts": {
+    "sync:pdfjs": "node scripts/sync-pdfjs-assets.mjs",
     "dev": "vite",
-    "build": "tsc && vite build && node scripts/copy-worker.mjs",
-    "test": "vitest",
-    "coverage": "vitest run --coverage",
+    "build": "pnpm sync:pdfjs && tsc && vite build && node scripts/copy-worker.mjs",
+    "test": "pnpm sync:pdfjs && vitest",
+    "coverage": "pnpm sync:pdfjs && vitest run --coverage",
     "release": "node scripts/release.mjs",
     "release:dry": "node scripts/release.mjs --dry-run"
   },
@@ -57,6 +58,7 @@
     "@types/node": "^26.2.0",
     "@vitest/browser": "^4.1.11",
     "@vitest/browser-webdriverio": "^4.1.11",
+    "esbuild": "^0.28.2",
     "html-minifier-terser": "^7.2.0",
     "jsdom": "^30.0.1",
     "terser": "^5.50.0",
@@ -64,5 +66,8 @@
     "vite": "^8.2.2",
     "vitest": "^4.1.11",
     "webdriverio": "^9.31.2"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^6.2.108"
   }
 }

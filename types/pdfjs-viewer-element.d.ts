@@ -12,8 +12,6 @@ export declare class PdfjsViewerElement extends HTMLElement {
     private viewerStyles;
     private optionsToSet;
     static get observedAttributes(): string[];
-    private isBuiltInWorkerEnabled;
-    private getDefaultWorkerSrc;
     private formatTemplate;
     private getFullPath;
     private getCssThemeOption;

@@ -153,6 +153,28 @@ pdfjs-document-properties-linearized = Хуткі прагляд у Інтэрн
 pdfjs-document-properties-linearized-yes = Так
 pdfjs-document-properties-linearized-no = Не
 pdfjs-document-properties-close-button = Закрыць
+pdfjs-digital-signature-properties-view-certificate = Паказаць сертыфікат
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = Прычына: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = Адзнака часу: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures =
+    { $count ->
+        [one] Дадатковы подпіс ({ $count })
+        [few] Дадатковыя подпісы ({ $count })
+       *[many] Дадатковыя подпісы ({ $count })
+    }
 
 ## Print
 
@@ -201,6 +223,15 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Мініяцюра старонкі { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox1 =
+    .title = Выбраць старонку { $page }
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Старонка { $page } з { $total }
 
 ## Find panel button title and messages
 
@@ -645,20 +676,22 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = Паказаць/схаваць бакавую панэль
 pdfjs-toggle-views-manager-notification-button =
     .title = Паказаць/схаваць бакавую панэль (дакумент мае мініяцюры/змест/далучэнні/пласты)
-pdfjs-toggle-views-manager-button-label = Паказаць/схаваць бакавую панэль
+pdfjs-toggle-views-manager-button1-label = Кіраванне старонкамі
 pdfjs-views-manager-sidebar =
     .aria-label = Бакавая панэль
+pdfjs-views-manager-sidebar-resizer =
+    .aria-label = Змена памеру бакавой панэлі
 pdfjs-views-manager-view-selector-button =
     .title = Выгляд
 pdfjs-views-manager-view-selector-button-label = Выгляд
 pdfjs-views-manager-pages-title = Старонкі
-pdfjs-views-manager-outlines-title = Структура дакумента
+pdfjs-views-manager-outlines-title1 = Структура дакумента
+    .title = Структура дакумента (націсніце двойчы, каб разгарнуць/згарнуць усе элементы)
 pdfjs-views-manager-attachments-title = Далучэнні
-pdfjs-views-manager-layers-title = Пласты
+pdfjs-views-manager-layers-title1 = Пласты
+    .title = Пласты (націсніце двойчы каб скінуць у прадвызначаны стан)
 pdfjs-views-manager-pages-option-label = Старонкі
 pdfjs-views-manager-outlines-option-label = Структура дакумента
 pdfjs-views-manager-attachments-option-label = Далучэнні
@@ -679,7 +712,7 @@ pdfjs-views-manager-pages-status-action-button-label = Кіраваць
 pdfjs-views-manager-pages-status-copy-button-label = Капіяваць
 pdfjs-views-manager-pages-status-cut-button-label = Выразаць
 pdfjs-views-manager-pages-status-delete-button-label = Выдаліць
-pdfjs-views-manager-pages-status-save-as-button-label = Захаваць як…
+pdfjs-views-manager-pages-status-export-selected-button-label = Экспартаваць выбранае…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label =
@@ -711,9 +744,96 @@ pdfjs-views-manager-status-warning-copy-label = Не ўдалося скапія
 pdfjs-views-manager-status-warning-delete-label = Не ўдалося выдаліць. Абнавіце старонку і паспрабуйце зноў.
 pdfjs-views-manager-status-warning-save-label = Не ўдалося захаваць. Абнавіце старонку і паспрабуйце зноў.
 pdfjs-views-manager-status-undo-button-label = Адмяніць
+pdfjs-views-manager-status-done-button-label = Гатова
 pdfjs-views-manager-status-close-button =
     .title = Закрыць
 pdfjs-views-manager-status-close-button-label = Закрыць
+pdfjs-views-manager-paste-button-label = Уставіць
+pdfjs-views-manager-paste-button-before =
+    .title = Уставіць перад першай старонкай
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Уставіць пасля старонкі { $page }
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = НОВАЕ
+pdfjs-views-manager-waiting-for-file = Зацягваецца файл…
+pdfjs-toggle-views-manager-button1 =
+    .title = Кіраванне старонкамі
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = Уласцівасці лічбавага подпісу
+    .aria-label = Уласцівасці лічбавага подпісу
+pdfjs-digital-signature-properties-button-label = Уласцівасці лічбавага подпісу
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = Дакумент быў падпісаны сапраўдным лічбавым подпісам
+pdfjs-digital-signature-properties-banner-unknown =
+    { $count ->
+        [one] Дакумент падпісаны, але { $count } лічбавы подпіс не ўдалося праверыць
+        [few] Дакумент падпісаны, але { $count } лічбавыя подпісы не ўдалося праверыць
+       *[many] Дакумент падпісаны, але { $count } лічбавых подпісаў не ўдалося праверыць
+    }
+pdfjs-digital-signature-properties-banner-untrusted =
+    { $count ->
+        [one] Дакумент падпісаны { $count } недавераным сертыфікатам
+        [few] Дакумент падпісаны { $count } недаверанымі сертыфікатамі
+       *[many] Дакумент падпісаны { $count } недаверанымі сертыфікатамі
+    }
+pdfjs-digital-signature-properties-banner-expired =
+    { $count ->
+        [one] Дакумент падпісаны { $count } пратэрмінаваным сертыфікатам
+        [few] Дакумент падпісаны { $count } пратэрмінаванымі сертыфікатамі
+       *[many] Дакумент падпісаны { $count } пратэрмінаванымі сертыфікатамі
+    }
+pdfjs-digital-signature-properties-banner-invalid =
+    { $count ->
+        [one] Дакумент мае { $count } нядзейсны лічбавы подпіс
+        [few] Дакумент мае { $count } нядзейсныя лічбавыя подпісы
+       *[many] Дакумент мае { $count } нядзейсных лічбавых подпісаў
+    }
+pdfjs-digital-signature-properties-banner-revoked =
+    { $count ->
+        [one] Дакумент падпісаны { $count } адкліканым сертыфікатам
+        [few] Дакумент падпісаны { $count } адкліканымі сертыфікатамі
+       *[many] Дакумент падпісаны { $count } адкліканымі сертыфікатамі
+    }
+
+## Per-signature status row. Only three distinct strings are needed:
+## the signature crypto either verified (the cert chain may still be
+## untrusted/expired/revoked, but that's surfaced on the cert row
+## below), or it failed, or its sub-format isn't supported.
+
+pdfjs-digital-signature-properties-status-verified = Статус: Подпіс правераны
+pdfjs-digital-signature-properties-status-invalid = Статус: Подпіс нядзейсны
+pdfjs-digital-signature-properties-status-unknown = Статус: Немагчыма праверыць (не падтрымліваецца)
+
+## Per-signature certificate row. The variants with an issuer / date in
+## parentheses embed fully-localized context — no English fall-through.
+##
+## Variables:
+##   $issuer (String) - issuer or subject common name from the cert.
+##   $dateObj (Date)  - notAfter date for the expired-with-date form.
+
+pdfjs-digital-signature-properties-certificate-trusted = Сертыфікат: Давераны ({ $issuer })
+pdfjs-digital-signature-properties-certificate-unknown = Сертыфікат: Недаступны
+pdfjs-digital-signature-properties-certificate-untrusted = Сертыфікат: Недавераны
+pdfjs-digital-signature-properties-certificate-untrusted-unknown-issuer = Сертыфікат: Невядомы выдавец ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-self-signed = Сертыфікат: Самападпісаны ({ $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-untrusted-issuer = Сертыфікат: Недавераны выдавец ({ $issuer })
+pdfjs-digital-signature-properties-certificate-expired = Сертыфікат: Пратэрмінаваны
+pdfjs-digital-signature-properties-certificate-expired-with-date = Сертыфікат: Пратэрмінаваны ({ DATETIME($dateObj, dateStyle: "medium") })
+pdfjs-digital-signature-properties-certificate-revoked = Сертыфікат: Адкліканы
 
 ## Main menu for adding/removing signatures
 

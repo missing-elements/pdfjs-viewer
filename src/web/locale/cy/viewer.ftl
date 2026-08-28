@@ -153,6 +153,31 @@ pdfjs-document-properties-linearized = Golwg Gwe Cyflym:
 pdfjs-document-properties-linearized-yes = Iawn
 pdfjs-document-properties-linearized-no = Na
 pdfjs-document-properties-close-button = Cau
+pdfjs-digital-signature-properties-view-certificate = Gweld tystysgrif
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = Rheswm: { $reason }
+# Variables:
+#   $dateObj (Date) - the signing time from the /Sig dict's /M entry.
+pdfjs-digital-signature-properties-timestamp = Stamp amser: { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
+# Variables:
+#   $count (Number) - number of nested sub-signatures (one per earlier
+#                     incremental revision of the document).
+pdfjs-digital-signature-properties-sub-signatures =
+    { $count ->
+        [zero] Is-lofnodion ( { $count } )
+        [one] Is-lofnodion ( { $count } )
+        [two] Is-lofnodion ( { $count } )
+        [few] Is-lofnodion ( { $count } )
+        [many] Is-lofnodion ( { $count } )
+       *[other] Is-lofnodion ( { $count } )
+    }
 
 ## Print
 
@@ -201,6 +226,15 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Llun Bach Tudalen { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox1 =
+    .title = Dewis tudalen { $page }
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Tudalen { $page } o { $total }
 
 ## Find panel button title and messages
 
@@ -657,20 +691,22 @@ pdfjs-editor-add-comment-button =
 ##  - layers.
 ## The thumbnails view is used to edit the pdf: remove/insert pages, ...
 
-pdfjs-toggle-views-manager-button =
-    .title = Togl y Bar Ochr
 pdfjs-toggle-views-manager-notification-button =
     .title = Togl y Bar Ochr (dogfen yn cynnwys lluniau bach/amlinelliad/atodiadau/haenau)
-pdfjs-toggle-views-manager-button-label = Togl y Bar Ochr
+pdfjs-toggle-views-manager-button1-label = Rheoli tudalennau
 pdfjs-views-manager-sidebar =
     .aria-label = Bar Ochr
+pdfjs-views-manager-sidebar-resizer =
+    .aria-label = Newid maint bar ochr
 pdfjs-views-manager-view-selector-button =
     .title = Golygon
 pdfjs-views-manager-view-selector-button-label = Golygon
 pdfjs-views-manager-pages-title = Tudalennau
-pdfjs-views-manager-outlines-title = Amlinelliad dogfen
+pdfjs-views-manager-outlines-title1 = Amlinelliad Dogfen
+    .title = Amlinelliad dogfen (clic dwbl i ehangu/leihau pob eitem)
 pdfjs-views-manager-attachments-title = Atodiadau
-pdfjs-views-manager-layers-title = Haenau
+pdfjs-views-manager-layers-title1 = Haenau
+    .title = Haenau clic dwbl i ailosod pob haen i'r cyflwr ragosodedig)
 pdfjs-views-manager-pages-option-label = Tudalennau
 pdfjs-views-manager-outlines-option-label = Amlinelliad dogfen
 pdfjs-views-manager-attachments-option-label = Atodiadau
@@ -694,7 +730,7 @@ pdfjs-views-manager-pages-status-action-button-label = Rheoli
 pdfjs-views-manager-pages-status-copy-button-label = Copïo
 pdfjs-views-manager-pages-status-cut-button-label = Torri
 pdfjs-views-manager-pages-status-delete-button-label = Dileu
-pdfjs-views-manager-pages-status-save-as-button-label = Cadw fel…
+pdfjs-views-manager-pages-status-export-selected-button-label = Wedi dewis allforio…
 # Variables:
 #   $count (Number) - the number of selected pages to be cut.
 pdfjs-views-manager-status-undo-cut-label =
@@ -735,9 +771,111 @@ pdfjs-views-manager-status-warning-copy-label = Methu copïo. Adnewyddwch y duda
 pdfjs-views-manager-status-warning-delete-label = Methu dileu. Adnewyddwch y dudalen a cheisio eto.
 pdfjs-views-manager-status-warning-save-label = Methu cadw. Adnewyddwch y dudalen a cheisio eto.
 pdfjs-views-manager-status-undo-button-label = Dadwneud
+pdfjs-views-manager-status-done-button-label = Gorffen
 pdfjs-views-manager-status-close-button =
     .title = Cau
 pdfjs-views-manager-status-close-button-label = Cau
+pdfjs-views-manager-paste-button-label = Gludo
+pdfjs-views-manager-paste-button-before =
+    .title = Gludo cyn y dudalen gyntaf
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Gludo ar ôl tudalen { $page }
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = NEWYDD
+pdfjs-views-manager-waiting-for-file = Yn llwytho ffeil i fyny…
+pdfjs-toggle-views-manager-button1 =
+    .title = Rheoli tudalennau
+
+## Digital signature properties (signature verification panel)
+
+pdfjs-digital-signature-properties-button =
+    .title = Priodweddau llofnod digidol
+    .aria-label = Priodweddau llofnod digidol
+pdfjs-digital-signature-properties-button-label = Priodweddau llofnod digidol
+
+## Banner shown above the signature list summarising the overall
+## verification state of the document. Each variant is selected by the
+## viewer based on the worst per-signature status; one signature is
+## enough to lower the banner.
+##
+## Variables:
+##   $count (Number) - number of signatures at the worst level.
+
+pdfjs-digital-signature-properties-banner-verified = Llofnodwyd y ddogfen gyda llofnod digidol dilys
+pdfjs-digital-signature-properties-banner-unknown =
+    { $count ->
+        [zero] Llofnodwyd y ddogfen ond doedd dim modd dilysu { $count } llofnod digidol
+        [one] Llofnodwyd y ddogfen ond doedd dim modd dilysu { $count } llofnod digidol
+        [two] Llofnodwyd y ddogfen ond doedd dim modd dilysu { $count } llofnod digidol
+        [few] Llofnodwyd y ddogfen ond doedd dim modd dilysu { $count } llofnod digidol
+        [many] Llofnodwyd y ddogfen ond doedd dim modd dilysu { $count } llofnod digidol
+       *[other] Llofnodwyd y ddogfen ond doedd dim modd dilysu { $count } llofnod digidol
+    }
+pdfjs-digital-signature-properties-banner-untrusted =
+    { $count ->
+        [zero] Dogfen wedi'i llofnodi â { $count } thystysgrif does dim modd ymddiried ynddyn nhw
+        [one] Dogfen wedi'i llofnodi â { $count } thystysgrif does dim modd ymddiried ynddi
+        [two] Dogfen wedi'i llofnodi â { $count } thystysgrifau does dim modd ymddiried ynddyn nhw
+        [few] Dogfen wedi'i llofnodi â { $count } thystysgrifau does dim modd ymddiried ynddyn nhw
+        [many] Dogfen wedi'i llofnodi â { $count } thystysgrifau does dim modd ymddiried ynddyn nhw
+       *[other] Dogfen wedi'i llofnodi â { $count } thystysgrifau does dim modd ymddiried ynddyn nhw
+    }
+pdfjs-digital-signature-properties-banner-expired =
+    { $count ->
+        [zero] Dogfen wedi'i llofnodi gyda { $count } tystysgrifau sydd wedi dod i ben
+        [one] Dogfen wedi'i llofnodi gydag { $count } dystysgrif sydd wedi dod i ben
+        [two] Dogfen wedi'i llofnodi gyda { $count } dystysgrif sydd wedi dod i ben
+        [few] Dogfen wedi'i llofnodi gyda { $count } tystysgrif sydd wedi dod i ben
+        [many] Dogfen wedi'i llofnodi gyda { $count } thystysgrif sydd wedi dod i ben
+       *[other] Dogfen wedi'i llofnodi gyda { $count } tystysgrif sydd wedi dod i ben
+    }
+pdfjs-digital-signature-properties-banner-invalid =
+    { $count ->
+        [zero] Mae gan y ddogfen { $count } llofnodion digidol annilys
+        [one] Mae gan y ddogfen { $count } llofnod digidol annilys
+        [two] Mae gan y ddogfen { $count } llofnod digidol annilys
+        [few] Mae gan y ddogfen { $count } llofnod digidol annilys
+        [many] Mae gan y ddogfen { $count } llofnod digidol annilys
+       *[other] Mae gan y ddogfen { $count } llofnod digidol annilys
+    }
+pdfjs-digital-signature-properties-banner-revoked =
+    { $count ->
+        [zero] Dogfen wedi'i llofnodi gyda { $count } tystysgrifau wedi'u dirymu
+        [one] Dogfen wedi'i llofnodi gyda { $count } tystysgrif wedi'u dirymu
+        [two] Dogfen wedi'i llofnodi gyda { $count } tystysgrif wedi'u dirymu
+        [few] Dogfen wedi'i llofnodi gyda { $count } tystysgrif wedi'u dirymu
+        [many] Dogfen wedi'i llofnodi gyda { $count } thystysgrif wedi'u dirymu
+       *[other] Dogfen wedi'i llofnodi gyda { $count } tystysgrif wedi'u dirymu
+    }
+
+## Per-signature status row. Only three distinct strings are needed:
+## the signature crypto either verified (the cert chain may still be
+## untrusted/expired/revoked, but that's surfaced on the cert row
+## below), or it failed, or its sub-format isn't supported.
+
+pdfjs-digital-signature-properties-status-verified = Statws: Llofnod wedi'i ddilysu
+pdfjs-digital-signature-properties-status-invalid = Statws: Llofnod annilys
+pdfjs-digital-signature-properties-status-unknown = Statws: Methu dilysu (heb ei gefnogi)
+
+## Per-signature certificate row. The variants with an issuer / date in
+## parentheses embed fully-localized context — no English fall-through.
+##
+## Variables:
+##   $issuer (String) - issuer or subject common name from the cert.
+##   $dateObj (Date)  - notAfter date for the expired-with-date form.
+
+pdfjs-digital-signature-properties-certificate-trusted = Tystysgrif: Wedi ymddiried ( { $issuer })
+pdfjs-digital-signature-properties-certificate-unknown = Tystysgrif: Ddim ar gael
+pdfjs-digital-signature-properties-certificate-untrusted = Tystysgrif: Dim ymddiriedaeth
+pdfjs-digital-signature-properties-certificate-untrusted-unknown-issuer = Tystysgrif: Cyhoeddwr anhysbys ( { $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-self-signed = Tystysgrif: Hunan-lofnod ( { $issuer })
+pdfjs-digital-signature-properties-certificate-untrusted-untrusted-issuer = Tystysgrif: Cyhoeddwr heb ymddiriedaeth ( { $issuer })
+pdfjs-digital-signature-properties-certificate-expired = Tystysgrif: Wedi dod i ben
+pdfjs-digital-signature-properties-certificate-expired-with-date = Tystysgrif: Wedi dod i ben ({ DATETIME($dateObj, dateStyle: "medium") })
+pdfjs-digital-signature-properties-certificate-revoked = Tystysgrif: Wedi'i ddirymu
 
 ## Main menu for adding/removing signatures
 
