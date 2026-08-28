@@ -324,16 +324,51 @@ export class PdfjsViewerElement extends HTMLElement {
   private buildViewerEntry = async () => {
     return new Promise<void>(async (resolve) => {
       const viewerEntry = await import('virtual:pdfjs-viewer-html')
-      const origin = window.location.origin
+      const resolveHttpOrigin = (url: string) => {
+        try {
+          const parsed = new URL(url, window.location.href)
+          if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+            return parsed.origin
+          }
+        } catch {
+          // Ignore invalid URLs and keep CSP fallback values.
+        }
+        return ''
+      }
+
+      const toSourceList = (sources: string[]) =>
+        Array.from(new Set(sources.filter(Boolean))).join(' ')
+
+      const scriptSources = toSourceList([
+        "'self'",
+        window.location.origin,
+        resolveHttpOrigin(DEFAULT_PDF_SRC),
+        resolveHttpOrigin(DEFAULT_VIEWER_SRC)
+      ])
+
+      const styleSources = toSourceList([
+        "'self'",
+        window.location.origin,
+        resolveHttpOrigin(DEFAULT_VIEWER_CSS_SRC),
+        resolveHttpOrigin(DEFAULT_PAPER_AND_INK_THEME_CSS_SRC)
+      ])
+
+      const workerSources = toSourceList([
+        "'self'",
+        'blob:',
+        window.location.origin,
+        resolveHttpOrigin(this.getAttribute('worker-src') || DEFAULTS.workerSrc)
+      ])
+
       const srcdocCsp = [
         "default-src 'none'",
-        `script-src 'self' 'wasm-unsafe-eval' ${origin}`,
-        `script-src-elem ${origin}`,
-        `worker-src ${origin} blob:`,
-        `style-src ${origin} 'unsafe-inline'`,
-        `img-src ${origin} blob: data:`,
+        `script-src ${scriptSources} 'wasm-unsafe-eval'`,
+        `script-src-elem ${scriptSources}`,
+        `worker-src ${workerSources}`,
+        `style-src ${styleSources} 'unsafe-inline'`,
+        `img-src ${styleSources} blob: data:`,
         'media-src blob:',
-        `font-src ${origin} data:`,
+        `font-src ${styleSources} data:`,
         'connect-src * blob: data:',
         "base-uri 'none'",
         "form-action 'none'"
