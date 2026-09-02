@@ -28,7 +28,10 @@
   "types": "types/pdfjs-viewer-element.d.ts",
   "type": "module",
   "exports": {
-    ".": "./dist/pdfjs-viewer-element.js",
+    ".": {
+      "types": "./types/pdfjs-viewer-element.d.ts",
+      "default": "./dist/pdfjs-viewer-element.js"
+    },
     "./dist/*": "./dist/*"
   },
   "repository": {
