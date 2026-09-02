@@ -1,3 +1,6 @@
+import type { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api'
+import type { EventBus } from 'pdfjs-dist/types/web/event_utils'
+
 const DEFAULT_BUILT_IN_WORKER_SRC = import.meta.env.DEV
   ? new URL('./build/pdf.worker.mjs', import.meta.url).href
   : new URL('./pdf.worker.min.mjs', import.meta.url).href
@@ -41,6 +44,24 @@ const DEFAULTS = {
 
 export const ViewerCssTheme = { AUTOMATIC: 0, LIGHT: 1, DARK: 2 } as const
 
+export type PdfViewerApplicationOpenParameters =
+  (DocumentInitParameters & { originalUrl?: string }) | Uint8Array
+
+export type PdfViewerApplicationOptionValue =
+  string | boolean | number | Record<string, unknown>
+
+export interface PdfViewerApplication {
+  initializedPromise: Promise<void>
+  initialized: boolean
+  eventBus: EventBus
+  open: (params: PdfViewerApplicationOpenParameters) => void | Promise<void>
+}
+
+export interface PdfViewerApplicationOptions {
+  set: (name: string, value: PdfViewerApplicationOptionValue) => void
+  getAll: () => Record<string, unknown>
+}
+
 export class PdfjsViewerElement extends HTMLElement {
   constructor() {
     super()
@@ -56,7 +77,7 @@ export class PdfjsViewerElement extends HTMLElement {
   private localeResourceUrl?: string
   private localeResourceLink?: HTMLLinkElement
   private viewerStyles = new Set<string>()
-  private optionsToSet: Record<string, string | number> = {}
+  private optionsToSet: Record<string, PdfViewerApplicationOptionValue> = {}
 
   static get observedAttributes() {
     return[
@@ -512,7 +533,7 @@ export class PdfjsViewerElement extends HTMLElement {
     this.appendRuntimeStyle(styles)
   }
 
-  public async setViewerOptions(options: Record<string, string | number> = {}) {
+  public async setViewerOptions(options: Record<string, PdfViewerApplicationOptionValue> = {}) {
     this.optionsToSet = options
     await this.initPromise
     return {
@@ -522,16 +543,8 @@ export class PdfjsViewerElement extends HTMLElement {
 }
 
 export interface IframeWindow extends Window {
-  PDFViewerApplication?: {
-    initializedPromise: Promise<void>;
-    initialized: boolean;
-    eventBus: Record<string, any>;
-    open: (params: { url: string; originalUrl?: string } | { data: Uint8Array } | Uint8Array) => void;
-  },
-  PDFViewerApplicationOptions: {
-    set: (name: string, value: string | boolean | number | Record<string, any>) => void,
-    getAll: () => Record<string, any>
-  }
+  PDFViewerApplication?: PdfViewerApplication
+  PDFViewerApplicationOptions: PdfViewerApplicationOptions
 }
 
 export interface PdfjsViewerElementIframe extends HTMLIFrameElement {
@@ -539,7 +552,7 @@ export interface PdfjsViewerElementIframe extends HTMLIFrameElement {
 }
 
 export interface InitializationData {
-  viewerApp?: IframeWindow['PDFViewerApplication']
+  viewerApp?: PdfViewerApplication
 }
 
 export default PdfjsViewerElement
