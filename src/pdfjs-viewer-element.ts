@@ -339,11 +339,16 @@ export class PdfjsViewerElement extends HTMLElement {
       const toSourceList = (sources: string[]) =>
         Array.from(new Set(sources.filter(Boolean))).join(' ')
 
+      const workerSrcOrigin = resolveHttpOrigin(
+        this.getAttribute('worker-src') || DEFAULTS.workerSrc
+      )
+
       const scriptSources = toSourceList([
         "'self'",
         window.location.origin,
         resolveHttpOrigin(DEFAULT_PDF_SRC),
-        resolveHttpOrigin(DEFAULT_VIEWER_SRC)
+        resolveHttpOrigin(DEFAULT_VIEWER_SRC),
+        workerSrcOrigin
       ])
 
       const styleSources = toSourceList([
@@ -357,7 +362,7 @@ export class PdfjsViewerElement extends HTMLElement {
         "'self'",
         'blob:',
         window.location.origin,
-        resolveHttpOrigin(this.getAttribute('worker-src') || DEFAULTS.workerSrc)
+        workerSrcOrigin
       ])
 
       const srcdocCsp = [

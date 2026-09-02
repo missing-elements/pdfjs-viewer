@@ -116,6 +116,24 @@ describe('Basic tests', async () => {
     expect(options.workerSrc).eq(workerSrc)
   })
 
+  it('should include external worker origin in CSP script and worker directives', async () => {
+    const workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/build/pdf.worker.min.mjs'
+
+    await mountViewer(`
+      <pdfjs-viewer-element
+        src="/sample-pdf-10MB.pdf"
+        worker-src="${workerSrc}">
+      </pdfjs-viewer-element>`
+    )
+
+    const cspMeta = getIframe().contentDocument?.querySelector('meta[http-equiv="Content-Security-Policy"]')
+    const csp = cspMeta?.getAttribute('content') || ''
+
+    expect(csp).toMatch(/script-src[^;]*https:\/\/cdn\.jsdelivr\.net/)
+    expect(csp).toMatch(/script-src-elem[^;]*https:\/\/cdn\.jsdelivr\.net/)
+    expect(csp).toMatch(/worker-src[^;]*https:\/\/cdn\.jsdelivr\.net/)
+  })
+
   it('should use built-in worker by default', async () => {
     await mountViewer(`
       <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
