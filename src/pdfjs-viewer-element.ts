@@ -1,25 +1,52 @@
 import type { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api'
 import type { EventBus } from 'pdfjs-dist/types/web/event_utils'
 
+// The viewer runtime files ship next to this module (see scripts/copy-worker.mjs) and are
+// resolved relative to `import.meta.url`. The production file names do not exist next to this
+// source file at build time, so without `@vite-ignore` Vite would rewrite the calls to
+// `new URL('./file', '' + import.meta.url)`, a form consumer bundlers skip. Kept as plain
+// `new URL('./file', import.meta.url)`, Vite, Rollup and webpack in the consuming app emit the
+// files as assets and rewrite the URLs themselves. Bundlers that do not analyse this pattern
+// relocate the module without the files; those hosts serve the package `dist` folder from a
+// static path and point `assets-base` at it.
 const DEFAULT_BUILT_IN_WORKER_SRC = import.meta.env.DEV
   ? new URL('./build/pdf.worker.mjs', import.meta.url).href
-  : new URL('./pdf.worker.min.mjs', import.meta.url).href
+  : new URL(/* @vite-ignore */ './pdf.worker.min.mjs', import.meta.url).href
 
 const DEFAULT_PDF_SRC = import.meta.env.DEV
   ? new URL('./build/pdf.mjs', import.meta.url).href
-  : new URL('./pdf.mjs', import.meta.url).href
+  : new URL(/* @vite-ignore */ './pdf.mjs', import.meta.url).href
 
 const DEFAULT_VIEWER_SRC = import.meta.env.DEV
   ? new URL('./web/viewer.mjs', import.meta.url).href
-  : new URL('./viewer.mjs', import.meta.url).href
+  : new URL(/* @vite-ignore */ './viewer.mjs', import.meta.url).href
 
 const DEFAULT_VIEWER_CSS_SRC = import.meta.env.DEV
   ? new URL('./web/viewer.css', import.meta.url).href
-  : new URL('./viewer.css', import.meta.url).href
+  : new URL(/* @vite-ignore */ './viewer.css', import.meta.url).href
 
 const DEFAULT_PAPER_AND_INK_THEME_CSS_SRC = import.meta.env.DEV
   ? new URL('./themes/paper-and-ink.css', import.meta.url).href
-  : new URL('./paper-and-ink.css', import.meta.url).href
+  : new URL(/* @vite-ignore */ './paper-and-ink.css', import.meta.url).href
+
+// File names inside the package `dist` folder, used when `assets-base` is set.
+const DIST_FILE_NAMES = {
+  workerSrc: 'pdf.worker.min.mjs',
+  pdfSrc: 'pdf.mjs',
+  viewerSrc: 'viewer.mjs',
+  viewerCssSrc: 'viewer.css',
+  themeCssSrc: 'paper-and-ink.css'
+} as const
+
+type RuntimeFileUrls = Record<keyof typeof DIST_FILE_NAMES, string>
+
+const DEFAULT_RUNTIME_FILE_URLS: RuntimeFileUrls = {
+  workerSrc: DEFAULT_BUILT_IN_WORKER_SRC,
+  pdfSrc: DEFAULT_PDF_SRC,
+  viewerSrc: DEFAULT_VIEWER_SRC,
+  viewerCssSrc: DEFAULT_VIEWER_CSS_SRC,
+  themeCssSrc: DEFAULT_PAPER_AND_INK_THEME_CSS_SRC
+}
 
 const DEFAULTS = {
   src: '',
@@ -31,7 +58,6 @@ const DEFAULTS = {
   pagemode: 'none',
   locale: '',
   viewerCssTheme: 'AUTOMATIC',
-  workerSrc: DEFAULT_BUILT_IN_WORKER_SRC,
   debuggerSrc: './debugger.mjs',
   cMapUrl: '../web/cmaps/',
   iccUrl: '../web/iccs/',
@@ -103,6 +129,38 @@ export class PdfjsViewerElement extends HTMLElement {
     } catch {
       return path
     }
+  }
+
+  private getAssetsBase() {
+    const value = this.getAttribute('assets-base')?.trim()
+    if (!value) return ''
+    return this.getFullPath(value.endsWith('/') ? value : `${value}/`)
+  }
+
+  // Read when the viewer is (re)built, so the attribute must be present before connection.
+  private getRuntimeFileUrls(): RuntimeFileUrls {
+    const assetsBase = this.getAssetsBase()
+    if (!assetsBase) return DEFAULT_RUNTIME_FILE_URLS
+
+    const resolveFile = (fileName: string) => {
+      try {
+        return new URL(fileName, assetsBase).href
+      } catch {
+        return `${assetsBase}${fileName}`
+      }
+    }
+
+    return {
+      workerSrc: resolveFile(DIST_FILE_NAMES.workerSrc),
+      pdfSrc: resolveFile(DIST_FILE_NAMES.pdfSrc),
+      viewerSrc: resolveFile(DIST_FILE_NAMES.viewerSrc),
+      viewerCssSrc: resolveFile(DIST_FILE_NAMES.viewerCssSrc),
+      themeCssSrc: resolveFile(DIST_FILE_NAMES.themeCssSrc)
+    }
+  }
+
+  private getWorkerSrc() {
+    return this.getAttribute('worker-src') || this.getRuntimeFileUrls().workerSrc
   }
 
   private getCssThemeOption() {
@@ -311,7 +369,7 @@ export class PdfjsViewerElement extends HTMLElement {
 
   private applyViewerOptions = () => {
     const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-    viewerOptions?.set('workerSrc', this.getAttribute('worker-src') || DEFAULTS.workerSrc)
+    viewerOptions?.set('workerSrc', this.getWorkerSrc())
     viewerOptions?.set('debuggerSrc', this.getAttribute('debugger-src') || DEFAULTS.debuggerSrc)
     viewerOptions?.set('cMapUrl', this.getAttribute('c-map-url') || DEFAULTS.cMapUrl)
     viewerOptions?.set('iccUrl', this.getAttribute('icc-url') || DEFAULTS.iccUrl)
@@ -360,23 +418,22 @@ export class PdfjsViewerElement extends HTMLElement {
       const toSourceList = (sources: string[]) =>
         Array.from(new Set(sources.filter(Boolean))).join(' ')
 
-      const workerSrcOrigin = resolveHttpOrigin(
-        this.getAttribute('worker-src') || DEFAULTS.workerSrc
-      )
+      const { pdfSrc, viewerSrc, viewerCssSrc, themeCssSrc } = this.getRuntimeFileUrls()
+      const workerSrcOrigin = resolveHttpOrigin(this.getWorkerSrc())
 
       const scriptSources = toSourceList([
         "'self'",
         window.location.origin,
-        resolveHttpOrigin(DEFAULT_PDF_SRC),
-        resolveHttpOrigin(DEFAULT_VIEWER_SRC),
+        resolveHttpOrigin(pdfSrc),
+        resolveHttpOrigin(viewerSrc),
         workerSrcOrigin
       ])
 
       const styleSources = toSourceList([
         "'self'",
         window.location.origin,
-        resolveHttpOrigin(DEFAULT_VIEWER_CSS_SRC),
-        resolveHttpOrigin(DEFAULT_PAPER_AND_INK_THEME_CSS_SRC)
+        resolveHttpOrigin(viewerCssSrc),
+        resolveHttpOrigin(themeCssSrc)
       ])
 
       const workerSources = toSourceList([
@@ -407,8 +464,8 @@ export class PdfjsViewerElement extends HTMLElement {
 
       const completeHtml = viewerHtmlWithSrcdocCsp
         .replace('</head>', `
-          <link rel="stylesheet" href="${DEFAULT_VIEWER_CSS_SRC}">
-          <link rel="stylesheet" href="${DEFAULT_PAPER_AND_INK_THEME_CSS_SRC}">
+          <link rel="stylesheet" href="${viewerCssSrc}">
+          <link rel="stylesheet" href="${themeCssSrc}">
           ${Array.from(this.viewerStyles).map(style => `<style>${style}</style>`).join('\n')}
         </head>`)
       this.iframe.addEventListener('load', () => resolve(), { once: true })
@@ -437,8 +494,9 @@ export class PdfjsViewerElement extends HTMLElement {
 
     await this.injectLocaleData()
 
-    await this.injectScript(DEFAULT_PDF_SRC)
-    await this.injectScript(DEFAULT_VIEWER_SRC)
+    const { pdfSrc, viewerSrc } = this.getRuntimeFileUrls()
+    await this.injectScript(pdfSrc)
+    await this.injectScript(viewerSrc)
 
     return await setupPromise
   }
@@ -476,7 +534,7 @@ export class PdfjsViewerElement extends HTMLElement {
 
     if (name === 'worker-src') {
       const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-      viewerOptions?.set('workerSrc', newValue || DEFAULTS.workerSrc)
+      viewerOptions?.set('workerSrc', newValue || this.getRuntimeFileUrls().workerSrc)
       return
     }
 

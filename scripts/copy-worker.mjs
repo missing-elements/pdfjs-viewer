@@ -1,6 +1,6 @@
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
-import { transform } from 'esbuild'
+import { build, transform } from 'esbuild'
 
 const rootDir = resolve(import.meta.dirname, '..')
 const sourceFile = resolve(rootDir, 'src', 'build', 'pdf.worker.min.mjs')
@@ -37,22 +37,29 @@ const minifyModuleFile = async (sourcePath, targetPath) => {
 	await writeFile(targetPath, result.code, 'utf8')
 }
 
-const minifyCssFile = async (sourcePath, targetPath) => {
-	const code = await readFile(sourcePath, 'utf8')
-	const result = await transform(code, {
-		loader: 'css',
+// Bundles a stylesheet so that its url(...) references are inlined as data URLs. Consumer
+// bundlers emit dist files under hashed, relocated names, and viewer.css alone would otherwise
+// break: it references images/ relative to its own URL. esbuild picks base64 or percent
+// encoding per file, whichever is shorter.
+const bundleCssFile = async (sourcePath, targetPath) => {
+	await build({
+		entryPoints: [sourcePath],
+		outfile: targetPath,
+		bundle: true,
 		minify: true,
-		legalComments: 'none'
+		legalComments: 'none',
+		loader: {
+			'.svg': 'dataurl',
+			'.gif': 'dataurl'
+		}
 	})
-
-	await writeFile(targetPath, result.code, 'utf8')
 }
 
 await Promise.all([
 	copyFile(sourceFile, targetFile),
 	copyFile(sourcePdfFile, targetPdfFile),
 	minifyModuleFile(sourceViewerFile, targetViewerFile),
-	minifyCssFile(sourceViewerCssFile, targetViewerCssFile),
-	minifyCssFile(sourcePaperAndInkCssFile, targetPaperAndInkCssFile),
+	bundleCssFile(sourceViewerCssFile, targetViewerCssFile),
+	bundleCssFile(sourcePaperAndInkCssFile, targetPaperAndInkCssFile),
 	cp(sourceViewerImagesDir, targetViewerImagesDir, { recursive: true, force: true })
 ])

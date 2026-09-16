@@ -30,6 +30,9 @@ export declare class PdfjsViewerElement extends HTMLElement {
     static get observedAttributes(): string[];
     private formatTemplate;
     private getFullPath;
+    private getAssetsBase;
+    private getRuntimeFileUrls;
+    private getWorkerSrc;
     private getCssThemeOption;
     private applyIframeHash;
     private applyViewerTheme;

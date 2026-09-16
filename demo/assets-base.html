@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pdfjs-viewer-element | Assets base demo</title>
+    <script type="module" src="../dist/pdfjs-viewer-element.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--
+      `assets-base` points at a folder holding the package `dist` files
+      (viewer.mjs, pdf.mjs, pdf.worker.min.mjs, viewer.css, paper-and-ink.css).
+      Bundlers that understand `new URL('./file', import.meta.url)` do not need it; it is the
+      override for other bundlers or for serving the files from a CDN. Here it simply points
+      back at `dist` for demonstration.
+    -->
+    <pdfjs-viewer-element
+      src="/public/sample-pdf-with-images.pdf"
+      assets-base="../dist/"
+      style="height: 100dvh">
+    </pdfjs-viewer-element>
+  </body>
+</html>

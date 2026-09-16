@@ -7,7 +7,6 @@ describe('Basic tests', async () => {
     const viewerApp = await mountViewer(`
       <pdfjs-viewer-element 
         src="/sample-pdf-10MB.pdf" 
-        viewer-path="/pdfjs-5.3.93-dist"
       ></pdfjs-viewer-element>`
     )
     expect(getViewerElement()).exist
@@ -132,6 +131,59 @@ describe('Basic tests', async () => {
     expect(csp).toMatch(/script-src[^;]*https:\/\/cdn\.jsdelivr\.net/)
     expect(csp).toMatch(/script-src-elem[^;]*https:\/\/cdn\.jsdelivr\.net/)
     expect(csp).toMatch(/worker-src[^;]*https:\/\/cdn\.jsdelivr\.net/)
+  })
+
+  it('should load runtime files from assets-base', async () => {
+    // Published dist folder with the flat layout the attribute expects; no trailing slash on purpose.
+    const assetsBase = 'https://cdn.jsdelivr.net/npm/pdfjs-viewer-element@4.0.2/dist'
+
+    await mountViewer(`
+      <pdfjs-viewer-element
+        src="/sample-pdf-10MB.pdf"
+        assets-base="${assetsBase}">
+      </pdfjs-viewer-element>`
+    )
+
+    const doc = getIframe().contentDocument!
+    const stylesheets = Array.from(doc.querySelectorAll('link[rel="stylesheet"]'))
+      .map((link) => link.getAttribute('href'))
+    expect(stylesheets).toContain(`${assetsBase}/viewer.css`)
+    expect(stylesheets).toContain(`${assetsBase}/paper-and-ink.css`)
+
+    const scripts = Array.from(doc.querySelectorAll('script[type="module"]'))
+      .map((script) => script.getAttribute('src'))
+    expect(scripts).toContain(`${assetsBase}/pdf.mjs`)
+    expect(scripts).toContain(`${assetsBase}/viewer.mjs`)
+
+    const options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
+    expect(options.workerSrc).eq(`${assetsBase}/pdf.worker.min.mjs`)
+
+    const csp = doc.querySelector('meta[http-equiv="Content-Security-Policy"]')?.getAttribute('content') || ''
+    expect(csp).toMatch(/script-src[^;]*https:\/\/cdn\.jsdelivr\.net/)
+    expect(csp).toMatch(/style-src[^;]*https:\/\/cdn\.jsdelivr\.net/)
+
+    expect(getViewerElement()).exist
+  })
+
+  it('should prefer worker-src over assets-base and fall back to it on remove', async () => {
+    const assetsBase = 'https://cdn.jsdelivr.net/npm/pdfjs-viewer-element@4.0.2/dist/'
+    const workerSrc = 'https://example.com/pdf.worker.min.mjs'
+
+    await mountViewer(`
+      <pdfjs-viewer-element
+        src="/sample-pdf-10MB.pdf"
+        assets-base="${assetsBase}"
+        worker-src="${workerSrc}">
+      </pdfjs-viewer-element>`
+    )
+
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
+    let options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
+    expect(options.workerSrc).eq(workerSrc)
+
+    viewer.removeAttribute('worker-src')
+    options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
+    expect(options.workerSrc).eq(`${assetsBase}pdf.worker.min.mjs`)
   })
 
   it('should use built-in worker by default', async () => {

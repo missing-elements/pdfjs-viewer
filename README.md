@@ -16,6 +16,7 @@ Standalone, isolated, drop-in PDF viewer web component, based on [PDF.js default
 - Configure via attributes (page, zoom, search, pagemode, locale)
 - Resource path attributes for PDF.js internals (`worker-src`, `c-map-url`, `icc-url`, `standard-font-data-url`, `wasm-url`, and more)
 - Built-in worker is enabled by default for stricter CSP compatibility
+- Bundler friendly: Vite, Rollup and webpack pick up the viewer runtime files automatically, `assets-base` covers everything else
 - Configure `PDFViewerApplicationOptions` via the `setViewerOptions` method
 - Access to `PDFViewerApplication` via the `initPromise` property
 - Built-in Paper & Ink default theme, with theme control (automatic/light/dark) and custom CSS injection
@@ -83,7 +84,8 @@ The element is block-level and needs an explicit height.
 | `locale` | Viewer UI locale (for example `en-US`, `de`, `uk`). [Available locales](https://github.com/mozilla/pdf.js/tree/master/l10n) | `''` |
 | `locale-src-template` | Locale file URL template. Must contain `{locale}` placeholder. Used together with `locale`. | `https://cdn.jsdelivr.net/gh/mozilla-l10n/firefox-l10n@main/{locale}/toolkit/toolkit/pdfviewer/viewer.ftl` |
 | `viewer-css-theme` | Viewer theme: `AUTOMATIC`, `LIGHT`, `DARK`. | `AUTOMATIC` |
-| `worker-src` | PDF.js worker URL override. | bundled worker (`./build/pdf.worker.mjs` in dev, `./pdf.worker.min.mjs` in dist) |
+| `assets-base` | Directory URL of the viewer runtime files (`viewer.mjs`, `pdf.mjs`, `pdf.worker.min.mjs`, `viewer.css`, `paper-and-ink.css`). Only needed when your bundler does not handle `new URL('./file', import.meta.url)`, see [Bundlers](#bundlers-and-assets-base). | folder of `pdfjs-viewer-element.js` |
+| `worker-src` | PDF.js worker URL override. | bundled worker (`./build/pdf.worker.mjs` in dev, `pdf.worker.min.mjs` next to the element or in `assets-base`) |
 | `debugger-src` | PDF.js debugger script URL (`debuggerSrc` option). | `./debugger.mjs` |
 | `c-map-url` | CMap directory URL (`cMapUrl` option). | `../web/cmaps/` |
 | `icc-url` | ICC profile directory URL (`iccUrl` option). | `../web/iccs/` |
@@ -103,13 +105,34 @@ Most attributes can be updated dynamically:
 - `viewer-css-theme` updates the viewer theme at runtime.
 - `worker-src`, `debugger-src`, `c-map-url`, `icc-url`, `image-resources-path`, `sandbox-bundle-src`, `standard-font-data-url`, `wasm-url` update viewer options for subsequent document loads.
 - `locale` rebuilds the viewer so localization resources can be applied.
+- `assets-base` and `locale-src-template` are read when the viewer is (re)initialized, so set them before the element is attached.
+
+## Bundlers and assets base
+
+The component loads the PDF.js viewer at runtime from five files shipped in the package `dist` folder: `viewer.mjs`, `pdf.mjs`, `pdf.worker.min.mjs`, `viewer.css` and `paper-and-ink.css`. They are referenced as `new URL('./file', import.meta.url)`, and each one is self-contained, so bundlers that understand this pattern emit them as hashed assets and rewrite the URLs on their own. Nothing to configure for Vite (build and dev), Rollup or webpack 5.
+
+Bundlers that do not analyse `new URL(..., import.meta.url)`, esbuild among them, move the element into an app chunk without the files, and the viewer fails with 404s. Serve the package `dist` folder from a static path and point `assets-base` at it. The same attribute lets you load the files from a CDN:
+
+```html
+<pdfjs-viewer-element
+  src="/file.pdf"
+  assets-base="https://cdn.jsdelivr.net/npm/pdfjs-viewer-element@4/dist/">
+</pdfjs-viewer-element>
+```
+
+- The value is a directory URL, relative to the page or absolute. A trailing slash is added when missing.
+- `worker-src` still takes precedence for the worker file.
+- The attribute is read when the viewer is (re)initialized, so set it before the element is attached to the document.
+
+PDF.js annotation icons are a separate case: the viewer loads them at runtime as `imageResourcesPath + 'annotation-' + name + '.svg'`, a dynamic name no bundler can emit. If you need them, serve the package `dist/images` folder and set `image-resources-path`.
 
 ## Worker source
 
 By default, the component uses the bundled worker (same-origin), which is CSP-friendly in strict `script-src 'self'` environments.
 
 - Dev mode default: `./build/pdf.worker.mjs`
-- Dist/default package default: `./pdf.worker.min.mjs`
+- Dist/default package default: `pdf.worker.min.mjs` next to `pdfjs-viewer-element.js`, or the hashed copy your bundler emitted
+- With `assets-base`: `pdf.worker.min.mjs` inside that folder
 
 Set `worker-src` only if you want to serve the worker from a custom location (for example your own CDN or static assets path).
 
