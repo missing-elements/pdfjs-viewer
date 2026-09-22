@@ -74,24 +74,24 @@ The element is block-level and needs an explicit height.
 | <div style="min-width: 19ch">Attribute</div> | <div style="min-width: 15ch">Description</div> | Default |
 | --- | --- | --- |
 | `src` | PDF file URL. | `''` |
-| `iframe-title` | Title for the internal `iframe` (recommended for accessibility). | `PDF viewer window` |
+| `iframe&#8209;title` | Title for the internal `iframe` (recommended for accessibility). | `PDF viewer window` |
 | `page` | Page number. | `''` |
 | `search` | Search query text. | `''` |
 | `phrase` | Phrase search mode, set to `true` to enable phrase matching. | `''` |
 | `zoom` | Zoom level (for example `auto`, `page-width`, `200%`). | `''` |
 | `pagemode` | Sidebar mode: `thumbs`, `bookmarks`, `attachments`, `layers`, `none`. | `none` |
 | `locale` | Viewer UI locale (for example `en-US`, `de`, `uk`). [Available locales](https://github.com/mozilla/pdf.js/tree/master/l10n) | `''` |
-| `locale-src-template` | Locale file URL template. Must contain `{locale}` placeholder. Used together with `locale`. | `https://cdn.jsdelivr.net/gh/mozilla-l10n/firefox-l10n@main/{locale}/toolkit/toolkit/pdfviewer/viewer.ftl` |
-| `viewer-css-theme` | Viewer theme: `AUTOMATIC`, `LIGHT`, `DARK`. | `AUTOMATIC` |
-| `assets-base` | Directory URL of the viewer runtime files (`viewer.mjs`, `pdf.mjs`, `pdf.worker.min.mjs`, `viewer.css`, `paper-and-ink.css`). Only needed when your bundler does not handle `new URL('./file', import.meta.url)`, see [Bundlers](#bundlers-and-assets-base). | folder of `pdfjs-viewer-element.js` |
-| `worker-src` | PDF.js worker URL override. | bundled worker (`./build/pdf.worker.mjs` in dev, `pdf.worker.min.mjs` next to the element or in `assets-base`) |
-| `debugger-src` | PDF.js debugger script URL (`debuggerSrc` option). | `./debugger.mjs` |
-| `c-map-url` | CMap directory URL (`cMapUrl` option). | `../web/cmaps/` |
-| `icc-url` | ICC profile directory URL (`iccUrl` option). | `../web/iccs/` |
-| `image-resources-path` | Image resources directory (`imageResourcesPath` option). | `./images/` |
-| `sandbox-bundle-src` | Sandbox bundle URL (`sandboxBundleSrc` option). | `../build/pdf.sandbox.mjs` |
-| `standard-font-data-url` | Standard fonts directory (`standardFontDataUrl` option). | `../web/standard_fonts/` |
-| `wasm-url` | WASM assets directory (`wasmUrl` option). | `../web/wasm/` |
+| `locale&#8209;src&#8209;template` | Locale file URL template. Must contain `{locale}` placeholder. Used together with `locale`. | `https://cdn.jsdelivr.net/gh/mozilla-l10n/firefox-l10n@main/{locale}/toolkit/toolkit/pdfviewer/viewer.ftl` |
+| `viewer&#8209;css&#8209;theme` | Viewer theme: `AUTOMATIC`, `LIGHT`, `DARK`. | `AUTOMATIC` |
+| `assets&#8209;base` | Directory URL of the viewer runtime files (`viewer.mjs`, `pdf.mjs`, `pdf.worker.min.mjs`, `viewer.css`, `paper-and-ink.css`). Only needed when your bundler does not handle `new URL('./file', import.meta.url)`, see [Bundlers](#bundlers-and-assets-base). | folder of `pdfjs-viewer-element.js` |
+| `worker&#8209;src` | PDF.js worker URL override. | bundled worker (`./build/pdf.worker.mjs` in dev, `pdf.worker.min.mjs` next to the element or in `assets-base`) |
+| `debugger&#8209;src` | PDF.js debugger script URL (`debuggerSrc` option). | `./debugger.mjs` |
+| `c&#8209;map&#8209;url` | CMap directory URL (`cMapUrl` option). | `../web/cmaps/` |
+| `icc&#8209;url` | ICC profile directory URL (`iccUrl` option). | `../web/iccs/` |
+| `image&#8209;resources&#8209;path` | Image resources directory (`imageResourcesPath` option). | `./images/` |
+| `sandbox&#8209;bundle&#8209;src` | Sandbox bundle URL (`sandboxBundleSrc` option). | `../build/pdf.sandbox.mjs` |
+| `standard&#8209;font&#8209;data&#8209;url` | Standard fonts directory (`standardFontDataUrl` option). | `../web/standard_fonts/` |
+| `wasm&#8209;url` | WASM assets directory (`wasmUrl` option). | `../web/wasm/` |
 
 Play with attributes on [API docs page](https://alekswebnet.github.io/pdfjs-viewer-element/#api).
 
