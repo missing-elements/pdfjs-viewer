@@ -1,6 +1,6 @@
 # pdfjs-viewer
 
-Standalone, isolated, drop-in PDF viewer web component, based on [PDF.js default viewer](https://mozilla.github.io/pdf.js/web/viewer.html).
+A standalone, isolated, self-hostable plug-in for viewing PDF files, based on [PDF.js default viewer](https://mozilla.github.io/pdf.js/web/viewer.html).
 
 [![npm version](https://img.shields.io/npm/v/pdfjs-viewer-element?logo=npm&logoColor=fff)](https://www.npmjs.com/package/pdfjs-viewer-element)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/alekswebnet/pdfjs-viewer-element)
@@ -12,16 +12,15 @@ Standalone, isolated, drop-in PDF viewer web component, based on [PDF.js default
 
 - Standalone isolated web component with no runtime dependencies
 - Drop-in, iframe-based PDF.js default viewer for any web app
-- Works with same-origin and cross-origin PDF documents
+- Self-hosted by default, no CDN needed. Built-in worker is enabled by default for stricter CSP compatibility
+- Same-origin and cross-origin PDF URLs are supported
 - Configure via attributes (page, zoom, search, pagemode, locale)
 - Resource path attributes for PDF.js internals (`worker-src`, `c-map-url`, `icc-url`, `standard-font-data-url`, `wasm-url`, and more)
-- Built-in worker is enabled by default for stricter CSP compatibility
 - Bundler friendly: Vite, Rollup and webpack pick up the viewer runtime files automatically, `assets-base` covers everything else
-- Configure `PDFViewerApplicationOptions` via the `setViewerOptions` method
-- Access to `PDFViewerApplication` via the `initPromise` property
-- Built-in Paper & Ink default theme, with theme control (automatic/light/dark) and custom CSS injection
+- Access to PDF.js viewer application - `PDFViewerApplication` via the `initPromise` property
+- Configure PDF.js viewer instance options - `PDFViewerApplicationOptions` via the `setViewerOptions` method
+- Built-in Paper & Ink default theme. Theme customisation, theme control (automatic/light/dark) and custom CSS injection
 - Locale override support using PDF.js viewer locales
-- Supports all [major browsers](https://caniuse.com/custom-elementsv1) and most [JS frameworks](https://custom-elements-everywhere.com/).
 
 ## Docs
 
@@ -31,9 +30,9 @@ Standalone, isolated, drop-in PDF viewer web component, based on [PDF.js default
 
 [CodePen demo](https://codepen.io/redrobot753/pen/bNwVVvp)
 
-[CodePen demo with React](https://codepen.io/redrobot753/pen/xbEwNrO)
+[CodePen demo React](https://codepen.io/redrobot753/pen/xbEwNrO)
 
-[CodePen demo with Vue](https://codepen.io/redrobot753/pen/JoRYqwN)
+[CodePen demo Vue](https://codepen.io/redrobot753/pen/JoRYqwN)
 
 [Usage examples](https://github.com/alekswebnet/pdfjs-viewer-element/tree/master/demo)
 
