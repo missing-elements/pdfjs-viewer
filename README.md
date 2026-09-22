@@ -74,7 +74,7 @@ The element is block-level and needs an explicit height.
 | <div style="min-width: 19ch">Attribute</div> | <div style="min-width: 15ch">Description</div> | Default |
 | --- | --- | --- |
 | `src` | PDF file URL. | `''` |
-| `iframe&#8209;title` | Title for the internal `iframe` (recommended for accessibility). | `PDF viewer window` |
+| iframe&#8209;title | Title for the internal `iframe` (recommended for accessibility). | `PDF viewer window` |
 | `page` | Page number. | `''` |
 | `search` | Search query text. | `''` |
 | `phrase` | Phrase search mode, set to `true` to enable phrase matching. | `''` |
