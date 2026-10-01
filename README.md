@@ -88,7 +88,7 @@ The element is block-level and needs an explicit height.
 | debugger&#8209;src | PDF.js debugger script URL (`debuggerSrc` option). | `./debugger.mjs` |
 | c&#8209;map&#8209;url | CMap directory URL (`cMapUrl` option). | `../web/cmaps/` |
 | icc&#8209;url | ICC profile directory URL (`iccUrl` option). | `../web/iccs/` |
-| image&#8209;resources&#8209;path | Image resources directory (`imageResourcesPath` option). | `./images/` |
+| image&#8209;resources&#8209;path | Image resources directory (`imageResourcesPath` option). Defaults to `assets-base + images/` when `assets-base` is set, otherwise `./images/`. | `./images/` |
 | sandbox&#8209;bundle&#8209;src | Sandbox bundle URL (`sandboxBundleSrc` option). | `../build/pdf.sandbox.mjs` |
 | standard&#8209;font&#8209;data&#8209;url | Standard fonts directory (`standardFontDataUrl` option). | `../web/standard_fonts/` |
 | wasm&#8209;url | WASM assets directory (`wasmUrl` option). | `../web/wasm/` |
@@ -123,7 +123,7 @@ Bundlers that do not analyse `new URL(..., import.meta.url)`, esbuild among them
 - `worker-src` still takes precedence for the worker file.
 - The attribute is read when the viewer is (re)initialized, so set it before the element is attached to the document.
 
-PDF.js annotation icons are a separate case: the viewer loads them at runtime as `imageResourcesPath + 'annotation-' + name + '.svg'`, a dynamic name no bundler can emit. If you need them, serve the package `dist/images` folder and set `image-resources-path`.
+PDF.js annotation icons are a separate case: the viewer loads them at runtime as `imageResourcesPath + 'annotation-' + name + '.svg'`, a dynamic name no bundler can emit. If `assets-base` is set, `imageResourcesPath` defaults to `assets-base + 'images/'`. Otherwise serve the package `dist/images` folder and set `image-resources-path` explicitly.
 
 ## Worker source
 

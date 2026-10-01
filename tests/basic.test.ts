@@ -157,6 +157,7 @@ describe('Basic tests', async () => {
 
     const options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
     expect(options.workerSrc).eq(`${assetsBase}/pdf.worker.min.mjs`)
+    expect(options.imageResourcesPath).eq(`${assetsBase}/images/`)
 
     const csp = doc.querySelector('meta[http-equiv="Content-Security-Policy"]')?.getAttribute('content') || ''
     expect(csp).toMatch(/script-src[^;]*https:\/\/cdn\.jsdelivr\.net/)

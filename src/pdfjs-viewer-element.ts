@@ -163,6 +163,20 @@ export class PdfjsViewerElement extends HTMLElement {
     return this.getAttribute('worker-src') || this.getRuntimeFileUrls().workerSrc
   }
 
+  private getImageResourcesPath() {
+    const imageResourcesPath = this.getAttribute('image-resources-path')
+    if (imageResourcesPath) return imageResourcesPath
+
+    const assetsBase = this.getAssetsBase()
+    if (!assetsBase) return DEFAULTS.imageResourcesPath
+
+    try {
+      return new URL('images/', assetsBase).href
+    } catch {
+      return `${assetsBase}images/`
+    }
+  }
+
   private getCssThemeOption() {
     const attrValue = this.getAttribute('viewer-css-theme') as keyof typeof ViewerCssTheme
     return Object.keys(ViewerCssTheme).includes(attrValue) 
@@ -373,7 +387,7 @@ export class PdfjsViewerElement extends HTMLElement {
     viewerOptions?.set('debuggerSrc', this.getAttribute('debugger-src') || DEFAULTS.debuggerSrc)
     viewerOptions?.set('cMapUrl', this.getAttribute('c-map-url') || DEFAULTS.cMapUrl)
     viewerOptions?.set('iccUrl', this.getAttribute('icc-url') || DEFAULTS.iccUrl)
-    viewerOptions?.set('imageResourcesPath', this.getAttribute('image-resources-path') || DEFAULTS.imageResourcesPath)
+    viewerOptions?.set('imageResourcesPath', this.getImageResourcesPath())
     viewerOptions?.set('sandboxBundleSrc', this.getAttribute('sandbox-bundle-src') || DEFAULTS.sandboxBundleSrc)
     viewerOptions?.set('standardFontDataUrl', this.getAttribute('standard-font-data-url') || DEFAULTS.standardFontDataUrl)
     viewerOptions?.set('wasmUrl', this.getAttribute('wasm-url') || DEFAULTS.wasmUrl)
@@ -526,7 +540,6 @@ export class PdfjsViewerElement extends HTMLElement {
       'debugger-src': { key: 'debuggerSrc', fallback: DEFAULTS.debuggerSrc },
       'c-map-url': { key: 'cMapUrl', fallback: DEFAULTS.cMapUrl },
       'icc-url': { key: 'iccUrl', fallback: DEFAULTS.iccUrl },
-      'image-resources-path': { key: 'imageResourcesPath', fallback: DEFAULTS.imageResourcesPath },
       'sandbox-bundle-src': { key: 'sandboxBundleSrc', fallback: DEFAULTS.sandboxBundleSrc },
       'standard-font-data-url': { key: 'standardFontDataUrl', fallback: DEFAULTS.standardFontDataUrl },
       'wasm-url': { key: 'wasmUrl', fallback: DEFAULTS.wasmUrl }
@@ -542,6 +555,12 @@ export class PdfjsViewerElement extends HTMLElement {
       const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
       const { key, fallback } = optionByAttribute[name as keyof typeof optionByAttribute]
       viewerOptions?.set(key, newValue || fallback)
+      return
+    }
+
+    if (name === 'image-resources-path') {
+      const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
+      viewerOptions?.set('imageResourcesPath', newValue || this.getImageResourcesPath())
       return
     }
 
