@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { defineConfig } from 'vitest/config'
 import terser from '@rollup/plugin-terser'
-import { webdriverio } from '@vitest/browser-webdriverio'
+import { playwright } from '@vitest/browser-playwright'
 import { minify as minifyHtml } from 'html-minifier-terser'
 
 const VIEWER_HTML_VIRTUAL_ID = 'virtual:pdfjs-viewer-html'
@@ -47,7 +47,7 @@ export default defineConfig({
     minify: 'terser',
     rollupOptions: {
       output: {
-        assetFileNames: (assetInfo) => {
+        assetFileNames: (assetInfo: { name?: string }) => {
           if (assetInfo.name?.endsWith('.css')) {
             return '[name][extname]'
           }
@@ -73,7 +73,8 @@ export default defineConfig({
   },
   test: {
     browser: {
-      provider: webdriverio(),
+      // Vitest provider overloads can conflict when multiple provider typings exist in the graph.
+      provider: playwright(),
       enabled: true,
       // at least one instance is required
       instances: [

@@ -21,6 +21,7 @@ A standalone, isolated, self-hostable, plug-in custom element for viewing PDF fi
 - Configure PDF.js viewer instance options - `PDFViewerApplicationOptions` via the `setViewerOptions` method
 - Built-in Paper & Ink default theme. Theme customisation, theme control (automatic/light/dark) and custom CSS injection
 - Locale override support using PDF.js viewer locales
+- Bundled PDF.js version: `6.3.289`
 
 ## Docs
 
@@ -141,7 +142,7 @@ Set `worker-src` only if you want to serve the worker from a custom location (fo
 ```html
 <pdfjs-viewer-element
   src="/file.pdf"
-  worker-src="https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/build/pdf.worker.min.mjs">
+  worker-src="https://cdn.jsdelivr.net/npm/pdfjs-dist@6.3.289/build/pdf.worker.min.mjs">
 </pdfjs-viewer-element>
 ```
 
