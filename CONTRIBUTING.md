@@ -18,7 +18,8 @@ PDFJS_VERSION="$(node -p "require('./package.json').dependencies['pdfjs-dist'].m
 curl --fail --location --retry 3 \
   "https://github.com/mozilla/pdf.js/releases/download/v${PDFJS_VERSION}/pdfjs-${PDFJS_VERSION}-dist.zip" \
   --output "/tmp/pdfjs-${PDFJS_VERSION}-dist.zip"
-unzip -q "/tmp/pdfjs-${PDFJS_VERSION}-dist.zip" -d public
+mkdir -p "public/pdfjs-${PDFJS_VERSION}-dist"
+unzip -q "/tmp/pdfjs-${PDFJS_VERSION}-dist.zip" -d "public/pdfjs-${PDFJS_VERSION}-dist"
 pnpm exec playwright install firefox
 ```
 
