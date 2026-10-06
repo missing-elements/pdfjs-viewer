@@ -25,6 +25,15 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Download PDF.js release assets
+        shell: bash
+        run: |
+          pdfjs_version="$(node -p "require('./package.json').dependencies['pdfjs-dist'].match(/\d+\.\d+\.\d+/)[0]")"
+          curl --fail --location --retry 3 \
+            "https://github.com/mozilla/pdf.js/releases/download/v${pdfjs_version}/pdfjs-${pdfjs_version}-dist.zip" \
+            --output "/tmp/pdfjs-${pdfjs_version}-dist.zip"
+          mkdir -p "public/pdfjs-${pdfjs_version}-dist"
+          unzip -q "/tmp/pdfjs-${pdfjs_version}-dist.zip" -d "public/pdfjs-${pdfjs_version}-dist"
       - run: pnpm exec playwright install --with-deps firefox
       - run: pnpm test -- --run
       - run: pnpm build

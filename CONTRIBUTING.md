@@ -14,6 +14,12 @@ Thank you for contributing to `pdfjs-viewer-element`.
 git clone https://github.com/alekswebnet/pdfjs-viewer-element.git
 cd pdfjs-viewer-element
 pnpm install --frozen-lockfile
+PDFJS_VERSION="$(node -p "require('./package.json').dependencies['pdfjs-dist'].match(/\d+\.\d+\.\d+/)[0]")"
+curl --fail --location --retry 3 \
+  "https://github.com/mozilla/pdf.js/releases/download/v${PDFJS_VERSION}/pdfjs-${PDFJS_VERSION}-dist.zip" \
+  --output "/tmp/pdfjs-${PDFJS_VERSION}-dist.zip"
+mkdir -p "public/pdfjs-${PDFJS_VERSION}-dist"
+unzip -q "/tmp/pdfjs-${PDFJS_VERSION}-dist.zip" -d "public/pdfjs-${PDFJS_VERSION}-dist"
 pnpm exec playwright install firefox
 ```
 
@@ -38,7 +44,9 @@ pnpm build
 ```
 
 The test and build scripts synchronize the PDF.js runtime assets before
-running. Do not commit generated `dist` or `public` output.
+running. The PDF.js release archive is required because the viewer assets are
+not published in this repository. Do not commit generated `dist` or `public`
+output.
 
 ## Pull Requests
 

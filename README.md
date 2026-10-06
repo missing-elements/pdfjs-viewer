@@ -21,7 +21,7 @@ A standalone, isolated, self-hostable, plug-in custom element for viewing PDF fi
 - Configure PDF.js viewer instance options - `PDFViewerApplicationOptions` via the `setViewerOptions` method
 - Built-in Paper & Ink default theme. Theme customisation, theme control (automatic/light/dark) and custom CSS injection
 - Locale override support using PDF.js viewer locales
-- Bundled PDF.js version: `6.3.289`
+- Bundled PDF.js release version: `6.3.289`
 
 ## Docs
 
