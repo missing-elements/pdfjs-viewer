@@ -37,6 +37,8 @@ A standalone, isolated, self-hostable, plug-in custom element for viewing PDF fi
 
 [Usage examples](https://github.com/alekswebnet/pdfjs-viewer-element/tree/master/demo)
 
+[Accessibility guidance](./ACCESSIBILITY.md)
+
 ## Install
 
 ### Using module bundlers:
