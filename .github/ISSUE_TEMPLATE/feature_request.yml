@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest an improvement to pdfjs-viewer-element.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What user need or limitation does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the API or behavior you would like.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe any workarounds or alternative solutions.
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Include examples, mockups, or integration details if useful.

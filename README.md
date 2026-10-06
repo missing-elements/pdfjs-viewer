@@ -39,6 +39,8 @@ A standalone, isolated, self-hostable, plug-in custom element for viewing PDF fi
 
 [Accessibility guidance](./ACCESSIBILITY.md)
 
+[Contributing](./CONTRIBUTING.md)
+
 ## Install
 
 ### Using module bundlers:

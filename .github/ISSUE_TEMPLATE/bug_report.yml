@@ -1,0 +1,65 @@
+name: Bug report
+description: Report a reproducible problem with pdfjs-viewer-element.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. Do not include sensitive PDFs or security vulnerabilities in this form.
+  - type: input
+    id: version
+    attributes:
+      label: Component version
+      description: Which version of pdfjs-viewer-element are you using?
+      placeholder: "4.1.1"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and operating system
+      placeholder: "Firefox 147 on macOS 26"
+    validations:
+      required: true
+  - type: dropdown
+    id: integration
+    attributes:
+      label: Integration
+      options:
+        - Plain HTML
+        - Vite
+        - React
+        - Vue
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Provide steps and a minimal code sample or repository link. Remove private document data.
+      placeholder: |
+        1. Add ...
+        2. Load ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console errors or additional context
+      description: Remove any sensitive information before pasting logs.
