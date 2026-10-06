@@ -116,7 +116,7 @@ describe('Basic tests', async () => {
   })
 
   it('should include external worker origin in CSP script and worker directives', async () => {
-    const workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/build/pdf.worker.min.mjs'
+    const workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/build/pdf.worker.min.mjs'
 
     await mountViewer(`
       <pdfjs-viewer-element
