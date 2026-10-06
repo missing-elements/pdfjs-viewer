@@ -1,5 +1,6 @@
-import { cp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
+import { cp, mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises'
+import { dirname, resolve, sep } from 'node:path'
+import { unzipSync } from 'fflate'
 
 const rootDir = resolve(import.meta.dirname, '..')
 
@@ -33,7 +34,8 @@ if (!pdfjsVersion) {
 }
 
 const pdfjsDistDir = resolve(rootDir, 'node_modules', 'pdfjs-dist')
-const releaseWebDir = resolve(rootDir, 'public', `pdfjs-${pdfjsVersion}-dist`, 'web')
+const releaseDir = resolve(rootDir, 'public', `pdfjs-${pdfjsVersion}-dist`)
+const releaseWebDir = resolve(releaseDir, 'web')
 const modernBuildDir = resolve(pdfjsDistDir, 'build')
 const legacyBuildDir = resolve(pdfjsDistDir, 'legacy', 'build')
 
@@ -41,11 +43,45 @@ if (!(await exists(pdfjsDistDir))) {
   fail('node_modules/pdfjs-dist not found. Run "pnpm install" first.')
 }
 
+const downloadRelease = async () => {
+  const archiveName = `pdfjs-${pdfjsVersion}-dist.zip`
+  const url = `https://github.com/mozilla/pdf.js/releases/download/v${pdfjsVersion}/${archiveName}`
+  console.log(`[sync-pdfjs] Downloading ${url}`)
+
+  let response
+  try {
+    response = await fetch(url)
+  } catch (error) {
+    fail(`Could not download ${archiveName}: ${error.message}`)
+  }
+  if (!response.ok) {
+    fail(`Could not download ${archiveName}: HTTP ${response.status} ${response.statusText}`)
+  }
+
+  const entries = unzipSync(new Uint8Array(await response.arrayBuffer()))
+  const tempDir = `${releaseDir}.tmp`
+  await rm(tempDir, { recursive: true, force: true })
+
+  for (const [entryName, data] of Object.entries(entries)) {
+    if (entryName.endsWith('/')) continue
+    const targetPath = resolve(tempDir, entryName)
+    if (!targetPath.startsWith(tempDir + sep)) {
+      fail(`Refusing to extract entry outside release directory: ${entryName}`)
+    }
+    await mkdir(dirname(targetPath), { recursive: true })
+    await writeFile(targetPath, data)
+  }
+
+  await rm(releaseDir, { recursive: true, force: true })
+  await rename(tempDir, releaseDir)
+}
+
 if (!(await exists(releaseWebDir))) {
-  fail(
-    `Missing release viewer files at public/pdfjs-${pdfjsVersion}-dist/web. ` +
-      'Copy the official pdfjs dist release there first.'
-  )
+  await downloadRelease()
+}
+
+if (!(await exists(releaseWebDir))) {
+  fail(`Downloaded release is missing viewer files at public/pdfjs-${pdfjsVersion}-dist/web`)
 }
 
 if (!(await exists(modernBuildDir))) {

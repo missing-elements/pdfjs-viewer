@@ -14,14 +14,10 @@ Thank you for contributing to `pdfjs-viewer-element`.
 git clone https://github.com/alekswebnet/pdfjs-viewer-element.git
 cd pdfjs-viewer-element
 pnpm install --frozen-lockfile
-PDFJS_VERSION="$(node -p "require('./package.json').dependencies['pdfjs-dist'].match(/\d+\.\d+\.\d+/)[0]")"
-curl --fail --location --retry 3 \
-  "https://github.com/mozilla/pdf.js/releases/download/v${PDFJS_VERSION}/pdfjs-${PDFJS_VERSION}-dist.zip" \
-  --output "/tmp/pdfjs-${PDFJS_VERSION}-dist.zip"
-mkdir -p "public/pdfjs-${PDFJS_VERSION}-dist"
-unzip -q "/tmp/pdfjs-${PDFJS_VERSION}-dist.zip" -d "public/pdfjs-${PDFJS_VERSION}-dist"
 pnpm exec playwright install firefox
 ```
+
+The `dev`, `build`, and `test` scripts run `pnpm sync:pdfjs` first. On the first run it downloads the official PDF.js release matching the `pdfjs-dist` version in `package.json` into the gitignored `public/` folder, so an internet connection is required once per PDF.js version.
 
 ## Development
 
