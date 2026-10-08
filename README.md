@@ -3,7 +3,7 @@
 A standalone, isolated, self-hostable, plug-in custom element for viewing PDF files, based on [PDF.js default viewer](https://mozilla.github.io/pdf.js/web/viewer.html).
 
 [![npm version](https://img.shields.io/npm/v/pdfjs-viewer-element?logo=npm&logoColor=fff)](https://www.npmjs.com/package/pdfjs-viewer-element)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/alekswebnet/pdfjs-viewer-element)
+[![](https://data.jsdelivr.com/v1/package/npm/pdfjs-viewer-element/badge)](https://www.jsdelivr.com/package/npm/pdfjs-viewer-element)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/pdfjs-viewer-element)
 
 ![PDF.js viewer](image.webp)
