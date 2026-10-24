@@ -198,11 +198,11 @@ export class PdfjsViewerElement extends HTMLElement {
       : ViewerCssTheme[DEFAULTS.viewerCssTheme]
   }
 
-  private applyIframeHash = async () =>{
+  private applyIframeHash = async (initial = false) =>{
     const contentWindow = this.iframe?.contentWindow
     if (!contentWindow) return
 
-    const hash = this.getIframeLocationHash()
+    const hash = this.getIframeLocationHash(initial)
     if (contentWindow.location.hash === hash) return
 
     await new Promise<void>((resolve) => {
@@ -421,16 +421,21 @@ export class PdfjsViewerElement extends HTMLElement {
     this.optionsToSet = {}
   }
 
-  private getIframeLocationHash = () => {
+  // Unset parameters are left out: PDF.js reads an empty `page=` as page 1, so writing them would
+  // move the reader whenever another attribute changes. For the same reason `pagemode` falls back
+  // to `none` only when the viewer is built, and later changes leave the reader's sidebar alone.
+  private getIframeLocationHash = (initial = false) => {
     const params: Record<string, string> = {
       page: this.getAttribute('page') || DEFAULTS.page,
       zoom: this.getAttribute('zoom') || DEFAULTS.zoom,
-      pagemode: this.getAttribute('pagemode') || DEFAULTS.pagemode,
+      pagemode: this.getAttribute('pagemode') || (initial ? DEFAULTS.pagemode : ''),
       search: this.getAttribute('search') || DEFAULTS.search,
       phrase: this.getAttribute('phrase') || DEFAULTS.phrase,
       locale: this.getAttribute('locale') || DEFAULTS.locale
     }
-    return '#' + Object.entries(params).map(([k, v]) => `${k}=${v}`).join('&')
+    const query = Object.entries(params).filter(([, v]) => v).map(([k, v]) => `${k}=${v}`).join('&')
+    // An empty hash reads back as '' from `location.hash`, so return '' rather than '#'.
+    return query ? `#${query}` : ''
   }
 
   private buildViewerEntry = async (runtimeFileUrls: RuntimeFileUrls) => {
@@ -526,7 +531,7 @@ export class PdfjsViewerElement extends HTMLElement {
   }
 
   private buildViewerApp = async (runtimeFileUrls: RuntimeFileUrls) => {
-    await this.applyIframeHash()
+    await this.applyIframeHash(true)
 
     // Set viewer options as soon as PDFViewerApplication is created.
     const setupPromise = this.setupViewerApp()

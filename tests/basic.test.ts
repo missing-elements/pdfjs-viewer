@@ -141,6 +141,24 @@ describe('Basic tests', async () => {
     expect(hash).toContain('pagemode=thumbs')
   })
 
+  it('should keep the current page when an unrelated hash attribute changes', async () => {
+    const viewerApp = await mountViewer(`
+      <pdfjs-viewer-element src="${pdfjsDist}/web/compressed.tracemonkey-pldi-09.pdf"></pdfjs-viewer-element>`
+    ) as unknown as { page: number, isInitialViewSet: boolean }
+    const contentWindow = getIframe().contentWindow
+    expect(contentWindow.location.hash).eq('#pagemode=none')
+    await vi.waitFor(() => expect(viewerApp.isInitialViewSet).toBe(true), { timeout: 10000 })
+
+    viewerApp.page = 3
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
+    viewer.setAttribute('zoom', 'page-width')
+
+    // No empty `page=`, which PDF.js reads as page 1, and no `pagemode`, which would close the sidebar.
+    expect(contentWindow.location.hash).eq('#zoom=page-width')
+    await new Promise((resolve) => setTimeout(resolve, 100))
+    expect(viewerApp.page).eq(3)
+  })
+
   it('should load a region locale from a relative template', async () => {
     const template = `${pdfjsDist}/web/locale/{locale}/viewer.ftl`
     await mountViewer(`
