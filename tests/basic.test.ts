@@ -1,6 +1,10 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { getFileData, getViewerElement, mountViewer, getIframe } from './utils'
 import { PdfjsViewerElement } from '../src/pdfjs-viewer-element'
+import packageJson from '../package.json'
+
+// The PDF.js release that `pnpm sync:pdfjs` unpacks into `public/`.
+const pdfjsDist = `/pdfjs-${packageJson.dependencies['pdfjs-dist'].match(/\d+\.\d+\.\d+/)![0]}-dist`
 
 describe('Basic tests', async () => {
   it('should render the PDF file', async () => {
@@ -58,7 +62,11 @@ describe('Basic tests', async () => {
     const viewer = document.body.querySelector('pdfjs-viewer-element')!
     const doc = getIframe().contentDocument!
     const themeSheet = Array.from(doc.styleSheets).find(sheet => sheet.href?.endsWith('/paper-and-ink.css'))!
-    const darkRules = Array.from(themeSheet.cssRules).filter(
+    // The whole theme sits in one block that steps aside in forced colors mode.
+    expect(themeSheet.cssRules).toHaveLength(1)
+    const themeBlock = themeSheet.cssRules[0] as CSSMediaRule
+    expect(themeBlock.conditionText).eq('not all and (forced-colors: active)')
+    const darkRules = Array.from(themeBlock.cssRules).filter(
       (rule): rule is CSSMediaRule => (rule as CSSMediaRule).conditionText === '(prefers-color-scheme: dark)'
     )
     // One system dark block per palette; the neutral palette hides the warm one in the colors below.
@@ -135,6 +143,38 @@ describe('Basic tests', async () => {
     expect(hash).toContain('search=pdf')
     expect(hash).toContain('phrase=true')
     expect(hash).toContain('pagemode=thumbs')
+  })
+
+  it('should keep the current page when an unrelated hash attribute changes', async () => {
+    const viewerApp = await mountViewer(`
+      <pdfjs-viewer-element src="${pdfjsDist}/web/compressed.tracemonkey-pldi-09.pdf"></pdfjs-viewer-element>`
+    ) as unknown as { page: number, isInitialViewSet: boolean }
+    const contentWindow = getIframe().contentWindow
+    expect(contentWindow.location.hash).eq('#pagemode=none')
+    await vi.waitFor(() => expect(viewerApp.isInitialViewSet).toBe(true), { timeout: 10000 })
+
+    viewerApp.page = 3
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
+    viewer.setAttribute('zoom', 'page-width')
+
+    // No empty `page=`, which PDF.js reads as page 1, and no `pagemode`, which would close the sidebar.
+    expect(contentWindow.location.hash).eq('#zoom=page-width')
+    await new Promise((resolve) => setTimeout(resolve, 100))
+    expect(viewerApp.page).eq(3)
+  })
+
+  it('should load a region locale from a relative template', async () => {
+    const template = `${pdfjsDist}/web/locale/{locale}/viewer.ftl`
+    await mountViewer(`
+      <pdfjs-viewer-element locale="pt-BR" locale-src-template="${template}"></pdfjs-viewer-element>`
+    )
+
+    const doc = getIframe().contentDocument!
+    const resource = doc.querySelector<HTMLLinkElement>('link[type="application/l10n"]')!
+    expect(await (await fetch(resource.href)).json()).toEqual({
+      'pt-br': new URL(template.replace('{locale}', 'pt-BR'), location.href).href
+    })
+    await vi.waitFor(() => expect(doc.querySelector('#previous')?.getAttribute('title')).eq('Página anterior'))
   })
 
   it('should apply worker-src option at runtime', async () => {
@@ -238,48 +278,43 @@ describe('Basic tests', async () => {
     )
 
     const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
+    const { viewerSrc, pdfjsLibSrc } = (viewer as PdfjsViewerElement)['getRuntimeFileUrls']()
     const cases = [
-      {
-        attr: 'debugger-src',
-        key: 'debuggerSrc',
-        value: 'https://example.com/debugger.mjs',
-        fallback: './debugger.mjs'
-      },
       {
         attr: 'c-map-url',
         key: 'cMapUrl',
         value: 'https://example.com/cmaps/',
-        fallback: '../web/cmaps/'
+        fallback: new URL('cmaps/', viewerSrc).href
       },
       {
         attr: 'icc-url',
         key: 'iccUrl',
         value: 'https://example.com/iccs/',
-        fallback: '../web/iccs/'
+        fallback: new URL('iccs/', viewerSrc).href
       },
       {
         attr: 'image-resources-path',
         key: 'imageResourcesPath',
         value: 'https://example.com/images/',
-        fallback: './images/'
+        fallback: new URL('images/', viewerSrc).href
       },
       {
         attr: 'sandbox-bundle-src',
         key: 'sandboxBundleSrc',
         value: 'https://example.com/pdf.sandbox.mjs',
-        fallback: '../build/pdf.sandbox.mjs'
+        fallback: new URL('pdf.sandbox.mjs', pdfjsLibSrc).href
       },
       {
         attr: 'standard-font-data-url',
         key: 'standardFontDataUrl',
         value: 'https://example.com/standard_fonts/',
-        fallback: '../web/standard_fonts/'
+        fallback: new URL('standard_fonts/', viewerSrc).href
       },
       {
         attr: 'wasm-url',
         key: 'wasmUrl',
         value: 'https://example.com/wasm/',
-        fallback: '../web/wasm/'
+        fallback: new URL('wasm/', viewerSrc).href
       }
     ] as const
 
@@ -292,6 +327,30 @@ describe('Basic tests', async () => {
       options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll() as Record<string, string>
       expect(options[key]).eq(fallback)
     }
+  })
+
+  it('should use a changed image-resources-path for the next document', async () => {
+    const viewerApp = await mountViewer(`
+      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
+    ) as unknown as { pdfViewer: { imageResourcesPath: string } }
+
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
+    viewer.setAttribute('image-resources-path', '/static/images')
+    expect(viewerApp.pdfViewer.imageResourcesPath).eq(new URL('/static/images/', location.href).href)
+  })
+
+  it('should keep viewer options across a rebuild', async () => {
+    document.body.innerHTML = `<pdfjs-viewer-element></pdfjs-viewer-element>`
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as PdfjsViewerElement
+    viewer.setViewerOptions({ enableComment: true })
+    await viewer.setViewerOptions({ defaultZoomValue: 'page-fit' })
+    const options = () => getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
+    expect(options()).toMatchObject({ enableComment: true, defaultZoomValue: 'page-fit' })
+
+    // A locale change that PDF.js can't apply in place rebuilds the viewer the same way.
+    viewer.initPromise = viewer['buildViewer']()
+    await viewer.initPromise
+    expect(options()).toMatchObject({ enableComment: true, defaultZoomValue: 'page-fit' })
   })
 
   it('should load individual runtime URLs without assets-base', async () => {
@@ -335,6 +394,26 @@ describe('Basic tests', async () => {
     expect(csp).toMatch(/script-src-elem[^;]*https:\/\/viewer\.invalid/)
     expect(csp).toMatch(/style-src[^;]*https:\/\/viewer-css\.invalid/)
     expect(csp).toMatch(/style-src[^;]*https:\/\/theme-css\.invalid/)
+  })
+
+  it('should include cross-origin sandbox, WASM and annotation icon URLs in CSP', async () => {
+    document.body.innerHTML = `
+      <pdfjs-viewer-element
+        sandbox-bundle-src="https://sandbox.invalid/pdf.sandbox.mjs"
+        wasm-url="https://wasm.invalid/wasm/"
+        image-resources-path="https://images.invalid/images/">
+      </pdfjs-viewer-element>`
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as PdfjsViewerElement
+    await viewer.initPromise
+
+    const cspMeta = getIframe().contentDocument?.querySelector('meta[http-equiv="Content-Security-Policy"]')
+    const csp = cspMeta?.getAttribute('content') || ''
+    for (const directive of ['script-src', 'script-src-elem']) {
+      expect(csp).toMatch(new RegExp(`${directive} [^;]*https://sandbox\\.invalid`))
+      expect(csp).toMatch(new RegExp(`${directive} [^;]*https://wasm\\.invalid`))
+    }
+    expect(csp).toMatch(/img-src[^;]*https:\/\/images\.invalid/)
+    expect(csp).not.toMatch(/style-src[^;]*https:\/\/images\.invalid/)
   })
 
   it('should keep the runtime URLs read at connection for the whole build', async () => {
@@ -385,6 +464,52 @@ describe('Basic tests', async () => {
     if (viewerApp && originalOpen) {
       viewerApp.open = originalOpen
     }
+  })
+})
+
+describe('Resource URL attributes', () => {
+  it('makes values absolute and ends folder URLs with a slash', () => {
+    const viewer = new PdfjsViewerElement()
+    const cases = [
+      ['c-map-url', '/static/cmaps', new URL('/static/cmaps/', location.href).href],
+      ['standard-font-data-url', './fonts/', new URL('./fonts/', location.href).href],
+      ['wasm-url', 'https://cdn.example.com/wasm', 'https://cdn.example.com/wasm/'],
+      ['icc-url', '  /static/iccs/  ', new URL('/static/iccs/', location.href).href],
+      ['image-resources-path', '../images', new URL('../images/', location.href).href],
+      ['sandbox-bundle-src', '/static/pdf.sandbox.mjs', new URL('/static/pdf.sandbox.mjs', location.href).href]
+    ] as const
+
+    for (const [attribute, value, expected] of cases) {
+      const fallback = viewer['getResourceOption'](attribute)
+      viewer.setAttribute(attribute, value)
+      expect(viewer['getResourceOption'](attribute)).eq(expected)
+      viewer.setAttribute(attribute, ' ')
+      expect(viewer['getResourceOption'](attribute)).eq(fallback)
+    }
+  })
+
+  it('defaults to resources that ship next to the runtime files', async () => {
+    const viewer = new PdfjsViewerElement()
+    const files = {
+      'c-map-url': 'Adobe-Japan1-UCS2.bcmap',
+      'icc-url': 'CGATS001Compat-v2-micro.icc',
+      'image-resources-path': 'annotation-comment.svg',
+      'sandbox-bundle-src': '',
+      'standard-font-data-url': 'FoxitFixed.pfb',
+      'wasm-url': 'openjpeg.wasm'
+    } as const
+
+    for (const [attribute, file] of Object.entries(files)) {
+      const url = viewer['getResourceOption'](attribute as keyof typeof files) + file
+      expect((await fetch(url, { method: 'HEAD' })).status, url).eq(200)
+    }
+  })
+
+  it('follows assets-base', () => {
+    const viewer = new PdfjsViewerElement()
+    viewer.setAttribute('assets-base', '/static/pdfjs')
+    expect(viewer['getResourceOption']('c-map-url')).eq(new URL('/static/pdfjs/cmaps/', location.href).href)
+    expect(viewer['getResourceOption']('sandbox-bundle-src')).eq(new URL('/static/pdfjs/pdf.sandbox.mjs', location.href).href)
   })
 })
 

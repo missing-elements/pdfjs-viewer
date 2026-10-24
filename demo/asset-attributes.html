@@ -32,13 +32,13 @@
         worker-src="{% static 'pdfjs/pdf.worker.min.mjs' %}"
         viewer-css-src="{% static 'pdfjs/viewer.css' %}"
         theme-css-src="{% static 'pdfjs/paper-and-ink.css' %}"
-        image-resources-path="{% get_static_prefix %}pdfjs/images/"
         style="height: 100dvh">
       </pdfjs-viewer-element>
 
-      Adjust the static prefix to your deployment. Keep original filenames available
-      for resources loaded by directory and filename, such as annotation icons,
-      CMaps, fonts and WASM; configure their resource path attributes as needed.
+      Resources loaded by directory and filename, such as annotation icons, CMaps,
+      fonts, WASM and the scripting sandbox, default to the folders next to
+      viewer-src and pdfjs-lib-src. Keep their original filenames available there,
+      or set their resource path attributes.
       For a separate static host, configure module script CORS and the page's CSP.
     -->
     <pdfjs-viewer-element
@@ -48,7 +48,6 @@
       worker-src="../dist/pdf.worker.min.mjs"
       viewer-css-src="../dist/viewer.css"
       theme-css-src="../dist/paper-and-ink.css"
-      image-resources-path="../dist/images/"
       style="height: 100dvh">
     </pdfjs-viewer-element>
   </body>

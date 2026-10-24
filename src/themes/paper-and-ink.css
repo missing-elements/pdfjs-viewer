@@ -1,3 +1,10 @@
+/* Forced colors (Windows High Contrast and similar): the theme steps aside, and PDF.js's own
+   high-contrast styles apply. viewer.css switches its colors to system colors in this mode, which
+   the browser keeps. The fixed colors below would win over them, and the browser replaces fixed
+   colors, so toolbar icons (masks filled with a background color) would disappear.
+   The rules inside this block are left unindented. */
+@media not all and (forced-colors: active) {
+
 :root {
   /* Paper & Ink: warm neutrals with clear, low-glare controls. */
   --sidebar-width:228px;
@@ -984,4 +991,6 @@ input[type="number"] {
   --undo-button-bg-color-active: #333b47;
   --undo-button-border: 1px solid #3d444d;
   --undo-button-fg-color: #e6edf3;
+}
+
 }

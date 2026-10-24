@@ -26,13 +26,13 @@ export declare class PdfjsViewerElement extends HTMLElement {
     private localeResourceUrl?;
     private localeResourceLink?;
     private viewerStyles;
-    private optionsToSet;
+    private customViewerOptions;
     static get observedAttributes(): string[];
     private formatTemplate;
     private getFullPath;
     private getAssetsBase;
     private getRuntimeFileUrls;
-    private getImageResourcesPath;
+    private getResourceOption;
     private getCssThemeOption;
     private applyIframeHash;
     private applyViewerTheme;

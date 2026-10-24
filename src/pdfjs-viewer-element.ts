@@ -51,15 +51,26 @@ const DEFAULTS = {
   pagemode: 'none',
   locale: '',
   viewerCssTheme: 'AUTOMATIC',
-  debuggerSrc: './debugger.mjs',
-  cMapUrl: '../web/cmaps/',
-  iccUrl: '../web/iccs/',
-  imageResourcesPath: './images/',
-  sandboxBundleSrc: '../build/pdf.sandbox.mjs',
-  standardFontDataUrl: '../web/standard_fonts/',
-  wasmUrl: '../web/wasm/',
   localeSrcTemplate: 'https://cdn.jsdelivr.net/gh/mozilla-l10n/firefox-l10n@main/{locale}/toolkit/toolkit/pdfviewer/viewer.ftl'
 } as const
+
+// Resources PDF.js loads only for documents that need them. They ship in the package `dist`
+// folder, and each defaults to `fileName` resolved against the runtime file named by `base`, so
+// `assets-base` and the individual runtime URLs carry them along. Bundlers emit the runtime files
+// but not these folders, so bundled apps set `assets-base` or the attributes.
+// PDF.js fetches most of them from its worker, which runs from a `blob:` URL where relative paths
+// don't resolve, so attribute values are made absolute, and folder URLs get the trailing slash
+// PDF.js requires.
+const RESOURCE_OPTIONS = {
+  'c-map-url': { key: 'cMapUrl', fileName: 'cmaps/', base: 'viewerSrc' },
+  'icc-url': { key: 'iccUrl', fileName: 'iccs/', base: 'viewerSrc' },
+  'image-resources-path': { key: 'imageResourcesPath', fileName: 'images/', base: 'viewerSrc' },
+  'sandbox-bundle-src': { key: 'sandboxBundleSrc', fileName: 'pdf.sandbox.mjs', base: 'pdfjsLibSrc' },
+  'standard-font-data-url': { key: 'standardFontDataUrl', fileName: 'standard_fonts/', base: 'viewerSrc' },
+  'wasm-url': { key: 'wasmUrl', fileName: 'wasm/', base: 'viewerSrc' }
+} as const
+
+type ResourceAttribute = keyof typeof RESOURCE_OPTIONS
 
 export const ViewerCssTheme = { AUTOMATIC: 0, LIGHT: 1, DARK: 2 } as const
 
@@ -96,12 +107,12 @@ export class PdfjsViewerElement extends HTMLElement {
   private localeResourceUrl?: string
   private localeResourceLink?: HTMLLinkElement
   private viewerStyles = new Set<string>()
-  private optionsToSet: Record<string, PdfViewerApplicationOptionValue> = {}
+  private customViewerOptions: Record<string, PdfViewerApplicationOptionValue> = {}
 
   static get observedAttributes() {
     return[
       'src', 'locale', 'viewer-css-theme', 'worker-src',
-      'debugger-src', 'c-map-url', 'icc-url', 'image-resources-path',
+      'c-map-url', 'icc-url', 'image-resources-path',
       'sandbox-bundle-src', 'standard-font-data-url', 'wasm-url',
       'page', 'search', 'phrase', 'zoom', 'pagemode', 'iframe-title'
     ]
@@ -156,17 +167,18 @@ export class PdfjsViewerElement extends HTMLElement {
     }
   }
 
-  private getImageResourcesPath() {
-    const imageResourcesPath = this.getAttribute('image-resources-path')
-    if (imageResourcesPath) return imageResourcesPath
-
-    const assetsBase = this.getAssetsBase()
-    if (!assetsBase) return DEFAULTS.imageResourcesPath
+  private getResourceOption(attribute: ResourceAttribute) {
+    const { fileName, base } = RESOURCE_OPTIONS[attribute]
+    const value = this.getAttribute(attribute)?.trim()
+    if (value) {
+      return this.getFullPath(fileName.endsWith('/') && !value.endsWith('/') ? `${value}/` : value)
+    }
 
     try {
-      return new URL('images/', assetsBase).href
+      return new URL(fileName, this.getRuntimeFileUrls()[base]).href
     } catch {
-      return `${assetsBase}images/`
+      // A runtime URL that doesn't parse can't load the viewer either.
+      return fileName
     }
   }
 
@@ -177,11 +189,11 @@ export class PdfjsViewerElement extends HTMLElement {
       : ViewerCssTheme[DEFAULTS.viewerCssTheme]
   }
 
-  private applyIframeHash = async () =>{
+  private applyIframeHash = async (initial = false) =>{
     const contentWindow = this.iframe?.contentWindow
     if (!contentWindow) return
 
-    const hash = this.getIframeLocationHash()
+    const hash = this.getIframeLocationHash(initial)
     if (contentWindow.location.hash === hash) return
 
     await new Promise<void>((resolve) => {
@@ -324,17 +336,21 @@ export class PdfjsViewerElement extends HTMLElement {
       return
     }
     const localesData = await import('./web/locale/locale.json?raw')
-    const supportedLocales = Object.keys(JSON.parse(localesData.default))
-    if (!supportedLocales.includes(locale as string)) {
+    // PDF.js looks bundles up by the lowercase code (`pt-br`), the key format of `locale.json`,
+    // while the locale folders keep their case (`pt-BR/viewer.ftl`), so the template gets the folder.
+    const lang = locale.trim().toLowerCase()
+    const localePath: string | undefined = JSON.parse(localesData.default)[lang]
+    if (!localePath) {
       this.cleanupLocaleResource()
       return
     }
-    const localeUrl = this.formatTemplate(
-      this.getAttribute('locale-src-template') || DEFAULTS.localeSrcTemplate, 
-      { locale }
-    )
+    // Made absolute because PDF.js resolves it against the `blob:` URL of the resource link below.
+    const localeUrl = this.getFullPath(this.formatTemplate(
+      this.getAttribute('locale-src-template') || DEFAULTS.localeSrcTemplate,
+      { locale: localePath.split('/')[0] }
+    ))
     const localeObject = {
-      [String(locale)]: localeUrl
+      [lang]: localeUrl
     }
     const localeLink = doc.createElement('link')
     localeLink.rel = 'resource'
@@ -381,34 +397,34 @@ export class PdfjsViewerElement extends HTMLElement {
   private applyViewerOptions = () => {
     const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
     viewerOptions?.set('workerSrc', this.getRuntimeFileUrls().workerSrc)
-    viewerOptions?.set('debuggerSrc', this.getAttribute('debugger-src') || DEFAULTS.debuggerSrc)
-    viewerOptions?.set('cMapUrl', this.getAttribute('c-map-url') || DEFAULTS.cMapUrl)
-    viewerOptions?.set('iccUrl', this.getAttribute('icc-url') || DEFAULTS.iccUrl)
-    viewerOptions?.set('imageResourcesPath', this.getImageResourcesPath())
-    viewerOptions?.set('sandboxBundleSrc', this.getAttribute('sandbox-bundle-src') || DEFAULTS.sandboxBundleSrc)
-    viewerOptions?.set('standardFontDataUrl', this.getAttribute('standard-font-data-url') || DEFAULTS.standardFontDataUrl)
-    viewerOptions?.set('wasmUrl', this.getAttribute('wasm-url') || DEFAULTS.wasmUrl)
+    for (const [attribute, { key }] of Object.entries(RESOURCE_OPTIONS)) {
+      viewerOptions?.set(key, this.getResourceOption(attribute as ResourceAttribute))
+    }
     viewerOptions?.set('defaultUrl', this.getFullPath(this.getAttribute('src') || DEFAULTS.src))
     viewerOptions?.set('disablePreferences', true)
     viewerOptions?.set('eventBusDispatchToDOM', true)
     viewerOptions?.set('localeProperties', { lang: this.getAttribute('locale') || DEFAULTS.locale })
     viewerOptions?.set('viewerCssTheme', this.getCssThemeOption())
-    for (const [key, value] of Object.entries(this.optionsToSet)) {
+    for (const [key, value] of Object.entries(this.customViewerOptions)) {
       viewerOptions?.set(key, value)
     }
-    this.optionsToSet = {}
   }
 
-  private getIframeLocationHash = () => {
+  // Unset parameters are left out: PDF.js reads an empty `page=` as page 1, so writing them would
+  // move the reader whenever another attribute changes. For the same reason `pagemode` falls back
+  // to `none` only when the viewer is built, and later changes leave the reader's sidebar alone.
+  private getIframeLocationHash = (initial = false) => {
     const params: Record<string, string> = {
       page: this.getAttribute('page') || DEFAULTS.page,
       zoom: this.getAttribute('zoom') || DEFAULTS.zoom,
-      pagemode: this.getAttribute('pagemode') || DEFAULTS.pagemode,
+      pagemode: this.getAttribute('pagemode') || (initial ? DEFAULTS.pagemode : ''),
       search: this.getAttribute('search') || DEFAULTS.search,
       phrase: this.getAttribute('phrase') || DEFAULTS.phrase,
       locale: this.getAttribute('locale') || DEFAULTS.locale
     }
-    return '#' + Object.entries(params).map(([k, v]) => `${k}=${v}`).join('&')
+    const query = Object.entries(params).filter(([, v]) => v).map(([k, v]) => `${k}=${v}`).join('&')
+    // An empty hash reads back as '' from `location.hash`, so return '' rather than '#'.
+    return query ? `#${query}` : ''
   }
 
   private buildViewerEntry = async (runtimeFileUrls: RuntimeFileUrls) => {
@@ -436,19 +452,30 @@ export class PdfjsViewerElement extends HTMLElement {
       const { pdfjsLibSrc, viewerSrc, viewerCssSrc, themeCssSrc, workerSrc } = runtimeFileUrls
       const workerSrcOrigin = resolveHttpOrigin(workerSrc)
 
+      // Resource attributes are read here once per build like the runtime files: a later change
+      // to another origin is not added to the CSP.
       const scriptSources = toSourceList([
         "'self'",
         window.location.origin,
         resolveHttpOrigin(pdfjsLibSrc),
         resolveHttpOrigin(viewerSrc),
-        workerSrcOrigin
+        workerSrcOrigin,
+        // The scripting sandbox, and the QuickJS module it imports from the WASM folder.
+        resolveHttpOrigin(this.getResourceOption('sandbox-bundle-src')),
+        resolveHttpOrigin(this.getResourceOption('wasm-url'))
       ])
 
-      const styleSources = toSourceList([
+      const styleSourceList = [
         "'self'",
         window.location.origin,
         resolveHttpOrigin(viewerCssSrc),
         resolveHttpOrigin(themeCssSrc)
+      ]
+      const styleSources = toSourceList(styleSourceList)
+      // Annotation icons are <img> elements in the annotation layer.
+      const imageSources = toSourceList([
+        ...styleSourceList,
+        resolveHttpOrigin(this.getResourceOption('image-resources-path'))
       ])
 
       const workerSources = toSourceList([
@@ -464,7 +491,7 @@ export class PdfjsViewerElement extends HTMLElement {
         `script-src-elem ${scriptSources}`,
         `worker-src ${workerSources}`,
         `style-src ${styleSources} 'unsafe-inline'`,
-        `img-src ${styleSources} blob: data:`,
+        `img-src ${imageSources} blob: data:`,
         'media-src blob:',
         `font-src ${styleSources} data:`,
         'connect-src * blob: data:',
@@ -504,7 +531,7 @@ export class PdfjsViewerElement extends HTMLElement {
   }
 
   private buildViewerApp = async (runtimeFileUrls: RuntimeFileUrls) => {
-    await this.applyIframeHash()
+    await this.applyIframeHash(true)
 
     // Set viewer options as soon as PDFViewerApplication is created.
     const setupPromise = this.setupViewerApp()
@@ -542,31 +569,25 @@ export class PdfjsViewerElement extends HTMLElement {
     if (oldValue === newValue) return
     if (!this.iframe) return
 
-    const optionByAttribute = {
-      'debugger-src': { key: 'debuggerSrc', fallback: DEFAULTS.debuggerSrc },
-      'c-map-url': { key: 'cMapUrl', fallback: DEFAULTS.cMapUrl },
-      'icc-url': { key: 'iccUrl', fallback: DEFAULTS.iccUrl },
-      'sandbox-bundle-src': { key: 'sandboxBundleSrc', fallback: DEFAULTS.sandboxBundleSrc },
-      'standard-font-data-url': { key: 'standardFontDataUrl', fallback: DEFAULTS.standardFontDataUrl },
-      'wasm-url': { key: 'wasmUrl', fallback: DEFAULTS.wasmUrl }
-    } as const
-
     if (name === 'worker-src') {
       const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
       viewerOptions?.set('workerSrc', this.getRuntimeFileUrls().workerSrc)
       return
     }
 
-    if (name in optionByAttribute) {
-      const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-      const { key, fallback } = optionByAttribute[name as keyof typeof optionByAttribute]
-      viewerOptions?.set(key, newValue || fallback)
-      return
-    }
-
-    if (name === 'image-resources-path') {
-      const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-      viewerOptions?.set('imageResourcesPath', newValue || this.getImageResourcesPath())
+    if (name in RESOURCE_OPTIONS) {
+      const contentWindow = this.iframe.contentWindow
+      const attribute = name as ResourceAttribute
+      const value = this.getResourceOption(attribute)
+      contentWindow?.PDFViewerApplicationOptions?.set(RESOURCE_OPTIONS[attribute].key, value)
+      // PDF.js copies this option into its page viewer once, when the viewer is created. Update the
+      // copy too, so the next document uses the new path like the other resources do.
+      if (attribute === 'image-resources-path') {
+        const pdfViewer = (contentWindow?.PDFViewerApplication as unknown as {
+          pdfViewer?: { imageResourcesPath: string }
+        } | undefined)?.pdfViewer
+        if (pdfViewer) pdfViewer.imageResourcesPath = value
+      }
       return
     }
 
@@ -614,7 +635,8 @@ export class PdfjsViewerElement extends HTMLElement {
   }
 
   public async setViewerOptions(options: Record<string, PdfViewerApplicationOptionValue> = {}) {
-    this.optionsToSet = options
+    // Kept and applied on every build: a locale change can rebuild the viewer.
+    this.customViewerOptions = { ...this.customViewerOptions, ...options }
     await this.initPromise
     return {
       viewerOptions: this.iframe.contentWindow?.PDFViewerApplicationOptions

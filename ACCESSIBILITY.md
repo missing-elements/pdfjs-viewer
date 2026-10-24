@@ -33,6 +33,9 @@ The `iframe-title` attribute can be updated at runtime.
   application's language.
 - If custom CSS is added with `injectViewerStyles`, preserve visible focus
   indicators, sufficient color contrast, and readable text.
+- In forced colors mode, such as Windows High Contrast, the Paper & Ink theme
+  steps aside and PDF.js's own high-contrast styles apply. A custom theme loaded
+  with `theme-css-src` should do the same or support forced colors itself.
 
 ## PDF Document Accessibility
 
