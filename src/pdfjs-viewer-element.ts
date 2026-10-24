@@ -566,9 +566,18 @@ export class PdfjsViewerElement extends HTMLElement {
     }
 
     if (name in RESOURCE_OPTIONS) {
-      const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
+      const contentWindow = this.iframe.contentWindow
       const attribute = name as ResourceAttribute
-      viewerOptions?.set(RESOURCE_OPTIONS[attribute].key, this.getResourceOption(attribute))
+      const value = this.getResourceOption(attribute)
+      contentWindow?.PDFViewerApplicationOptions?.set(RESOURCE_OPTIONS[attribute].key, value)
+      // PDF.js copies this option into its page viewer once, when the viewer is created. Update the
+      // copy too, so the next document uses the new path like the other resources do.
+      if (attribute === 'image-resources-path') {
+        const pdfViewer = (contentWindow?.PDFViewerApplication as unknown as {
+          pdfViewer?: { imageResourcesPath: string }
+        } | undefined)?.pdfViewer
+        if (pdfViewer) pdfViewer.imageResourcesPath = value
+      }
       return
     }
 

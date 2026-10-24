@@ -325,6 +325,16 @@ describe('Basic tests', async () => {
     }
   })
 
+  it('should use a changed image-resources-path for the next document', async () => {
+    const viewerApp = await mountViewer(`
+      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
+    ) as unknown as { pdfViewer: { imageResourcesPath: string } }
+
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
+    viewer.setAttribute('image-resources-path', '/static/images')
+    expect(viewerApp.pdfViewer.imageResourcesPath).eq(new URL('/static/images/', location.href).href)
+  })
+
   it('should load individual runtime URLs without assets-base', async () => {
     await mountViewer(`
       <pdfjs-viewer-element
