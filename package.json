@@ -38,7 +38,7 @@
     "type": "git",
     "url": "git+https://github.com/missing-elements/pdfjs-viewer.git"
   },
-  "homepage": "https://alekswebnet.github.io/pdfjs-viewer-element/",
+  "homepage": "https://missing-elements.github.io/pdfjs-viewer/",
   "bugs": {
     "url": "https://github.com/missing-elements/pdfjs-viewer/issues"
   },
