@@ -62,7 +62,11 @@ describe('Basic tests', async () => {
     const viewer = document.body.querySelector('pdfjs-viewer-element')!
     const doc = getIframe().contentDocument!
     const themeSheet = Array.from(doc.styleSheets).find(sheet => sheet.href?.endsWith('/paper-and-ink.css'))!
-    const darkRules = Array.from(themeSheet.cssRules).filter(
+    // The whole theme sits in one block that steps aside in forced colors mode.
+    expect(themeSheet.cssRules).toHaveLength(1)
+    const themeBlock = themeSheet.cssRules[0] as CSSMediaRule
+    expect(themeBlock.conditionText).eq('not all and (forced-colors: active)')
+    const darkRules = Array.from(themeBlock.cssRules).filter(
       (rule): rule is CSSMediaRule => (rule as CSSMediaRule).conditionText === '(prefers-color-scheme: dark)'
     )
     // One system dark block per palette; the neutral palette hides the warm one in the colors below.
