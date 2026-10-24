@@ -276,12 +276,6 @@ describe('Basic tests', async () => {
     const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
     const cases = [
       {
-        attr: 'debugger-src',
-        key: 'debuggerSrc',
-        value: 'https://example.com/debugger.mjs',
-        fallback: './debugger.mjs'
-      },
-      {
         attr: 'c-map-url',
         key: 'cMapUrl',
         value: 'https://example.com/cmaps/',
@@ -432,8 +426,7 @@ describe('Resource URL attributes', () => {
       ['standard-font-data-url', './fonts/', new URL('./fonts/', location.href).href],
       ['wasm-url', 'https://cdn.example.com/wasm', 'https://cdn.example.com/wasm/'],
       ['icc-url', '  /static/iccs/  ', new URL('/static/iccs/', location.href).href],
-      ['sandbox-bundle-src', '/static/pdf.sandbox.mjs', new URL('/static/pdf.sandbox.mjs', location.href).href],
-      ['debugger-src', 'https://cdn.example.com/debugger.mjs', 'https://cdn.example.com/debugger.mjs']
+      ['sandbox-bundle-src', '/static/pdf.sandbox.mjs', new URL('/static/pdf.sandbox.mjs', location.href).href]
     ] as const
 
     for (const [attribute, value, expected] of cases) {

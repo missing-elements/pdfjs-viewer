@@ -51,7 +51,6 @@ const DEFAULTS = {
   pagemode: 'none',
   locale: '',
   viewerCssTheme: 'AUTOMATIC',
-  debuggerSrc: './debugger.mjs',
   cMapUrl: '../web/cmaps/',
   iccUrl: '../web/iccs/',
   imageResourcesPath: './images/',
@@ -65,7 +64,6 @@ const DEFAULTS = {
 // runs from a `blob:` URL where relative paths don't resolve, so attribute values are made absolute,
 // and folder URLs get the trailing slash PDF.js requires.
 const RESOURCE_OPTIONS = {
-  'debugger-src': { key: 'debuggerSrc', fallback: DEFAULTS.debuggerSrc, folder: false },
   'c-map-url': { key: 'cMapUrl', fallback: DEFAULTS.cMapUrl, folder: true },
   'icc-url': { key: 'iccUrl', fallback: DEFAULTS.iccUrl, folder: true },
   'sandbox-bundle-src': { key: 'sandboxBundleSrc', fallback: DEFAULTS.sandboxBundleSrc, folder: false },
@@ -115,7 +113,7 @@ export class PdfjsViewerElement extends HTMLElement {
   static get observedAttributes() {
     return[
       'src', 'locale', 'viewer-css-theme', 'worker-src',
-      'debugger-src', 'c-map-url', 'icc-url', 'image-resources-path',
+      'c-map-url', 'icc-url', 'image-resources-path',
       'sandbox-bundle-src', 'standard-font-data-url', 'wasm-url',
       'page', 'search', 'phrase', 'zoom', 'pagemode', 'iframe-title'
     ]
