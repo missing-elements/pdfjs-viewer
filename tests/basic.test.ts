@@ -388,6 +388,28 @@ describe('Basic tests', async () => {
   })
 })
 
+describe('Resource URL attributes', () => {
+  it('makes values absolute and ends folder URLs with a slash', () => {
+    const viewer = new PdfjsViewerElement()
+    const cases = [
+      ['c-map-url', '/static/cmaps', new URL('/static/cmaps/', location.href).href],
+      ['standard-font-data-url', './fonts/', new URL('./fonts/', location.href).href],
+      ['wasm-url', 'https://cdn.example.com/wasm', 'https://cdn.example.com/wasm/'],
+      ['icc-url', '  /static/iccs/  ', new URL('/static/iccs/', location.href).href],
+      ['sandbox-bundle-src', '/static/pdf.sandbox.mjs', new URL('/static/pdf.sandbox.mjs', location.href).href],
+      ['debugger-src', 'https://cdn.example.com/debugger.mjs', 'https://cdn.example.com/debugger.mjs']
+    ] as const
+
+    for (const [attribute, value, expected] of cases) {
+      const fallback = viewer['getResourceOption'](attribute)
+      viewer.setAttribute(attribute, value)
+      expect(viewer['getResourceOption'](attribute)).eq(expected)
+      viewer.setAttribute(attribute, ' ')
+      expect(viewer['getResourceOption'](attribute)).eq(fallback)
+    }
+  })
+})
+
 describe('Runtime file URL overrides', () => {
   const files = {
     workerSrc: ['worker-src', 'pdf.worker.min.mjs'],

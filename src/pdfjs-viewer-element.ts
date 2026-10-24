@@ -61,6 +61,20 @@ const DEFAULTS = {
   localeSrcTemplate: 'https://cdn.jsdelivr.net/gh/mozilla-l10n/firefox-l10n@main/{locale}/toolkit/toolkit/pdfviewer/viewer.ftl'
 } as const
 
+// PDF.js resource options set from attributes. PDF.js fetches the folders from its worker, which
+// runs from a `blob:` URL where relative paths don't resolve, so attribute values are made absolute,
+// and folder URLs get the trailing slash PDF.js requires.
+const RESOURCE_OPTIONS = {
+  'debugger-src': { key: 'debuggerSrc', fallback: DEFAULTS.debuggerSrc, folder: false },
+  'c-map-url': { key: 'cMapUrl', fallback: DEFAULTS.cMapUrl, folder: true },
+  'icc-url': { key: 'iccUrl', fallback: DEFAULTS.iccUrl, folder: true },
+  'sandbox-bundle-src': { key: 'sandboxBundleSrc', fallback: DEFAULTS.sandboxBundleSrc, folder: false },
+  'standard-font-data-url': { key: 'standardFontDataUrl', fallback: DEFAULTS.standardFontDataUrl, folder: true },
+  'wasm-url': { key: 'wasmUrl', fallback: DEFAULTS.wasmUrl, folder: true }
+} as const
+
+type ResourceAttribute = keyof typeof RESOURCE_OPTIONS
+
 export const ViewerCssTheme = { AUTOMATIC: 0, LIGHT: 1, DARK: 2 } as const
 
 export type PdfViewerApplicationOpenParameters =
@@ -154,6 +168,13 @@ export class PdfjsViewerElement extends HTMLElement {
       viewerCssSrc: resolveFile('viewerCssSrc'),
       themeCssSrc: resolveFile('themeCssSrc')
     }
+  }
+
+  private getResourceOption(attribute: ResourceAttribute) {
+    const { fallback, folder } = RESOURCE_OPTIONS[attribute]
+    const value = this.getAttribute(attribute)?.trim()
+    if (!value) return fallback
+    return this.getFullPath(folder && !value.endsWith('/') ? `${value}/` : value)
   }
 
   private getImageResourcesPath() {
@@ -381,13 +402,10 @@ export class PdfjsViewerElement extends HTMLElement {
   private applyViewerOptions = () => {
     const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
     viewerOptions?.set('workerSrc', this.getRuntimeFileUrls().workerSrc)
-    viewerOptions?.set('debuggerSrc', this.getAttribute('debugger-src') || DEFAULTS.debuggerSrc)
-    viewerOptions?.set('cMapUrl', this.getAttribute('c-map-url') || DEFAULTS.cMapUrl)
-    viewerOptions?.set('iccUrl', this.getAttribute('icc-url') || DEFAULTS.iccUrl)
+    for (const [attribute, { key }] of Object.entries(RESOURCE_OPTIONS)) {
+      viewerOptions?.set(key, this.getResourceOption(attribute as ResourceAttribute))
+    }
     viewerOptions?.set('imageResourcesPath', this.getImageResourcesPath())
-    viewerOptions?.set('sandboxBundleSrc', this.getAttribute('sandbox-bundle-src') || DEFAULTS.sandboxBundleSrc)
-    viewerOptions?.set('standardFontDataUrl', this.getAttribute('standard-font-data-url') || DEFAULTS.standardFontDataUrl)
-    viewerOptions?.set('wasmUrl', this.getAttribute('wasm-url') || DEFAULTS.wasmUrl)
     viewerOptions?.set('defaultUrl', this.getFullPath(this.getAttribute('src') || DEFAULTS.src))
     viewerOptions?.set('disablePreferences', true)
     viewerOptions?.set('eventBusDispatchToDOM', true)
@@ -542,25 +560,16 @@ export class PdfjsViewerElement extends HTMLElement {
     if (oldValue === newValue) return
     if (!this.iframe) return
 
-    const optionByAttribute = {
-      'debugger-src': { key: 'debuggerSrc', fallback: DEFAULTS.debuggerSrc },
-      'c-map-url': { key: 'cMapUrl', fallback: DEFAULTS.cMapUrl },
-      'icc-url': { key: 'iccUrl', fallback: DEFAULTS.iccUrl },
-      'sandbox-bundle-src': { key: 'sandboxBundleSrc', fallback: DEFAULTS.sandboxBundleSrc },
-      'standard-font-data-url': { key: 'standardFontDataUrl', fallback: DEFAULTS.standardFontDataUrl },
-      'wasm-url': { key: 'wasmUrl', fallback: DEFAULTS.wasmUrl }
-    } as const
-
     if (name === 'worker-src') {
       const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
       viewerOptions?.set('workerSrc', this.getRuntimeFileUrls().workerSrc)
       return
     }
 
-    if (name in optionByAttribute) {
+    if (name in RESOURCE_OPTIONS) {
       const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-      const { key, fallback } = optionByAttribute[name as keyof typeof optionByAttribute]
-      viewerOptions?.set(key, newValue || fallback)
+      const attribute = name as ResourceAttribute
+      viewerOptions?.set(RESOURCE_OPTIONS[attribute].key, this.getResourceOption(attribute))
       return
     }
 
