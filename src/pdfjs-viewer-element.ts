@@ -107,7 +107,7 @@ export class PdfjsViewerElement extends HTMLElement {
   private localeResourceUrl?: string
   private localeResourceLink?: HTMLLinkElement
   private viewerStyles = new Set<string>()
-  private optionsToSet: Record<string, PdfViewerApplicationOptionValue> = {}
+  private customViewerOptions: Record<string, PdfViewerApplicationOptionValue> = {}
 
   static get observedAttributes() {
     return[
@@ -405,10 +405,9 @@ export class PdfjsViewerElement extends HTMLElement {
     viewerOptions?.set('eventBusDispatchToDOM', true)
     viewerOptions?.set('localeProperties', { lang: this.getAttribute('locale') || DEFAULTS.locale })
     viewerOptions?.set('viewerCssTheme', this.getCssThemeOption())
-    for (const [key, value] of Object.entries(this.optionsToSet)) {
+    for (const [key, value] of Object.entries(this.customViewerOptions)) {
       viewerOptions?.set(key, value)
     }
-    this.optionsToSet = {}
   }
 
   // Unset parameters are left out: PDF.js reads an empty `page=` as page 1, so writing them would
@@ -625,7 +624,8 @@ export class PdfjsViewerElement extends HTMLElement {
   }
 
   public async setViewerOptions(options: Record<string, PdfViewerApplicationOptionValue> = {}) {
-    this.optionsToSet = options
+    // Kept and applied on every build: a locale change can rebuild the viewer.
+    this.customViewerOptions = { ...this.customViewerOptions, ...options }
     await this.initPromise
     return {
       viewerOptions: this.iframe.contentWindow?.PDFViewerApplicationOptions

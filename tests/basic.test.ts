@@ -335,6 +335,20 @@ describe('Basic tests', async () => {
     expect(viewerApp.pdfViewer.imageResourcesPath).eq(new URL('/static/images/', location.href).href)
   })
 
+  it('should keep viewer options across a rebuild', async () => {
+    document.body.innerHTML = `<pdfjs-viewer-element></pdfjs-viewer-element>`
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as PdfjsViewerElement
+    viewer.setViewerOptions({ enableComment: true })
+    await viewer.setViewerOptions({ defaultZoomValue: 'page-fit' })
+    const options = () => getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
+    expect(options()).toMatchObject({ enableComment: true, defaultZoomValue: 'page-fit' })
+
+    // A locale change that PDF.js can't apply in place rebuilds the viewer the same way.
+    viewer.initPromise = viewer['buildViewer']()
+    await viewer.initPromise
+    expect(options()).toMatchObject({ enableComment: true, defaultZoomValue: 'page-fit' })
+  })
+
   it('should load individual runtime URLs without assets-base', async () => {
     await mountViewer(`
       <pdfjs-viewer-element
