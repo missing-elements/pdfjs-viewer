@@ -396,6 +396,26 @@ describe('Basic tests', async () => {
     expect(csp).toMatch(/style-src[^;]*https:\/\/theme-css\.invalid/)
   })
 
+  it('should include cross-origin sandbox, WASM and annotation icon URLs in CSP', async () => {
+    document.body.innerHTML = `
+      <pdfjs-viewer-element
+        sandbox-bundle-src="https://sandbox.invalid/pdf.sandbox.mjs"
+        wasm-url="https://wasm.invalid/wasm/"
+        image-resources-path="https://images.invalid/images/">
+      </pdfjs-viewer-element>`
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as PdfjsViewerElement
+    await viewer.initPromise
+
+    const cspMeta = getIframe().contentDocument?.querySelector('meta[http-equiv="Content-Security-Policy"]')
+    const csp = cspMeta?.getAttribute('content') || ''
+    for (const directive of ['script-src', 'script-src-elem']) {
+      expect(csp).toMatch(new RegExp(`${directive} [^;]*https://sandbox\\.invalid`))
+      expect(csp).toMatch(new RegExp(`${directive} [^;]*https://wasm\\.invalid`))
+    }
+    expect(csp).toMatch(/img-src[^;]*https:\/\/images\.invalid/)
+    expect(csp).not.toMatch(/style-src[^;]*https:\/\/images\.invalid/)
+  })
+
   it('should keep the runtime URLs read at connection for the whole build', async () => {
     document.body.innerHTML = `<pdfjs-viewer-element></pdfjs-viewer-element>`
     const viewer = document.body.querySelector('pdfjs-viewer-element') as PdfjsViewerElement

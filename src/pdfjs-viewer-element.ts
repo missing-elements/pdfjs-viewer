@@ -452,19 +452,30 @@ export class PdfjsViewerElement extends HTMLElement {
       const { pdfjsLibSrc, viewerSrc, viewerCssSrc, themeCssSrc, workerSrc } = runtimeFileUrls
       const workerSrcOrigin = resolveHttpOrigin(workerSrc)
 
+      // Resource attributes are read here once per build like the runtime files: a later change
+      // to another origin is not added to the CSP.
       const scriptSources = toSourceList([
         "'self'",
         window.location.origin,
         resolveHttpOrigin(pdfjsLibSrc),
         resolveHttpOrigin(viewerSrc),
-        workerSrcOrigin
+        workerSrcOrigin,
+        // The scripting sandbox, and the QuickJS module it imports from the WASM folder.
+        resolveHttpOrigin(this.getResourceOption('sandbox-bundle-src')),
+        resolveHttpOrigin(this.getResourceOption('wasm-url'))
       ])
 
-      const styleSources = toSourceList([
+      const styleSourceList = [
         "'self'",
         window.location.origin,
         resolveHttpOrigin(viewerCssSrc),
         resolveHttpOrigin(themeCssSrc)
+      ]
+      const styleSources = toSourceList(styleSourceList)
+      // Annotation icons are <img> elements in the annotation layer.
+      const imageSources = toSourceList([
+        ...styleSourceList,
+        resolveHttpOrigin(this.getResourceOption('image-resources-path'))
       ])
 
       const workerSources = toSourceList([
@@ -480,7 +491,7 @@ export class PdfjsViewerElement extends HTMLElement {
         `script-src-elem ${scriptSources}`,
         `worker-src ${workerSources}`,
         `style-src ${styleSources} 'unsafe-inline'`,
-        `img-src ${styleSources} blob: data:`,
+        `img-src ${imageSources} blob: data:`,
         'media-src blob:',
         `font-src ${styleSources} data:`,
         'connect-src * blob: data:',
