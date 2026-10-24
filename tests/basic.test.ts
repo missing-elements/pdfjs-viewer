@@ -1,6 +1,10 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { getFileData, getViewerElement, mountViewer, getIframe } from './utils'
 import { PdfjsViewerElement } from '../src/pdfjs-viewer-element'
+import packageJson from '../package.json'
+
+// The PDF.js release that `pnpm sync:pdfjs` unpacks into `public/`.
+const pdfjsDist = `/pdfjs-${packageJson.dependencies['pdfjs-dist'].match(/\d+\.\d+\.\d+/)![0]}-dist`
 
 describe('Basic tests', async () => {
   it('should render the PDF file', async () => {
@@ -135,6 +139,20 @@ describe('Basic tests', async () => {
     expect(hash).toContain('search=pdf')
     expect(hash).toContain('phrase=true')
     expect(hash).toContain('pagemode=thumbs')
+  })
+
+  it('should load a region locale from a relative template', async () => {
+    const template = `${pdfjsDist}/web/locale/{locale}/viewer.ftl`
+    await mountViewer(`
+      <pdfjs-viewer-element locale="pt-BR" locale-src-template="${template}"></pdfjs-viewer-element>`
+    )
+
+    const doc = getIframe().contentDocument!
+    const resource = doc.querySelector<HTMLLinkElement>('link[type="application/l10n"]')!
+    expect(await (await fetch(resource.href)).json()).toEqual({
+      'pt-br': new URL(template.replace('{locale}', 'pt-BR'), location.href).href
+    })
+    await vi.waitFor(() => expect(doc.querySelector('#previous')?.getAttribute('title')).eq('Página anterior'))
   })
 
   it('should apply worker-src option at runtime', async () => {

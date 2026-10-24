@@ -345,17 +345,21 @@ export class PdfjsViewerElement extends HTMLElement {
       return
     }
     const localesData = await import('./web/locale/locale.json?raw')
-    const supportedLocales = Object.keys(JSON.parse(localesData.default))
-    if (!supportedLocales.includes(locale as string)) {
+    // PDF.js looks bundles up by the lowercase code (`pt-br`), the key format of `locale.json`,
+    // while the locale folders keep their case (`pt-BR/viewer.ftl`), so the template gets the folder.
+    const lang = locale.trim().toLowerCase()
+    const localePath: string | undefined = JSON.parse(localesData.default)[lang]
+    if (!localePath) {
       this.cleanupLocaleResource()
       return
     }
-    const localeUrl = this.formatTemplate(
-      this.getAttribute('locale-src-template') || DEFAULTS.localeSrcTemplate, 
-      { locale }
-    )
+    // Made absolute because PDF.js resolves it against the `blob:` URL of the resource link below.
+    const localeUrl = this.getFullPath(this.formatTemplate(
+      this.getAttribute('locale-src-template') || DEFAULTS.localeSrcTemplate,
+      { locale: localePath.split('/')[0] }
+    ))
     const localeObject = {
-      [String(locale)]: localeUrl
+      [lang]: localeUrl
     }
     const localeLink = doc.createElement('link')
     localeLink.rel = 'resource'
