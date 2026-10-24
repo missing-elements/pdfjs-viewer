@@ -9,8 +9,13 @@ const sourceViewerFile = resolve(rootDir, 'src', 'web', 'viewer.mjs')
 const sourceViewerCssFile = resolve(rootDir, 'src', 'web', 'viewer.css')
 const sourceViewerImagesDir = resolve(rootDir, 'src', 'web', 'images')
 const sourcePaperAndInkCssFile = resolve(rootDir, 'src', 'themes', 'paper-and-ink.css')
+const sourceSandboxFile = resolve(rootDir, 'src', 'build', 'pdf.sandbox.min.mjs')
 const distDir = resolve(rootDir, 'dist')
 const targetFile = resolve(distDir, 'pdf.worker.min.mjs')
+const targetSandboxFile = resolve(distDir, 'pdf.sandbox.mjs')
+// Resources PDF.js loads only for documents that need them. The element defaults their URLs to
+// these folders next to viewer.mjs.
+const resourceDirs = ['cmaps', 'iccs', 'standard_fonts', 'wasm']
 const targetPdfFile = resolve(distDir, 'pdf.mjs')
 const targetViewerFile = resolve(distDir, 'viewer.mjs')
 const targetViewerCssFile = resolve(distDir, 'viewer.css')
@@ -61,5 +66,9 @@ await Promise.all([
 	minifyModuleFile(sourceViewerFile, targetViewerFile),
 	bundleCssFile(sourceViewerCssFile, targetViewerCssFile),
 	bundleCssFile(sourcePaperAndInkCssFile, targetPaperAndInkCssFile),
-	cp(sourceViewerImagesDir, targetViewerImagesDir, { recursive: true, force: true })
+	cp(sourceViewerImagesDir, targetViewerImagesDir, { recursive: true, force: true }),
+	copyFile(sourceSandboxFile, targetSandboxFile),
+	...resourceDirs.map((dirName) =>
+		cp(resolve(rootDir, 'src', 'web', dirName), resolve(distDir, dirName), { recursive: true, force: true })
+	)
 ])

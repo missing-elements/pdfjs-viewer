@@ -274,42 +274,43 @@ describe('Basic tests', async () => {
     )
 
     const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
+    const { viewerSrc, pdfjsLibSrc } = (viewer as PdfjsViewerElement)['getRuntimeFileUrls']()
     const cases = [
       {
         attr: 'c-map-url',
         key: 'cMapUrl',
         value: 'https://example.com/cmaps/',
-        fallback: '../web/cmaps/'
+        fallback: new URL('cmaps/', viewerSrc).href
       },
       {
         attr: 'icc-url',
         key: 'iccUrl',
         value: 'https://example.com/iccs/',
-        fallback: '../web/iccs/'
+        fallback: new URL('iccs/', viewerSrc).href
       },
       {
         attr: 'image-resources-path',
         key: 'imageResourcesPath',
         value: 'https://example.com/images/',
-        fallback: './images/'
+        fallback: new URL('images/', viewerSrc).href
       },
       {
         attr: 'sandbox-bundle-src',
         key: 'sandboxBundleSrc',
         value: 'https://example.com/pdf.sandbox.mjs',
-        fallback: '../build/pdf.sandbox.mjs'
+        fallback: new URL('pdf.sandbox.mjs', pdfjsLibSrc).href
       },
       {
         attr: 'standard-font-data-url',
         key: 'standardFontDataUrl',
         value: 'https://example.com/standard_fonts/',
-        fallback: '../web/standard_fonts/'
+        fallback: new URL('standard_fonts/', viewerSrc).href
       },
       {
         attr: 'wasm-url',
         key: 'wasmUrl',
         value: 'https://example.com/wasm/',
-        fallback: '../web/wasm/'
+        fallback: new URL('wasm/', viewerSrc).href
       }
     ] as const
 
@@ -426,6 +427,7 @@ describe('Resource URL attributes', () => {
       ['standard-font-data-url', './fonts/', new URL('./fonts/', location.href).href],
       ['wasm-url', 'https://cdn.example.com/wasm', 'https://cdn.example.com/wasm/'],
       ['icc-url', '  /static/iccs/  ', new URL('/static/iccs/', location.href).href],
+      ['image-resources-path', '../images', new URL('../images/', location.href).href],
       ['sandbox-bundle-src', '/static/pdf.sandbox.mjs', new URL('/static/pdf.sandbox.mjs', location.href).href]
     ] as const
 
@@ -436,6 +438,30 @@ describe('Resource URL attributes', () => {
       viewer.setAttribute(attribute, ' ')
       expect(viewer['getResourceOption'](attribute)).eq(fallback)
     }
+  })
+
+  it('defaults to resources that ship next to the runtime files', async () => {
+    const viewer = new PdfjsViewerElement()
+    const files = {
+      'c-map-url': 'Adobe-Japan1-UCS2.bcmap',
+      'icc-url': 'CGATS001Compat-v2-micro.icc',
+      'image-resources-path': 'annotation-comment.svg',
+      'sandbox-bundle-src': '',
+      'standard-font-data-url': 'FoxitFixed.pfb',
+      'wasm-url': 'openjpeg.wasm'
+    } as const
+
+    for (const [attribute, file] of Object.entries(files)) {
+      const url = viewer['getResourceOption'](attribute as keyof typeof files) + file
+      expect((await fetch(url, { method: 'HEAD' })).status, url).eq(200)
+    }
+  })
+
+  it('follows assets-base', () => {
+    const viewer = new PdfjsViewerElement()
+    viewer.setAttribute('assets-base', '/static/pdfjs')
+    expect(viewer['getResourceOption']('c-map-url')).eq(new URL('/static/pdfjs/cmaps/', location.href).href)
+    expect(viewer['getResourceOption']('sandbox-bundle-src')).eq(new URL('/static/pdfjs/pdf.sandbox.mjs', location.href).href)
   })
 })
 

@@ -51,24 +51,23 @@ const DEFAULTS = {
   pagemode: 'none',
   locale: '',
   viewerCssTheme: 'AUTOMATIC',
-  cMapUrl: '../web/cmaps/',
-  iccUrl: '../web/iccs/',
-  imageResourcesPath: './images/',
-  sandboxBundleSrc: '../build/pdf.sandbox.mjs',
-  standardFontDataUrl: '../web/standard_fonts/',
-  wasmUrl: '../web/wasm/',
   localeSrcTemplate: 'https://cdn.jsdelivr.net/gh/mozilla-l10n/firefox-l10n@main/{locale}/toolkit/toolkit/pdfviewer/viewer.ftl'
 } as const
 
-// PDF.js resource options set from attributes. PDF.js fetches the folders from its worker, which
-// runs from a `blob:` URL where relative paths don't resolve, so attribute values are made absolute,
-// and folder URLs get the trailing slash PDF.js requires.
+// Resources PDF.js loads only for documents that need them. They ship in the package `dist`
+// folder, and each defaults to `fileName` resolved against the runtime file named by `base`, so
+// `assets-base` and the individual runtime URLs carry them along. Bundlers emit the runtime files
+// but not these folders, so bundled apps set `assets-base` or the attributes.
+// PDF.js fetches most of them from its worker, which runs from a `blob:` URL where relative paths
+// don't resolve, so attribute values are made absolute, and folder URLs get the trailing slash
+// PDF.js requires.
 const RESOURCE_OPTIONS = {
-  'c-map-url': { key: 'cMapUrl', fallback: DEFAULTS.cMapUrl, folder: true },
-  'icc-url': { key: 'iccUrl', fallback: DEFAULTS.iccUrl, folder: true },
-  'sandbox-bundle-src': { key: 'sandboxBundleSrc', fallback: DEFAULTS.sandboxBundleSrc, folder: false },
-  'standard-font-data-url': { key: 'standardFontDataUrl', fallback: DEFAULTS.standardFontDataUrl, folder: true },
-  'wasm-url': { key: 'wasmUrl', fallback: DEFAULTS.wasmUrl, folder: true }
+  'c-map-url': { key: 'cMapUrl', fileName: 'cmaps/', base: 'viewerSrc' },
+  'icc-url': { key: 'iccUrl', fileName: 'iccs/', base: 'viewerSrc' },
+  'image-resources-path': { key: 'imageResourcesPath', fileName: 'images/', base: 'viewerSrc' },
+  'sandbox-bundle-src': { key: 'sandboxBundleSrc', fileName: 'pdf.sandbox.mjs', base: 'pdfjsLibSrc' },
+  'standard-font-data-url': { key: 'standardFontDataUrl', fileName: 'standard_fonts/', base: 'viewerSrc' },
+  'wasm-url': { key: 'wasmUrl', fileName: 'wasm/', base: 'viewerSrc' }
 } as const
 
 type ResourceAttribute = keyof typeof RESOURCE_OPTIONS
@@ -169,23 +168,17 @@ export class PdfjsViewerElement extends HTMLElement {
   }
 
   private getResourceOption(attribute: ResourceAttribute) {
-    const { fallback, folder } = RESOURCE_OPTIONS[attribute]
+    const { fileName, base } = RESOURCE_OPTIONS[attribute]
     const value = this.getAttribute(attribute)?.trim()
-    if (!value) return fallback
-    return this.getFullPath(folder && !value.endsWith('/') ? `${value}/` : value)
-  }
-
-  private getImageResourcesPath() {
-    const imageResourcesPath = this.getAttribute('image-resources-path')
-    if (imageResourcesPath) return imageResourcesPath
-
-    const assetsBase = this.getAssetsBase()
-    if (!assetsBase) return DEFAULTS.imageResourcesPath
+    if (value) {
+      return this.getFullPath(fileName.endsWith('/') && !value.endsWith('/') ? `${value}/` : value)
+    }
 
     try {
-      return new URL('images/', assetsBase).href
+      return new URL(fileName, this.getRuntimeFileUrls()[base]).href
     } catch {
-      return `${assetsBase}images/`
+      // A runtime URL that doesn't parse can't load the viewer either.
+      return fileName
     }
   }
 
@@ -407,7 +400,6 @@ export class PdfjsViewerElement extends HTMLElement {
     for (const [attribute, { key }] of Object.entries(RESOURCE_OPTIONS)) {
       viewerOptions?.set(key, this.getResourceOption(attribute as ResourceAttribute))
     }
-    viewerOptions?.set('imageResourcesPath', this.getImageResourcesPath())
     viewerOptions?.set('defaultUrl', this.getFullPath(this.getAttribute('src') || DEFAULTS.src))
     viewerOptions?.set('disablePreferences', true)
     viewerOptions?.set('eventBusDispatchToDOM', true)
@@ -577,12 +569,6 @@ export class PdfjsViewerElement extends HTMLElement {
       const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
       const attribute = name as ResourceAttribute
       viewerOptions?.set(RESOURCE_OPTIONS[attribute].key, this.getResourceOption(attribute))
-      return
-    }
-
-    if (name === 'image-resources-path') {
-      const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-      viewerOptions?.set('imageResourcesPath', newValue || this.getImageResourcesPath())
       return
     }
 
