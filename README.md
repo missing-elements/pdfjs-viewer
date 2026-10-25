@@ -12,7 +12,7 @@ The [PDF.js default viewer](https://mozilla.github.io/pdf.js/web/viewer.html) as
 ## Why use it
 
 - **Instead of the browser's built-in viewer:** you get the same viewer in every browser, and your code controls it. Set the page, zoom, search, theme and language with attributes, or use PDF.js's own API.
-- **Instead of wiring up `pdfjs-dist` yourself:** PDF.js, its viewer interface, its worker and the data some PDFs need (CMaps, fonts, image decoders, the scripting sandbox) ship in the package. Vite and webpack 5 need no configuration for the viewer, and nothing loads from a CDN by default.
+- **Instead of wiring up `pdfjs-dist` yourself:** PDF.js, its viewer interface, its worker and the data some PDFs need (CMaps, fonts, image decoders, the scripting sandbox) ship in the package, and nothing loads from a CDN by default. Vite and webpack 5 bundle the viewer with no configuration, but they don't copy the data folders: if your documents need them, serve the package's `dist` folder and point [`assets-base`](https://missing-elements.github.io/pdfjs-viewer/#hosting) at it.
 - **What it costs:** the element is 4 KB gzipped. The viewer files, about 720 KB gzipped, load only when a viewer is on the page, and the extra PDF.js data only for documents that need it.
 - **When to use something else:** if you want your own page-rendering interface rather than the PDF.js viewer, use [`pdfjs-dist`](https://www.npmjs.com/package/pdfjs-dist) directly.
 
