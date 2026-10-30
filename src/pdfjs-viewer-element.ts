@@ -104,7 +104,7 @@ export class PdfjsViewerElement extends HTMLElement {
 
   public iframe!: PdfjsViewerElementIframe
   public initPromise: Promise<InitializationData> = Promise.resolve({})
-  private localeResourceUrl?: string
+  private localeMap?: Record<string, string>
   private localeResourceLink?: HTMLLinkElement
   private viewerStyles = new Set<string>()
   private customViewerOptions: Record<string, PdfViewerApplicationOptionValue> = {}
@@ -344,22 +344,18 @@ export class PdfjsViewerElement extends HTMLElement {
       this.cleanupLocaleResource()
       return
     }
-    // Made absolute because PDF.js resolves it against the `blob:` URL of the resource link below.
+    // Made absolute because PDF.js resolves it against the `data:` URL of the resource link below.
     const localeUrl = this.getFullPath(this.formatTemplate(
       this.getAttribute('locale-src-template') || DEFAULTS.localeSrcTemplate,
       { locale: localePath.split('/')[0] }
     ))
-    const localeObject = {
-      [lang]: localeUrl
-    }
     const localeLink = doc.createElement('link')
     localeLink.rel = 'resource'
     localeLink.type = 'application/l10n'
     this.cleanupLocaleResource()
-    this.localeResourceUrl = URL.createObjectURL(
-      new Blob([JSON.stringify(localeObject)], { type: 'application/json' })
-    )
-    localeLink.href = this.localeResourceUrl
+    this.localeMap = { [lang]: localeUrl }
+    // PDF.js gets the map from `serveLocaleFiles` and never requests this URL.
+    localeLink.href = `data:application/json,${encodeURIComponent(JSON.stringify(this.localeMap))}`
     this.iframe.contentDocument?.head.appendChild(localeLink)
     this.localeResourceLink = localeLink
   }
@@ -369,9 +365,35 @@ export class PdfjsViewerElement extends HTMLElement {
       this.localeResourceLink.remove()
       this.localeResourceLink = undefined
     }
-    if (this.localeResourceUrl) {
-      URL.revokeObjectURL(this.localeResourceUrl)
-      this.localeResourceUrl = undefined
+    this.localeMap = undefined
+  }
+
+  // The viewer takes `fetchData` from `pdfjsLib` when it loads and uses it only for its locale:
+  // the map named by the `application/l10n` link, then the `.ftl` file the map lists. The map is
+  // answered from memory, so a page CSP doesn't have to allow `blob:` or `data:` in `connect-src`.
+  // When the `.ftl` file fails to load, PDF.js leaves every control without a label. An empty file
+  // is returned instead, and PDF.js falls back to its built-in English strings.
+  private serveLocaleFiles() {
+    const pdfjsLib = (this.iframe.contentWindow as unknown as {
+      pdfjsLib?: { fetchData?: (url: string | URL, type?: string) => Promise<unknown> }
+    })?.pdfjsLib
+    const fetchData = pdfjsLib?.fetchData
+    if (!pdfjsLib || typeof fetchData !== 'function') return
+
+    pdfjsLib.fetchData = async (url, type) => {
+      const href = String(url)
+      if (this.localeResourceLink && href === this.localeResourceLink.href) {
+        return { ...this.localeMap }
+      }
+      if (!this.localeMap || !Object.values(this.localeMap).includes(href)) {
+        return fetchData(url, type)
+      }
+      try {
+        return await fetchData(url, type)
+      } catch (error) {
+        console.warn(`Unable to load locale file: ${href}. The viewer falls back to English.`, error)
+        return ''
+      }
     }
   }
 
@@ -539,6 +561,8 @@ export class PdfjsViewerElement extends HTMLElement {
     await this.injectLocaleData()
 
     await this.injectScript(runtimeFileUrls.pdfjsLibSrc)
+    // Between the two scripts: the viewer reads `fetchData` from `pdfjsLib` once, when it loads.
+    this.serveLocaleFiles()
     await this.injectScript(runtimeFileUrls.viewerSrc)
 
     return await setupPromise

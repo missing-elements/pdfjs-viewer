@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { getFileData, getViewerElement, mountViewer, getIframe } from './utils'
+import { getFileData, getViewerElement, mountViewer, mountViewerWithPageCsp, getIframe } from './utils'
 import { PdfjsViewerElement } from '../src/pdfjs-viewer-element'
 import packageJson from '../package.json'
 
@@ -175,6 +175,31 @@ describe('Basic tests', async () => {
       'pt-br': new URL(template.replace('{locale}', 'pt-BR'), location.href).href
     })
     await vi.waitFor(() => expect(doc.querySelector('#previous')?.getAttribute('title')).eq('Página anterior'))
+  })
+
+  it('should load the locale under a page CSP that allows neither blob: nor data:', async () => {
+    const viewer = await mountViewerWithPageCsp("connect-src 'self'", `
+      <pdfjs-viewer-element
+        locale="de"
+        locale-src-template="${pdfjsDist}/web/locale/{locale}/viewer.ftl">
+      </pdfjs-viewer-element>`
+    )
+
+    const doc = viewer.iframe.contentDocument!
+    await vi.waitFor(() => expect(doc.querySelector('#previous')?.getAttribute('title')).eq('Eine Seite zurück'))
+  })
+
+  it('should fall back to English when the locale file fails to load', async () => {
+    // The page CSP blocks the locale file's host, so the request fails without reaching the network.
+    const viewer = await mountViewerWithPageCsp("connect-src 'self'", `
+      <pdfjs-viewer-element
+        locale="de"
+        locale-src-template="https://locales.invalid/{locale}/viewer.ftl">
+      </pdfjs-viewer-element>`
+    )
+
+    const doc = viewer.iframe.contentDocument!
+    await vi.waitFor(() => expect(doc.querySelector('#previous')?.getAttribute('title')).eq('Previous Page'))
   })
 
   it('should apply worker-src option at runtime', async () => {
