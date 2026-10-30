@@ -23,7 +23,7 @@ export declare class PdfjsViewerElement extends HTMLElement {
     constructor();
     iframe: PdfjsViewerElementIframe;
     initPromise: Promise<InitializationData>;
-    private localeResourceUrl?;
+    private localeMap?;
     private localeResourceLink?;
     private viewerStyles;
     private customViewerOptions;
@@ -42,6 +42,7 @@ export declare class PdfjsViewerElement extends HTMLElement {
     private applyLocaleAtRuntime;
     private injectLocaleData;
     private cleanupLocaleResource;
+    private serveLocaleFiles;
     private onViewerAppCreated;
     private applyViewerOptions;
     private getIframeLocationHash;

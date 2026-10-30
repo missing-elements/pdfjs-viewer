@@ -22,6 +22,30 @@ export const mountViewer = async (template: string) => {
   return viewerApp
 }
 
+// Mounts the viewer in a frame with its own page CSP, which the viewer's srcdoc iframe inherits as
+// it would a host page's. The frame is written with `document.write`, which gives it this page's
+// URL; under `about:srcdoc` the dev build's runtime file URLs fail to resolve. Vitest routes the
+// element's dynamic imports through `__vitest_browser_runner__`, which only the test page defines,
+// so the frame gets the pass-through stub Vitest gives workers.
+export const mountViewerWithPageCsp = async (csp: string, template: string) => {
+  document.body.innerHTML = ''
+  const frame = document.createElement('iframe')
+  document.body.append(frame)
+  const doc = frame.contentDocument!
+  doc.open()
+  doc.write(`
+    <meta http-equiv="Content-Security-Policy" content="${csp}">
+    <script>globalThis.__vitest_browser_runner__ = { wrapDynamicImport: (f) => f() }</script>
+    <script type="module" src="/src/pdfjs-viewer-element.ts"></script>
+    ${template}`)
+  doc.close()
+
+  await frame.contentWindow!.customElements.whenDefined('pdfjs-viewer-element')
+  const viewer = doc.querySelector('pdfjs-viewer-element') as TestViewerElement
+  await viewer.initPromise
+  return viewer
+}
+
 export const getFileData = () => {
   const baseStr =
     'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwog' +
