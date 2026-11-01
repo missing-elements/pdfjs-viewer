@@ -149,7 +149,9 @@ export class PdfjsViewerElement extends HTMLElement {
       const { attribute, fileName, defaultUrl } = RUNTIME_FILES[field]
       const attr = this.getAttribute(attribute)?.trim()
       if (attr) return this.getFullPath(attr)
-      if (!assetsBase) return defaultUrl
+      // Next.js (webpack and Turbopack) rewrites the defaults to root-relative URLs. The worker and
+      // the resource folders derived from these need absolute ones.
+      if (!assetsBase) return this.getFullPath(defaultUrl)
 
       try {
         return new URL(fileName, assetsBase).href

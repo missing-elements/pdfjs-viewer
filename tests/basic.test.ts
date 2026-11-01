@@ -530,6 +530,36 @@ describe('Resource URL attributes', () => {
     }
   })
 
+  it('makes the defaults absolute when a bundler rewrites them to relative URLs', async () => {
+    // Next.js returns `new URL('./file', import.meta.url).href` as a root-relative path. A fresh copy
+    // of the module is evaluated with a URL class that does the same for the module's runtime files.
+    const NativeURL = URL
+    class RelativeURL extends NativeURL {
+      override get href() {
+        return /^\/src\/(build|web|themes)\//.test(this.pathname) ? this.pathname : super.href
+      }
+    }
+    globalThis.URL = RelativeURL
+    let RelativeElement: typeof PdfjsViewerElement
+    try {
+      ({ PdfjsViewerElement: RelativeElement } = await import(/* @vite-ignore */ '/src/pdfjs-viewer-element.ts?relative-urls'))
+    } finally {
+      globalThis.URL = NativeURL
+    }
+    if (!customElements.get('pdfjs-viewer-relative-urls')) {
+      customElements.define('pdfjs-viewer-relative-urls', RelativeElement)
+    }
+
+    document.body.innerHTML = '<pdfjs-viewer-relative-urls></pdfjs-viewer-relative-urls>'
+    const viewer = document.body.querySelector('pdfjs-viewer-relative-urls') as PdfjsViewerElement
+    await viewer.initPromise
+
+    const options = viewer.iframe.contentWindow.PDFViewerApplicationOptions.getAll()
+    expect(options.workerSrc).eq(new URL('/src/build/pdf.worker.mjs', location.href).href)
+    expect(options.cMapUrl).eq(new URL('/src/web/cmaps/', location.href).href)
+    expect(options.sandboxBundleSrc).eq(new URL('/src/build/pdf.sandbox.mjs', location.href).href)
+  })
+
   it('follows assets-base', () => {
     const viewer = new PdfjsViewerElement()
     viewer.setAttribute('assets-base', '/static/pdfjs')
