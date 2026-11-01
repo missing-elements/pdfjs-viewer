@@ -21,22 +21,17 @@ const DEFAULT_VIEWER_SRC = import.meta.env.DEV
   ? new URL('./web/viewer.mjs', import.meta.url).href
   : new URL(/* @vite-ignore */ './viewer.mjs', import.meta.url).href
 
-const DEFAULT_VIEWER_CSS_SRC = import.meta.env.DEV
-  ? new URL('./web/viewer.css', import.meta.url).href
-  : new URL(/* @vite-ignore */ './viewer.css', import.meta.url).href
-
-const DEFAULT_PAPER_AND_INK_THEME_CSS_SRC = import.meta.env.DEV
-  ? new URL('./themes/paper-and-ink.css', import.meta.url).href
-  : new URL(/* @vite-ignore */ './paper-and-ink.css', import.meta.url).href
-
 // Runtime files of the viewer: the attribute that overrides each URL, the file name inside the
-// package `dist` folder (used when `assets-base` is set) and the bundled default.
+// package `dist` folder (used when `assets-base` is set) and the bundled default. The stylesheets
+// have no default URL: bundlers treat a referenced `.css` file as the app's own CSS (Next.js with
+// webpack moves it into the host page and emits an empty file), so without the attribute or
+// `assets-base` the element applies the same CSS from JS modules instead (`buildViewerEntry`).
 const RUNTIME_FILES = {
   workerSrc: { attribute: 'worker-src', fileName: 'pdf.worker.min.mjs', defaultUrl: DEFAULT_BUILT_IN_WORKER_SRC },
   pdfjsLibSrc: { attribute: 'pdfjs-lib-src', fileName: 'pdf.mjs', defaultUrl: DEFAULT_PDF_SRC },
   viewerSrc: { attribute: 'viewer-src', fileName: 'viewer.mjs', defaultUrl: DEFAULT_VIEWER_SRC },
-  viewerCssSrc: { attribute: 'viewer-css-src', fileName: 'viewer.css', defaultUrl: DEFAULT_VIEWER_CSS_SRC },
-  themeCssSrc: { attribute: 'theme-css-src', fileName: 'paper-and-ink.css', defaultUrl: DEFAULT_PAPER_AND_INK_THEME_CSS_SRC }
+  viewerCssSrc: { attribute: 'viewer-css-src', fileName: 'viewer.css', defaultUrl: '' },
+  themeCssSrc: { attribute: 'theme-css-src', fileName: 'paper-and-ink.css', defaultUrl: '' }
 } as const
 
 type RuntimeFileUrls = Record<keyof typeof RUNTIME_FILES, string>
@@ -107,6 +102,9 @@ export class PdfjsViewerElement extends HTMLElement {
   private localeMap?: Record<string, string>
   private localeResourceLink?: HTMLLinkElement
   private viewerStyles = new Set<string>()
+  // The viewer document whose stylesheets are in place, and the `viewerStyles` applied to it.
+  private styledDocument?: Document
+  private appliedViewerStyles = new Set<string>()
   private customViewerOptions: Record<string, PdfViewerApplicationOptionValue> = {}
 
   static get observedAttributes() {
@@ -237,24 +235,30 @@ export class PdfjsViewerElement extends HTMLElement {
     }
   }
 
-  private appendRuntimeStyle(styles: string) {
-    const doc = this.iframe?.contentDocument
-    if (!doc?.head || !styles) return
+  // Constructed stylesheets, unlike `<style>` elements, are not blocked by a page CSP without
+  // `'unsafe-inline'` for styles, which the srcdoc iframe inherits. They follow every `<link>`.
+  private adoptStyleSheets(doc: Document, styles: string[]) {
+    const CSSStyleSheetConstructor = doc.defaultView?.CSSStyleSheet
+    // Older jsdom versions, such as the one Jest 29 uses, can't construct stylesheets. The viewer
+    // doesn't run there anyway.
+    if (!CSSStyleSheetConstructor || !('replaceSync' in CSSStyleSheetConstructor.prototype) || !styles.length) return
 
-    const exists = Array.from(doc.querySelectorAll('style'))
-      .some((styleNode) => styleNode.textContent === styles)
-    if (exists) return
-
-    const styleElement = doc.createElement('style')
-    styleElement.setAttribute('data-pdfjs-viewer-runtime-style', 'true')
-    styleElement.textContent = styles
-    doc.head.appendChild(styleElement)
+    const sheets = styles.map((text) => {
+      const sheet = new CSSStyleSheetConstructor()
+      sheet.replaceSync(text)
+      return sheet
+    })
+    doc.adoptedStyleSheets = [...doc.adoptedStyleSheets, ...sheets]
   }
 
-  private applyQueuedRuntimeStyles() {
-    this.viewerStyles.forEach((styles) => {
-      this.appendRuntimeStyle(styles)
-    })
+  // Styles from `injectViewerStyles` come last, after the viewer and theme stylesheets.
+  private applyViewerStyles() {
+    const doc = this.iframe?.contentDocument
+    if (!doc || doc !== this.styledDocument) return
+
+    const pending = Array.from(this.viewerStyles).filter((styles) => !this.appliedViewerStyles.has(styles))
+    pending.forEach((styles) => this.appliedViewerStyles.add(styles))
+    this.adoptStyleSheets(doc, pending)
   }
 
   private injectScript(src: string, type = 'module') {
@@ -452,8 +456,14 @@ export class PdfjsViewerElement extends HTMLElement {
   }
 
   private buildViewerEntry = async (runtimeFileUrls: RuntimeFileUrls) => {
-    return new Promise<void>(async (resolve) => {
-      const viewerEntry = await import('virtual:pdfjs-viewer-html')
+    const { pdfjsLibSrc, viewerSrc, viewerCssSrc, themeCssSrc, workerSrc } = runtimeFileUrls
+    const [viewerEntry, viewerCss, themeCss] = await Promise.all([
+      import('virtual:pdfjs-viewer-html'),
+      viewerCssSrc ? undefined : import('virtual:pdfjs-viewer-css'),
+      themeCssSrc ? undefined : import('virtual:pdfjs-viewer-theme-css')
+    ])
+
+    return new Promise<void>((resolve) => {
       const resolveHttpOrigin = (url: string) => {
         try {
           const parsed = new URL(url, window.location.href)
@@ -473,7 +483,6 @@ export class PdfjsViewerElement extends HTMLElement {
       const escapeAttribute = (value: string) =>
         value.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
 
-      const { pdfjsLibSrc, viewerSrc, viewerCssSrc, themeCssSrc, workerSrc } = runtimeFileUrls
       const workerSrcOrigin = resolveHttpOrigin(workerSrc)
 
       // Resource attributes are read here once per build like the runtime files: a later change
@@ -528,13 +537,33 @@ export class PdfjsViewerElement extends HTMLElement {
         `<meta http-equiv="Content-Security-Policy" content="${srcdocCsp};" />`
       )
 
+      const stylesheetLinks = [viewerCssSrc, themeCssSrc]
+        .filter(Boolean)
+        .map((href) => `<link rel="stylesheet" href="${escapeAttribute(href)}">`)
+        .join('')
       const completeHtml = viewerHtmlWithSrcdocCsp
-        .replace('</head>', `
-          <link rel="stylesheet" href="${escapeAttribute(viewerCssSrc)}">
-          <link rel="stylesheet" href="${escapeAttribute(themeCssSrc)}">
-          ${Array.from(this.viewerStyles).map(style => `<style>${style}</style>`).join('\n')}
-        </head>`)
-      this.iframe.addEventListener('load', () => resolve(), { once: true })
+        .replace('</head>', `${stylesheetLinks}</head>`)
+        // Constructed stylesheets are applied once the document has loaded, so it starts hidden
+        // rather than painting the viewer unstyled.
+        .replace(/<body(?=[\s>])/, '<body hidden')
+
+      this.iframe.addEventListener('load', () => {
+        const doc = this.iframe.contentDocument
+        if (doc) {
+          // A theme from `theme-css-src` is a `<link>`, which precedes every constructed
+          // stylesheet. The bundled viewer stylesheet then goes into a cascade layer, so the
+          // theme still overrides it.
+          const bundledViewerCss = viewerCss && themeCssSrc
+            ? `@layer pdfjs-viewer{${viewerCss.default}}`
+            : viewerCss?.default
+          this.styledDocument = doc
+          this.appliedViewerStyles = new Set()
+          this.adoptStyleSheets(doc, [bundledViewerCss, themeCss?.default].filter((styles) => styles !== undefined))
+          this.applyViewerStyles()
+          doc.body.hidden = false
+        }
+        resolve()
+      }, { once: true })
       this.iframe.srcdoc = completeHtml
     })
   }
@@ -547,7 +576,6 @@ export class PdfjsViewerElement extends HTMLElement {
     await viewerApp?.initializedPromise
 
     this.applyViewerTheme()
-    this.applyQueuedRuntimeStyles()
 
     return {
       viewerApp
@@ -657,7 +685,7 @@ export class PdfjsViewerElement extends HTMLElement {
   public async injectViewerStyles(styles: string) {
     if (!styles) return
     this.viewerStyles.add(styles)
-    this.appendRuntimeStyle(styles)
+    this.applyViewerStyles()
   }
 
   public async setViewerOptions(options: Record<string, PdfViewerApplicationOptionValue> = {}) {

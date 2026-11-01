@@ -1,0 +1,4 @@
+/* A theme for `theme-css-src`. viewer.css sets the same variable with the same specificity. */
+:root {
+  --body-bg-color: rgb(1, 2, 3);
+}
