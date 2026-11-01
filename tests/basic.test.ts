@@ -233,6 +233,20 @@ describe('Basic tests', async () => {
     await vi.waitFor(() => expect(doc.querySelector('#previous')?.getAttribute('title')).eq('Previous Page'))
   })
 
+  it('should keep the element and the viewer styled under a page CSP that blocks inline styles', async () => {
+    const viewer = await mountViewerWithPageCsp("style-src 'self'", `
+      <pdfjs-viewer-element></pdfjs-viewer-element>`
+    ) as unknown as PdfjsViewerElement
+    await viewer.injectViewerStyles('#outerContainer { letter-spacing: 3px }')
+
+    const hostWindow = viewer.ownerDocument.defaultView!
+    const viewerWindow = viewer.iframe.contentWindow
+    const doc = viewer.iframe.contentDocument!
+    expect(hostWindow.getComputedStyle(viewer).display).eq('block')
+    expect(viewerWindow.getComputedStyle(doc.querySelector('#viewerContainer')!).position).eq('absolute')
+    expect(viewerWindow.getComputedStyle(doc.querySelector('#outerContainer')!).letterSpacing).eq('3px')
+  })
+
   it('should apply worker-src option at runtime', async () => {
     await mountViewer(`
       <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`

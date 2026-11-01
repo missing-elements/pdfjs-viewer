@@ -87,14 +87,25 @@ export interface PdfViewerApplicationOptions {
   getAll: () => Record<string, unknown>
 }
 
+const HOST_CSS = ':host{width:100%;display:block;overflow:hidden}:host iframe{height:100%}'
+
+// A constructed stylesheet, which a page CSP without `'unsafe-inline'` for styles doesn't block
+// the way it blocks a `<style>` element. Older jsdom versions, such as the one Jest 29 uses, can't
+// construct stylesheets, so importing the element there keeps the `<style>` element.
+const HOST_STYLES = 'replaceSync' in CSSStyleSheet.prototype ? new CSSStyleSheet() : undefined
+HOST_STYLES?.replaceSync(HOST_CSS)
+
 export class PdfjsViewerElement extends HTMLElement {
   constructor() {
     super()
     const shadowRoot = this.attachShadow({ mode: 'open' })
-    shadowRoot.innerHTML = `
-      <style>:host{width:100%;display:block;overflow:hidden}:host iframe{height:100%}</style>
-      <iframe frameborder="0" width="100%" loading="lazy"></iframe>
-    `
+    const iframe = '<iframe frameborder="0" width="100%" loading="lazy"></iframe>'
+    if (HOST_STYLES) {
+      shadowRoot.adoptedStyleSheets = [HOST_STYLES]
+      shadowRoot.innerHTML = iframe
+    } else {
+      shadowRoot.innerHTML = `<style>${HOST_CSS}</style>${iframe}`
+    }
   }
 
   public iframe!: PdfjsViewerElementIframe
