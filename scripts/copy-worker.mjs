@@ -1,6 +1,7 @@
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
-import { build, transform } from 'esbuild'
+import { transform } from 'esbuild'
+import { bundleCss } from './bundle-css.mjs'
 
 const rootDir = resolve(import.meta.dirname, '..')
 const sourceFile = resolve(rootDir, 'src', 'build', 'pdf.worker.min.mjs')
@@ -42,22 +43,10 @@ const minifyModuleFile = async (sourcePath, targetPath) => {
 	await writeFile(targetPath, result.code, 'utf8')
 }
 
-// Bundles a stylesheet so that its url(...) references are inlined as data URLs. Consumer
-// bundlers emit dist files under hashed, relocated names, and viewer.css alone would otherwise
-// break: it references images/ relative to its own URL. esbuild picks base64 or percent
-// encoding per file, whichever is shorter.
+// The element applies the same text from JS modules (see vite.config.ts); these files are for
+// `assets-base`, `viewer-css-src` and `theme-css-src`.
 const bundleCssFile = async (sourcePath, targetPath) => {
-	await build({
-		entryPoints: [sourcePath],
-		outfile: targetPath,
-		bundle: true,
-		minify: true,
-		legalComments: 'none',
-		loader: {
-			'.svg': 'dataurl',
-			'.gif': 'dataurl'
-		}
-	})
+	await writeFile(targetPath, await bundleCss(sourcePath), 'utf8')
 }
 
 await Promise.all([

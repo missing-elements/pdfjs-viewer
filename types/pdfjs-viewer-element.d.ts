@@ -26,6 +26,8 @@ export declare class PdfjsViewerElement extends HTMLElement {
     private localeMap?;
     private localeResourceLink?;
     private viewerStyles;
+    private styledDocument?;
+    private appliedViewerStyles;
     private customViewerOptions;
     static get observedAttributes(): string[];
     private formatTemplate;
@@ -36,8 +38,8 @@ export declare class PdfjsViewerElement extends HTMLElement {
     private getCssThemeOption;
     private applyIframeHash;
     private applyViewerTheme;
-    private appendRuntimeStyle;
-    private applyQueuedRuntimeStyles;
+    private adoptStyleSheets;
+    private applyViewerStyles;
     private injectScript;
     private applyLocaleAtRuntime;
     private injectLocaleData;

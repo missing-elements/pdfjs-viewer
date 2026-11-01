@@ -12,7 +12,7 @@ The [PDF.js default viewer](https://mozilla.github.io/pdf.js/web/viewer.html) as
 ## Why use it
 
 - **Instead of the browser's built-in viewer:** you get the same viewer in every browser, and your code controls it. Set the page, zoom, search, theme and language with attributes, or use PDF.js's own API.
-- **Instead of wiring up `pdfjs-dist` yourself:** PDF.js, its viewer interface, its worker and the data some PDFs need (CMaps, fonts, image decoders, the scripting sandbox) ship in the package, and nothing loads from a CDN by default. Vite and webpack 5 bundle the viewer with no configuration, but they don't copy the data folders: if your documents need them, serve the package's `dist` folder and point [`assets-base`](https://missing-elements.github.io/pdfjs-viewer/#hosting) at it.
+- **Instead of wiring up `pdfjs-dist` yourself:** PDF.js, its viewer interface, its worker and the data some PDFs need (CMaps, fonts, image decoders, the scripting sandbox) ship in the package, and nothing loads from a CDN by default.
 - **What it costs:** the element is 4 KB gzipped. The viewer files, about 720 KB gzipped, load only when a viewer is on the page, and the extra PDF.js data only for documents that need it.
 - **When to use something else:** if you want your own page-rendering interface rather than the PDF.js viewer, use [`pdfjs-dist`](https://www.npmjs.com/package/pdfjs-dist) directly.
 
@@ -24,6 +24,12 @@ npm install @missing-elements/pdfjs-viewer
 
 ```js
 import '@missing-elements/pdfjs-viewer'
+```
+
+Vite, webpack 5 and Next.js bundle the viewer with no configuration. They don't copy the PDF.js data folders, though, because PDF.js loads those files by name. Without them, scanned pages compressed with JBIG2, CCITT or JPEG 2000 render blank or black, CJK text in fonts the PDF doesn't embed goes missing, and JavaScript in PDFs doesn't run. To support every PDF, copy the package's `dist` folder into your public files, for example in a `postinstall` script, and point [`assets-base`](https://missing-elements.github.io/pdfjs-viewer/#hosting) at it:
+
+```html
+<pdfjs-viewer-element src="/file.pdf" assets-base="/pdfjs-viewer/"></pdfjs-viewer-element>
 ```
 
 Or load it from a CDN without a build step:

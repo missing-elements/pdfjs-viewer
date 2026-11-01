@@ -61,8 +61,10 @@ describe('Basic tests', async () => {
     await mountViewer('<pdfjs-viewer-element viewer-css-theme="LIGHT"></pdfjs-viewer-element>')
     const viewer = document.body.querySelector('pdfjs-viewer-element')!
     const doc = getIframe().contentDocument!
-    const themeSheet = Array.from(doc.styleSheets).find(sheet => sheet.href?.endsWith('/paper-and-ink.css'))!
     // The whole theme sits in one block that steps aside in forced colors mode.
+    const themeSheet = doc.adoptedStyleSheets.find(sheet =>
+      (sheet.cssRules[0] as CSSMediaRule | undefined)?.conditionText === 'not all and (forced-colors: active)'
+    )!
     expect(themeSheet.cssRules).toHaveLength(1)
     const themeBlock = themeSheet.cssRules[0] as CSSMediaRule
     expect(themeBlock.conditionText).eq('not all and (forced-colors: active)')
@@ -71,13 +73,14 @@ describe('Basic tests', async () => {
     )
     // One system dark block per palette; the neutral palette hides the warm one in the colors below.
     expect(darkRules).toHaveLength(2)
-    // `--hover-filter` comes from viewer.css, which switches it on the system scheme alone.
+    // `--hover-filter` comes from viewer.css, which switches it on the system scheme alone. The
+    // bundled stylesheets are minified, and custom properties keep the text as written.
     const colors = () => [
       getComputedStyle(doc.documentElement).getPropertyValue('--body-bg-color').trim(),
       getComputedStyle(doc.querySelector('#viewsManager')!).getPropertyValue('--text-color').trim(),
       getComputedStyle(doc.documentElement).getPropertyValue('--hover-filter').trim()
     ]
-    const light = ['#f1f3f5', '#1f2328', 'brightness(0.9)']
+    const light = ['#f1f3f5', '#1f2328', 'brightness(.9)']
     const dark = ['#0d1117', '#e6edf3', 'brightness(1.4)']
     for (const systemDark of [false, true, false]) {
       // Toggle matching of the system dark rules without depending on the host's theme.
@@ -112,6 +115,34 @@ describe('Basic tests', async () => {
 
     expect(getViewerElement()).exist
     expect(getComputedStyle(getViewerElement('#downloadButton')!).display).eq('none')
+  })
+
+  it('should apply the bundled stylesheets without referencing CSS files', async () => {
+    await mountViewer('<pdfjs-viewer-element></pdfjs-viewer-element>')
+
+    const doc = getIframe().contentDocument!
+    expect(doc.querySelector('link[rel="stylesheet"]')).not.exist
+    expect(doc.adoptedStyleSheets.length).toBeGreaterThanOrEqual(2)
+    expect(doc.body.hidden).toBe(false)
+    expect(getComputedStyle(getViewerElement('#viewerContainer')!).position).eq('absolute')
+  })
+
+  it('should apply injected styles after the theme', async () => {
+    document.body.innerHTML = '<pdfjs-viewer-element viewer-css-theme="DARK"></pdfjs-viewer-element>'
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as PdfjsViewerElement
+    await viewer.injectViewerStyles(':root, :root[data-color-scheme] { --body-bg-color: rgb(4, 5, 6) }')
+    await viewer.initPromise
+
+    const doc = getIframe().contentDocument!
+    expect(getComputedStyle(doc.documentElement).getPropertyValue('--body-bg-color').trim()).eq('rgb(4, 5, 6)')
+  })
+
+  it('should let a theme from theme-css-src override the bundled viewer stylesheet', async () => {
+    await mountViewer('<pdfjs-viewer-element theme-css-src="/tests/fixtures/custom-theme.css"></pdfjs-viewer-element>')
+
+    const doc = getIframe().contentDocument!
+    expect(getComputedStyle(doc.documentElement).getPropertyValue('--body-bg-color').trim()).eq('rgb(1, 2, 3)')
+    expect(getComputedStyle(getViewerElement('#viewerContainer')!).position).eq('absolute')
   })
 
   it('should add a title attribute to the iframe', async () => {
@@ -200,6 +231,20 @@ describe('Basic tests', async () => {
 
     const doc = viewer.iframe.contentDocument!
     await vi.waitFor(() => expect(doc.querySelector('#previous')?.getAttribute('title')).eq('Previous Page'))
+  })
+
+  it('should keep the element and the viewer styled under a page CSP that blocks inline styles', async () => {
+    const viewer = await mountViewerWithPageCsp("style-src 'self'", `
+      <pdfjs-viewer-element></pdfjs-viewer-element>`
+    ) as unknown as PdfjsViewerElement
+    await viewer.injectViewerStyles('#outerContainer { letter-spacing: 3px }')
+
+    const hostWindow = viewer.ownerDocument.defaultView!
+    const viewerWindow = viewer.iframe.contentWindow
+    const doc = viewer.iframe.contentDocument!
+    expect(hostWindow.getComputedStyle(viewer).display).eq('block')
+    expect(viewerWindow.getComputedStyle(doc.querySelector('#viewerContainer')!).position).eq('absolute')
+    expect(viewerWindow.getComputedStyle(doc.querySelector('#outerContainer')!).letterSpacing).eq('3px')
   })
 
   it('should apply worker-src option at runtime', async () => {
@@ -528,6 +573,36 @@ describe('Resource URL attributes', () => {
       const url = viewer['getResourceOption'](attribute as keyof typeof files) + file
       expect((await fetch(url, { method: 'HEAD' })).status, url).eq(200)
     }
+  })
+
+  it('makes the defaults absolute when a bundler rewrites them to relative URLs', async () => {
+    // Next.js returns `new URL('./file', import.meta.url).href` as a root-relative path. A fresh copy
+    // of the module is evaluated with a URL class that does the same for the module's runtime files.
+    const NativeURL = URL
+    class RelativeURL extends NativeURL {
+      override get href() {
+        return /^\/src\/(build|web|themes)\//.test(this.pathname) ? this.pathname : super.href
+      }
+    }
+    globalThis.URL = RelativeURL
+    let RelativeElement: typeof PdfjsViewerElement
+    try {
+      ({ PdfjsViewerElement: RelativeElement } = await import(/* @vite-ignore */ '/src/pdfjs-viewer-element.ts?relative-urls'))
+    } finally {
+      globalThis.URL = NativeURL
+    }
+    if (!customElements.get('pdfjs-viewer-relative-urls')) {
+      customElements.define('pdfjs-viewer-relative-urls', RelativeElement)
+    }
+
+    document.body.innerHTML = '<pdfjs-viewer-relative-urls></pdfjs-viewer-relative-urls>'
+    const viewer = document.body.querySelector('pdfjs-viewer-relative-urls') as PdfjsViewerElement
+    await viewer.initPromise
+
+    const options = viewer.iframe.contentWindow.PDFViewerApplicationOptions.getAll()
+    expect(options.workerSrc).eq(new URL('/src/build/pdf.worker.mjs', location.href).href)
+    expect(options.cMapUrl).eq(new URL('/src/web/cmaps/', location.href).href)
+    expect(options.sandboxBundleSrc).eq(new URL('/src/build/pdf.sandbox.mjs', location.href).href)
   })
 
   it('follows assets-base', () => {

@@ -5,8 +5,32 @@ import { defineConfig } from 'vitest/config'
 import terser from '@rollup/plugin-terser'
 import { playwright } from '@vitest/browser-playwright'
 import { minify as minifyHtml } from 'html-minifier-terser'
+import { bundleCss } from './scripts/bundle-css.mjs'
 
 const VIEWER_HTML_VIRTUAL_ID = 'virtual:pdfjs-viewer-html'
+
+// The element's default stylesheets, as JS modules that export the bundled CSS text. Consumer
+// bundlers process any `.css` file the element references as the app's own CSS.
+const STYLESHEET_VIRTUAL_IDS: Record<string, string> = {
+  'virtual:pdfjs-viewer-css': 'src/web/viewer.css',
+  'virtual:pdfjs-viewer-theme-css': 'src/themes/paper-and-ink.css'
+}
+
+const stylesheetModules = () => ({
+  name: 'stylesheet-modules',
+  resolveId(id: string) {
+    return id in STYLESHEET_VIRTUAL_IDS ? `\0${id}` : null
+  },
+  async load(id: string) {
+    const sourcePath = id.startsWith('\0') ? STYLESHEET_VIRTUAL_IDS[id.slice(1)] : undefined
+    if (!sourcePath) {
+      return null
+    }
+
+    const css = await bundleCss(resolve(process.cwd(), sourcePath))
+    return `export default ${JSON.stringify(css)};`
+  }
+})
 const RESOLVED_VIEWER_HTML_VIRTUAL_ID = '\0virtual:pdfjs-viewer-html'
 
 const rawViewerHtmlMinifier = () => ({
@@ -42,7 +66,7 @@ const rawViewerHtmlMinifier = () => ({
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [rawViewerHtmlMinifier()],
+  plugins: [rawViewerHtmlMinifier(), stylesheetModules()],
   build: {
     minify: 'terser',
     rollupOptions: {
