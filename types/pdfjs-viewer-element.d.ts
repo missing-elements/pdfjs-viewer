@@ -5,9 +5,9 @@ export declare const ViewerCssTheme: {
     readonly LIGHT: 1;
     readonly DARK: 2;
 };
-export type PdfViewerApplicationOpenParameters = (DocumentInitParameters & {
+export type PdfViewerApplicationOpenParameters = DocumentInitParameters & {
     originalUrl?: string;
-}) | Uint8Array;
+};
 export type PdfViewerApplicationOptionValue = string | boolean | number | Record<string, unknown>;
 export interface PdfViewerApplication {
     initializedPromise: Promise<void>;

@@ -79,8 +79,8 @@ type ResourceAttribute = keyof typeof RESOURCE_OPTIONS
 
 export const ViewerCssTheme = { AUTOMATIC: 0, LIGHT: 1, DARK: 2 } as const
 
-export type PdfViewerApplicationOpenParameters =
-  (DocumentInitParameters & { originalUrl?: string }) | Uint8Array
+// PDF.js takes the document as `{ url }` or `{ data }`. A bare `Uint8Array` fails in `getDocument`.
+export type PdfViewerApplicationOpenParameters = DocumentInitParameters & { originalUrl?: string }
 
 export type PdfViewerApplicationOptionValue =
   string | boolean | number | Record<string, unknown>
