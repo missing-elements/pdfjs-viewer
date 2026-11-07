@@ -6,27 +6,31 @@ import packageJson from '../package.json'
 // The PDF.js release that `pnpm sync:pdfjs` unpacks into `public/`.
 const pdfjsDist = `/pdfjs-${packageJson.dependencies['pdfjs-dist'].match(/\d+\.\d+\.\d+/)![0]}-dist`
 
+// A PDF in the repository, vendored with the viewer. A file put in `public/` by hand is not in the
+// repository, so CI doesn't have it.
+const samplePdf = '/src/web/compressed.tracemonkey-pldi-09.pdf'
+
 describe('Basic tests', async () => {
   it('should render the PDF file', async () => {
     const viewerApp = await mountViewer(`
-      <pdfjs-viewer-element 
-        src="/sample-pdf-10MB.pdf" 
-      ></pdfjs-viewer-element>`
-    )
-    expect(getViewerElement()).exist
+      <pdfjs-viewer-element src="${samplePdf}"></pdfjs-viewer-element>`
+    ) as unknown as { pagesCount: number }
 
-    viewerApp?.eventBus.on('pagesloaded', () => {
-      expect(getViewerElement('#viewer .page')).exist
-    })
+    // PDF.js marks a page as loaded once it starts drawing the page into its canvas.
+    await vi.waitFor(() => expect(getViewerElement('#viewer .page[data-loaded] canvas')).exist, { timeout: 10_000 })
+    expect(viewerApp.pagesCount).eq(14)
   })
 
   it('should not render PDF with wrong url', async () => {
-    await mountViewer(`
-      <pdfjs-viewer-element 
-        src="/fake-file.pdf" 
-      ></pdfjs-viewer-element>`
-    )
-    expect(getViewerElement()).exist
+    const viewerApp = await mountViewer('<pdfjs-viewer-element></pdfjs-viewer-element>')
+    // Whichever comes first: a failed load, or the pages of a document that loaded.
+    const outcome = new Promise<string>((resolve) => {
+      viewerApp!.eventBus.on('documenterror', () => resolve('error'))
+      viewerApp!.eventBus.on('pagesloaded', () => resolve('pages'))
+    })
+    document.body.querySelector('pdfjs-viewer-element')!.setAttribute('src', '/fake-file.pdf')
+
+    expect(await outcome).eq('error')
     expect(getViewerElement('#viewer .page')).not.exist
   })
 
@@ -35,22 +39,13 @@ describe('Basic tests', async () => {
       <pdfjs-viewer-element></pdfjs-viewer-element>`
     )
 
-    expect(getViewerElement()).exist
-
-    const file = await getFileData()
-    viewerApp?.open(file)
-
-    viewerApp?.eventBus.on('pagesloaded', () => {
-      expect(getViewerElement('#viewer .page')).exist
-    })
+    await viewerApp!.open({ data: await getFileData() })
+    await vi.waitFor(() => expect(getViewerElement('#viewer .textLayer')?.textContent).toContain('Hello, world!'), { timeout: 10_000 })
   })
 
   it('should load the dark theme', async () => {
     await mountViewer(`
-      <pdfjs-viewer-element 
-        src="/sample-pdf-10MB.pdf" 
-        viewer-css-theme="DARK"
-      ></pdfjs-viewer-element>`
+      <pdfjs-viewer-element viewer-css-theme="DARK"></pdfjs-viewer-element>`
     )
 
     expect(getViewerElement()).exist
@@ -100,10 +95,7 @@ describe('Basic tests', async () => {
   })
 
   it('should hide the download button', async () => {
-    document.body.innerHTML = `
-      <pdfjs-viewer-element
-        src="/sample-pdf-10MB.pdf"
-      ></pdfjs-viewer-element>`
+    document.body.innerHTML = '<pdfjs-viewer-element></pdfjs-viewer-element>'
 
     const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement & {
       injectViewerStyles: (styles: string) => Promise<void>
@@ -146,19 +138,14 @@ describe('Basic tests', async () => {
   })
 
   it('should add a title attribute to the iframe', async () => {
-    const viewerApp = await mountViewer(`
-      <pdfjs-viewer-element 
-        src="/sample-pdf-10MB.pdf" 
-        iframe-title="Custom title"
-      ></pdfjs-viewer-element>`
-    )
+    await mountViewer('<pdfjs-viewer-element iframe-title="Custom title"></pdfjs-viewer-element>')
     expect(getViewerElement()).exist
     expect(getIframe().title).eq('Custom title')
   })
 
   it('should apply hash-related attributes at runtime', async () => {
     await mountViewer(`
-      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
+      <pdfjs-viewer-element></pdfjs-viewer-element>`
     )
 
     const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
@@ -249,7 +236,7 @@ describe('Basic tests', async () => {
 
   it('should apply worker-src option at runtime', async () => {
     await mountViewer(`
-      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
+      <pdfjs-viewer-element></pdfjs-viewer-element>`
     )
 
     const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
@@ -263,7 +250,7 @@ describe('Basic tests', async () => {
 
   it('should apply renderer-src option at runtime', async () => {
     await mountViewer(`
-      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
+      <pdfjs-viewer-element></pdfjs-viewer-element>`
     )
 
     const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
@@ -280,7 +267,6 @@ describe('Basic tests', async () => {
 
     await mountViewer(`
       <pdfjs-viewer-element
-        src="/sample-pdf-10MB.pdf"
         worker-src="${workerSrc}">
       </pdfjs-viewer-element>`
     )
@@ -297,7 +283,6 @@ describe('Basic tests', async () => {
     // A host under `.invalid` never resolves; the renderer worker only starts once worker rendering is on.
     await mountViewer(`
       <pdfjs-viewer-element
-        src="/sample-pdf-10MB.pdf"
         renderer-src="https://renderer.invalid/pdf.renderer.min.mjs">
       </pdfjs-viewer-element>`
     )
@@ -316,7 +301,6 @@ describe('Basic tests', async () => {
 
     await mountViewer(`
       <pdfjs-viewer-element
-        src="/sample-pdf-10MB.pdf"
         assets-base="${assetsBase}">
       </pdfjs-viewer-element>`
     )
@@ -349,7 +333,6 @@ describe('Basic tests', async () => {
 
     await mountViewer(`
       <pdfjs-viewer-element
-        src="/sample-pdf-10MB.pdf"
         assets-base="${assetsBase}"
         worker-src="${workerSrc}">
       </pdfjs-viewer-element>`
@@ -366,7 +349,7 @@ describe('Basic tests', async () => {
 
   it('should use built-in worker by default', async () => {
     await mountViewer(`
-      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
+      <pdfjs-viewer-element></pdfjs-viewer-element>`
     )
 
     const options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
@@ -405,8 +388,7 @@ describe('Basic tests', async () => {
     }
 
     const rendered = new Promise<void>((resolve) => viewerApp!.eventBus.on('pagerendered', () => resolve()))
-    // A PDF that is in the repository, which `public/` is not.
-    await viewerApp!.open({ url: new URL('/src/web/compressed.tracemonkey-pldi-09.pdf', location.href).href })
+    await viewerApp!.open({ url: new URL(samplePdf, location.href).href })
     await rendered
 
     // The frame has no URL of its own, so PDF.js starts each worker from a `blob:` wrapper that
@@ -422,7 +404,7 @@ describe('Basic tests', async () => {
 
   it('should apply extended option attributes at runtime and restore defaults on remove', async () => {
     await mountViewer(`
-      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
+      <pdfjs-viewer-element></pdfjs-viewer-element>`
     )
 
     const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
@@ -479,7 +461,7 @@ describe('Basic tests', async () => {
 
   it('should use a changed image-resources-path for the next document', async () => {
     const viewerApp = await mountViewer(`
-      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
+      <pdfjs-viewer-element></pdfjs-viewer-element>`
     ) as unknown as { pdfViewer: { imageResourcesPath: string } }
 
     const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
@@ -593,14 +575,14 @@ describe('Basic tests', async () => {
 
   it('should open a new document when src changes at runtime', async () => {
     const viewerApp = await mountViewer(`
-      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
+      <pdfjs-viewer-element></pdfjs-viewer-element>`
     )
 
     const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
     let openedUrl = ''
     const originalOpen = viewerApp?.open
     if (viewerApp) {
-      viewerApp.open = ((params: { url: string } | { data: Uint8Array } | Uint8Array) => {
+      viewerApp.open = ((params: { url: string } | { data: Uint8Array }) => {
         if (typeof params === 'object' && 'url' in params) {
           openedUrl = params.url
         }
@@ -651,7 +633,9 @@ describe('Resource URL attributes', () => {
 
     for (const [attribute, file] of Object.entries(files)) {
       const url = viewer['getResourceOption'](attribute as keyof typeof files) + file
-      expect((await fetch(url, { method: 'HEAD' })).status, url).eq(200)
+      // The dev server answers a missing file with its HTML page and a 200, so check the type.
+      const response = await fetch(url, { method: 'HEAD' })
+      expect(response.headers.get('content-type') ?? '', url).not.toMatch(/text\/html/)
     }
   })
 

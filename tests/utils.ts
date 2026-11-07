@@ -62,7 +62,7 @@ export const getFileData = () => {
     'MDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9v' +
     'dCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G'
 
-  return fetch(baseStr)
+  return fetch(`data:application/pdf;base64,${baseStr}`)
     .then(b => b.arrayBuffer())
     .then(buff => new Uint8Array(buff))
 }
