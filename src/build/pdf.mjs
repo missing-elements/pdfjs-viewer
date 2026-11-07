@@ -20,8 +20,8 @@
  */
 
 /**
- * pdfjsVersion = 6.4.299
- * pdfjsBuild = d0991a0d5
+ * pdfjsVersion = 6.5.438
+ * pdfjsBuild = 0a4153349
  */
 /******/ var __webpack_modules__ = ({
 
@@ -470,7 +470,7 @@ module.exports = function (passed, required) {
 /************************************************************************/
 
 // MODULE: ./node_modules/core-js/internals/a-callable.js
-var a_callable_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var a_callable_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isCallable = (is_callable_namespaceFn());
 var tryToString = (try_to_string_namespaceFn());
@@ -486,7 +486,7 @@ module.exports = function (argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/a-possible-prototype.js
-var a_possible_prototype_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var a_possible_prototype_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isPossiblePrototype = (is_possible_prototype_namespaceFn());
 
@@ -501,7 +501,7 @@ module.exports = function (argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/a-set.js
-var a_set_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var a_set_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var has = (set_helpers_namespaceFn().has);
 
@@ -519,7 +519,7 @@ var a_string_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/a-weak-key.js
-var a_weak_key_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var a_weak_key_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var WeakMapHelpers = (weak_map_helpers_namespaceFn());
 
@@ -536,7 +536,7 @@ module.exports = function (key) {
 });
 
 // MODULE: ./node_modules/core-js/internals/a-weak-map.js
-var a_weak_map_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var a_weak_map_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var has = (weak_map_helpers_namespaceFn().has);
 
@@ -549,7 +549,7 @@ module.exports = function (it) {
 });
 
 // MODULE: ./node_modules/core-js/internals/add-to-unscopables.js
-var add_to_unscopables_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var add_to_unscopables_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var wellKnownSymbol = (well_known_symbol_namespaceFn());
 var create = (object_create_namespaceFn());
@@ -575,7 +575,7 @@ module.exports = function (key) {
 });
 
 // MODULE: ./node_modules/core-js/internals/an-instance.js
-var an_instance_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var an_instance_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isPrototypeOf = (object_is_prototype_of_namespaceFn());
 
@@ -589,7 +589,7 @@ module.exports = function (it, Prototype) {
 });
 
 // MODULE: ./node_modules/core-js/internals/an-object-or-undefined.js
-var an_object_or_undefined_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var an_object_or_undefined_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isObject = (is_object_namespaceFn());
 
@@ -604,7 +604,7 @@ module.exports = function (argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/an-object.js
-var an_object_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var an_object_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isObject = (is_object_namespaceFn());
 
@@ -620,7 +620,7 @@ module.exports = function (argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/an-uint8-array.js
-var an_uint8_array_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var an_uint8_array_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var classof = (classof_namespaceFn());
 
@@ -636,7 +636,7 @@ module.exports = function (argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/array-buffer-basic-detection.js
-var array_buffer_basic_detection_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var array_buffer_basic_detection_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 // eslint-disable-next-line es/no-typed-arrays -- safe
 module.exports = typeof ArrayBuffer != 'undefined' && typeof DataView != 'undefined';
@@ -644,7 +644,7 @@ module.exports = typeof ArrayBuffer != 'undefined' && typeof DataView != 'undefi
 });
 
 // MODULE: ./node_modules/core-js/internals/array-buffer-byte-length.js
-var array_buffer_byte_length_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var array_buffer_byte_length_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 var uncurryThisAccessor = (function_uncurry_this_accessor_namespaceFn());
@@ -664,7 +664,7 @@ module.exports = ArrayBuffer && uncurryThisAccessor(ArrayBuffer.prototype, 'byte
 });
 
 // MODULE: ./node_modules/core-js/internals/array-buffer-is-detached.js
-var array_buffer_is_detached_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var array_buffer_is_detached_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 var NATIVE_ARRAY_BUFFER = (array_buffer_basic_detection_namespaceFn());
@@ -686,7 +686,7 @@ module.exports = function (O) {
 });
 
 // MODULE: ./node_modules/core-js/internals/array-buffer-not-detached.js
-var array_buffer_not_detached_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var array_buffer_not_detached_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isDetached = (array_buffer_is_detached_namespaceFn());
 
@@ -700,7 +700,7 @@ module.exports = function (it) {
 });
 
 // MODULE: ./node_modules/core-js/internals/array-buffer-view-core.js
-var array_buffer_view_core_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var array_buffer_view_core_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var NATIVE_ARRAY_BUFFER = (array_buffer_basic_detection_namespaceFn());
 var DESCRIPTORS = (descriptors_namespaceFn());
@@ -898,7 +898,7 @@ module.exports = {
 });
 
 // MODULE: ./node_modules/core-js/internals/array-from-constructor-and-list.js
-var array_from_constructor_and_list_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var array_from_constructor_and_list_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var lengthOfArrayLike = (length_of_array_like_namespaceFn());
 
@@ -913,7 +913,7 @@ module.exports = function (Constructor, list, $length) {
 });
 
 // MODULE: ./node_modules/core-js/internals/array-includes.js
-var array_includes_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var array_includes_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var toIndexedObject = (to_indexed_object_namespaceFn());
 var toAbsoluteIndex = (to_absolute_index_namespaceFn());
@@ -952,7 +952,7 @@ module.exports = {
 });
 
 // MODULE: ./node_modules/core-js/internals/array-set-length.js
-var array_set_length_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var array_set_length_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var DESCRIPTORS = (descriptors_namespaceFn());
 var isArray = (is_array_namespaceFn());
@@ -984,7 +984,7 @@ module.exports = SILENT_ON_NON_WRITABLE_LENGTH_SET ? function (O, length) {
 });
 
 // MODULE: ./node_modules/core-js/internals/array-slice.js
-var array_slice_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var array_slice_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 
@@ -998,7 +998,7 @@ var base64_map_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/call-with-safe-iteration-closing.js
-var call_with_safe_iteration_closing_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var call_with_safe_iteration_closing_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var anObject = (an_object_namespaceFn());
 var iteratorClose = (iterator_close_namespaceFn());
@@ -1015,7 +1015,7 @@ module.exports = function (iterator, fn, value, ENTRIES) {
 });
 
 // MODULE: ./node_modules/core-js/internals/classof-raw.js
-var classof_raw_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var classof_raw_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 
@@ -1029,7 +1029,7 @@ module.exports = function (it) {
 });
 
 // MODULE: ./node_modules/core-js/internals/classof.js
-var classof_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var classof_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var TO_STRING_TAG_SUPPORT = (to_string_tag_support_namespaceFn());
 var isCallable = (is_callable_namespaceFn());
@@ -1064,7 +1064,7 @@ module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
 });
 
 // MODULE: ./node_modules/core-js/internals/copy-constructor-properties.js
-var copy_constructor_properties_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var copy_constructor_properties_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var hasOwn = (has_own_property_namespaceFn());
 var ownKeys = (own_keys_namespaceFn());
@@ -1086,7 +1086,7 @@ module.exports = function (target, source, exceptions) {
 });
 
 // MODULE: ./node_modules/core-js/internals/correct-prototype-getter.js
-var correct_prototype_getter_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var correct_prototype_getter_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var fails = (fails_namespaceFn());
 
@@ -1105,7 +1105,7 @@ var create_iter_result_object_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/create-non-enumerable-property.js
-var create_non_enumerable_property_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var create_non_enumerable_property_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var DESCRIPTORS = (descriptors_namespaceFn());
 var definePropertyModule = (object_define_property_namespaceFn());
@@ -1121,7 +1121,7 @@ module.exports = DESCRIPTORS ? function (object, key, value) {
 });
 
 // MODULE: ./node_modules/core-js/internals/create-property-descriptor.js
-var create_property_descriptor_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var create_property_descriptor_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 module.exports = function (bitmap, value) {
   return {
@@ -1135,7 +1135,7 @@ module.exports = function (bitmap, value) {
 });
 
 // MODULE: ./node_modules/core-js/internals/create-property.js
-var create_property_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var create_property_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var DESCRIPTORS = (descriptors_namespaceFn());
 var definePropertyModule = (object_define_property_namespaceFn());
@@ -1149,7 +1149,7 @@ module.exports = function (object, key, value) {
 });
 
 // MODULE: ./node_modules/core-js/internals/define-built-in-accessor.js
-var define_built_in_accessor_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var define_built_in_accessor_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var makeBuiltIn = (make_built_in_namespaceFn());
 var defineProperty = (object_define_property_namespaceFn());
@@ -1163,7 +1163,7 @@ module.exports = function (target, name, descriptor) {
 });
 
 // MODULE: ./node_modules/core-js/internals/define-built-in.js
-var define_built_in_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var define_built_in_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isCallable = (is_callable_namespaceFn());
 var definePropertyModule = (object_define_property_namespaceFn());
@@ -1196,7 +1196,7 @@ module.exports = function (O, key, value, options) {
 });
 
 // MODULE: ./node_modules/core-js/internals/define-built-ins.js
-var define_built_ins_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var define_built_ins_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var defineBuiltIn = (define_built_in_namespaceFn());
 
@@ -1208,7 +1208,7 @@ module.exports = function (target, src, options) {
 });
 
 // MODULE: ./node_modules/core-js/internals/define-global-property.js
-var define_global_property_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var define_global_property_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 
@@ -1226,7 +1226,7 @@ module.exports = function (key, value) {
 });
 
 // MODULE: ./node_modules/core-js/internals/descriptors.js
-var descriptors_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var descriptors_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var fails = (fails_namespaceFn());
 
@@ -1239,7 +1239,7 @@ module.exports = !fails(function () {
 });
 
 // MODULE: ./node_modules/core-js/internals/document-create-element.js
-var document_create_element_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var document_create_element_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 var isObject = (is_object_namespaceFn());
@@ -1265,7 +1265,7 @@ var dom_exception_constants_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/enum-bug-keys.js
-var enum_bug_keys_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var enum_bug_keys_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 // IE8- don't enum bug keys
 module.exports = [
@@ -1281,7 +1281,7 @@ module.exports = [
 });
 
 // MODULE: ./node_modules/core-js/internals/environment-user-agent.js
-var environment_user_agent_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var environment_user_agent_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 
@@ -1293,7 +1293,7 @@ module.exports = userAgent ? String(userAgent) : '';
 });
 
 // MODULE: ./node_modules/core-js/internals/environment-v8-version.js
-var environment_v8_version_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var environment_v8_version_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 var userAgent = (environment_user_agent_namespaceFn());
@@ -1326,7 +1326,7 @@ module.exports = version;
 });
 
 // MODULE: ./node_modules/core-js/internals/error-stack-clear.js
-var error_stack_clear_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var error_stack_clear_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 
@@ -1347,7 +1347,7 @@ module.exports = function (stack, dropEntries) {
 });
 
 // MODULE: ./node_modules/core-js/internals/export.js
-var export_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var export_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 var getOwnPropertyDescriptor = (object_get_own_property_descriptor_namespaceFn().f);
@@ -1407,7 +1407,7 @@ module.exports = function (options, source) {
 });
 
 // MODULE: ./node_modules/core-js/internals/fails.js
-var fails_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var fails_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 module.exports = function (exec) {
   try {
@@ -1420,7 +1420,7 @@ module.exports = function (exec) {
 });
 
 // MODULE: ./node_modules/core-js/internals/function-apply.js
-var function_apply_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var function_apply_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var NATIVE_BIND = (function_bind_native_namespaceFn());
 
@@ -1436,7 +1436,7 @@ module.exports = typeof Reflect == 'object' && Reflect.apply || (NATIVE_BIND ? c
 });
 
 // MODULE: ./node_modules/core-js/internals/function-bind-context.js
-var function_bind_context_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var function_bind_context_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_clause_namespaceFn());
 var aCallable = (a_callable_namespaceFn());
@@ -1455,7 +1455,7 @@ module.exports = function (fn, that) {
 });
 
 // MODULE: ./node_modules/core-js/internals/function-bind-native.js
-var function_bind_native_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var function_bind_native_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var fails = (fails_namespaceFn());
 
@@ -1469,7 +1469,7 @@ module.exports = !fails(function () {
 });
 
 // MODULE: ./node_modules/core-js/internals/function-call.js
-var function_call_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var function_call_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var NATIVE_BIND = (function_bind_native_namespaceFn());
 
@@ -1482,7 +1482,7 @@ module.exports = NATIVE_BIND ? call.bind(call) : function () {
 });
 
 // MODULE: ./node_modules/core-js/internals/function-name.js
-var function_name_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var function_name_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var DESCRIPTORS = (descriptors_namespaceFn());
 var hasOwn = (has_own_property_namespaceFn());
@@ -1505,7 +1505,7 @@ module.exports = {
 });
 
 // MODULE: ./node_modules/core-js/internals/function-uncurry-this-accessor.js
-var function_uncurry_this_accessor_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var function_uncurry_this_accessor_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 var aCallable = (a_callable_namespaceFn());
@@ -1520,7 +1520,7 @@ module.exports = function (object, key, method) {
 });
 
 // MODULE: ./node_modules/core-js/internals/function-uncurry-this-clause.js
-var function_uncurry_this_clause_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var function_uncurry_this_clause_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var classofRaw = (classof_raw_namespaceFn());
 var uncurryThis = (function_uncurry_this_namespaceFn());
@@ -1535,7 +1535,7 @@ module.exports = function (fn) {
 });
 
 // MODULE: ./node_modules/core-js/internals/function-uncurry-this.js
-var function_uncurry_this_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var function_uncurry_this_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var NATIVE_BIND = (function_bind_native_namespaceFn());
 
@@ -1558,7 +1558,7 @@ var get_alphabet_option_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/get-built-in.js
-var get_built_in_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var get_built_in_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 var isCallable = (is_callable_namespaceFn());
@@ -1579,7 +1579,7 @@ var get_iterator_direct_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/get-iterator-flattenable.js
-var get_iterator_flattenable_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var get_iterator_flattenable_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var call = (function_call_namespaceFn());
 var anObject = (an_object_namespaceFn());
@@ -1595,7 +1595,7 @@ module.exports = function (obj, stringHandling) {
 });
 
 // MODULE: ./node_modules/core-js/internals/get-iterator-internal.js
-var get_iterator_internal_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var get_iterator_internal_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var call = (function_call_namespaceFn());
 var isCallable = (is_callable_namespaceFn());
@@ -1614,7 +1614,7 @@ module.exports = function (argument, usingIterator) {
 });
 
 // MODULE: ./node_modules/core-js/internals/get-iterator-method-internal.js
-var get_iterator_method_internal_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var get_iterator_method_internal_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var classof = (classof_raw_namespaceFn());
 var isNullOrUndefined = (is_null_or_undefined_namespaceFn());
@@ -1633,7 +1633,7 @@ module.exports = function (it) {
 });
 
 // MODULE: ./node_modules/core-js/internals/get-method.js
-var get_method_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var get_method_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var aCallable = (a_callable_namespaceFn());
 var isNullOrUndefined = (is_null_or_undefined_namespaceFn());
@@ -1648,7 +1648,7 @@ module.exports = function (V, P) {
 });
 
 // MODULE: ./node_modules/core-js/internals/get-set-record.js
-var get_set_record_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var get_set_record_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var aCallable = (a_callable_namespaceFn());
 var anObject = (an_object_namespaceFn());
@@ -1693,7 +1693,7 @@ module.exports = function (obj) {
 });
 
 // MODULE: ./node_modules/core-js/internals/global-this.js
-var global_this_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var global_this_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module) {
 
 var check = function (it) {
   return it && it.Math === Math && it;
@@ -1714,7 +1714,7 @@ module.exports =
 });
 
 // MODULE: ./node_modules/core-js/internals/has-own-property.js
-var has_own_property_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var has_own_property_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 var toObject = (to_object_namespaceFn());
@@ -1731,14 +1731,14 @@ module.exports = Object.hasOwn || function hasOwn(it, key) {
 });
 
 // MODULE: ./node_modules/core-js/internals/hidden-keys.js
-var hidden_keys_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var hidden_keys_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 module.exports = {};
 
 });
 
 // MODULE: ./node_modules/core-js/internals/html.js
-var html_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var html_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var getBuiltIn = (get_built_in_namespaceFn());
 
@@ -1747,7 +1747,7 @@ module.exports = getBuiltIn('document', 'documentElement');
 });
 
 // MODULE: ./node_modules/core-js/internals/ie8-dom-define.js
-var ie8_dom_define_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var ie8_dom_define_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var DESCRIPTORS = (descriptors_namespaceFn());
 var fails = (fails_namespaceFn());
@@ -1764,7 +1764,7 @@ module.exports = !DESCRIPTORS && !fails(function () {
 });
 
 // MODULE: ./node_modules/core-js/internals/indexed-object.js
-var indexed_object_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var indexed_object_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 var fails = (fails_namespaceFn());
@@ -1785,7 +1785,7 @@ module.exports = fails(function () {
 });
 
 // MODULE: ./node_modules/core-js/internals/inherit-if-required.js
-var inherit_if_required_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var inherit_if_required_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isCallable = (is_callable_namespaceFn());
 var isObject = (is_object_namespaceFn());
@@ -1809,7 +1809,7 @@ module.exports = function ($this, dummy, Wrapper) {
 });
 
 // MODULE: ./node_modules/core-js/internals/inspect-source.js
-var inspect_source_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var inspect_source_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 var isCallable = (is_callable_namespaceFn());
@@ -1829,7 +1829,7 @@ module.exports = store.inspectSource;
 });
 
 // MODULE: ./node_modules/core-js/internals/internal-state.js
-var internal_state_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var internal_state_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var NATIVE_WEAK_MAP = (weak_map_basic_detection_namespaceFn());
 var globalThis = (global_this_namespaceFn());
@@ -1905,7 +1905,7 @@ module.exports = {
 });
 
 // MODULE: ./node_modules/core-js/internals/is-array-iterator-method.js
-var is_array_iterator_method_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var is_array_iterator_method_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var wellKnownSymbol = (well_known_symbol_namespaceFn());
 var Iterators = (iterators_namespaceFn());
@@ -1921,7 +1921,7 @@ module.exports = function (it) {
 });
 
 // MODULE: ./node_modules/core-js/internals/is-array.js
-var is_array_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var is_array_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var classof = (classof_raw_namespaceFn());
 
@@ -1935,7 +1935,7 @@ module.exports = Array.isArray || function isArray(argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/is-big-int-array.js
-var is_big_int_array_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var is_big_int_array_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var classof = (classof_namespaceFn());
 
@@ -1947,7 +1947,7 @@ module.exports = function (it) {
 });
 
 // MODULE: ./node_modules/core-js/internals/is-callable.js
-var is_callable_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var is_callable_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 // https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot
 var documentAll = typeof document == 'object' && document.all;
@@ -1964,7 +1964,7 @@ module.exports = typeof documentAll == 'undefined' && documentAll !== undefined 
 });
 
 // MODULE: ./node_modules/core-js/internals/is-forced.js
-var is_forced_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var is_forced_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var fails = (fails_namespaceFn());
 var isCallable = (is_callable_namespaceFn());
@@ -1997,7 +1997,7 @@ var is_null_or_undefined_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/is-object.js
-var is_object_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var is_object_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isCallable = (is_callable_namespaceFn());
 
@@ -2008,7 +2008,7 @@ module.exports = function (it) {
 });
 
 // MODULE: ./node_modules/core-js/internals/is-possible-prototype.js
-var is_possible_prototype_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var is_possible_prototype_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isObject = (is_object_namespaceFn());
 
@@ -2019,14 +2019,14 @@ module.exports = function (argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/is-pure.js
-var is_pure_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var is_pure_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 module.exports = false;
 
 });
 
 // MODULE: ./node_modules/core-js/internals/is-raw-json.js
-var is_raw_json_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var is_raw_json_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var isObject = (is_object_namespaceFn());
 var getInternalState = (internal_state_namespaceFn().get);
@@ -2040,7 +2040,7 @@ module.exports = function isRawJSON(O) {
 });
 
 // MODULE: ./node_modules/core-js/internals/is-symbol.js
-var is_symbol_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var is_symbol_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var getBuiltIn = (get_built_in_namespaceFn());
 var isCallable = (is_callable_namespaceFn());
@@ -2059,7 +2059,7 @@ module.exports = USE_SYMBOL_AS_UID ? function (it) {
 });
 
 // MODULE: ./node_modules/core-js/internals/iterate-simple.js
-var iterate_simple_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var iterate_simple_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var call = (function_call_namespaceFn());
 
@@ -2076,7 +2076,7 @@ module.exports = function (record, fn, ITERATOR_INSTEAD_OF_RECORD) {
 });
 
 // MODULE: ./node_modules/core-js/internals/iterate.js
-var iterate_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var iterate_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var bind = (function_bind_context_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -2160,7 +2160,7 @@ var iterator_cleanup_state_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/iterator-close-all.js
-var iterator_close_all_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var iterator_close_all_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var iteratorClose = (iterator_close_namespaceFn());
 
@@ -2181,7 +2181,7 @@ module.exports = function (iters, kind, value) {
 });
 
 // MODULE: ./node_modules/core-js/internals/iterator-close.js
-var iterator_close_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var iterator_close_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var call = (function_call_namespaceFn());
 var anObject = (an_object_namespaceFn());
@@ -2210,7 +2210,7 @@ module.exports = function (iterator, kind, value) {
 });
 
 // MODULE: ./node_modules/core-js/internals/iterator-create-proxy.js
-var iterator_create_proxy_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var iterator_create_proxy_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var call = (function_call_namespaceFn());
 var create = (object_create_namespaceFn());
@@ -2315,7 +2315,7 @@ var iterator_helper_throws_on_invalid_iterator_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/iterator-helper-without-closing-on-early-error.js
-var iterator_helper_without_closing_on_early_error_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var iterator_helper_without_closing_on_early_error_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 
@@ -2343,7 +2343,7 @@ module.exports = function (METHOD_NAME, ExpectedError) {
 });
 
 // MODULE: ./node_modules/core-js/internals/iterators-core.js
-var iterators_core_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var iterators_core_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var fails = (fails_namespaceFn());
 var isCallable = (is_callable_namespaceFn());
@@ -2402,7 +2402,7 @@ var iterators_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/length-of-array-like.js
-var length_of_array_like_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var length_of_array_like_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var toLength = (to_length_namespaceFn());
 
@@ -2415,7 +2415,7 @@ module.exports = function (obj) {
 });
 
 // MODULE: ./node_modules/core-js/internals/make-built-in.js
-var make_built_in_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var make_built_in_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 var fails = (fails_namespaceFn());
@@ -2475,7 +2475,7 @@ Function.prototype.toString = makeBuiltIn(function toString() {
 });
 
 // MODULE: ./node_modules/core-js/internals/map-helpers.js
-var map_helpers_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var map_helpers_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 
@@ -2495,7 +2495,7 @@ module.exports = {
 });
 
 // MODULE: ./node_modules/core-js/internals/native-raw-json.js
-var native_raw_json_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var native_raw_json_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 /* eslint-disable es/no-json -- safe */
 var fails = (fails_namespaceFn());
@@ -2511,7 +2511,7 @@ module.exports = !fails(function () {
 });
 
 // MODULE: ./node_modules/core-js/internals/new-promise-capability.js
-var new_promise_capability_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var new_promise_capability_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var aCallable = (a_callable_namespaceFn());
 
@@ -2537,7 +2537,7 @@ module.exports.f = function (C) {
 });
 
 // MODULE: ./node_modules/core-js/internals/normalize-string-argument.js
-var normalize_string_argument_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var normalize_string_argument_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var toString = (to_string_namespaceFn());
 
@@ -2553,7 +2553,7 @@ var not_a_nan_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/object-create.js
-var object_create_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_create_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 /* global ActiveXObject -- old IE, WSH */
 var anObject = (an_object_namespaceFn());
@@ -2643,7 +2643,7 @@ module.exports = Object.create || function create(O, Properties) {
 });
 
 // MODULE: ./node_modules/core-js/internals/object-define-properties.js
-var object_define_properties_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_define_properties_namespaceFn = /*#__PURE__*/__webpack_require__.cw((__unused_webpack_module, exports) => {
 
 var DESCRIPTORS = (descriptors_namespaceFn());
 var V8_PROTOTYPE_DEFINE_BUG = (v8_prototype_define_bug_namespaceFn());
@@ -2669,7 +2669,7 @@ exports.f = DESCRIPTORS && !V8_PROTOTYPE_DEFINE_BUG ? Object.defineProperties : 
 });
 
 // MODULE: ./node_modules/core-js/internals/object-define-property.js
-var object_define_property_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_define_property_namespaceFn = /*#__PURE__*/__webpack_require__.cw((__unused_webpack_module, exports) => {
 
 var DESCRIPTORS = (descriptors_namespaceFn());
 var IE8_DOM_DEFINE = (ie8_dom_define_namespaceFn());
@@ -2718,7 +2718,7 @@ exports.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P
 });
 
 // MODULE: ./node_modules/core-js/internals/object-get-own-property-descriptor.js
-var object_get_own_property_descriptor_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_get_own_property_descriptor_namespaceFn = /*#__PURE__*/__webpack_require__.cw((__unused_webpack_module, exports) => {
 
 var DESCRIPTORS = (descriptors_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -2746,7 +2746,7 @@ exports.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDes
 });
 
 // MODULE: ./node_modules/core-js/internals/object-get-own-property-names.js
-var object_get_own_property_names_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_get_own_property_names_namespaceFn = /*#__PURE__*/__webpack_require__.cw((__unused_webpack_module, exports) => {
 
 var internalObjectKeys = (object_keys_internal_namespaceFn());
 var enumBugKeys = (enum_bug_keys_namespaceFn());
@@ -2768,7 +2768,7 @@ var object_get_own_property_symbols_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/object-get-prototype-of.js
-var object_get_prototype_of_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_get_prototype_of_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var hasOwn = (has_own_property_namespaceFn());
 var isCallable = (is_callable_namespaceFn());
@@ -2795,7 +2795,7 @@ module.exports = CORRECT_PROTOTYPE_GETTER ? $Object.getPrototypeOf : function (O
 });
 
 // MODULE: ./node_modules/core-js/internals/object-is-prototype-of.js
-var object_is_prototype_of_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_is_prototype_of_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 
@@ -2804,7 +2804,7 @@ module.exports = uncurryThis({}.isPrototypeOf);
 });
 
 // MODULE: ./node_modules/core-js/internals/object-keys-internal.js
-var object_keys_internal_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_keys_internal_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 var hasOwn = (has_own_property_namespaceFn());
@@ -2830,7 +2830,7 @@ module.exports = function (object, names) {
 });
 
 // MODULE: ./node_modules/core-js/internals/object-keys.js
-var object_keys_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_keys_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var internalObjectKeys = (object_keys_internal_namespaceFn());
 var enumBugKeys = (enum_bug_keys_namespaceFn());
@@ -2845,7 +2845,7 @@ module.exports = Object.keys || function keys(O) {
 });
 
 // MODULE: ./node_modules/core-js/internals/object-property-is-enumerable.js
-var object_property_is_enumerable_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_property_is_enumerable_namespaceFn = /*#__PURE__*/__webpack_require__.cw((__unused_webpack_module, exports) => {
 
 var $propertyIsEnumerable = {}.propertyIsEnumerable;
 // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
@@ -2864,7 +2864,7 @@ exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
 });
 
 // MODULE: ./node_modules/core-js/internals/object-set-prototype-of.js
-var object_set_prototype_of_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var object_set_prototype_of_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 /* eslint-disable no-proto -- safe */
 var uncurryThisAccessor = (function_uncurry_this_accessor_namespaceFn());
@@ -2898,7 +2898,7 @@ module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
 });
 
 // MODULE: ./node_modules/core-js/internals/ordinary-to-primitive.js
-var ordinary_to_primitive_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var ordinary_to_primitive_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var call = (function_call_namespaceFn());
 var isCallable = (is_callable_namespaceFn());
@@ -2919,7 +2919,7 @@ module.exports = function (input, pref) {
 });
 
 // MODULE: ./node_modules/core-js/internals/own-keys.js
-var own_keys_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var own_keys_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var getBuiltIn = (get_built_in_namespaceFn());
 var uncurryThis = (function_uncurry_this_namespaceFn());
@@ -2939,7 +2939,7 @@ module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
 });
 
 // MODULE: ./node_modules/core-js/internals/parse-json-string.js
-var parse_json_string_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var parse_json_string_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 var hasOwn = (has_own_property_namespaceFn());
@@ -3005,7 +3005,7 @@ var perform_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/promise-resolve.js
-var promise_resolve_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var promise_resolve_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var anObject = (an_object_namespaceFn());
 var isObject = (is_object_namespaceFn());
@@ -3028,7 +3028,7 @@ var require_object_coercible_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/set-clone.js
-var set_clone_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_clone_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var SetHelpers = (set_helpers_namespaceFn());
 var iterate = (set_iterate_namespaceFn());
@@ -3047,7 +3047,7 @@ module.exports = function (set) {
 });
 
 // MODULE: ./node_modules/core-js/internals/set-difference.js
-var set_difference_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_difference_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var aSet = (a_set_namespaceFn());
 var SetHelpers = (set_helpers_namespaceFn());
@@ -3078,7 +3078,7 @@ module.exports = function difference(other) {
 });
 
 // MODULE: ./node_modules/core-js/internals/set-helpers.js
-var set_helpers_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_helpers_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 
@@ -3097,7 +3097,7 @@ module.exports = {
 });
 
 // MODULE: ./node_modules/core-js/internals/set-intersection.js
-var set_intersection_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_intersection_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var aSet = (a_set_namespaceFn());
 var SetHelpers = (set_helpers_namespaceFn());
@@ -3133,7 +3133,7 @@ module.exports = function intersection(other) {
 });
 
 // MODULE: ./node_modules/core-js/internals/set-is-disjoint-from.js
-var set_is_disjoint_from_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_is_disjoint_from_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var aSet = (a_set_namespaceFn());
 var has = (set_helpers_namespaceFn().has);
@@ -3160,7 +3160,7 @@ module.exports = function isDisjointFrom(other) {
 });
 
 // MODULE: ./node_modules/core-js/internals/set-is-subset-of.js
-var set_is_subset_of_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_is_subset_of_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var aSet = (a_set_namespaceFn());
 var size = (set_size_namespaceFn());
@@ -3181,7 +3181,7 @@ module.exports = function isSubsetOf(other) {
 });
 
 // MODULE: ./node_modules/core-js/internals/set-is-superset-of.js
-var set_is_superset_of_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_is_superset_of_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var aSet = (a_set_namespaceFn());
 var has = (set_helpers_namespaceFn().has);
@@ -3205,7 +3205,7 @@ module.exports = function isSupersetOf(other) {
 });
 
 // MODULE: ./node_modules/core-js/internals/set-iterate.js
-var set_iterate_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_iterate_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 var iterateSimple = (iterate_simple_namespaceFn());
@@ -3224,7 +3224,7 @@ module.exports = function (set, fn, interruptible) {
 });
 
 // MODULE: ./node_modules/core-js/internals/set-method-accept-set-like.js
-var set_method_accept_set_like_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_method_accept_set_like_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var getBuiltIn = (get_built_in_namespaceFn());
 
@@ -3292,7 +3292,7 @@ var set_method_get_keys_before_cloning_detection_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/set-size.js
-var set_size_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_size_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThisAccessor = (function_uncurry_this_accessor_namespaceFn());
 var SetHelpers = (set_helpers_namespaceFn());
@@ -3304,7 +3304,7 @@ module.exports = uncurryThisAccessor(SetHelpers.proto, 'size', 'get') || functio
 });
 
 // MODULE: ./node_modules/core-js/internals/set-symmetric-difference.js
-var set_symmetric_difference_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_symmetric_difference_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var aSet = (a_set_namespaceFn());
 var SetHelpers = (set_helpers_namespaceFn());
@@ -3332,7 +3332,7 @@ module.exports = function symmetricDifference(other) {
 });
 
 // MODULE: ./node_modules/core-js/internals/set-union.js
-var set_union_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var set_union_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var aSet = (a_set_namespaceFn());
 var add = (set_helpers_namespaceFn().add);
@@ -3355,7 +3355,7 @@ module.exports = function union(other) {
 });
 
 // MODULE: ./node_modules/core-js/internals/shared-key.js
-var shared_key_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var shared_key_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var shared = (shared_namespaceFn());
 var uid = (uid_namespaceFn());
@@ -3369,7 +3369,7 @@ module.exports = function (key) {
 });
 
 // MODULE: ./node_modules/core-js/internals/shared-store.js
-var shared_store_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var shared_store_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var IS_PURE = (is_pure_namespaceFn());
 var globalThis = (global_this_namespaceFn());
@@ -3379,17 +3379,17 @@ var SHARED = '__core-js_shared__';
 var store = module.exports = globalThis[SHARED] || defineGlobalProperty(SHARED, {});
 
 (store.versions || (store.versions = [])).push({
-  version: '3.50.0',
+  version: '3.51.0',
   mode: IS_PURE ? 'pure' : 'global',
   copyright: '© 2013–2025 Denis Pushkarev (zloirock.ru), 2025–2026 CoreJS Company (core-js.io). All rights reserved.',
-  license: 'https://github.com/zloirock/core-js/blob/v3.50.0/LICENSE',
+  license: 'https://github.com/zloirock/core-js/blob/v3.51.0/LICENSE',
   source: 'https://github.com/zloirock/core-js'
 });
 
 });
 
 // MODULE: ./node_modules/core-js/internals/shared.js
-var shared_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var shared_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var store = (shared_store_namespaceFn());
 // eslint-disable-next-line es/no-object-create -- safe
@@ -3402,7 +3402,7 @@ module.exports = function (key, value) {
 });
 
 // MODULE: ./node_modules/core-js/internals/symbol-constructor-detection.js
-var symbol_constructor_detection_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var symbol_constructor_detection_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 /* eslint-disable es/no-symbol -- required for testing */
 var V8_VERSION = (environment_v8_version_namespaceFn());
@@ -3426,7 +3426,7 @@ module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
 });
 
 // MODULE: ./node_modules/core-js/internals/this-number-value.js
-var this_number_value_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var this_number_value_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 
@@ -3437,7 +3437,7 @@ module.exports = uncurryThis(1.1.valueOf);
 });
 
 // MODULE: ./node_modules/core-js/internals/to-absolute-index.js
-var to_absolute_index_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var to_absolute_index_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var toIntegerOrInfinity = (to_integer_or_infinity_namespaceFn());
 
@@ -3455,7 +3455,7 @@ module.exports = function (index, length) {
 });
 
 // MODULE: ./node_modules/core-js/internals/to-big-int.js
-var to_big_int_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var to_big_int_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var toPrimitive = (to_primitive_namespaceFn());
 
@@ -3473,7 +3473,7 @@ module.exports = function (argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/to-indexed-object.js
-var to_indexed_object_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var to_indexed_object_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 // toObject with fallback for non-array-like ES3 strings
 var IndexedObject = (indexed_object_namespaceFn());
@@ -3506,7 +3506,7 @@ var to_positive_integer_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/to-primitive.js
-var to_primitive_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var to_primitive_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var call = (function_call_namespaceFn());
 var isObject = (is_object_namespaceFn());
@@ -3537,7 +3537,7 @@ module.exports = function (input, pref) {
 });
 
 // MODULE: ./node_modules/core-js/internals/to-property-key.js
-var to_property_key_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var to_property_key_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var toPrimitive = (to_primitive_namespaceFn());
 var isSymbol = (is_symbol_namespaceFn());
@@ -3552,7 +3552,7 @@ module.exports = function (argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/to-string-tag-support.js
-var to_string_tag_support_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var to_string_tag_support_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var wellKnownSymbol = (well_known_symbol_namespaceFn());
 
@@ -3566,7 +3566,7 @@ module.exports = String(test) === '[object z]';
 });
 
 // MODULE: ./node_modules/core-js/internals/to-string.js
-var to_string_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var to_string_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var classof = (classof_namespaceFn());
 
@@ -3580,7 +3580,7 @@ module.exports = function (argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/try-to-string.js
-var try_to_string_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var try_to_string_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var $String = String;
 
@@ -3595,7 +3595,7 @@ module.exports = function (argument) {
 });
 
 // MODULE: ./node_modules/core-js/internals/uid.js
-var uid_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var uid_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 
@@ -3610,7 +3610,7 @@ module.exports = function (key) {
 });
 
 // MODULE: ./node_modules/core-js/internals/uint8-from-base64.js
-var uint8_from_base64_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var uint8_from_base64_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 var uncurryThis = (function_uncurry_this_namespaceFn());
@@ -3774,7 +3774,7 @@ module.exports = function (string, options, into, maxLength) {
 });
 
 // MODULE: ./node_modules/core-js/internals/uint8-from-hex.js
-var uint8_from_hex_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var uint8_from_hex_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 var uncurryThis = (function_uncurry_this_namespaceFn());
@@ -3805,7 +3805,7 @@ module.exports = function (string, into) {
 });
 
 // MODULE: ./node_modules/core-js/internals/url-constructor-detection.js
-var url_constructor_detection_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var url_constructor_detection_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var fails = (fails_namespaceFn());
 var wellKnownSymbol = (well_known_symbol_namespaceFn());
@@ -3852,7 +3852,7 @@ module.exports = !fails(function () {
 });
 
 // MODULE: ./node_modules/core-js/internals/use-symbol-as-uid.js
-var use_symbol_as_uid_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var use_symbol_as_uid_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 /* eslint-disable es/no-symbol -- required for testing */
 var NATIVE_SYMBOL = (symbol_constructor_detection_namespaceFn());
@@ -3864,7 +3864,7 @@ module.exports = NATIVE_SYMBOL &&
 });
 
 // MODULE: ./node_modules/core-js/internals/v8-prototype-define-bug.js
-var v8_prototype_define_bug_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var v8_prototype_define_bug_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var DESCRIPTORS = (descriptors_namespaceFn());
 var fails = (fails_namespaceFn());
@@ -3887,7 +3887,7 @@ var validate_arguments_length_namespaceFn = () => {
 };
 
 // MODULE: ./node_modules/core-js/internals/weak-map-basic-detection.js
-var weak_map_basic_detection_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var weak_map_basic_detection_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 var isCallable = (is_callable_namespaceFn());
@@ -3899,7 +3899,7 @@ module.exports = isCallable(WeakMap) && /native code/.test(String(WeakMap));
 });
 
 // MODULE: ./node_modules/core-js/internals/weak-map-helpers.js
-var weak_map_helpers_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var weak_map_helpers_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var uncurryThis = (function_uncurry_this_namespaceFn());
 
@@ -3918,7 +3918,7 @@ module.exports = {
 });
 
 // MODULE: ./node_modules/core-js/internals/well-known-symbol.js
-var well_known_symbol_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var well_known_symbol_namespaceFn = /*#__PURE__*/__webpack_require__.cw((module) => {
 
 var globalThis = (global_this_namespaceFn());
 var shared = (shared_namespaceFn());
@@ -3942,7 +3942,7 @@ module.exports = function (name) {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.array.includes.js
-var es_array_includes_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_array_includes_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var $includes = (array_includes_namespaceFn().includes);
@@ -3975,7 +3975,7 @@ addToUnscopables('includes');
 });
 
 // MODULE: ./node_modules/core-js/modules/es.array.push.js
-var es_array_push_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_array_push_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var toObject = (to_object_namespaceFn());
@@ -4022,7 +4022,7 @@ $({ target: 'Array', proto: true, arity: 1, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.constructor.js
-var es_iterator_constructor_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_constructor_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var globalThis = (global_this_namespaceFn());
@@ -4092,7 +4092,7 @@ $({ global: true, constructor: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.drop.js
-var es_iterator_drop_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_drop_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -4165,7 +4165,7 @@ $({ target: 'Iterator', proto: true, real: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.every.js
-var es_iterator_every_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_every_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -4202,7 +4202,7 @@ $({ target: 'Iterator', proto: true, real: true, forced: everyWithoutClosingOnEa
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.filter.js
-var es_iterator_filter_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_filter_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -4258,7 +4258,7 @@ $({ target: 'Iterator', proto: true, real: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.find.js
-var es_iterator_find_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_find_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -4295,7 +4295,7 @@ $({ target: 'Iterator', proto: true, real: true, forced: findWithoutClosingOnEar
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.flat-map.js
-var es_iterator_flat_map_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_flat_map_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -4373,7 +4373,7 @@ $({ target: 'Iterator', proto: true, real: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.for-each.js
-var es_iterator_for_each_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_for_each_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -4410,7 +4410,7 @@ $({ target: 'Iterator', proto: true, real: true, forced: forEachWithoutClosingOn
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.map.js
-var es_iterator_map_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_map_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -4459,7 +4459,7 @@ $({ target: 'Iterator', proto: true, real: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.some.js
-var es_iterator_some_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_some_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -4496,7 +4496,7 @@ $({ target: 'Iterator', proto: true, real: true, forced: someWithoutClosingOnEar
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.take.js
-var es_iterator_take_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_take_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var call = (function_call_namespaceFn());
@@ -4565,7 +4565,7 @@ $({ target: 'Iterator', proto: true, real: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.iterator.to-array.js
-var es_iterator_to_array_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_iterator_to_array_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var anObject = (an_object_namespaceFn());
@@ -4589,7 +4589,7 @@ $({ target: 'Iterator', proto: true, real: true }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.json.parse.js
-var es_json_parse_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_json_parse_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var DESCRIPTORS = (descriptors_namespaceFn());
@@ -4857,7 +4857,7 @@ $({ target: 'JSON', stat: true, forced: NO_SOURCE_SUPPORT }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.json.stringify.js
-var es_json_stringify_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_json_stringify_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var getBuiltIn = (get_built_in_namespaceFn());
@@ -5113,7 +5113,7 @@ if ($stringify) $({ target: 'JSON', stat: true, arity: 3, forced: WRONG_SYMBOLS_
 });
 
 // MODULE: ./node_modules/core-js/modules/es.map.get-or-insert-computed.js
-var es_map_get_or_insert_computed_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_map_get_or_insert_computed_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var aCallable = (a_callable_namespaceFn());
@@ -5142,7 +5142,7 @@ $({ target: 'Map', proto: true, real: true, forced: IS_PURE }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.map.get-or-insert.js
-var es_map_get_or_insert_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_map_get_or_insert_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var MapHelpers = (map_helpers_namespaceFn());
@@ -5165,21 +5165,28 @@ $({ target: 'Map', proto: true, real: true, forced: IS_PURE }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.math.sum-precise.js
-var es_math_sum_precise_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_math_sum_precise_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 // based on Shewchuk's algorithm for exactly floating point addition
 // adapted from https://github.com/tc39/proposal-math-sum/blob/3513d58323a1ae25560e8700aa5294500c6c9287/polyfill/polyfill.mjs
 var $ = (export_namespaceFn());
 var uncurryThis = (function_uncurry_this_namespaceFn());
 var iterate = (iterate_namespaceFn());
+var fails = (fails_namespaceFn());
+var getIterator = (get_iterator_internal_namespaceFn());
+var setPrototypeOf = (object_set_prototype_of_namespaceFn());
+var wellKnownSymbol = (well_known_symbol_namespaceFn());
 
 var $RangeError = RangeError;
 var $TypeError = TypeError;
 var $Infinity = Infinity;
 var $NaN = NaN;
+// eslint-disable-next-line es/no-math-sumprecise -- required for testing
+var $sumPrecise = Math.sumPrecise;
 var abs = Math.abs;
 var pow = Math.pow;
 var push = uncurryThis([].push);
+var ITERATOR = wellKnownSymbol('iterator');
 
 var POW_2_1023 = pow(2, 1023);
 var MAX_SAFE_INTEGER = pow(2, 53) - 1; // 2 ** 53 - 1 === 9007199254740991
@@ -5192,6 +5199,25 @@ var PLUS_INFINITY = {};
 var MINUS_ZERO = {};
 var FINITE = {};
 
+// https://bugs.webkit.org/show_bug.cgi?id=315450
+var FORCED = fails(function () {
+  if ($sumPrecise([-1]) !== -1 || $sumPrecise([-MAX_DOUBLE]) !== -MAX_DOUBLE) return true;
+  if (!setPrototypeOf) return false;
+  // https://issues.chromium.org/issues/500536164
+  try {
+    $sumPrecise(setPrototypeOf([1], {}));
+    return true;
+  } catch (error) { /* empty */ }
+  // https://issues.chromium.org/issues/572987948
+  try {
+    var prototype = {};
+    // eslint-disable-next-line unicorn/no-immediate-mutation -- ES3-compatible computed property
+    prototype[ITERATOR] = function () { return this; };
+    $sumPrecise(setPrototypeOf(getIterator([1]), prototype));
+    return true;
+  } catch (error) { /* empty */ }
+});
+
 // prerequisite: abs(x) >= abs(y)
 var twosum = function (x, y) {
   var hi = x + y;
@@ -5201,7 +5227,7 @@ var twosum = function (x, y) {
 
 // `Math.sumPrecise` method
 // https://tc39.es/ecma262/#sec-math.sumprecise
-$({ target: 'Math', stat: true }, {
+$({ target: 'Math', stat: true, forced: FORCED }, {
   // eslint-disable-next-line max-statements -- ok
   sumPrecise: function sumPrecise(items) {
     var numbers = [];
@@ -5321,7 +5347,7 @@ $({ target: 'Math', stat: true }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.promise.try.js
-var es_promise_try_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_promise_try_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var globalThis = (global_this_namespaceFn());
@@ -5367,7 +5393,7 @@ $({ target: 'Promise', stat: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.set.difference.v2.js
-var es_set_difference_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_set_difference_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var difference = (set_difference_namespaceFn());
@@ -5409,7 +5435,7 @@ $({ target: 'Set', proto: true, real: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.set.intersection.v2.js
-var es_set_intersection_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_set_intersection_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var fails = (fails_namespaceFn());
@@ -5432,7 +5458,7 @@ $({ target: 'Set', proto: true, real: true, forced: INCORRECT }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.set.is-disjoint-from.v2.js
-var es_set_is_disjoint_from_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_set_is_disjoint_from_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var isDisjointFrom = (set_is_disjoint_from_namespaceFn());
@@ -5451,7 +5477,7 @@ $({ target: 'Set', proto: true, real: true, forced: INCORRECT }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.set.is-subset-of.v2.js
-var es_set_is_subset_of_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_set_is_subset_of_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var isSubsetOf = (set_is_subset_of_namespaceFn());
@@ -5470,7 +5496,7 @@ $({ target: 'Set', proto: true, real: true, forced: INCORRECT }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.set.is-superset-of.v2.js
-var es_set_is_superset_of_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_set_is_superset_of_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var isSupersetOf = (set_is_superset_of_namespaceFn());
@@ -5489,7 +5515,7 @@ $({ target: 'Set', proto: true, real: true, forced: INCORRECT }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.set.symmetric-difference.v2.js
-var es_set_symmetric_difference_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_set_symmetric_difference_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var symmetricDifference = (set_symmetric_difference_namespaceFn());
@@ -5507,7 +5533,7 @@ $({ target: 'Set', proto: true, real: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.set.union.v2.js
-var es_set_union_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_set_union_v2_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var union = (set_union_namespaceFn());
@@ -5525,7 +5551,7 @@ $({ target: 'Set', proto: true, real: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.typed-array.with.js
-var es_typed_array_with_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_typed_array_with_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var ArrayBufferViewCore = (array_buffer_view_core_namespaceFn());
 var isBigIntArray = (is_big_int_array_namespaceFn());
@@ -5578,7 +5604,7 @@ exportTypedArrayMethod('with', { 'with': function (index, value) {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.uint8-array.from-base64.js
-var es_uint8_array_from_base64_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_uint8_array_from_base64_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var globalThis = (global_this_namespaceFn());
@@ -5612,7 +5638,7 @@ if (Uint8Array) $({ target: 'Uint8Array', stat: true, forced: INCORRECT_BEHAVIOR
 });
 
 // MODULE: ./node_modules/core-js/modules/es.uint8-array.set-from-base64.js
-var es_uint8_array_set_from_base64_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_uint8_array_set_from_base64_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var globalThis = (global_this_namespaceFn());
@@ -5654,7 +5680,7 @@ if (Uint8Array) $({ target: 'Uint8Array', proto: true, forced: INCORRECT_BEHAVIO
 });
 
 // MODULE: ./node_modules/core-js/modules/es.uint8-array.set-from-hex.js
-var es_uint8_array_set_from_hex_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_uint8_array_set_from_hex_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var globalThis = (global_this_namespaceFn());
@@ -5691,7 +5717,7 @@ if (globalThis.Uint8Array) $({ target: 'Uint8Array', proto: true, forced: throws
 });
 
 // MODULE: ./node_modules/core-js/modules/es.uint8-array.to-base64.js
-var es_uint8_array_to_base64_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_uint8_array_to_base64_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 /* eslint-disable no-useless-assignment -- false positive for [index++] syntax */
 var $ = (export_namespaceFn());
@@ -5773,7 +5799,7 @@ if (Uint8Array) $({ target: 'Uint8Array', proto: true, forced: INCORRECT_BEHAVIO
 });
 
 // MODULE: ./node_modules/core-js/modules/es.uint8-array.to-hex.js
-var es_uint8_array_to_hex_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_uint8_array_to_hex_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var globalThis = (global_this_namespaceFn());
@@ -5814,7 +5840,7 @@ if (Uint8Array) $({ target: 'Uint8Array', proto: true, forced: INCORRECT_BEHAVIO
 });
 
 // MODULE: ./node_modules/core-js/modules/es.weak-map.get-or-insert-computed.js
-var es_weak_map_get_or_insert_computed_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_weak_map_get_or_insert_computed_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var aCallable = (a_callable_namespaceFn());
@@ -5855,7 +5881,7 @@ $({ target: 'WeakMap', proto: true, real: true, forced: FORCED }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/es.weak-map.get-or-insert.js
-var es_weak_map_get_or_insert_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var es_weak_map_get_or_insert_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var WeakMapHelpers = (weak_map_helpers_namespaceFn());
@@ -5878,7 +5904,7 @@ $({ target: 'WeakMap', proto: true, real: true, forced: IS_PURE }, {
 });
 
 // MODULE: ./node_modules/core-js/modules/web.dom-exception.stack.js
-var web_dom_exception_stack_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var web_dom_exception_stack_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var globalThis = (global_this_namespaceFn());
@@ -5951,7 +5977,7 @@ if (PolyfilledDOMExceptionPrototype.constructor !== PolyfilledDOMException) {
 });
 
 // MODULE: ./node_modules/core-js/modules/web.url.parse.js
-var web_url_parse_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+var web_url_parse_namespaceFn = /*#__PURE__*/__webpack_require__.cw(() => {
 
 var $ = (export_namespaceFn());
 var getBuiltIn = (get_built_in_namespaceFn());
@@ -6059,6 +6085,8 @@ const isNodeJS = typeof process === "object" && process + "" === "[object proces
 const BBOX_INIT = [Infinity, Infinity, -Infinity, -Infinity];
 const F32_BBOX_INIT = new Float32Array(BBOX_INIT);
 const FONT_IDENTITY_MATRIX = [0.001, 0, 0, 0.001, 0, 0];
+const DEFAULT_VERTICAL_ORIGIN_Y = 880;
+const DEFAULT_VERTICAL_ADVANCE = 1000;
 const LINE_FACTOR = 1.35;
 const LINE_DESCENT_FACTOR = 0.35;
 const BASELINE_FACTOR = (/* unused pure expression or super */ null && (LINE_DESCENT_FACTOR / LINE_FACTOR));
@@ -6523,6 +6551,9 @@ class FeatureTest {
   static get isImageDecoderSupported() {
     return util_shadow(this, "isImageDecoderSupported", typeof ImageDecoder !== "undefined");
   }
+  static get isVideoFrameSupported() {
+    return util_shadow(this, "isVideoFrameSupported", typeof VideoFrame !== "undefined");
+  }
   static get isFloat16ArraySupported() {
     return util_shadow(this, "isFloat16ArraySupported", typeof Float16Array !== "undefined");
   }
@@ -6573,6 +6604,11 @@ class Util {
   }
   static makeHexColor(r, g, b) {
     return `#${this.hexNums[r]}${this.hexNums[g]}${this.hexNums[b]}`;
+  }
+  static get identity0to256Map() {
+    return util_shadow(this, "identity0to256Map", Uint8Array.from({
+      length: 256
+    }, (_, i) => i));
   }
   static transform(m1, m2) {
     return [m1[0] * m2[0] + m1[2] * m2[1], m1[1] * m2[0] + m1[3] * m2[1], m1[0] * m2[2] + m1[2] * m2[3], m1[1] * m2[2] + m1[3] * m2[3], m1[0] * m2[4] + m1[2] * m2[5] + m1[4], m1[1] * m2[4] + m1[3] * m2[5] + m1[5]];
@@ -6640,10 +6676,10 @@ class Util {
       b1 += m1r2;
       b2 += m1r2;
     }
-    output[0] = Math.min(output[0], a0, a1, a2, a3);
-    output[1] = Math.min(output[1], b0, b1, b2, b3);
-    output[2] = Math.max(output[2], a0, a1, a2, a3);
-    output[3] = Math.max(output[3], b0, b1, b2, b3);
+    output[0] = Math.min(output[0], a0, a1, Math.min(a2, a3));
+    output[1] = Math.min(output[1], b0, b1, Math.min(b2, b3));
+    output[2] = Math.max(output[2], a0, a1, Math.max(a2, a3));
+    output[3] = Math.max(output[3], b0, b1, Math.max(b2, b3));
   }
   static inverseTransform(m) {
     const d = m[0] * m[3] - m[1] * m[2];
@@ -6843,6 +6879,304 @@ es_iterator_map_namespaceFn();
 function MathClamp(v, min, max) {
   return Math.min(Math.max(v, min), max);
 }
+
+;// ./src/display/display_utils.js
+
+
+
+
+
+
+
+class PixelsPerInch {
+  static CSS = 96.0;
+  static PDF = 72.0;
+  static PDF_TO_CSS_UNITS = this.CSS / this.PDF;
+}
+class RenderingCancelledException extends BaseException {
+  constructor(msg, extraDelay = 0) {
+    super(msg, "RenderingCancelledException");
+    this.extraDelay = extraDelay;
+  }
+}
+function getRGBA(color) {
+  if (color.startsWith("#")) {
+    const hex = color.slice(1);
+    return [parseInt(hex.slice(0, 2), 16), parseInt(hex.slice(2, 4), 16), parseInt(hex.slice(4, 6), 16), hex.length >= 8 ? parseInt(hex.slice(6, 8), 16) / 255 : 1];
+  }
+  if (color.startsWith("rgb(")) {
+    const [r, g, b] = color.slice(4, -1).split(",").map(x => parseInt(x, 10));
+    return [r, g, b, 1];
+  }
+  if (color.startsWith("rgba(")) {
+    const parts = color.slice(5, -1).split(",");
+    return [parseInt(parts[0], 10), parseInt(parts[1], 10), parseInt(parts[2], 10), parseFloat(parts[3])];
+  }
+  const m = color.match(/^color\(srgb\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*([\d.]+|none))?\)$/);
+  if (m) {
+    return [Math.round(parseFloat(m[1]) * 255), Math.round(parseFloat(m[2]) * 255), Math.round(parseFloat(m[3]) * 255), m[4] !== undefined && m[4] !== "none" ? parseFloat(m[4]) : 1];
+  }
+  return null;
+}
+function getRGB(color) {
+  const rgba = getRGBA(color);
+  if (!rgba) {
+    warn(`Not a valid color format: "${color}"`);
+    return [0, 0, 0];
+  }
+  return rgba.slice(0, 3);
+}
+function getCurrentTransform(ctx) {
+  const {
+    a,
+    b,
+    c,
+    d,
+    e,
+    f
+  } = ctx.getTransform();
+  return [a, b, c, d, e, f];
+}
+function getCurrentTransformInverse(ctx) {
+  const {
+    a,
+    b,
+    c,
+    d,
+    e,
+    f
+  } = ctx.getTransform().invertSelf();
+  return [a, b, c, d, e, f];
+}
+class OutputScale {
+  constructor() {
+    const {
+      pixelRatio
+    } = OutputScale;
+    this.sx = pixelRatio;
+    this.sy = pixelRatio;
+  }
+  get scaled() {
+    return this.sx !== 1 || this.sy !== 1;
+  }
+  get symmetric() {
+    return this.sx === this.sy;
+  }
+  limitCanvas(width, height, maxPixels, maxDim, capAreaFactor = -1) {
+    let maxAreaScale = Infinity,
+      maxWidthScale = Infinity,
+      maxHeightScale = Infinity;
+    maxPixels = OutputScale.capPixels(maxPixels, capAreaFactor);
+    if (maxPixels > 0) {
+      maxAreaScale = Math.sqrt(maxPixels / (width * height));
+    }
+    if (maxDim !== -1) {
+      maxWidthScale = maxDim / width;
+      maxHeightScale = maxDim / height;
+    }
+    const maxScale = Math.min(maxAreaScale, maxWidthScale, maxHeightScale);
+    if (this.sx > maxScale || this.sy > maxScale) {
+      this.sx = maxScale;
+      this.sy = maxScale;
+      return true;
+    }
+    return false;
+  }
+  static get pixelRatio() {
+    return globalThis.devicePixelRatio || 1;
+  }
+  static capPixels(maxPixels, capAreaFactor) {
+    if (capAreaFactor >= 0) {
+      const winPixels = Math.ceil(window.screen.availWidth * window.screen.availHeight * this.pixelRatio ** 2 * (1 + capAreaFactor / 100));
+      return maxPixels > 0 ? Math.min(maxPixels, winPixels) : winPixels;
+    }
+    return maxPixels;
+  }
+}
+function applyOpacity(color, opacity) {
+  opacity = MathClamp(opacity ?? 1, 0, 1);
+  const white = 255 * (1 - opacity);
+  return color.map(c => Math.round(c * opacity + white));
+}
+function RGBToHSL(rgb, output) {
+  const r = rgb[0] / 255;
+  const g = rgb[1] / 255;
+  const b = rgb[2] / 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  if (max === min) {
+    output[0] = output[1] = 0;
+  } else {
+    const d = max - min;
+    output[1] = l < 0.5 ? d / (max + min) : d / (2 - max - min);
+    switch (max) {
+      case r:
+        output[0] = ((g - b) / d + (g < b ? 6 : 0)) * 60;
+        break;
+      case g:
+        output[0] = ((b - r) / d + 2) * 60;
+        break;
+      case b:
+        output[0] = ((r - g) / d + 4) * 60;
+        break;
+    }
+  }
+  output[2] = l;
+}
+function HSLToRGB(hsl, output) {
+  const h = hsl[0];
+  const s = hsl[1];
+  const l = hsl[2];
+  const c = (1 - Math.abs(2 * l - 1)) * s;
+  const x = c * (1 - Math.abs(h / 60 % 2 - 1));
+  const m = l - c / 2;
+  switch (Math.floor(h / 60)) {
+    case 0:
+      output[0] = c + m;
+      output[1] = x + m;
+      output[2] = m;
+      break;
+    case 1:
+      output[0] = x + m;
+      output[1] = c + m;
+      output[2] = m;
+      break;
+    case 2:
+      output[0] = m;
+      output[1] = c + m;
+      output[2] = x + m;
+      break;
+    case 3:
+      output[0] = m;
+      output[1] = x + m;
+      output[2] = c + m;
+      break;
+    case 4:
+      output[0] = x + m;
+      output[1] = m;
+      output[2] = c + m;
+      break;
+    case 5:
+    case 6:
+      output[0] = c + m;
+      output[1] = m;
+      output[2] = x + m;
+      break;
+  }
+}
+function computeLuminance(x) {
+  return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
+}
+function contrastRatio(hsl1, hsl2, output) {
+  HSLToRGB(hsl1, output);
+  output.map(computeLuminance);
+  const lum1 = 0.2126 * output[0] + 0.7152 * output[1] + 0.0722 * output[2];
+  HSLToRGB(hsl2, output);
+  output.map(computeLuminance);
+  const lum2 = 0.2126 * output[0] + 0.7152 * output[1] + 0.0722 * output[2];
+  return lum1 > lum2 ? (lum1 + 0.05) / (lum2 + 0.05) : (lum2 + 0.05) / (lum1 + 0.05);
+}
+const contrastCache = new Map();
+function findContrastColor(baseColor, fixedColor) {
+  const key = baseColor[0] + baseColor[1] * 0x100 + baseColor[2] * 0x10000 + fixedColor[0] * 0x1000000 + fixedColor[1] * 0x100000000 + fixedColor[2] * 0x10000000000;
+  let cachedValue = contrastCache.get(key);
+  if (cachedValue) {
+    return cachedValue;
+  }
+  const array = new Float32Array(9);
+  const output = array.subarray(0, 3);
+  const baseHSL = array.subarray(3, 6);
+  RGBToHSL(baseColor, baseHSL);
+  const fixedHSL = array.subarray(6, 9);
+  RGBToHSL(fixedColor, fixedHSL);
+  const isFixedColorDark = fixedHSL[2] < 0.5;
+  const minContrast = isFixedColorDark ? 12 : 4.5;
+  baseHSL[2] = isFixedColorDark ? Math.sqrt(baseHSL[2]) : 1 - Math.sqrt(1 - baseHSL[2]);
+  if (contrastRatio(baseHSL, fixedHSL, output) < minContrast) {
+    let start, end;
+    if (isFixedColorDark) {
+      start = baseHSL[2];
+      end = 1;
+    } else {
+      start = 0;
+      end = baseHSL[2];
+    }
+    const PRECISION = 0.005;
+    while (end - start > PRECISION) {
+      const mid = baseHSL[2] = (start + end) / 2;
+      if (isFixedColorDark === contrastRatio(baseHSL, fixedHSL, output) < minContrast) {
+        start = mid;
+      } else {
+        end = mid;
+      }
+    }
+    baseHSL[2] = isFixedColorDark ? end : start;
+  }
+  HSLToRGB(baseHSL, output);
+  cachedValue = Util.makeHexColor(Math.round(output[0] * 255), Math.round(output[1] * 255), Math.round(output[2] * 255));
+  contrastCache.set(key, cachedValue);
+  return cachedValue;
+}
+function makePathFromDrawOPS(data) {
+  const path = new Path2D();
+  if (!data) {
+    return path;
+  }
+  for (let i = 0, ii = data.length; i < ii;) {
+    switch (data[i++]) {
+      case DrawOPS.moveTo:
+        path.moveTo(data[i++], data[i++]);
+        break;
+      case DrawOPS.lineTo:
+        path.lineTo(data[i++], data[i++]);
+        break;
+      case DrawOPS.curveTo:
+        path.bezierCurveTo(data[i++], data[i++], data[i++], data[i++], data[i++], data[i++]);
+        break;
+      case DrawOPS.quadraticCurveTo:
+        path.quadraticCurveTo(data[i++], data[i++], data[i++], data[i++]);
+        break;
+      case DrawOPS.closePath:
+        path.closePath();
+        break;
+      default:
+        warn(`Unrecognized drawing path operator: ${data[i - 1]}`);
+        break;
+    }
+  }
+  return path;
+}
+
+;// ./node_modules/core-js/modules/es.iterator.take.js
+es_iterator_take_namespaceFn();
+
+;// ./node_modules/core-js/modules/es.weak-map.get-or-insert.js
+es_weak_map_get_or_insert_namespaceFn();
+
+;// ./node_modules/core-js/modules/es.weak-map.get-or-insert-computed.js
+es_weak_map_get_or_insert_computed_namespaceFn();
+
+;// ./node_modules/core-js/modules/es.iterator.some.js
+es_iterator_some_namespaceFn();
+
+;// ./node_modules/core-js/modules/es.json.stringify.js
+es_json_stringify_namespaceFn();
+
+;// ./node_modules/core-js/modules/web.dom-exception.stack.js
+web_dom_exception_stack_namespaceFn();
+
+;// ./node_modules/core-js/modules/es.iterator.drop.js
+es_iterator_drop_namespaceFn();
+
+;// ./node_modules/core-js/modules/es.iterator.every.js
+es_iterator_every_namespaceFn();
+
+;// ./node_modules/core-js/modules/es.iterator.find.js
+es_iterator_find_namespaceFn();
+
+;// ./node_modules/core-js/modules/es.json.parse.js
+es_json_parse_namespaceFn();
 
 ;// ./src/display/page_viewport.js
 
@@ -7278,7 +7612,7 @@ class XfaLayer {
   }
 }
 
-;// ./src/display/display_utils.js
+;// ./src/display/dom_utils.js
 
 
 
@@ -7297,16 +7631,6 @@ class XfaLayer {
 
 
 
-
-
-
-
-
-class PixelsPerInch {
-  static CSS = 96.0;
-  static PDF = 72.0;
-  static PDF_TO_CSS_UNITS = this.CSS / this.PDF;
-}
 async function fetchData(url, type = "text") {
   if (isValidFetchUrl(url, document.baseURI)) {
     const response = await fetch(url);
@@ -7348,12 +7672,6 @@ async function fetchData(url, type = "text") {
     };
     request.send(null);
   });
-}
-class RenderingCancelledException extends BaseException {
-  constructor(msg, extraDelay = 0) {
-    super(msg, "RenderingCancelledException");
-    this.extraDelay = extraDelay;
-  }
 }
 function isDataScheme(url) {
   const ii = url.length;
@@ -7445,31 +7763,6 @@ function getPdfFilenameFromUrl(url, defaultFilename = "document.pdf") {
   }
   return defaultFilename;
 }
-class StatTimer {
-  #started = new Map();
-  times = [];
-  time(name) {
-    if (this.#started.has(name)) {
-      warn(`Timer is already running for ${name}`);
-    }
-    this.#started.set(name, Date.now());
-  }
-  timeEnd(name) {
-    if (!this.#started.has(name)) {
-      warn(`Timer has not been started for ${name}`);
-    }
-    this.times.push({
-      name,
-      start: this.#started.get(name),
-      end: Date.now()
-    });
-    this.#started.delete(name);
-  }
-  toString() {
-    const longest = Math.max(...this.times.map(t => t.name.length));
-    return this.times.map(t => `${t.name.padEnd(longest)} ${t.end - t.start}ms\n`).join("");
-  }
-}
 function isValidFetchUrl(url, baseUrl) {
   const res = baseUrl ? URL.parse(url, baseUrl) : URL.parse(url);
   return /https?:/.test(res?.protocol ?? "");
@@ -7480,9 +7773,6 @@ function noContextMenu(e) {
 function stopEvent(e) {
   e.preventDefault();
   e.stopPropagation();
-}
-function deprecated(details) {
-  console.log("Deprecated API usage: " + details);
 }
 class PDFDateString {
   static #regex;
@@ -7524,33 +7814,6 @@ class PDFDateString {
     return new Date(Date.UTC(year, month, day, hour, minute, second));
   }
 }
-function getRGBA(color) {
-  if (color.startsWith("#")) {
-    const hex = color.slice(1);
-    return [parseInt(hex.slice(0, 2), 16), parseInt(hex.slice(2, 4), 16), parseInt(hex.slice(4, 6), 16), hex.length >= 8 ? parseInt(hex.slice(6, 8), 16) / 255 : 1];
-  }
-  if (color.startsWith("rgb(")) {
-    const [r, g, b] = color.slice(4, -1).split(",").map(x => parseInt(x, 10));
-    return [r, g, b, 1];
-  }
-  if (color.startsWith("rgba(")) {
-    const parts = color.slice(5, -1).split(",");
-    return [parseInt(parts[0], 10), parseInt(parts[1], 10), parseInt(parts[2], 10), parseFloat(parts[3])];
-  }
-  const m = color.match(/^color\(srgb\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*([\d.]+|none))?\)$/);
-  if (m) {
-    return [Math.round(parseFloat(m[1]) * 255), Math.round(parseFloat(m[2]) * 255), Math.round(parseFloat(m[3]) * 255), m[4] !== undefined && m[4] !== "none" ? parseFloat(m[4]) : 1];
-  }
-  return null;
-}
-function getRGB(color) {
-  const rgba = getRGBA(color);
-  if (!rgba) {
-    warn(`Not a valid color format: "${color}"`);
-    return [0, 0, 0];
-  }
-  return rgba.slice(0, 3);
-}
 function getColorValues(colors) {
   const span = document.createElement("span");
   span.style.visibility = "hidden";
@@ -7562,28 +7825,6 @@ function getColorValues(colors) {
     colors.set(name, getRGB(computedColor));
   }
   span.remove();
-}
-function getCurrentTransform(ctx) {
-  const {
-    a,
-    b,
-    c,
-    d,
-    e,
-    f
-  } = ctx.getTransform();
-  return [a, b, c, d, e, f];
-}
-function getCurrentTransformInverse(ctx) {
-  const {
-    a,
-    b,
-    c,
-    d,
-    e,
-    f
-  } = ctx.getTransform().invertSelf();
-  return [a, b, c, d, e, f];
 }
 function setLayerDimensions(div, viewport, mustFlip = false, mustRotate = true) {
   if (viewport instanceof PageViewport) {
@@ -7606,51 +7847,6 @@ function setLayerDimensions(div, viewport, mustFlip = false, mustRotate = true) 
   }
   if (mustRotate) {
     div.setAttribute("data-main-rotation", viewport.rotation);
-  }
-}
-class OutputScale {
-  constructor() {
-    const {
-      pixelRatio
-    } = OutputScale;
-    this.sx = pixelRatio;
-    this.sy = pixelRatio;
-  }
-  get scaled() {
-    return this.sx !== 1 || this.sy !== 1;
-  }
-  get symmetric() {
-    return this.sx === this.sy;
-  }
-  limitCanvas(width, height, maxPixels, maxDim, capAreaFactor = -1) {
-    let maxAreaScale = Infinity,
-      maxWidthScale = Infinity,
-      maxHeightScale = Infinity;
-    maxPixels = OutputScale.capPixels(maxPixels, capAreaFactor);
-    if (maxPixels > 0) {
-      maxAreaScale = Math.sqrt(maxPixels / (width * height));
-    }
-    if (maxDim !== -1) {
-      maxWidthScale = maxDim / width;
-      maxHeightScale = maxDim / height;
-    }
-    const maxScale = Math.min(maxAreaScale, maxWidthScale, maxHeightScale);
-    if (this.sx > maxScale || this.sy > maxScale) {
-      this.sx = maxScale;
-      this.sy = maxScale;
-      return true;
-    }
-    return false;
-  }
-  static get pixelRatio() {
-    return globalThis.devicePixelRatio || 1;
-  }
-  static capPixels(maxPixels, capAreaFactor) {
-    if (capAreaFactor >= 0) {
-      const winPixels = Math.ceil(window.screen.availWidth * window.screen.availHeight * this.pixelRatio ** 2 * (1 + capAreaFactor / 100));
-      return maxPixels > 0 ? Math.min(maxPixels, winPixels) : winPixels;
-    }
-    return maxPixels;
   }
 }
 const SupportedImageMimeTypes = new Set(["image/apng", "image/avif", "image/bmp", "image/gif", "image/jpeg", "image/png", "image/svg+xml", "image/webp", "image/x-icon"]);
@@ -7676,131 +7872,6 @@ class CSSConstants {
     element.remove();
     return util_shadow(this, "commentForegroundColor", getRGB(color));
   }
-}
-function applyOpacity(color, opacity) {
-  opacity = MathClamp(opacity ?? 1, 0, 1);
-  const white = 255 * (1 - opacity);
-  return color.map(c => Math.round(c * opacity + white));
-}
-function RGBToHSL(rgb, output) {
-  const r = rgb[0] / 255;
-  const g = rgb[1] / 255;
-  const b = rgb[2] / 255;
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
-  const l = (max + min) / 2;
-  if (max === min) {
-    output[0] = output[1] = 0;
-  } else {
-    const d = max - min;
-    output[1] = l < 0.5 ? d / (max + min) : d / (2 - max - min);
-    switch (max) {
-      case r:
-        output[0] = ((g - b) / d + (g < b ? 6 : 0)) * 60;
-        break;
-      case g:
-        output[0] = ((b - r) / d + 2) * 60;
-        break;
-      case b:
-        output[0] = ((r - g) / d + 4) * 60;
-        break;
-    }
-  }
-  output[2] = l;
-}
-function HSLToRGB(hsl, output) {
-  const h = hsl[0];
-  const s = hsl[1];
-  const l = hsl[2];
-  const c = (1 - Math.abs(2 * l - 1)) * s;
-  const x = c * (1 - Math.abs(h / 60 % 2 - 1));
-  const m = l - c / 2;
-  switch (Math.floor(h / 60)) {
-    case 0:
-      output[0] = c + m;
-      output[1] = x + m;
-      output[2] = m;
-      break;
-    case 1:
-      output[0] = x + m;
-      output[1] = c + m;
-      output[2] = m;
-      break;
-    case 2:
-      output[0] = m;
-      output[1] = c + m;
-      output[2] = x + m;
-      break;
-    case 3:
-      output[0] = m;
-      output[1] = x + m;
-      output[2] = c + m;
-      break;
-    case 4:
-      output[0] = x + m;
-      output[1] = m;
-      output[2] = c + m;
-      break;
-    case 5:
-    case 6:
-      output[0] = c + m;
-      output[1] = m;
-      output[2] = x + m;
-      break;
-  }
-}
-function computeLuminance(x) {
-  return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
-}
-function contrastRatio(hsl1, hsl2, output) {
-  HSLToRGB(hsl1, output);
-  output.map(computeLuminance);
-  const lum1 = 0.2126 * output[0] + 0.7152 * output[1] + 0.0722 * output[2];
-  HSLToRGB(hsl2, output);
-  output.map(computeLuminance);
-  const lum2 = 0.2126 * output[0] + 0.7152 * output[1] + 0.0722 * output[2];
-  return lum1 > lum2 ? (lum1 + 0.05) / (lum2 + 0.05) : (lum2 + 0.05) / (lum1 + 0.05);
-}
-const contrastCache = new Map();
-function findContrastColor(baseColor, fixedColor) {
-  const key = baseColor[0] + baseColor[1] * 0x100 + baseColor[2] * 0x10000 + fixedColor[0] * 0x1000000 + fixedColor[1] * 0x100000000 + fixedColor[2] * 0x10000000000;
-  let cachedValue = contrastCache.get(key);
-  if (cachedValue) {
-    return cachedValue;
-  }
-  const array = new Float32Array(9);
-  const output = array.subarray(0, 3);
-  const baseHSL = array.subarray(3, 6);
-  RGBToHSL(baseColor, baseHSL);
-  const fixedHSL = array.subarray(6, 9);
-  RGBToHSL(fixedColor, fixedHSL);
-  const isFixedColorDark = fixedHSL[2] < 0.5;
-  const minContrast = isFixedColorDark ? 12 : 4.5;
-  baseHSL[2] = isFixedColorDark ? Math.sqrt(baseHSL[2]) : 1 - Math.sqrt(1 - baseHSL[2]);
-  if (contrastRatio(baseHSL, fixedHSL, output) < minContrast) {
-    let start, end;
-    if (isFixedColorDark) {
-      start = baseHSL[2];
-      end = 1;
-    } else {
-      start = 0;
-      end = baseHSL[2];
-    }
-    const PRECISION = 0.005;
-    while (end - start > PRECISION) {
-      const mid = baseHSL[2] = (start + end) / 2;
-      if (isFixedColorDark === contrastRatio(baseHSL, fixedHSL, output) < minContrast) {
-        start = mid;
-      } else {
-        end = mid;
-      }
-    }
-    baseHSL[2] = isFixedColorDark ? end : start;
-  }
-  HSLToRGB(baseHSL, output);
-  cachedValue = Util.makeHexColor(Math.round(output[0] * 255), Math.round(output[1] * 255), Math.round(output[2] * 255));
-  contrastCache.set(key, cachedValue);
-  return cachedValue;
 }
 function renderRichText({
   html,
@@ -7830,65 +7901,6 @@ function renderRichText({
   fragment.firstElementChild.classList.add("richText", className);
   container.append(fragment);
 }
-function makePathFromDrawOPS(data) {
-  const path = new Path2D();
-  if (!data) {
-    return path;
-  }
-  for (let i = 0, ii = data.length; i < ii;) {
-    switch (data[i++]) {
-      case DrawOPS.moveTo:
-        path.moveTo(data[i++], data[i++]);
-        break;
-      case DrawOPS.lineTo:
-        path.lineTo(data[i++], data[i++]);
-        break;
-      case DrawOPS.curveTo:
-        path.bezierCurveTo(data[i++], data[i++], data[i++], data[i++], data[i++], data[i++]);
-        break;
-      case DrawOPS.quadraticCurveTo:
-        path.quadraticCurveTo(data[i++], data[i++], data[i++], data[i++]);
-        break;
-      case DrawOPS.closePath:
-        path.closePath();
-        break;
-      default:
-        warn(`Unrecognized drawing path operator: ${data[i - 1]}`);
-        break;
-    }
-  }
-  return path;
-}
-
-;// ./node_modules/core-js/modules/es.iterator.take.js
-es_iterator_take_namespaceFn();
-
-;// ./node_modules/core-js/modules/es.weak-map.get-or-insert.js
-es_weak_map_get_or_insert_namespaceFn();
-
-;// ./node_modules/core-js/modules/es.weak-map.get-or-insert-computed.js
-es_weak_map_get_or_insert_computed_namespaceFn();
-
-;// ./node_modules/core-js/modules/web.dom-exception.stack.js
-web_dom_exception_stack_namespaceFn();
-
-;// ./node_modules/core-js/modules/es.iterator.some.js
-es_iterator_some_namespaceFn();
-
-;// ./node_modules/core-js/modules/es.json.stringify.js
-es_json_stringify_namespaceFn();
-
-;// ./node_modules/core-js/modules/es.iterator.drop.js
-es_iterator_drop_namespaceFn();
-
-;// ./node_modules/core-js/modules/es.iterator.every.js
-es_iterator_every_namespaceFn();
-
-;// ./node_modules/core-js/modules/es.iterator.find.js
-es_iterator_find_namespaceFn();
-
-;// ./node_modules/core-js/modules/es.json.parse.js
-es_json_parse_namespaceFn();
 
 ;// ./src/display/editor/toolbar.js
 
@@ -8195,12 +8207,13 @@ class FloatingToolbar {
 }
 
 ;// ./src/shared/internal_evt.js
-const INTERNAL_EVT = "2837668c-d334-48d1-ba74-aa7deba483da";
+const INTERNAL_EVT = "0a475cb6-573c-46ed-869d-fa7c5839d995";
 const internalOpt = Object.freeze({
   internal: INTERNAL_EVT
 });
 
 ;// ./src/display/editor/tools.js
+
 
 
 
@@ -8798,7 +8811,7 @@ class AnnotationEditorUIManager {
       checker: arrowChecker
     }]]));
   }
-  constructor(container, viewer, viewerAlert, altTextManager, commentManager, signatureManager, eventBus, pdfDocument, pageColors, highlightColors, enableHighlightFloatingButton, enableUpdatedAddImage, enableNewAltTextWhenAddingImage, mlManager, editorUndoBar, supportsPinchToZoom) {
+  constructor(container, viewer, viewerAlert, altTextManager, commentManager, signatureManager, eventBus, pdfDocument, pageColors, highlightColors, enableHighlightFloatingButton, enableUpdatedAddImage, enableNewAltTextWhenAddingImage, mlManager, editorUndoBar, supportsPinchToZoom, keepToolbarInPage) {
     const signal = this._signal = this.#abortController.signal;
     this.#container = container;
     this.#viewer = viewer;
@@ -8852,6 +8865,7 @@ class AnnotationEditorUIManager {
     this.isShiftKeyDown = false;
     this._editorUndoBar = editorUndoBar || null;
     this._supportsPinchToZoom = supportsPinchToZoom !== false;
+    this._keepToolbarInPage = keepToolbarInPage === true;
     commentManager?.setSidebarUiManager(this);
   }
   destroy() {
@@ -10017,7 +10031,7 @@ class AnnotationEditorUIManager {
     this.#commandManager.undo();
     this.#dispatchUpdateStates({
       hasSomethingToUndo: this.#commandManager.hasSomethingToUndo(),
-      hasSomethingToRedo: true,
+      hasSomethingToRedo: this.#commandManager.hasSomethingToRedo(),
       isEmpty: this.#isEmpty()
     });
     this._editorUndoBar?.hide();
@@ -10025,7 +10039,7 @@ class AnnotationEditorUIManager {
   redo() {
     this.#commandManager.redo();
     this.#dispatchUpdateStates({
-      hasSomethingToUndo: true,
+      hasSomethingToUndo: this.#commandManager.hasSomethingToUndo(),
       hasSomethingToRedo: this.#commandManager.hasSomethingToRedo(),
       isEmpty: this.#isEmpty()
     });
@@ -10933,6 +10947,7 @@ class Comment {
 
 
 
+
 function preventDefault(evt) {
   evt.preventDefault();
 }
@@ -11604,6 +11619,29 @@ class AnnotationEditor {
     height *= pageHeight;
     x *= pageWidth;
     y *= pageHeight;
+    let tx = 0;
+    let ty = 0;
+    const toolbar = this._uiManager._keepToolbarInPage && this._editToolbar?.div;
+    if (toolbar?.offsetParent) {
+      const scale = this.parentScale;
+      const toolbarLeft = toolbar.offsetLeft + this.div.clientLeft;
+      const toolbarTop = toolbar.offsetTop + this.div.clientTop;
+      const left = Math.min(0, toolbarLeft) / scale;
+      const top = Math.min(0, toolbarTop) / scale;
+      const widthWithToolbar = width - left + Math.max(0, toolbarLeft + toolbar.offsetWidth - this.div.offsetWidth) / scale;
+      const heightWithToolbar = height - top + Math.max(0, toolbarTop + toolbar.offsetHeight - this.div.offsetHeight) / scale;
+      if (widthWithToolbar <= (rotation % 180 ? pageHeight : pageWidth)) {
+        width = widthWithToolbar;
+        tx = left;
+      }
+      if (heightWithToolbar <= (rotation % 180 ? pageWidth : pageHeight)) {
+        height = heightWithToolbar;
+        ty = top;
+      }
+      [tx, ty] = AnnotationEditor.#rotatePoint(tx, ty, rotation);
+      x += tx;
+      y += ty;
+    }
     if (this._mustFixPosition) {
       switch (rotation) {
         case 0:
@@ -11624,8 +11662,8 @@ class AnnotationEditor {
           break;
       }
     }
-    this.x = x /= pageWidth;
-    this.y = y /= pageHeight;
+    this.x = x = (x - tx) / pageWidth;
+    this.y = y = (y - ty) / pageHeight;
     const [bx, by] = this.getBaseTranslation();
     x += bx;
     y += by;
@@ -12706,13 +12744,20 @@ class AnnotationEditor {
     if (!this._editToolbar) {
       this.addEditToolbar().then(() => {
         if (this.div?.classList.contains("selectedEditor")) {
-          this._editToolbar?.show();
+          this.#showEditToolbar();
         }
       });
       return;
     }
-    this._editToolbar?.show();
+    this.#showEditToolbar();
     this.#altText?.toggleAltTextBadge(false);
+  }
+  #showEditToolbar() {
+    this._editToolbar?.show();
+    if (this._uiManager._keepToolbarInPage) {
+      this.fixAndSetPosition();
+      this._onTranslated();
+    }
   }
   focus() {
     if (this.div && !this.div.contains(document.activeElement)) {
@@ -13265,6 +13310,985 @@ class PrintAnnotationStorage extends AnnotationStorage {
   }
 }
 
+;// ./src/display/api_utils.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+function deprecated(details) {
+  console.log("Deprecated API usage: " + details);
+}
+function getUrlProp(val) {
+  if (val instanceof URL) {
+    return val;
+  }
+  if (typeof val === "string") {
+    if (isNodeJS) {
+      if (/^[a-z][a-z0-9\-+.]+:/i.test(val)) {
+        return new URL(val);
+      }
+      const url = process.getBuiltinModule("url");
+      return new URL(url.pathToFileURL(val));
+    }
+    const url = URL.parse(val, window.location);
+    if (url) {
+      return url;
+    }
+  }
+  throw new Error("Invalid PDF url data: " + "either string or URL-object is expected in the url property.");
+}
+function getDataProp(val) {
+  if (isNodeJS && typeof Buffer !== "undefined" && val instanceof Buffer) {
+    throw new Error("Please provide binary data as `Uint8Array`, rather than `Buffer`.");
+  }
+  if (val instanceof Uint8Array && val.byteLength === val.buffer.byteLength) {
+    return val;
+  }
+  if (typeof val === "string") {
+    return stringToBytes(val);
+  }
+  if (val instanceof ArrayBuffer || ArrayBuffer.isView(val) || typeof val === "object" && !isNaN(val?.length)) {
+    return new Uint8Array(val);
+  }
+  throw new Error("Invalid PDF binary data: either TypedArray, " + "string, or array-like object is expected in the data property.");
+}
+function getFactoryUrlProp(val) {
+  if (typeof val !== "string") {
+    return null;
+  }
+  if (val.endsWith("/")) {
+    return val;
+  }
+  throw new Error(`Invalid factory url: "${val}" must include trailing slash.`);
+}
+const isRefProxy = v => typeof v === "object" && Number.isInteger(v?.num) && v.num >= 0 && Number.isInteger(v?.gen) && v.gen >= 0;
+const isNameProxy = v => typeof v === "object" && typeof v?.name === "string";
+const isValidExplicitDest = _isValidExplicitDest.bind(null, isRefProxy, isNameProxy);
+function isSameOrigin(baseUrl, otherUrl) {
+  const base = URL.parse(baseUrl);
+  if (!base?.origin || base.origin === "null") {
+    return false;
+  }
+  const other = new URL(otherUrl, base);
+  return base.origin === other.origin;
+}
+function getWorkerSrc(src) {
+  if (!isSameOrigin(window.location, src)) {
+    const wrapper = `await import("${new URL(src, window.location).href}");`;
+    return URL.createObjectURL(new Blob([wrapper], {
+      type: "text/javascript"
+    }));
+  }
+  return src;
+}
+class LoopbackPort {
+  #listeners = new Map();
+  #deferred = Promise.resolve();
+  postMessage(obj, transfer) {
+    const event = {
+      data: structuredClone(obj, transfer ? {
+        transfer
+      } : null)
+    };
+    this.#deferred.then(() => {
+      for (const [listener] of this.#listeners) {
+        listener.call(this, event);
+      }
+    });
+  }
+  addEventListener(name, listener, options = null) {
+    let rmAbort = null;
+    if (options?.signal instanceof AbortSignal) {
+      const {
+        signal
+      } = options;
+      if (signal.aborted) {
+        warn("LoopbackPort - cannot use an `aborted` signal.");
+        return;
+      }
+      const onAbort = () => this.removeEventListener(name, listener);
+      rmAbort = () => signal.removeEventListener("abort", onAbort);
+      signal.addEventListener("abort", onAbort);
+    }
+    this.#listeners.set(listener, rmAbort);
+  }
+  removeEventListener(name, listener) {
+    const rmAbort = this.#listeners.get(listener);
+    rmAbort?.();
+    this.#listeners.delete(listener);
+  }
+  terminate() {
+    for (const [, rmAbort] of this.#listeners) {
+      rmAbort?.();
+    }
+    this.#listeners.clear();
+  }
+}
+class StatTimer {
+  #started = new Map();
+  times = [];
+  time(name) {
+    if (this.#started.has(name)) {
+      warn(`Timer is already running for ${name}`);
+    }
+    this.#started.set(name, Date.now());
+  }
+  timeEnd(name) {
+    if (!this.#started.has(name)) {
+      warn(`Timer has not been started for ${name}`);
+    }
+    this.times.push({
+      name,
+      start: this.#started.get(name),
+      end: Date.now()
+    });
+    this.#started.delete(name);
+  }
+  toString() {
+    const longest = Math.max(...this.times.map(t => t.name.length));
+    return this.times.map(t => `${t.name.padEnd(longest)} ${t.end - t.start}ms\n`).join("");
+  }
+}
+
+;// ./src/display/webgpu.js
+
+const MESH_WGSL = `
+struct Uniforms {
+  offsetX      : f32,
+  offsetY      : f32,
+  scaleX       : f32,
+  scaleY       : f32,
+  paddedWidth  : f32,
+  paddedHeight : f32,
+  borderSize   : f32,
+  _pad         : f32,
+};
+
+@group(0) @binding(0) var<uniform> u : Uniforms;
+
+struct VertexInput {
+  @location(0) position : vec2<f32>,
+  @location(1) color    : vec4<f32>,
+};
+
+struct VertexOutput {
+  @builtin(position) position : vec4<f32>,
+  @location(0)       color    : vec3<f32>,
+};
+
+@vertex
+fn vs_main(in : VertexInput) -> VertexOutput {
+  var out : VertexOutput;
+  let cx = (in.position.x + u.offsetX) * u.scaleX;
+  let cy = (in.position.y + u.offsetY) * u.scaleY;
+  out.position = vec4<f32>(
+    ((cx + u.borderSize) / u.paddedWidth) * 2.0 - 1.0,
+    1.0 - ((cy + u.borderSize) / u.paddedHeight) * 2.0,
+    0.0,
+    1.0
+  );
+  out.color = in.color.rgb;
+  return out;
+}
+
+@fragment
+fn fs_main(in : VertexOutput) -> @location(0) vec4<f32> {
+  return vec4<f32>(in.color, 1.0);
+}
+`;
+class WebGPU {
+  #initPromise = null;
+  #device = null;
+  #meshPipeline = null;
+  #preferredFormat = null;
+  async #initGPU() {
+    if (!globalThis.navigator?.gpu) {
+      return false;
+    }
+    try {
+      const adapter = await navigator.gpu.requestAdapter();
+      if (!adapter) {
+        return false;
+      }
+      this.#preferredFormat = navigator.gpu.getPreferredCanvasFormat();
+      this.#device = await adapter.requestDevice();
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  init() {
+    return this.#initPromise ||= this.#initGPU();
+  }
+  get isReady() {
+    return this.#device !== null;
+  }
+  loadMeshShader() {
+    if (!this.#device || this.#meshPipeline) {
+      return;
+    }
+    const shaderModule = this.#device.createShaderModule({
+      code: MESH_WGSL
+    });
+    this.#meshPipeline = this.#device.createRenderPipeline({
+      layout: "auto",
+      vertex: {
+        module: shaderModule,
+        entryPoint: "vs_main",
+        buffers: [{
+          arrayStride: 2 * 4,
+          attributes: [{
+            shaderLocation: 0,
+            offset: 0,
+            format: "float32x2"
+          }]
+        }, {
+          arrayStride: 4,
+          attributes: [{
+            shaderLocation: 1,
+            offset: 0,
+            format: "unorm8x4"
+          }]
+        }]
+      },
+      fragment: {
+        module: shaderModule,
+        entryPoint: "fs_main",
+        targets: [{
+          format: this.#preferredFormat
+        }]
+      },
+      primitive: {
+        topology: "triangle-list"
+      }
+    });
+  }
+  draw(posData, colData, vertexCount, context, backgroundColor, paddedWidth, paddedHeight, borderSize) {
+    this.loadMeshShader();
+    const device = this.#device;
+    const {
+      offsetX,
+      offsetY,
+      scaleX,
+      scaleY
+    } = context;
+    const posBuffer = device.createBuffer({
+      size: Math.max(posData.byteLength, 4),
+      usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
+    });
+    if (posData.byteLength > 0) {
+      device.queue.writeBuffer(posBuffer, 0, posData);
+    }
+    const colBuffer = device.createBuffer({
+      size: Math.max(colData.byteLength, 4),
+      usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
+    });
+    if (colData.byteLength > 0) {
+      device.queue.writeBuffer(colBuffer, 0, colData);
+    }
+    const uniformBuffer = device.createBuffer({
+      size: 8 * 4,
+      usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
+    });
+    device.queue.writeBuffer(uniformBuffer, 0, new Float32Array([offsetX, offsetY, scaleX, scaleY, paddedWidth, paddedHeight, borderSize, 0]));
+    const bindGroup = device.createBindGroup({
+      layout: this.#meshPipeline.getBindGroupLayout(0),
+      entries: [{
+        binding: 0,
+        resource: {
+          buffer: uniformBuffer
+        }
+      }]
+    });
+    const offscreen = new OffscreenCanvas(paddedWidth, paddedHeight);
+    const gpuCtx = offscreen.getContext("webgpu");
+    gpuCtx.configure({
+      device,
+      format: this.#preferredFormat,
+      alphaMode: backgroundColor ? "opaque" : "premultiplied"
+    });
+    const clearValue = backgroundColor ? {
+      r: backgroundColor[0] / 255,
+      g: backgroundColor[1] / 255,
+      b: backgroundColor[2] / 255,
+      a: 1
+    } : {
+      r: 0,
+      g: 0,
+      b: 0,
+      a: 0
+    };
+    const commandEncoder = device.createCommandEncoder();
+    const renderPass = commandEncoder.beginRenderPass({
+      colorAttachments: [{
+        view: gpuCtx.getCurrentTexture().createView(),
+        clearValue,
+        loadOp: "clear",
+        storeOp: "store"
+      }]
+    });
+    if (vertexCount > 0) {
+      renderPass.setPipeline(this.#meshPipeline);
+      renderPass.setBindGroup(0, bindGroup);
+      renderPass.setVertexBuffer(0, posBuffer);
+      renderPass.setVertexBuffer(1, colBuffer);
+      renderPass.draw(vertexCount);
+    }
+    renderPass.end();
+    device.queue.submit([commandEncoder.finish()]);
+    posBuffer.destroy();
+    colBuffer.destroy();
+    uniformBuffer.destroy();
+    return offscreen.transferToImageBitmap();
+  }
+}
+const _webGPU = new WebGPU();
+function initGPU() {
+  return _webGPU.init();
+}
+function isGPUReady() {
+  return _webGPU.isReady;
+}
+function loadMeshShader() {
+  _webGPU.loadMeshShader();
+}
+function drawMeshWithGPU(posData, colData, vertexCount, context, backgroundColor, paddedWidth, paddedHeight, borderSize) {
+  return _webGPU.draw(posData, colData, vertexCount, context, backgroundColor, paddedWidth, paddedHeight, borderSize);
+}
+
+;// ./node_modules/core-js/modules/es.promise.try.js
+es_promise_try_namespaceFn();
+
+;// ./src/shared/message_handler.js
+
+
+
+
+const CallbackKind = {
+  DATA: 1,
+  ERROR: 2
+};
+const StreamKind = {
+  CANCEL: 1,
+  CANCEL_COMPLETE: 2,
+  CLOSE: 3,
+  ENQUEUE: 4,
+  ERROR: 5,
+  PULL: 6,
+  PULL_COMPLETE: 7,
+  START_COMPLETE: 8
+};
+function onFn() {}
+function wrapReason(ex) {
+  if (ex instanceof AbortException || ex instanceof InvalidPDFException || ex instanceof PasswordException || ex instanceof ResponseException || ex instanceof UnknownErrorException) {
+    return ex;
+  }
+  if (typeof ex !== "object" || ex === null) {
+    return new UnknownErrorException(String(ex), String(ex));
+  }
+  switch (ex.name) {
+    case "AbortException":
+      return new AbortException(ex.message);
+    case "InvalidPDFException":
+      return new InvalidPDFException(ex.message);
+    case "PasswordException":
+      return new PasswordException(ex.message, ex.code);
+    case "ResponseException":
+      return new ResponseException(ex.message, ex.status, ex.missing);
+    case "UnknownErrorException":
+      return new UnknownErrorException(ex.message, ex.details);
+  }
+  return new UnknownErrorException(ex.message, ex.toString());
+}
+class MessageHandler {
+  #actions = new Map();
+  #callbackCapabilities = new Map();
+  #callbackId = 1;
+  #comObj;
+  #messageAC = new AbortController();
+  #sourceName;
+  #streamControllers = new Map();
+  #streamId = 1;
+  #streamSinks = new Map();
+  #targetName;
+  constructor(sourceName, targetName, comObj) {
+    this.#sourceName = sourceName;
+    this.#targetName = targetName;
+    this.#comObj = comObj;
+    comObj.addEventListener("message", this.#onMessage.bind(this), {
+      signal: this.#messageAC.signal
+    });
+  }
+  #onMessage({
+    data
+  }) {
+    if (data.targetName !== this.#sourceName) {
+      return;
+    }
+    if (data.stream) {
+      this.#processStreamMessage(data);
+      return;
+    }
+    if (data.callback) {
+      const {
+        callbackId,
+        callback
+      } = data;
+      const capability = this.#callbackCapabilities.get(callbackId);
+      if (!capability) {
+        throw new Error(`Cannot resolve callback ${callbackId}`);
+      }
+      this.#callbackCapabilities.delete(callbackId);
+      if (callback === CallbackKind.DATA) {
+        capability.resolve(data.data);
+      } else if (callback === CallbackKind.ERROR) {
+        capability.reject(wrapReason(data.reason));
+      } else {
+        throw new Error("Unexpected callback case");
+      }
+      return;
+    }
+    const action = this.#actions.get(data.action);
+    if (!action) {
+      throw new Error(`Unknown action from worker: ${data.action}`);
+    }
+    if (data.callbackId) {
+      const sourceName = this.#sourceName,
+        targetName = data.sourceName,
+        comObj = this.#comObj;
+      Promise.try(action, data.data).then(result => {
+        comObj.postMessage({
+          sourceName,
+          targetName,
+          callback: CallbackKind.DATA,
+          callbackId: data.callbackId,
+          data: result
+        });
+      }).catch(reason => {
+        comObj.postMessage({
+          sourceName,
+          targetName,
+          callback: CallbackKind.ERROR,
+          callbackId: data.callbackId,
+          reason: wrapReason(reason)
+        });
+      });
+      return;
+    }
+    if (data.streamId) {
+      this.#createStreamSink(data);
+      return;
+    }
+    action(data.data);
+  }
+  on(actionName, handler) {
+    const ah = this.#actions;
+    if (ah.has(actionName)) {
+      throw new Error(`There is already a "${actionName}" handler.`);
+    }
+    ah.set(actionName, handler);
+  }
+  send(actionName, data, transfers) {
+    this.#comObj.postMessage({
+      sourceName: this.#sourceName,
+      targetName: this.#targetName,
+      action: actionName,
+      data
+    }, transfers);
+  }
+  sendWithPromise(actionName, data, transfers) {
+    const callbackId = this.#callbackId++,
+      capability = Promise.withResolvers();
+    this.#callbackCapabilities.set(callbackId, capability);
+    try {
+      this.#comObj.postMessage({
+        sourceName: this.#sourceName,
+        targetName: this.#targetName,
+        action: actionName,
+        callbackId,
+        data
+      }, transfers);
+    } catch (ex) {
+      capability.reject(ex);
+    }
+    return capability.promise;
+  }
+  sendWithStream(actionName, data, queueingStrategy, transfers) {
+    const streamId = this.#streamId++,
+      sourceName = this.#sourceName,
+      targetName = this.#targetName,
+      comObj = this.#comObj;
+    return new ReadableStream({
+      start: controller => {
+        const startCapability = Promise.withResolvers();
+        this.#streamControllers.set(streamId, {
+          controller,
+          startCall: startCapability,
+          pullCall: null,
+          cancelCall: null,
+          isClosed: false
+        });
+        comObj.postMessage({
+          sourceName,
+          targetName,
+          action: actionName,
+          streamId,
+          data,
+          desiredSize: controller.desiredSize
+        }, transfers);
+        return startCapability.promise;
+      },
+      pull: controller => {
+        const pullCapability = Promise.withResolvers();
+        this.#streamControllers.get(streamId).pullCall = pullCapability;
+        comObj.postMessage({
+          sourceName,
+          targetName,
+          stream: StreamKind.PULL,
+          streamId,
+          desiredSize: controller.desiredSize
+        });
+        return pullCapability.promise;
+      },
+      cancel: reason => {
+        util_assert(reason instanceof Error, "cancel must have a valid reason");
+        const cancelCapability = Promise.withResolvers();
+        this.#streamControllers.get(streamId).cancelCall = cancelCapability;
+        this.#streamControllers.get(streamId).isClosed = true;
+        comObj.postMessage({
+          sourceName,
+          targetName,
+          stream: StreamKind.CANCEL,
+          streamId,
+          reason: wrapReason(reason)
+        });
+        return cancelCapability.promise;
+      }
+    }, queueingStrategy);
+  }
+  #createStreamSink(data) {
+    const streamId = data.streamId,
+      sourceName = this.#sourceName,
+      targetName = data.sourceName,
+      comObj = this.#comObj;
+    const streamSinks = this.#streamSinks,
+      action = this.#actions.get(data.action);
+    const streamSink = {
+      enqueue(chunk, size = 1, transfers) {
+        if (this.isCancelled) {
+          return;
+        }
+        const lastDesiredSize = this.desiredSize;
+        this.desiredSize -= size;
+        if (lastDesiredSize > 0 && this.desiredSize <= 0) {
+          this.sinkCapability = Promise.withResolvers();
+          this.ready = this.sinkCapability.promise;
+        }
+        comObj.postMessage({
+          sourceName,
+          targetName,
+          stream: StreamKind.ENQUEUE,
+          streamId,
+          chunk
+        }, transfers);
+      },
+      close() {
+        if (this.isCancelled) {
+          return;
+        }
+        this.isCancelled = true;
+        comObj.postMessage({
+          sourceName,
+          targetName,
+          stream: StreamKind.CLOSE,
+          streamId
+        });
+        streamSinks.delete(streamId);
+      },
+      error(reason) {
+        if (this.isCancelled) {
+          return;
+        }
+        this.isCancelled = true;
+        comObj.postMessage({
+          sourceName,
+          targetName,
+          stream: StreamKind.ERROR,
+          streamId,
+          reason: wrapReason(reason)
+        });
+      },
+      sinkCapability: Promise.withResolvers(),
+      onPull: null,
+      onCancel: null,
+      isCancelled: false,
+      desiredSize: data.desiredSize,
+      ready: null
+    };
+    streamSink.sinkCapability.resolve();
+    streamSink.ready = streamSink.sinkCapability.promise;
+    streamSinks.set(streamId, streamSink);
+    Promise.try(action, data.data, streamSink).then(() => {
+      comObj.postMessage({
+        sourceName,
+        targetName,
+        stream: StreamKind.START_COMPLETE,
+        streamId,
+        success: true
+      });
+    }, reason => {
+      comObj.postMessage({
+        sourceName,
+        targetName,
+        stream: StreamKind.START_COMPLETE,
+        streamId,
+        reason: wrapReason(reason)
+      });
+    });
+  }
+  #processStreamMessage(data) {
+    const streamId = data.streamId,
+      sourceName = this.#sourceName,
+      targetName = data.sourceName,
+      comObj = this.#comObj;
+    const streamController = this.#streamControllers.get(streamId),
+      streamSink = this.#streamSinks.get(streamId);
+    switch (data.stream) {
+      case StreamKind.START_COMPLETE:
+        if (data.success) {
+          streamController.startCall.resolve();
+        } else {
+          streamController.startCall.reject(wrapReason(data.reason));
+        }
+        break;
+      case StreamKind.PULL_COMPLETE:
+        if (data.success) {
+          streamController.pullCall.resolve();
+        } else {
+          streamController.pullCall.reject(wrapReason(data.reason));
+        }
+        break;
+      case StreamKind.PULL:
+        if (!streamSink) {
+          comObj.postMessage({
+            sourceName,
+            targetName,
+            stream: StreamKind.PULL_COMPLETE,
+            streamId,
+            success: true
+          });
+          break;
+        }
+        if (streamSink.desiredSize <= 0 && data.desiredSize > 0) {
+          streamSink.sinkCapability.resolve();
+        }
+        streamSink.desiredSize = data.desiredSize;
+        Promise.try(streamSink.onPull || onFn).then(() => {
+          comObj.postMessage({
+            sourceName,
+            targetName,
+            stream: StreamKind.PULL_COMPLETE,
+            streamId,
+            success: true
+          });
+        }, reason => {
+          comObj.postMessage({
+            sourceName,
+            targetName,
+            stream: StreamKind.PULL_COMPLETE,
+            streamId,
+            reason: wrapReason(reason)
+          });
+        });
+        break;
+      case StreamKind.ENQUEUE:
+        util_assert(streamController, "enqueue should have stream controller");
+        if (streamController.isClosed) {
+          break;
+        }
+        streamController.controller.enqueue(data.chunk);
+        break;
+      case StreamKind.CLOSE:
+        util_assert(streamController, "close should have stream controller");
+        if (streamController.isClosed) {
+          break;
+        }
+        streamController.isClosed = true;
+        streamController.controller.close();
+        this.#deleteStreamController(streamController, streamId);
+        break;
+      case StreamKind.ERROR:
+        util_assert(streamController, "error should have stream controller");
+        streamController.controller.error(wrapReason(data.reason));
+        this.#deleteStreamController(streamController, streamId);
+        break;
+      case StreamKind.CANCEL_COMPLETE:
+        if (data.success) {
+          streamController.cancelCall.resolve();
+        } else {
+          streamController.cancelCall.reject(wrapReason(data.reason));
+        }
+        this.#deleteStreamController(streamController, streamId);
+        break;
+      case StreamKind.CANCEL:
+        if (!streamSink) {
+          break;
+        }
+        const dataReason = wrapReason(data.reason);
+        Promise.try(streamSink.onCancel || onFn, dataReason).then(() => {
+          comObj.postMessage({
+            sourceName,
+            targetName,
+            stream: StreamKind.CANCEL_COMPLETE,
+            streamId,
+            success: true
+          });
+        }, reason => {
+          comObj.postMessage({
+            sourceName,
+            targetName,
+            stream: StreamKind.CANCEL_COMPLETE,
+            streamId,
+            reason: wrapReason(reason)
+          });
+        });
+        streamSink.sinkCapability.reject(dataReason);
+        streamSink.isCancelled = true;
+        this.#streamSinks.delete(streamId);
+        break;
+      default:
+        throw new Error("Unexpected stream case");
+    }
+  }
+  async #deleteStreamController(streamController, streamId) {
+    await Promise.allSettled([streamController.startCall?.promise, streamController.pullCall?.promise, streamController.cancelCall?.promise]);
+    this.#streamControllers.delete(streamId);
+  }
+  destroy() {
+    this.#messageAC?.abort();
+    this.#messageAC = null;
+  }
+  get destroyed() {
+    return !this.#messageAC;
+  }
+}
+
+;// ./src/display/binary_data_factory.js
+
+
+
+
+
+
+
+class BaseBinaryDataFactory {
+  #errorStr = Object.freeze({
+    cMapUrl: "CMap",
+    standardFontDataUrl: "font",
+    wasmUrl: "wasm"
+  });
+  constructor({
+    cMapUrl = null,
+    standardFontDataUrl = null,
+    wasmUrl = null
+  }) {
+    this.cMapUrl = cMapUrl;
+    this.standardFontDataUrl = standardFontDataUrl;
+    this.wasmUrl = wasmUrl;
+  }
+  async fetch({
+    kind,
+    filename
+  }) {
+    switch (kind) {
+      case "cMapUrl":
+      case "standardFontDataUrl":
+      case "wasmUrl":
+        break;
+      default:
+        unreachable(`Not implemented: ${kind}`);
+    }
+    const baseUrl = this[kind];
+    if (!baseUrl) {
+      throw new Error(`Ensure that the \`${kind}\` API parameter is provided.`);
+    }
+    const url = `${baseUrl}${filename}`;
+    return this._fetch(url, kind).catch(reason => {
+      throw new Error(`Unable to load ${this.#errorStr[kind]} data at: ${url}`);
+    });
+  }
+  async _fetch(url, kind) {
+    unreachable("Abstract method `_fetch` called.");
+  }
+}
+class DOMBinaryDataFactory extends BaseBinaryDataFactory {
+  async _fetch(url, kind) {
+    const type = kind === "cMapUrl" && !url.endsWith(".bcmap") ? "text" : "bytes";
+    const data = await fetchData(url, type);
+    return data instanceof Uint8Array ? data : stringToBytes(data);
+  }
+}
+
+;// ./src/display/canvas_factory.js
+
+class BaseCanvasFactory {
+  #enableHWA = false;
+  constructor({
+    enableHWA = false
+  }) {
+    this.#enableHWA = enableHWA;
+  }
+  create(width, height) {
+    if (width <= 0 || height <= 0) {
+      throw new Error("Invalid canvas size");
+    }
+    const canvas = this._createCanvas(width, height);
+    return {
+      canvas,
+      context: canvas.getContext("2d", {
+        willReadFrequently: !this.#enableHWA
+      })
+    };
+  }
+  reset({
+    canvas
+  }, width, height) {
+    if (!canvas) {
+      throw new Error("Canvas is not specified");
+    }
+    if (width <= 0 || height <= 0) {
+      throw new Error("Invalid canvas size");
+    }
+    canvas.width = width;
+    canvas.height = height;
+  }
+  destroy(canvasAndContext) {
+    const {
+      canvas
+    } = canvasAndContext;
+    if (!canvas) {
+      throw new Error("Canvas is not specified");
+    }
+    canvas.width = canvas.height = 0;
+    canvasAndContext.canvas = null;
+    canvasAndContext.context = null;
+  }
+  getNoAlphaContext(canvas) {
+    return canvas.getContext("2d", {
+      alpha: false,
+      willReadFrequently: !this.#enableHWA
+    });
+  }
+  _createCanvas(width, height) {
+    unreachable("Abstract method `_createCanvas` called.");
+  }
+}
+
+;// ./src/display/filter_factory.js
+
+class BaseFilterFactory {
+  addFilter(maps) {
+    return "none";
+  }
+  addHCMFilter(fgColor, bgColor) {
+    return "none";
+  }
+  addAlphaFilter(map) {
+    return "none";
+  }
+  addLuminosityFilter(map) {
+    return "none";
+  }
+  addKnockoutFilter(alpha = 0) {
+    return "none";
+  }
+  addHighlightHCMFilter(filterName, fgColor, bgColor, newFgColor, newBgColor) {
+    return "none";
+  }
+  addSelectionHCMFilter(fgColor, bgColor) {
+    return "none";
+  }
+  addSelectionFilter() {
+    return "none";
+  }
+  createSelectionStyle(pageColors = null) {
+    return null;
+  }
+  destroy(keepHCM = false) {}
+}
+
+;// ./src/display/node_utils.js
+
+
+
+
+
+
+
+
+
+if (isNodeJS) {
+  let canvas;
+  try {
+    const require = process.getBuiltinModule("module").createRequire(import.meta.url);
+    try {
+      canvas = require("@napi-rs/canvas");
+    } catch (ex) {
+      warn(`Cannot load "@napi-rs/canvas" package: "${ex}".`);
+    }
+  } catch (ex) {
+    warn(`Cannot access the \`require\` function: "${ex}".`);
+  }
+  if (!globalThis.DOMMatrix) {
+    if (canvas?.DOMMatrix) {
+      globalThis.DOMMatrix = canvas.DOMMatrix;
+    } else {
+      warn("Cannot polyfill `DOMMatrix`, rendering may be broken.");
+    }
+  }
+  if (!globalThis.Path2D) {
+    if (canvas?.Path2D) {
+      globalThis.Path2D = canvas.Path2D;
+    } else {
+      warn("Cannot polyfill `Path2D`, rendering may be broken.");
+    }
+  }
+  if (!globalThis.navigator?.language) {
+    globalThis.navigator = {
+      language: "en-US",
+      platform: "",
+      userAgent: ""
+    };
+  }
+}
+async function node_utils_fetchData(url) {
+  const fs = process.getBuiltinModule("fs/promises");
+  const data = await fs.readFile(url);
+  return new Uint8Array(data);
+}
+class NodeFilterFactory extends BaseFilterFactory {}
+class NodeCanvasFactory extends BaseCanvasFactory {
+  _createCanvas(width, height) {
+    const require = process.getBuiltinModule("module").createRequire(import.meta.url);
+    const canvas = require("@napi-rs/canvas");
+    return canvas.createCanvas(width, height);
+  }
+}
+class NodeBinaryDataFactory extends BaseBinaryDataFactory {
+  async _fetch(url, kind) {
+    return node_utils_fetchData(url);
+  }
+}
+
 ;// ./node_modules/core-js/modules/es.iterator.for-each.js
 es_iterator_for_each_namespaceFn();
 
@@ -13333,6 +14357,12 @@ class BBoxReader {
   constructor(bboxes, coords) {
     this.#bboxes = bboxes;
     this.#coords = coords;
+  }
+  static fromBuffer(buffer) {
+    return new BBoxReader(new Uint32Array(buffer), new Uint8ClampedArray(buffer));
+  }
+  get buffer() {
+    return this.#bboxes.buffer;
   }
   get length() {
     return this.#bboxes.length;
@@ -14042,1825 +15072,22 @@ class CanvasImagesTracker {
     return this.#coords.subarray(0, this.#count * 6);
   }
 }
-
-;// ./src/shared/css_utils.js
-const CONTROL_CHAR_REGEXP = /\p{Cc}/u;
-function isCSSString(str) {
-  const quote = str[0];
-  if (str.length < 2 || quote !== `"` && quote !== `'` || str.at(-1) !== quote) {
-    return false;
-  }
-  const end = str.length - 1;
-  for (let i = 1; i < end; i++) {
-    const char = str[i];
-    if (char === quote || CONTROL_CHAR_REGEXP.test(char)) {
-      return false;
-    }
-    if (char === "\\") {
-      if (++i >= end || CONTROL_CHAR_REGEXP.test(str[i])) {
-        return false;
-      }
-    }
-  }
-  return true;
-}
-function serializeFontFamily(fontFamily) {
-  if (isCSSString(fontFamily)) {
-    return fontFamily;
-  }
-  const escaped = fontFamily.replaceAll(/["\\\p{Cc}]/gu, char => char === `"` || char === "\\" ? `\\${char}` : `\\${char.codePointAt(0).toString(16)} `);
-  return `"${escaped}"`;
-}
-
-;// ./src/display/font_loader.js
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class FontLoader {
-  #nativeFontFaces = new Set();
-  #systemFonts = new Set();
-  #styleSheet = null;
-  constructor({
-    ownerDocument = globalThis.document,
-    styleElement = null
-  }) {
-    this._document = ownerDocument;
-    this.styleElement = null;
-    this.loadingRequests = [];
-    this.loadTestFontId = 0;
-  }
-  addNativeFontFace(nativeFontFace) {
-    this.#nativeFontFaces.add(nativeFontFace);
-    this._document.fonts.add(nativeFontFace);
-  }
-  removeNativeFontFace(nativeFontFace) {
-    this.#nativeFontFaces.delete(nativeFontFace);
-    this._document.fonts.delete(nativeFontFace);
-  }
-  insertRule(rule) {
-    const styleSheet = this.#getStyleSheet();
-    styleSheet.insertRule(rule, styleSheet.cssRules.length);
-  }
-  #getStyleSheet() {
-    if (this.#styleSheet) {
-      return this.#styleSheet;
-    }
-    const StyleSheet = this._document.defaultView?.CSSStyleSheet || globalThis.CSSStyleSheet;
-    if (!this.styleElement && StyleSheet) {
-      const {
-        adoptedStyleSheets
-      } = this._document;
-      if (adoptedStyleSheets) {
-        const styleSheet = new StyleSheet();
-        adoptedStyleSheets.push(styleSheet);
-        return this.#styleSheet = styleSheet;
-      }
-    }
-    if (!this.styleElement) {
-      this.styleElement = this._document.createElement("style");
-      this._document.documentElement.getElementsByTagName("head")[0].append(this.styleElement);
-    }
-    return this.#styleSheet = this.styleElement.sheet;
-  }
-  clear() {
-    for (const nativeFontFace of this.#nativeFontFaces) {
-      this._document.fonts.delete(nativeFontFace);
-    }
-    this.#nativeFontFaces.clear();
-    this.#systemFonts.clear();
-    if (this.#styleSheet) {
-      const {
-        adoptedStyleSheets
-      } = this._document;
-      if (adoptedStyleSheets?.includes(this.#styleSheet)) {
-        this._document.adoptedStyleSheets = adoptedStyleSheets.filter(styleSheet => styleSheet !== this.#styleSheet);
-      }
-      this.#styleSheet = null;
-    }
-    this.styleElement?.remove();
-    this.styleElement = null;
-  }
-  async loadSystemFont({
-    systemFontInfo: info,
-    disableFontFace,
-    _inspectFont
-  }) {
-    if (!info || this.#systemFonts.has(info.loadedName)) {
-      return;
-    }
-    util_assert(!disableFontFace, "loadSystemFont shouldn't be called when `disableFontFace` is set.");
-    if (this.isFontLoadingAPISupported) {
-      const {
-        loadedName,
-        src,
-        style
-      } = info;
-      const fontFace = new FontFace(loadedName, src, style);
-      this.addNativeFontFace(fontFace);
-      try {
-        await fontFace.load();
-        this.#systemFonts.add(loadedName);
-        _inspectFont?.(info);
-      } catch {
-        warn(`Cannot load system font: ${info.baseFontName}, installing it could help to improve PDF rendering.`);
-        this.removeNativeFontFace(fontFace);
-      }
-      return;
-    }
-    unreachable("Not implemented: loadSystemFont without the Font Loading API.");
-  }
-  async bind(font) {
-    if (font.attached || font.missingFile && !font.systemFontInfo) {
-      return;
-    }
-    font.attached = true;
-    if (font.systemFontInfo) {
-      await this.loadSystemFont(font);
-      return;
-    }
-    if (this.isFontLoadingAPISupported) {
-      const nativeFontFace = font.createNativeFontFace();
-      if (nativeFontFace) {
-        this.addNativeFontFace(nativeFontFace);
-        try {
-          await nativeFontFace.loaded;
-        } catch (ex) {
-          warn(`Failed to load font '${nativeFontFace.family}': '${ex}'.`);
-          font.disableFontFace = true;
-          throw ex;
-        }
-      }
-      return;
-    }
-    const rule = font.createFontFaceRule();
-    if (rule) {
-      this.insertRule(rule);
-      if (this.isSyncFontLoadingSupported) {
-        return;
-      }
-      await this.#testFontLoaded(font);
-    }
-  }
-  get isFontLoadingAPISupported() {
-    return util_shadow(this, "isFontLoadingAPISupported", !!this._document?.fonts);
-  }
-  get isSyncFontLoadingSupported() {
-    return util_shadow(this, "isSyncFontLoadingSupported", isNodeJS || FeatureTest.platform.isFirefox);
-  }
-  #testFontLoaded(font) {
-    function completeRequest() {
-      util_assert(!request.done, "completeRequest() cannot be called twice.");
-      request.done = true;
-      while (loadingRequests.length > 0 && loadingRequests[0].done) {
-        const otherRequest = loadingRequests.shift();
-        setTimeout(otherRequest.resolve, 0);
-      }
-    }
-    const {
-      loadingRequests
-    } = this;
-    const {
-      promise,
-      resolve
-    } = Promise.withResolvers();
-    const request = {
-      done: false,
-      resolve
-    };
-    loadingRequests.push(request);
-    this._loadTestFont ??= atob("T1RUTwALAIAAAwAwQ0ZGIDHtZg4AAAOYAAAAgUZGVE1lkzZwAAAEHAAAABxHREVGABQA" + "FQAABDgAAAAeT1MvMlYNYwkAAAEgAAAAYGNtYXABDQLUAAACNAAAAUJoZWFk/xVFDQAA" + "ALwAAAA2aGhlYQdkA+oAAAD0AAAAJGhtdHgD6AAAAAAEWAAAAAZtYXhwAAJQAAAAARgA" + "AAAGbmFtZVjmdH4AAAGAAAAAsXBvc3T/hgAzAAADeAAAACAAAQAAAAEAALZRFsRfDzz1" + "AAsD6AAAAADOBOTLAAAAAM4KHDwAAAAAA+gDIQAAAAgAAgAAAAAAAAABAAADIQAAAFoD" + "6AAAAAAD6AABAAAAAAAAAAAAAAAAAAAAAQAAUAAAAgAAAAQD6AH0AAUAAAKKArwAAACM" + "AooCvAAAAeAAMQECAAACAAYJAAAAAAAAAAAAAQAAAAAAAAAAAAAAAFBmRWQAwAAuAC4D" + "IP84AFoDIQAAAAAAAQAAAAAAAAAAACAAIAABAAAADgCuAAEAAAAAAAAAAQAAAAEAAAAA" + "AAEAAQAAAAEAAAAAAAIAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAQAAQAAAAEAAAAAAAUA" + "AQAAAAEAAAAAAAYAAQAAAAMAAQQJAAAAAgABAAMAAQQJAAEAAgABAAMAAQQJAAIAAgAB" + "AAMAAQQJAAMAAgABAAMAAQQJAAQAAgABAAMAAQQJAAUAAgABAAMAAQQJAAYAAgABWABY" + "AAAAAAAAAwAAAAMAAAAcAAEAAAAAADwAAwABAAAAHAAEACAAAAAEAAQAAQAAAC7//wAA" + "AC7////TAAEAAAAAAAABBgAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + "AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAD/gwAyAAAAAQAAAAAAAAAAAAAAAAAA" + "AAABAAQEAAEBAQJYAAEBASH4DwD4GwHEAvgcA/gXBIwMAYuL+nz5tQXkD5j3CBLnEQAC" + "AQEBIVhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYAAABAQAADwACAQEEE/t3" + "Dov6fAH6fAT+fPp8+nwHDosMCvm1Cvm1DAz6fBQAAAAAAAABAAAAAMmJbzEAAAAAzgTj" + "FQAAAADOBOQpAAEAAAAAAAAADAAUAAQAAAABAAAAAgABAAAAAAAAAAAD6AAAAAAAAA==");
-    function int32(data, offset) {
-      return data.charCodeAt(offset) << 24 | data.charCodeAt(offset + 1) << 16 | data.charCodeAt(offset + 2) << 8 | data.charCodeAt(offset + 3) & 0xff;
-    }
-    function string32(value) {
-      return String.fromCharCode(value >> 24 & 0xff, value >> 16 & 0xff, value >> 8 & 0xff, value & 0xff);
-    }
-    function spliceString(s, offset, remove, insert) {
-      const chunk1 = s.substring(0, offset);
-      const chunk2 = s.substring(offset + remove);
-      return chunk1 + insert + chunk2;
-    }
-    let i, ii;
-    const canvas = this._document.createElement("canvas");
-    canvas.width = 1;
-    canvas.height = 1;
-    const ctx = canvas.getContext("2d");
-    let called = 0;
-    function isFontReady(name, callback) {
-      if (++called > 30) {
-        warn("Load test font never loaded.");
-        callback();
-        return;
-      }
-      ctx.font = "30px " + name;
-      ctx.fillText(".", 0, 20);
-      const imageData = ctx.getImageData(0, 0, 1, 1);
-      if (imageData.data[3] > 0) {
-        callback();
-        return;
-      }
-      setTimeout(isFontReady.bind(null, name, callback));
-    }
-    const loadTestFontId = `lt${Date.now()}${this.loadTestFontId++}`;
-    let data = this._loadTestFont;
-    const COMMENT_OFFSET = 976;
-    data = spliceString(data, COMMENT_OFFSET, loadTestFontId.length, loadTestFontId);
-    const CFF_CHECKSUM_OFFSET = 16;
-    const XXXX_VALUE = 0x58585858;
-    let checksum = int32(data, CFF_CHECKSUM_OFFSET);
-    for (i = 0, ii = loadTestFontId.length - 3; i < ii; i += 4) {
-      checksum = checksum - XXXX_VALUE + int32(loadTestFontId, i) | 0;
-    }
-    if (i < loadTestFontId.length) {
-      checksum = checksum - XXXX_VALUE + int32(loadTestFontId + "XXX", i) | 0;
-    }
-    data = spliceString(data, CFF_CHECKSUM_OFFSET, 4, string32(checksum));
-    const url = `url(data:font/opentype;base64,${btoa(data)});`;
-    const rule = `@font-face {font-family:"${loadTestFontId}";src:${url}}`;
-    this.insertRule(rule);
-    const div = this._document.createElement("div");
-    div.style.visibility = "hidden";
-    div.style.width = div.style.height = "10px";
-    div.style.position = "absolute";
-    div.style.top = div.style.left = "0px";
-    for (const name of [font.loadedName, loadTestFontId]) {
-      const span = this._document.createElement("span");
-      span.textContent = "Hi";
-      span.style.fontFamily = name;
-      div.append(span);
-    }
-    this._document.body.append(div);
-    isFontReady(loadTestFontId, () => {
-      div.remove();
-      completeRequest();
-    });
-    return promise;
-  }
-}
-class FontFaceObject {
-  #compiledPaths = new Map();
-  #fontData;
-  constructor(translatedData, inspectFont = null, charProcOperatorList, extra) {
-    this.#fontData = translatedData;
-    this._inspectFont = inspectFont;
-    if (charProcOperatorList) {
-      this.charProcOperatorList = charProcOperatorList;
-    }
-    if (extra) {
-      Object.assign(this, extra);
-    }
-  }
-  createNativeFontFace() {
-    const {
-      data
-    } = this;
-    if (!data || this.disableFontFace) {
-      return null;
-    }
-    let nativeFontFace;
-    if (!this.cssFontInfo) {
-      nativeFontFace = new FontFace(this.loadedName, data, {});
-    } else {
-      const css = {
-        weight: this.cssFontInfo.fontWeight
-      };
-      if (this.cssFontInfo.italicAngle) {
-        css.style = `oblique ${this.cssFontInfo.italicAngle}deg`;
-      }
-      nativeFontFace = new FontFace(serializeFontFamily(this.cssFontInfo.fontFamily), data, css);
-    }
-    this._inspectFont?.(this);
-    return nativeFontFace;
-  }
-  createFontFaceRule() {
-    const {
-      data
-    } = this;
-    if (!data || this.disableFontFace) {
-      return null;
-    }
-    const url = `url(data:${this.mimetype};base64,${data.toBase64()});`;
-    let rule;
-    if (!this.cssFontInfo) {
-      rule = `@font-face {font-family:"${this.loadedName}";src:${url}}`;
-    } else {
-      let css = `font-weight: ${this.cssFontInfo.fontWeight};`;
-      if (this.cssFontInfo.italicAngle) {
-        css += `font-style: oblique ${this.cssFontInfo.italicAngle}deg;`;
-      }
-      const fontFamily = serializeFontFamily(this.cssFontInfo.fontFamily);
-      rule = `@font-face {font-family:${fontFamily};${css}src:${url}}`;
-    }
-    this._inspectFont?.(this, url);
-    return rule;
-  }
-  getPathGenerator(objs, character) {
-    let path = this.#compiledPaths.get(character);
-    if (path) {
-      return path;
-    }
-    const objId = `${this.loadedName}_path_${character}`;
-    let cmds;
-    try {
-      cmds = objs.get(objId);
-    } catch (ex) {
-      warn(`getPathGenerator - ignoring character: "${ex}".`);
-    }
-    path = makePathFromDrawOPS(cmds?.path);
-    if (!this.fontExtraProperties) {
-      objs.delete(objId);
-    }
-    this.#compiledPaths.set(character, path);
-    return path;
-  }
-  get black() {
-    return this.#fontData.black;
-  }
-  get bold() {
-    return this.#fontData.bold;
-  }
-  get disableFontFace() {
-    return this.#fontData.disableFontFace;
-  }
-  set disableFontFace(value) {
-    util_shadow(this, "disableFontFace", !!value);
-  }
-  get fontExtraProperties() {
-    return this.#fontData.fontExtraProperties;
-  }
-  get isInvalidPDFjsFont() {
-    return this.#fontData.isInvalidPDFjsFont;
-  }
-  get isType3Font() {
-    return this.#fontData.isType3Font;
-  }
-  get italic() {
-    return this.#fontData.italic;
-  }
-  get missingFile() {
-    return this.#fontData.missingFile;
-  }
-  get remeasure() {
-    return this.#fontData.remeasure;
-  }
-  get vertical() {
-    return this.#fontData.vertical;
-  }
-  get bbox() {
-    return this.#fontData.bbox;
-  }
-  get fontMatrix() {
-    return this.#fontData.fontMatrix;
-  }
-  get fallbackName() {
-    return this.#fontData.fallbackName;
-  }
-  get loadedName() {
-    return this.#fontData.loadedName;
-  }
-  get mimetype() {
-    return this.missingFile ? null : "font/opentype";
-  }
-  get data() {
-    return this.#fontData.data;
-  }
-  clearData() {
-    this.#fontData.clearData();
-  }
-  get cssFontInfo() {
-    return this.#fontData.cssFontInfo;
-  }
-  get systemFontInfo() {
-    return this.#fontData.systemFontInfo;
-  }
-}
-
-;// ./src/shared/obj_bin_transform_utils.js
-
-class CSS_FONT_INFO {
-  static strings = ["fontFamily", "fontWeight", "italicAngle"];
-}
-class SYSTEM_FONT_INFO {
-  static strings = ["css", "loadedName", "baseFontName", "src"];
-}
-class FONT_INFO {
-  static bools = ["black", "bold", "disableFontFace", "fontExtraProperties", "isInvalidPDFjsFont", "isType3Font", "italic", "missingFile", "remeasure", "vertical"];
-  static strings = ["fallbackName", "loadedName"];
-  static OFFSET_BBOX = Math.ceil(this.bools.length * 2 / 8);
-  static OFFSET_FONT_MATRIX = this.OFFSET_BBOX + 1 + 2 * 4;
-  static OFFSET_STRINGS = this.OFFSET_FONT_MATRIX + 1 + 8 * 6;
-}
-class PATTERN_INFO {
-  static KIND = 0;
-  static HAS_BBOX = 1;
-  static HAS_BACKGROUND = 2;
-  static SHADING_TYPE = 3;
-  static N_COORD = 4;
-  static N_COLOR = 8;
-  static N_STOP = 12;
-  static N_FIGURES = 16;
-}
-class InfoUtils {
-  static get decoder() {
-    return util_shadow(this, "decoder", new TextDecoder());
-  }
-  static get encoder() {
-    return util_shadow(this, "encoder", new TextEncoder());
-  }
-}
-
-;// ./src/display/obj_bin_transform_display.js
-
-
-
-
-
-
-
-
-function readString(buffer, view, index, offset = 0) {
-  const {
-    decoder
-  } = InfoUtils;
-  for (let i = 0; i < index; i++) {
-    offset += view.getUint32(offset) + 4;
-  }
-  const length = view.getUint32(offset);
-  return decoder.decode(new Uint8Array(buffer, offset + 4, length));
-}
-class CssFontInfo {
-  #buffer;
-  #view;
-  constructor(buffer) {
-    this.#buffer = buffer;
-    this.#view = new DataView(buffer);
-  }
-  #readString(index) {
-    util_assert(index < CSS_FONT_INFO.strings.length, "Invalid string index");
-    return readString(this.#buffer, this.#view, index);
-  }
-  get fontFamily() {
-    return util_shadow(this, "fontFamily", this.#readString(0));
-  }
-  get fontWeight() {
-    return util_shadow(this, "fontWeight", this.#readString(1));
-  }
-  get italicAngle() {
-    return util_shadow(this, "italicAngle", this.#readString(2));
-  }
-}
-class SystemFontInfo {
-  #buffer;
-  #view;
-  constructor(buffer) {
-    this.#buffer = buffer;
-    this.#view = new DataView(buffer);
-  }
-  #readString(index) {
-    util_assert(index < SYSTEM_FONT_INFO.strings.length, "Invalid string index");
-    return readString(this.#buffer, this.#view, index, 4);
-  }
-  get css() {
-    return util_shadow(this, "css", this.#readString(0));
-  }
-  get loadedName() {
-    return util_shadow(this, "loadedName", this.#readString(1));
-  }
-  get baseFontName() {
-    return util_shadow(this, "baseFontName", this.#readString(2));
-  }
-  get src() {
-    return util_shadow(this, "src", this.#readString(3));
-  }
-  get style() {
-    let offset = 0;
-    offset += 4 + this.#view.getUint32(offset);
-    const style = readString(this.#buffer, this.#view, 0, offset),
-      weight = readString(this.#buffer, this.#view, 1, offset);
-    return util_shadow(this, "style", {
-      style,
-      weight
-    });
-  }
-}
-class FontInfo {
-  #buffer;
-  #view;
-  constructor(buffer) {
-    this.#buffer = buffer;
-    this.#view = new DataView(buffer);
-  }
-  #readBoolean(index) {
-    util_assert(index < FONT_INFO.bools.length, "Invalid boolean index");
-    const byteOffset = Math.floor(index / 4);
-    const bitOffset = index * 2 % 8;
-    const value = this.#view.getUint8(byteOffset) >> bitOffset & 0x03;
-    return value === 0x00 ? undefined : value === 0x02;
-  }
-  get black() {
-    return util_shadow(this, "black", this.#readBoolean(0));
-  }
-  get bold() {
-    return util_shadow(this, "bold", this.#readBoolean(1));
-  }
-  get disableFontFace() {
-    return util_shadow(this, "disableFontFace", this.#readBoolean(2));
-  }
-  get fontExtraProperties() {
-    return util_shadow(this, "fontExtraProperties", this.#readBoolean(3));
-  }
-  get isInvalidPDFjsFont() {
-    return util_shadow(this, "isInvalidPDFjsFont", this.#readBoolean(4));
-  }
-  get isType3Font() {
-    return util_shadow(this, "isType3Font", this.#readBoolean(5));
-  }
-  get italic() {
-    return util_shadow(this, "italic", this.#readBoolean(6));
-  }
-  get missingFile() {
-    return util_shadow(this, "missingFile", this.#readBoolean(7));
-  }
-  get remeasure() {
-    return util_shadow(this, "remeasure", this.#readBoolean(8));
-  }
-  get vertical() {
-    return util_shadow(this, "vertical", this.#readBoolean(9));
-  }
-  #readArray(offset, arrLen, lookupName, increment) {
-    const len = this.#view.getUint8(offset++);
-    if (len === 0) {
-      return undefined;
-    }
-    util_assert(len === arrLen, "Invalid array length.");
-    const arr = new Array(len);
-    for (let i = 0; i < len; i++) {
-      arr[i] = this.#view[lookupName](offset, true);
-      offset += increment;
-    }
-    return arr;
-  }
-  get bbox() {
-    return util_shadow(this, "bbox", this.#readArray(FONT_INFO.OFFSET_BBOX, 4, "getInt16", 2));
-  }
-  get fontMatrix() {
-    return util_shadow(this, "fontMatrix", this.#readArray(FONT_INFO.OFFSET_FONT_MATRIX, 6, "getFloat64", 8));
-  }
-  #readString(index) {
-    util_assert(index < FONT_INFO.strings.length, "Invalid string index");
-    return readString(this.#buffer, this.#view, index, FONT_INFO.OFFSET_STRINGS + 4);
-  }
-  get fallbackName() {
-    return util_shadow(this, "fallbackName", this.#readString(0));
-  }
-  get loadedName() {
-    return util_shadow(this, "loadedName", this.#readString(1));
-  }
-  #getBufferOffset(index) {
-    let offset = FONT_INFO.OFFSET_STRINGS;
-    for (let i = 0; i <= index; i++) {
-      offset += 4 + this.#view.getUint32(offset);
-    }
-    const length = this.#view.getUint32(offset);
-    return {
-      offset,
-      length
-    };
-  }
-  get data() {
-    const {
-      offset,
-      length
-    } = this.#getBufferOffset(2);
-    return !length ? undefined : new Uint8Array(this.#buffer, offset + 4, length);
-  }
-  clearData() {
-    const {
-      offset,
-      length
-    } = this.#getBufferOffset(2);
-    if (!length) {
-      return;
-    }
-    this.#view.setUint32(offset, 0);
-    this.#buffer = new Uint8Array(this.#buffer, 0, offset + 4).slice().buffer;
-    this.#view = new DataView(this.#buffer);
-  }
-  get cssFontInfo() {
-    const {
-      offset,
-      length
-    } = this.#getBufferOffset(1);
-    let info = null;
-    if (length) {
-      const data = new Uint8Array(this.#buffer, offset + 4, length).slice();
-      info = new CssFontInfo(data.buffer);
-    }
-    return util_shadow(this, "cssFontInfo", info);
-  }
-  get systemFontInfo() {
-    const {
-      offset,
-      length
-    } = this.#getBufferOffset(0);
-    let info = null;
-    if (length) {
-      const data = new Uint8Array(this.#buffer, offset + 4, length).slice();
-      info = new SystemFontInfo(data.buffer);
-    }
-    return util_shadow(this, "systemFontInfo", info);
-  }
-}
-class PatternInfo {
-  constructor(buffer) {
-    this.buffer = buffer;
-    this.view = new DataView(buffer);
-    this.data = new Uint8Array(buffer);
-  }
-  getIR() {
-    const dataView = this.view;
-    const kind = this.data[PATTERN_INFO.KIND];
-    const hasBBox = !!this.data[PATTERN_INFO.HAS_BBOX];
-    const hasBackground = !!this.data[PATTERN_INFO.HAS_BACKGROUND];
-    const nCoord = dataView.getUint32(PATTERN_INFO.N_COORD, true);
-    const nColor = dataView.getUint32(PATTERN_INFO.N_COLOR, true);
-    const nStop = dataView.getUint32(PATTERN_INFO.N_STOP, true);
-    let offset = 20;
-    const coords = new Float32Array(this.buffer, offset, nCoord * 2);
-    offset += nCoord * 8;
-    const colors = new Uint8Array(this.buffer, offset, nColor * 4);
-    offset += nColor * 4;
-    const stops = [];
-    for (let i = 0; i < nStop; ++i) {
-      const p = dataView.getFloat32(offset, true);
-      offset += 4;
-      const rgb = dataView.getUint32(offset, true);
-      offset += 4;
-      stops.push([p, `#${rgb.toString(16).padStart(6, "0")}`]);
-    }
-    let bbox = null;
-    if (hasBBox) {
-      bbox = [];
-      for (let i = 0; i < 4; ++i) {
-        bbox.push(dataView.getFloat32(offset, true));
-        offset += 4;
-      }
-    }
-    let background = null;
-    if (hasBackground) {
-      background = new Uint8Array(this.buffer, offset, 3);
-      offset += 3;
-    }
-    if (kind === 1) {
-      return ["RadialAxial", "axial", bbox, stops, [coords[0], coords[1]], [coords[2], coords[3]], null, null];
-    }
-    if (kind === 2) {
-      return ["RadialAxial", "radial", bbox, stops, [coords[0], coords[1]], [coords[3], coords[4]], coords[2], coords[5]];
-    }
-    if (kind === 3) {
-      const shadingType = this.data[PATTERN_INFO.SHADING_TYPE];
-      let bounds = null;
-      if (coords.length > 0) {
-        bounds = BBOX_INIT.slice();
-        for (let i = 0, ii = coords.length; i < ii; i += 2) {
-          Util.pointBoundingBox(coords[i], coords[i + 1], bounds);
-        }
-      }
-      return ["Mesh", shadingType, coords, colors, nCoord, bounds, bbox, background];
-    }
-    throw new Error(`Unsupported pattern kind: ${kind}`);
-  }
-}
-class FontPathInfo {
-  #buffer;
-  constructor(buffer) {
-    this.#buffer = buffer;
-  }
-  get path() {
-    if (FeatureTest.isFloat16ArraySupported) {
-      return new Float16Array(this.#buffer);
-    }
-    return new Float32Array(this.#buffer);
-  }
-}
-
-;// ./src/display/api_utils.js
-
-
-
-
-
-
-
-
-
-
-function getUrlProp(val) {
-  if (val instanceof URL) {
-    return val;
-  }
-  if (typeof val === "string") {
-    if (isNodeJS) {
-      if (/^[a-z][a-z0-9\-+.]+:/i.test(val)) {
-        return new URL(val);
-      }
-      const url = process.getBuiltinModule("url");
-      return new URL(url.pathToFileURL(val));
-    }
-    const url = URL.parse(val, window.location);
-    if (url) {
-      return url;
-    }
-  }
-  throw new Error("Invalid PDF url data: " + "either string or URL-object is expected in the url property.");
-}
-function getDataProp(val) {
-  if (isNodeJS && typeof Buffer !== "undefined" && val instanceof Buffer) {
-    throw new Error("Please provide binary data as `Uint8Array`, rather than `Buffer`.");
-  }
-  if (val instanceof Uint8Array && val.byteLength === val.buffer.byteLength) {
-    return val;
-  }
-  if (typeof val === "string") {
-    return stringToBytes(val);
-  }
-  if (val instanceof ArrayBuffer || ArrayBuffer.isView(val) || typeof val === "object" && !isNaN(val?.length)) {
-    return new Uint8Array(val);
-  }
-  throw new Error("Invalid PDF binary data: either TypedArray, " + "string, or array-like object is expected in the data property.");
-}
-function getFactoryUrlProp(val) {
-  if (typeof val !== "string") {
-    return null;
-  }
-  if (val.endsWith("/")) {
-    return val;
-  }
-  throw new Error(`Invalid factory url: "${val}" must include trailing slash.`);
-}
-const isRefProxy = v => typeof v === "object" && Number.isInteger(v?.num) && v.num >= 0 && Number.isInteger(v?.gen) && v.gen >= 0;
-const isNameProxy = v => typeof v === "object" && typeof v?.name === "string";
-const isValidExplicitDest = _isValidExplicitDest.bind(null, isRefProxy, isNameProxy);
-class LoopbackPort {
-  #listeners = new Map();
-  #deferred = Promise.resolve();
-  postMessage(obj, transfer) {
-    const event = {
-      data: structuredClone(obj, transfer ? {
-        transfer
-      } : null)
-    };
-    this.#deferred.then(() => {
-      for (const [listener] of this.#listeners) {
-        listener.call(this, event);
-      }
-    });
-  }
-  addEventListener(name, listener, options = null) {
-    let rmAbort = null;
-    if (options?.signal instanceof AbortSignal) {
-      const {
-        signal
-      } = options;
-      if (signal.aborted) {
-        warn("LoopbackPort - cannot use an `aborted` signal.");
-        return;
-      }
-      const onAbort = () => this.removeEventListener(name, listener);
-      rmAbort = () => signal.removeEventListener("abort", onAbort);
-      signal.addEventListener("abort", onAbort);
-    }
-    this.#listeners.set(listener, rmAbort);
-  }
-  removeEventListener(name, listener) {
-    const rmAbort = this.#listeners.get(listener);
-    rmAbort?.();
-    this.#listeners.delete(listener);
-  }
-  terminate() {
-    for (const [, rmAbort] of this.#listeners) {
-      rmAbort?.();
-    }
-    this.#listeners.clear();
-  }
-}
-
-;// ./node_modules/core-js/modules/es.promise.try.js
-es_promise_try_namespaceFn();
-
-;// ./src/shared/message_handler.js
-
-
-
-
-const CallbackKind = {
-  DATA: 1,
-  ERROR: 2
-};
-const StreamKind = {
-  CANCEL: 1,
-  CANCEL_COMPLETE: 2,
-  CLOSE: 3,
-  ENQUEUE: 4,
-  ERROR: 5,
-  PULL: 6,
-  PULL_COMPLETE: 7,
-  START_COMPLETE: 8
-};
-function onFn() {}
-function wrapReason(ex) {
-  if (ex instanceof AbortException || ex instanceof InvalidPDFException || ex instanceof PasswordException || ex instanceof ResponseException || ex instanceof UnknownErrorException) {
-    return ex;
-  }
-  if (!(ex instanceof Error || typeof ex === "object" && ex !== null)) {
-    unreachable('wrapReason: Expected "reason" to be a (possibly cloned) Error.');
-  }
-  switch (ex.name) {
-    case "AbortException":
-      return new AbortException(ex.message);
-    case "InvalidPDFException":
-      return new InvalidPDFException(ex.message);
-    case "PasswordException":
-      return new PasswordException(ex.message, ex.code);
-    case "ResponseException":
-      return new ResponseException(ex.message, ex.status, ex.missing);
-    case "UnknownErrorException":
-      return new UnknownErrorException(ex.message, ex.details);
-  }
-  return new UnknownErrorException(ex.message, ex.toString());
-}
-class MessageHandler {
-  #actions = new Map();
-  #callbackCapabilities = new Map();
-  #callbackId = 1;
-  #comObj;
-  #messageAC = new AbortController();
-  #sourceName;
-  #streamControllers = new Map();
-  #streamId = 1;
-  #streamSinks = new Map();
-  #targetName;
-  constructor(sourceName, targetName, comObj) {
-    this.#sourceName = sourceName;
-    this.#targetName = targetName;
-    this.#comObj = comObj;
-    comObj.addEventListener("message", this.#onMessage.bind(this), {
-      signal: this.#messageAC.signal
-    });
-  }
-  #onMessage({
-    data
-  }) {
-    if (data.targetName !== this.#sourceName) {
-      return;
-    }
-    if (data.stream) {
-      this.#processStreamMessage(data);
-      return;
-    }
-    if (data.callback) {
-      const {
-        callbackId,
-        callback
-      } = data;
-      const capability = this.#callbackCapabilities.get(callbackId);
-      if (!capability) {
-        throw new Error(`Cannot resolve callback ${callbackId}`);
-      }
-      this.#callbackCapabilities.delete(callbackId);
-      if (callback === CallbackKind.DATA) {
-        capability.resolve(data.data);
-      } else if (callback === CallbackKind.ERROR) {
-        capability.reject(wrapReason(data.reason));
-      } else {
-        throw new Error("Unexpected callback case");
-      }
-      return;
-    }
-    const action = this.#actions.get(data.action);
-    if (!action) {
-      throw new Error(`Unknown action from worker: ${data.action}`);
-    }
-    if (data.callbackId) {
-      const sourceName = this.#sourceName,
-        targetName = data.sourceName,
-        comObj = this.#comObj;
-      Promise.try(action, data.data).then(result => {
-        comObj.postMessage({
-          sourceName,
-          targetName,
-          callback: CallbackKind.DATA,
-          callbackId: data.callbackId,
-          data: result
-        });
-      }, reason => {
-        comObj.postMessage({
-          sourceName,
-          targetName,
-          callback: CallbackKind.ERROR,
-          callbackId: data.callbackId,
-          reason: wrapReason(reason)
-        });
-      });
-      return;
-    }
-    if (data.streamId) {
-      this.#createStreamSink(data);
-      return;
-    }
-    action(data.data);
-  }
-  on(actionName, handler) {
-    const ah = this.#actions;
-    if (ah.has(actionName)) {
-      throw new Error(`There is already a "${actionName}" handler.`);
-    }
-    ah.set(actionName, handler);
-  }
-  send(actionName, data, transfers) {
-    this.#comObj.postMessage({
-      sourceName: this.#sourceName,
-      targetName: this.#targetName,
-      action: actionName,
-      data
-    }, transfers);
-  }
-  sendWithPromise(actionName, data, transfers) {
-    const callbackId = this.#callbackId++,
-      capability = Promise.withResolvers();
-    this.#callbackCapabilities.set(callbackId, capability);
-    try {
-      this.#comObj.postMessage({
-        sourceName: this.#sourceName,
-        targetName: this.#targetName,
-        action: actionName,
-        callbackId,
-        data
-      }, transfers);
-    } catch (ex) {
-      capability.reject(ex);
-    }
-    return capability.promise;
-  }
-  sendWithStream(actionName, data, queueingStrategy, transfers) {
-    const streamId = this.#streamId++,
-      sourceName = this.#sourceName,
-      targetName = this.#targetName,
-      comObj = this.#comObj;
-    return new ReadableStream({
-      start: controller => {
-        const startCapability = Promise.withResolvers();
-        this.#streamControllers.set(streamId, {
-          controller,
-          startCall: startCapability,
-          pullCall: null,
-          cancelCall: null,
-          isClosed: false
-        });
-        comObj.postMessage({
-          sourceName,
-          targetName,
-          action: actionName,
-          streamId,
-          data,
-          desiredSize: controller.desiredSize
-        }, transfers);
-        return startCapability.promise;
-      },
-      pull: controller => {
-        const pullCapability = Promise.withResolvers();
-        this.#streamControllers.get(streamId).pullCall = pullCapability;
-        comObj.postMessage({
-          sourceName,
-          targetName,
-          stream: StreamKind.PULL,
-          streamId,
-          desiredSize: controller.desiredSize
-        });
-        return pullCapability.promise;
-      },
-      cancel: reason => {
-        util_assert(reason instanceof Error, "cancel must have a valid reason");
-        const cancelCapability = Promise.withResolvers();
-        this.#streamControllers.get(streamId).cancelCall = cancelCapability;
-        this.#streamControllers.get(streamId).isClosed = true;
-        comObj.postMessage({
-          sourceName,
-          targetName,
-          stream: StreamKind.CANCEL,
-          streamId,
-          reason: wrapReason(reason)
-        });
-        return cancelCapability.promise;
-      }
-    }, queueingStrategy);
-  }
-  #createStreamSink(data) {
-    const streamId = data.streamId,
-      sourceName = this.#sourceName,
-      targetName = data.sourceName,
-      comObj = this.#comObj;
-    const streamSinks = this.#streamSinks,
-      action = this.#actions.get(data.action);
-    const streamSink = {
-      enqueue(chunk, size = 1, transfers) {
-        if (this.isCancelled) {
-          return;
-        }
-        const lastDesiredSize = this.desiredSize;
-        this.desiredSize -= size;
-        if (lastDesiredSize > 0 && this.desiredSize <= 0) {
-          this.sinkCapability = Promise.withResolvers();
-          this.ready = this.sinkCapability.promise;
-        }
-        comObj.postMessage({
-          sourceName,
-          targetName,
-          stream: StreamKind.ENQUEUE,
-          streamId,
-          chunk
-        }, transfers);
-      },
-      close() {
-        if (this.isCancelled) {
-          return;
-        }
-        this.isCancelled = true;
-        comObj.postMessage({
-          sourceName,
-          targetName,
-          stream: StreamKind.CLOSE,
-          streamId
-        });
-        streamSinks.delete(streamId);
-      },
-      error(reason) {
-        util_assert(reason instanceof Error, "error must have a valid reason");
-        if (this.isCancelled) {
-          return;
-        }
-        this.isCancelled = true;
-        comObj.postMessage({
-          sourceName,
-          targetName,
-          stream: StreamKind.ERROR,
-          streamId,
-          reason: wrapReason(reason)
-        });
-      },
-      sinkCapability: Promise.withResolvers(),
-      onPull: null,
-      onCancel: null,
-      isCancelled: false,
-      desiredSize: data.desiredSize,
-      ready: null
-    };
-    streamSink.sinkCapability.resolve();
-    streamSink.ready = streamSink.sinkCapability.promise;
-    streamSinks.set(streamId, streamSink);
-    Promise.try(action, data.data, streamSink).then(() => {
-      comObj.postMessage({
-        sourceName,
-        targetName,
-        stream: StreamKind.START_COMPLETE,
-        streamId,
-        success: true
-      });
-    }, reason => {
-      comObj.postMessage({
-        sourceName,
-        targetName,
-        stream: StreamKind.START_COMPLETE,
-        streamId,
-        reason: wrapReason(reason)
-      });
-    });
-  }
-  #processStreamMessage(data) {
-    const streamId = data.streamId,
-      sourceName = this.#sourceName,
-      targetName = data.sourceName,
-      comObj = this.#comObj;
-    const streamController = this.#streamControllers.get(streamId),
-      streamSink = this.#streamSinks.get(streamId);
-    switch (data.stream) {
-      case StreamKind.START_COMPLETE:
-        if (data.success) {
-          streamController.startCall.resolve();
-        } else {
-          streamController.startCall.reject(wrapReason(data.reason));
-        }
-        break;
-      case StreamKind.PULL_COMPLETE:
-        if (data.success) {
-          streamController.pullCall.resolve();
-        } else {
-          streamController.pullCall.reject(wrapReason(data.reason));
-        }
-        break;
-      case StreamKind.PULL:
-        if (!streamSink) {
-          comObj.postMessage({
-            sourceName,
-            targetName,
-            stream: StreamKind.PULL_COMPLETE,
-            streamId,
-            success: true
-          });
-          break;
-        }
-        if (streamSink.desiredSize <= 0 && data.desiredSize > 0) {
-          streamSink.sinkCapability.resolve();
-        }
-        streamSink.desiredSize = data.desiredSize;
-        Promise.try(streamSink.onPull || onFn).then(() => {
-          comObj.postMessage({
-            sourceName,
-            targetName,
-            stream: StreamKind.PULL_COMPLETE,
-            streamId,
-            success: true
-          });
-        }, reason => {
-          comObj.postMessage({
-            sourceName,
-            targetName,
-            stream: StreamKind.PULL_COMPLETE,
-            streamId,
-            reason: wrapReason(reason)
-          });
-        });
-        break;
-      case StreamKind.ENQUEUE:
-        util_assert(streamController, "enqueue should have stream controller");
-        if (streamController.isClosed) {
-          break;
-        }
-        streamController.controller.enqueue(data.chunk);
-        break;
-      case StreamKind.CLOSE:
-        util_assert(streamController, "close should have stream controller");
-        if (streamController.isClosed) {
-          break;
-        }
-        streamController.isClosed = true;
-        streamController.controller.close();
-        this.#deleteStreamController(streamController, streamId);
-        break;
-      case StreamKind.ERROR:
-        util_assert(streamController, "error should have stream controller");
-        streamController.controller.error(wrapReason(data.reason));
-        this.#deleteStreamController(streamController, streamId);
-        break;
-      case StreamKind.CANCEL_COMPLETE:
-        if (data.success) {
-          streamController.cancelCall.resolve();
-        } else {
-          streamController.cancelCall.reject(wrapReason(data.reason));
-        }
-        this.#deleteStreamController(streamController, streamId);
-        break;
-      case StreamKind.CANCEL:
-        if (!streamSink) {
-          break;
-        }
-        const dataReason = wrapReason(data.reason);
-        Promise.try(streamSink.onCancel || onFn, dataReason).then(() => {
-          comObj.postMessage({
-            sourceName,
-            targetName,
-            stream: StreamKind.CANCEL_COMPLETE,
-            streamId,
-            success: true
-          });
-        }, reason => {
-          comObj.postMessage({
-            sourceName,
-            targetName,
-            stream: StreamKind.CANCEL_COMPLETE,
-            streamId,
-            reason: wrapReason(reason)
-          });
-        });
-        streamSink.sinkCapability.reject(dataReason);
-        streamSink.isCancelled = true;
-        this.#streamSinks.delete(streamId);
-        break;
-      default:
-        throw new Error("Unexpected stream case");
-    }
-  }
-  async #deleteStreamController(streamController, streamId) {
-    await Promise.allSettled([streamController.startCall?.promise, streamController.pullCall?.promise, streamController.cancelCall?.promise]);
-    this.#streamControllers.delete(streamId);
-  }
-  destroy() {
-    this.#messageAC?.abort();
-    this.#messageAC = null;
-  }
-}
-
-;// ./src/display/binary_data_factory.js
-
-
-
-
-
-
-
-class BaseBinaryDataFactory {
-  #errorStr = Object.freeze({
-    cMapUrl: "CMap",
-    standardFontDataUrl: "font",
-    wasmUrl: "wasm"
-  });
-  constructor({
-    cMapUrl = null,
-    standardFontDataUrl = null,
-    wasmUrl = null
-  }) {
-    this.cMapUrl = cMapUrl;
-    this.standardFontDataUrl = standardFontDataUrl;
-    this.wasmUrl = wasmUrl;
-  }
-  async fetch({
-    kind,
-    filename
-  }) {
-    switch (kind) {
-      case "cMapUrl":
-      case "standardFontDataUrl":
-      case "wasmUrl":
-        break;
-      default:
-        unreachable(`Not implemented: ${kind}`);
-    }
-    const baseUrl = this[kind];
-    if (!baseUrl) {
-      throw new Error(`Ensure that the \`${kind}\` API parameter is provided.`);
-    }
-    const url = `${baseUrl}${filename}`;
-    return this._fetch(url, kind).catch(reason => {
-      throw new Error(`Unable to load ${this.#errorStr[kind]} data at: ${url}`);
-    });
-  }
-  async _fetch(url, kind) {
-    unreachable("Abstract method `_fetch` called.");
-  }
-}
-class DOMBinaryDataFactory extends BaseBinaryDataFactory {
-  async _fetch(url, kind) {
-    const type = kind === "cMapUrl" && !url.endsWith(".bcmap") ? "text" : "bytes";
-    const data = await fetchData(url, type);
-    return data instanceof Uint8Array ? data : stringToBytes(data);
-  }
-}
-
-;// ./src/display/canvas_factory.js
-
-class BaseCanvasFactory {
-  #enableHWA = false;
-  constructor({
-    enableHWA = false
-  }) {
-    this.#enableHWA = enableHWA;
-  }
-  create(width, height) {
-    if (width <= 0 || height <= 0) {
-      throw new Error("Invalid canvas size");
-    }
-    const canvas = this._createCanvas(width, height);
-    return {
-      canvas,
-      context: canvas.getContext("2d", {
-        willReadFrequently: !this.#enableHWA
-      })
-    };
-  }
-  reset({
-    canvas
-  }, width, height) {
-    if (!canvas) {
-      throw new Error("Canvas is not specified");
-    }
-    if (width <= 0 || height <= 0) {
-      throw new Error("Invalid canvas size");
-    }
-    canvas.width = width;
-    canvas.height = height;
-  }
-  destroy(canvasAndContext) {
-    const {
-      canvas
-    } = canvasAndContext;
-    if (!canvas) {
-      throw new Error("Canvas is not specified");
-    }
-    canvas.width = canvas.height = 0;
-    canvasAndContext.canvas = null;
-    canvasAndContext.context = null;
-  }
-  _createCanvas(width, height) {
-    unreachable("Abstract method `_createCanvas` called.");
-  }
-}
-class DOMCanvasFactory extends BaseCanvasFactory {
-  constructor({
-    ownerDocument = globalThis.document,
-    enableHWA = false
-  }) {
-    super({
-      enableHWA
-    });
-    this._document = ownerDocument;
-  }
-  _createCanvas(width, height) {
-    const canvas = this._document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    return canvas;
-  }
-}
-
-;// ./src/display/filter_factory.js
-
-
-
-
-
-
-class BaseFilterFactory {
-  addFilter(maps) {
-    return "none";
-  }
-  addHCMFilter(fgColor, bgColor) {
-    return "none";
-  }
-  addAlphaFilter(map) {
-    return "none";
-  }
-  addLuminosityFilter(map) {
-    return "none";
-  }
-  addKnockoutFilter(alpha = 0) {
-    return "none";
-  }
-  addHighlightHCMFilter(filterName, fgColor, bgColor, newFgColor, newBgColor) {
-    return "none";
-  }
-  addSelectionHCMFilter(fgColor, bgColor) {
-    return "none";
-  }
-  addSelectionFilter() {
-    return "none";
-  }
-  createSelectionStyle(pageColors = null) {
-    return null;
-  }
-  destroy(keepHCM = false) {}
-}
-class DOMFilterFactory extends BaseFilterFactory {
-  #baseUrl;
-  #_cache;
-  #_defs;
-  #docId;
-  #document;
-  #_hcmCache;
-  #id = 0;
-  constructor({
-    docId,
-    ownerDocument = globalThis.document
-  }) {
-    super();
-    this.#docId = docId;
-    this.#document = ownerDocument;
-  }
-  get #cache() {
-    return this.#_cache ||= new Map();
-  }
-  get #hcmCache() {
-    return this.#_hcmCache ||= new Map();
-  }
-  get #defs() {
-    if (!this.#_defs) {
-      const div = this.#document.createElement("div");
-      const {
-        style
-      } = div;
-      style.colorScheme = "only light";
-      style.visibility = "hidden";
-      style.contain = "strict";
-      style.width = style.height = 0;
-      style.position = "absolute";
-      style.top = style.left = 0;
-      style.zIndex = -1;
-      const svg = this.#document.createElementNS(SVG_NS, "svg");
-      svg.setAttribute("width", 0);
-      svg.setAttribute("height", 0);
-      this.#_defs = this.#document.createElementNS(SVG_NS, "defs");
-      div.append(svg);
-      svg.append(this.#_defs);
-      this.#document.body.append(div);
-    }
-    return this.#_defs;
-  }
-  #createTables(maps) {
-    const toTable = map => map && Array.from(map, v => v / 255).join(",");
-    if (maps.length === 1) {
-      const table = toTable(maps[0]);
-      return [table, table, table];
-    }
-    const [mapR, mapG, mapB] = maps;
-    return [toTable(mapR), toTable(mapG), toTable(mapB)];
-  }
-  #createUrl(id) {
-    if (this.#baseUrl === undefined) {
-      this.#baseUrl = "";
-      const url = this.#document.URL;
-      if (url !== this.#document.baseURI) {
-        if (isDataScheme(url)) {
-          warn('#createUrl: ignore "data:"-URL for performance reasons.');
-        } else {
-          this.#baseUrl = updateUrlHash(url, "");
-        }
-      }
-    }
-    return `url(${this.#baseUrl}#${id})`;
-  }
-  addFilter(maps) {
-    if (!maps) {
-      return "none";
-    }
-    let value = this.#cache.get(maps);
-    if (value) {
-      return value;
-    }
-    const [tableR, tableG, tableB] = this.#createTables(maps);
-    const key = maps.length === 1 ? tableR : `${tableR}${tableG}${tableB}`;
-    value = this.#cache.get(key);
-    if (value) {
-      this.#cache.set(maps, value);
-      return value;
-    }
-    const id = `g_${this.#docId}_transfer_map_${this.#id++}`;
-    const url = this.#createUrl(id);
-    this.#cache.set(maps, url);
-    this.#cache.set(key, url);
-    const filter = this.#createFilter(id);
-    this.#addTransferMapConversion(tableR, tableG, tableB, filter);
-    return url;
-  }
-  addHCMFilter(fgColor, bgColor) {
-    const key = `${fgColor}-${bgColor}`;
-    const filterName = "base";
-    let info = this.#hcmCache.get(filterName);
-    if (info?.key === key) {
-      return info.url;
-    }
-    if (info) {
-      info.filter?.remove();
-      info.key = key;
-      info.url = "none";
-      info.filter = null;
-    } else {
-      info = {
-        key,
-        url: "none",
-        filter: null
-      };
-      this.#hcmCache.set(filterName, info);
-    }
-    if (!fgColor || !bgColor) {
-      return info.url;
-    }
-    const fgRGB = this.#getRGB(fgColor);
-    fgColor = Util.makeHexColor(...fgRGB);
-    const bgRGB = this.#getRGB(bgColor);
-    bgColor = Util.makeHexColor(...bgRGB);
-    this.#resetDefsColor();
-    if (fgColor === "#000000" && bgColor === "#ffffff" || fgColor === bgColor) {
-      return info.url;
-    }
-    const map = Array.from({
-      length: 256
-    }, (_, i) => computeLuminance(i / 255));
-    const table = map.join(",");
-    const id = `g_${this.#docId}_hcm_filter`;
-    const filter = info.filter = this.#createFilter(id);
-    this.#addTransferMapConversion(table, table, table, filter);
-    this.#addGrayConversion(filter);
-    const getSteps = (c, n) => {
-      const start = fgRGB[c] / 255;
-      const end = bgRGB[c] / 255;
-      const arr = new Array(n + 1);
-      for (let i = 0; i <= n; i++) {
-        arr[i] = start + i / n * (end - start);
-      }
-      return arr.join(",");
-    };
-    this.#addTransferMapConversion(getSteps(0, 5), getSteps(1, 5), getSteps(2, 5), filter);
-    info.url = this.#createUrl(id);
-    return info.url;
-  }
-  addSelectionHCMFilter(fgColor, bgColor) {
-    return this.addHighlightHCMFilter("selection", fgColor, bgColor, "HighlightText", "Highlight");
-  }
-  addSelectionFilter() {
-    return this.addHighlightHCMFilter("selection_default", "black", "white", "HighlightText", "Highlight");
-  }
-  createSelectionStyle(pageColors = null) {
-    const filter = pageColors ? this.addSelectionHCMFilter(pageColors.foreground, pageColors.background) : this.addSelectionFilter();
-    if (filter === "none" || !FeatureTest.platform.isFirefox) {
-      return null;
-    }
-    return {
-      "backdrop-filter": filter,
-      "background-color": "transparent"
-    };
-  }
-  addAlphaFilter(map) {
-    let value = this.#cache.get(map);
-    if (value) {
-      return value;
-    }
-    const [tableA] = this.#createTables([map]);
-    const key = `alpha_${tableA}`;
-    value = this.#cache.get(key);
-    if (value) {
-      this.#cache.set(map, value);
-      return value;
-    }
-    const id = `g_${this.#docId}_alpha_map_${this.#id++}`;
-    const url = this.#createUrl(id);
-    this.#cache.set(map, url);
-    this.#cache.set(key, url);
-    const filter = this.#createFilter(id);
-    this.#addTransferMapAlphaConversion(tableA, filter);
-    return url;
-  }
-  addLuminosityFilter(map) {
-    let value = this.#cache.get(map || "luminosity");
-    if (value) {
-      return value;
-    }
-    let tableA, key;
-    if (map) {
-      [tableA] = this.#createTables([map]);
-      key = `luminosity_${tableA}`;
-    } else {
-      key = "luminosity";
-    }
-    value = this.#cache.get(key);
-    if (value) {
-      this.#cache.set(map, value);
-      return value;
-    }
-    const id = `g_${this.#docId}_luminosity_map_${this.#id++}`;
-    const url = this.#createUrl(id);
-    this.#cache.set(map, url);
-    this.#cache.set(key, url);
-    const filter = this.#createFilter(id);
-    this.#addLuminosityConversion(filter);
-    if (map) {
-      this.#addTransferMapAlphaConversion(tableA, filter);
-    }
-    return url;
-  }
-  addKnockoutFilter(alpha = 0) {
-    const slope = alpha > 0 ? Math.min(1 / alpha, 1e6) : 1e6;
-    const key = `knockout_${slope}`;
-    const value = this.#cache.get(key);
-    if (value) {
-      return value;
-    }
-    const id = `g_${this.#docId}_knockout_filter_${this.#id++}`;
-    const url = this.#createUrl(id);
-    this.#cache.set(key, url);
-    const filter = this.#createFilter(id);
-    const feComponentTransfer = this.#document.createElementNS(SVG_NS, "feComponentTransfer");
-    filter.append(feComponentTransfer);
-    const feFuncA = this.#document.createElementNS(SVG_NS, "feFuncA");
-    feFuncA.setAttribute("type", "linear");
-    feFuncA.setAttribute("slope", `${slope}`);
-    feFuncA.setAttribute("intercept", "0");
-    feComponentTransfer.append(feFuncA);
-    return url;
-  }
-  addHighlightHCMFilter(filterName, fgColor, bgColor, newFgColor, newBgColor) {
-    const key = `${fgColor}-${bgColor}-${newFgColor}-${newBgColor}`;
-    let info = this.#hcmCache.get(filterName);
-    if (info?.key === key) {
-      return info.url;
-    }
-    if (info) {
-      info.filter?.remove();
-      info.key = key;
-      info.url = "none";
-      info.filter = null;
-    } else {
-      info = {
-        key,
-        url: "none",
-        filter: null
-      };
-      this.#hcmCache.set(filterName, info);
-    }
-    if (!fgColor || !bgColor) {
-      return info.url;
-    }
-    const [fgRGB, bgRGB] = [fgColor, bgColor].map(this.#getRGB.bind(this));
-    let fgGray = Math.round(0.2126 * fgRGB[0] + 0.7152 * fgRGB[1] + 0.0722 * fgRGB[2]);
-    let bgGray = Math.round(0.2126 * bgRGB[0] + 0.7152 * bgRGB[1] + 0.0722 * bgRGB[2]);
-    let [newFgRGB, newBgRGB] = [newFgColor, newBgColor].map(this.#getOpaqueTextColor.bind(this));
-    if (bgGray < fgGray) {
-      [fgGray, bgGray, newFgRGB, newBgRGB] = [bgGray, fgGray, newBgRGB, newFgRGB];
-    }
-    this.#resetDefsColor();
-    const getSteps = (fg, bg, n) => {
-      const arr = new Array(256);
-      const step = (bgGray - fgGray) / n;
-      const newStart = fg / 255;
-      const newStep = (bg - fg) / (255 * n);
-      let prev = 0;
-      for (let i = 0; i <= n; i++) {
-        const k = Math.round(fgGray + i * step);
-        const value = newStart + i * newStep;
-        for (let j = prev; j <= k; j++) {
-          arr[j] = value;
-        }
-        prev = k + 1;
-      }
-      for (let i = prev; i < 256; i++) {
-        arr[i] = arr[prev - 1];
-      }
-      return arr.join(",");
-    };
-    const id = `g_${this.#docId}_hcm_${filterName}_filter`;
-    const filter = info.filter = this.#createFilter(id);
-    this.#addGrayConversion(filter);
-    this.#addTransferMapConversion(getSteps(newFgRGB[0], newBgRGB[0], 5), getSteps(newFgRGB[1], newBgRGB[1], 5), getSteps(newFgRGB[2], newBgRGB[2], 5), filter);
-    info.url = this.#createUrl(id);
-    return info.url;
-  }
-  destroy(keepHCM = false) {
-    if (keepHCM && this.#_hcmCache?.size) {
-      return;
-    }
-    this.#_defs?.parentNode.parentNode.remove();
-    this.#_defs = null;
-    this.#_cache?.clear();
-    this.#_cache = null;
-    this.#_hcmCache?.clear();
-    this.#_hcmCache = null;
-    this.#id = 0;
-  }
-  #addLuminosityConversion(filter) {
-    const feColorMatrix = this.#document.createElementNS(SVG_NS, "feColorMatrix");
-    feColorMatrix.setAttribute("type", "matrix");
-    feColorMatrix.setAttribute("values", "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0.59 0.11 0 0");
-    filter.append(feColorMatrix);
-  }
-  #addGrayConversion(filter) {
-    const feColorMatrix = this.#document.createElementNS(SVG_NS, "feColorMatrix");
-    feColorMatrix.setAttribute("type", "matrix");
-    feColorMatrix.setAttribute("values", "0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0");
-    filter.append(feColorMatrix);
-  }
-  #createFilter(id) {
-    const filter = this.#document.createElementNS(SVG_NS, "filter");
-    filter.setAttribute("color-interpolation-filters", "sRGB");
-    filter.setAttribute("id", id);
-    this.#defs.append(filter);
-    return filter;
-  }
-  #appendFeFunc(feComponentTransfer, func, table) {
-    if (!table) {
-      return;
-    }
-    const feFunc = this.#document.createElementNS(SVG_NS, func);
-    feFunc.setAttribute("type", "discrete");
-    feFunc.setAttribute("tableValues", table);
-    feComponentTransfer.append(feFunc);
-  }
-  #addTransferMapConversion(rTable, gTable, bTable, filter) {
-    const feComponentTransfer = this.#document.createElementNS(SVG_NS, "feComponentTransfer");
-    filter.append(feComponentTransfer);
-    this.#appendFeFunc(feComponentTransfer, "feFuncR", rTable);
-    this.#appendFeFunc(feComponentTransfer, "feFuncG", gTable);
-    this.#appendFeFunc(feComponentTransfer, "feFuncB", bTable);
-  }
-  #addTransferMapAlphaConversion(aTable, filter) {
-    const feComponentTransfer = this.#document.createElementNS(SVG_NS, "feComponentTransfer");
-    filter.append(feComponentTransfer);
-    this.#appendFeFunc(feComponentTransfer, "feFuncA", aTable);
-  }
-  #getRGB(color) {
-    this.#defs.style.color = "CanvasText";
-    this.#defs.style.backgroundColor = color;
-    return getRGB(getComputedStyle(this.#defs).getPropertyValue("background-color"));
-  }
-  #getRGBA(color) {
-    this.#defs.style.color = "CanvasText";
-    this.#defs.style.backgroundColor = color;
-    return getRGBA(getComputedStyle(this.#defs).getPropertyValue("background-color"));
-  }
-  #resetDefsColor() {
-    this.#defs.style.color = "";
-    this.#defs.style.backgroundColor = "";
-  }
-  #getOpaqueTextColor(color) {
-    const [r, g, b, alpha] = this.#getRGBA(color);
-    if (alpha === 1) {
-      return [r, g, b];
-    }
-    const [canvasR, canvasG, canvasB] = this.#getRGB("Canvas");
-    return [blend(r, canvasR, alpha), blend(g, canvasG, alpha), blend(b, canvasB, alpha)];
-  }
-}
-function blend(fg, bg, alpha) {
-  return Math.round(alpha * fg + (1 - alpha) * bg);
-}
-
-;// ./src/display/node_utils.js
-
-
-
-
-
-
-
-
-
-if (isNodeJS) {
-  let canvas;
-  try {
-    const require = process.getBuiltinModule("module").createRequire(import.meta.url);
-    try {
-      canvas = require("@napi-rs/canvas");
-    } catch (ex) {
-      warn(`Cannot load "@napi-rs/canvas" package: "${ex}".`);
-    }
-  } catch (ex) {
-    warn(`Cannot access the \`require\` function: "${ex}".`);
-  }
-  if (!globalThis.DOMMatrix) {
-    if (canvas?.DOMMatrix) {
-      globalThis.DOMMatrix = canvas.DOMMatrix;
-    } else {
-      warn("Cannot polyfill `DOMMatrix`, rendering may be broken.");
-    }
-  }
-  if (!globalThis.Path2D) {
-    if (canvas?.Path2D) {
-      globalThis.Path2D = canvas.Path2D;
-    } else {
-      warn("Cannot polyfill `Path2D`, rendering may be broken.");
-    }
-  }
-  if (!globalThis.navigator?.language) {
-    globalThis.navigator = {
-      language: "en-US",
-      platform: "",
-      userAgent: ""
-    };
-  }
-}
-async function node_utils_fetchData(url) {
-  const fs = process.getBuiltinModule("fs/promises");
-  const data = await fs.readFile(url);
-  return new Uint8Array(data);
-}
-class NodeFilterFactory extends BaseFilterFactory {}
-class NodeCanvasFactory extends BaseCanvasFactory {
-  _createCanvas(width, height) {
-    const require = process.getBuiltinModule("module").createRequire(import.meta.url);
-    const canvas = require("@napi-rs/canvas");
-    return canvas.createCanvas(width, height);
-  }
-}
-class NodeBinaryDataFactory extends BaseBinaryDataFactory {
-  async _fetch(url, kind) {
-    return node_utils_fetchData(url);
-  }
+function createCanvasTrackers(canvas, operationsCount, {
+  recordOperations = false,
+  recordImages = false,
+  recordDebugMetadata = false
+}) {
+  const bboxTracker = recordOperations || recordImages ? new CanvasBBoxTracker(canvas, operationsCount) : null;
+  return {
+    dependencyTracker: recordOperations ? new CanvasDependencyTracker(bboxTracker, recordDebugMetadata) : bboxTracker,
+    imagesTracker: recordImages ? new CanvasImagesTracker(canvas) : null
+  };
 }
 
 ;// ./src/shared/image_utils.js
 /* unused harmony import specifier */ var image_utils_ImageKind;
 /* unused harmony import specifier */ var image_utils_FeatureTest;
+
 
 
 function convertToRGBA(params) {
@@ -15924,8 +15151,9 @@ function convertRGBToRGBA({
 }) {
   let i = 0;
   const len = width * height * 3;
-  const len32 = len >> 2;
-  const src32 = new Uint32Array(src.buffer, srcPos, len32);
+  const byteOffset = src.byteOffset + srcPos;
+  const len32 = byteOffset % 4 === 0 ? Math.floor(MathClamp(src.length - srcPos, 0, len) / 4) : 0;
+  const src32 = len32 > 0 ? new Uint32Array(src.buffer, byteOffset, len32) : null;
   const alphaMask = FeatureTest.isLittleEndian ? 0xff000000 : 0xff;
   if (FeatureTest.isLittleEndian) {
     for (; i < len32 - 2; i += 3, destPos += 4) {
@@ -15969,212 +15197,6 @@ function grayToRGBA(src, dest) {
       dest[i] = src[i] * 0x1010100 | 0x000000ff;
     }
   }
-}
-
-;// ./src/display/webgpu.js
-
-const MESH_WGSL = `
-struct Uniforms {
-  offsetX      : f32,
-  offsetY      : f32,
-  scaleX       : f32,
-  scaleY       : f32,
-  paddedWidth  : f32,
-  paddedHeight : f32,
-  borderSize   : f32,
-  _pad         : f32,
-};
-
-@group(0) @binding(0) var<uniform> u : Uniforms;
-
-struct VertexInput {
-  @location(0) position : vec2<f32>,
-  @location(1) color    : vec4<f32>,
-};
-
-struct VertexOutput {
-  @builtin(position) position : vec4<f32>,
-  @location(0)       color    : vec3<f32>,
-};
-
-@vertex
-fn vs_main(in : VertexInput) -> VertexOutput {
-  var out : VertexOutput;
-  let cx = (in.position.x + u.offsetX) * u.scaleX;
-  let cy = (in.position.y + u.offsetY) * u.scaleY;
-  out.position = vec4<f32>(
-    ((cx + u.borderSize) / u.paddedWidth) * 2.0 - 1.0,
-    1.0 - ((cy + u.borderSize) / u.paddedHeight) * 2.0,
-    0.0,
-    1.0
-  );
-  out.color = in.color.rgb;
-  return out;
-}
-
-@fragment
-fn fs_main(in : VertexOutput) -> @location(0) vec4<f32> {
-  return vec4<f32>(in.color, 1.0);
-}
-`;
-class WebGPU {
-  #initPromise = null;
-  #device = null;
-  #meshPipeline = null;
-  #preferredFormat = null;
-  async #initGPU() {
-    if (!globalThis.navigator?.gpu) {
-      return false;
-    }
-    try {
-      const adapter = await navigator.gpu.requestAdapter();
-      if (!adapter) {
-        return false;
-      }
-      this.#preferredFormat = navigator.gpu.getPreferredCanvasFormat();
-      this.#device = await adapter.requestDevice();
-      return true;
-    } catch {
-      return false;
-    }
-  }
-  init() {
-    return this.#initPromise ||= this.#initGPU();
-  }
-  get isReady() {
-    return this.#device !== null;
-  }
-  loadMeshShader() {
-    if (!this.#device || this.#meshPipeline) {
-      return;
-    }
-    const shaderModule = this.#device.createShaderModule({
-      code: MESH_WGSL
-    });
-    this.#meshPipeline = this.#device.createRenderPipeline({
-      layout: "auto",
-      vertex: {
-        module: shaderModule,
-        entryPoint: "vs_main",
-        buffers: [{
-          arrayStride: 2 * 4,
-          attributes: [{
-            shaderLocation: 0,
-            offset: 0,
-            format: "float32x2"
-          }]
-        }, {
-          arrayStride: 4,
-          attributes: [{
-            shaderLocation: 1,
-            offset: 0,
-            format: "unorm8x4"
-          }]
-        }]
-      },
-      fragment: {
-        module: shaderModule,
-        entryPoint: "fs_main",
-        targets: [{
-          format: this.#preferredFormat
-        }]
-      },
-      primitive: {
-        topology: "triangle-list"
-      }
-    });
-  }
-  draw(posData, colData, vertexCount, context, backgroundColor, paddedWidth, paddedHeight, borderSize) {
-    this.loadMeshShader();
-    const device = this.#device;
-    const {
-      offsetX,
-      offsetY,
-      scaleX,
-      scaleY
-    } = context;
-    const posBuffer = device.createBuffer({
-      size: Math.max(posData.byteLength, 4),
-      usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
-    });
-    if (posData.byteLength > 0) {
-      device.queue.writeBuffer(posBuffer, 0, posData);
-    }
-    const colBuffer = device.createBuffer({
-      size: Math.max(colData.byteLength, 4),
-      usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
-    });
-    if (colData.byteLength > 0) {
-      device.queue.writeBuffer(colBuffer, 0, colData);
-    }
-    const uniformBuffer = device.createBuffer({
-      size: 8 * 4,
-      usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
-    });
-    device.queue.writeBuffer(uniformBuffer, 0, new Float32Array([offsetX, offsetY, scaleX, scaleY, paddedWidth, paddedHeight, borderSize, 0]));
-    const bindGroup = device.createBindGroup({
-      layout: this.#meshPipeline.getBindGroupLayout(0),
-      entries: [{
-        binding: 0,
-        resource: {
-          buffer: uniformBuffer
-        }
-      }]
-    });
-    const offscreen = new OffscreenCanvas(paddedWidth, paddedHeight);
-    const gpuCtx = offscreen.getContext("webgpu");
-    gpuCtx.configure({
-      device,
-      format: this.#preferredFormat,
-      alphaMode: backgroundColor ? "opaque" : "premultiplied"
-    });
-    const clearValue = backgroundColor ? {
-      r: backgroundColor[0] / 255,
-      g: backgroundColor[1] / 255,
-      b: backgroundColor[2] / 255,
-      a: 1
-    } : {
-      r: 0,
-      g: 0,
-      b: 0,
-      a: 0
-    };
-    const commandEncoder = device.createCommandEncoder();
-    const renderPass = commandEncoder.beginRenderPass({
-      colorAttachments: [{
-        view: gpuCtx.getCurrentTexture().createView(),
-        clearValue,
-        loadOp: "clear",
-        storeOp: "store"
-      }]
-    });
-    if (vertexCount > 0) {
-      renderPass.setPipeline(this.#meshPipeline);
-      renderPass.setBindGroup(0, bindGroup);
-      renderPass.setVertexBuffer(0, posBuffer);
-      renderPass.setVertexBuffer(1, colBuffer);
-      renderPass.draw(vertexCount);
-    }
-    renderPass.end();
-    device.queue.submit([commandEncoder.finish()]);
-    posBuffer.destroy();
-    colBuffer.destroy();
-    uniformBuffer.destroy();
-    return offscreen.transferToImageBitmap();
-  }
-}
-const _webGPU = new WebGPU();
-function initGPU() {
-  return _webGPU.init();
-}
-function isGPUReady() {
-  return _webGPU.isReady;
-}
-function loadMeshShader() {
-  _webGPU.loadMeshShader();
-}
-function drawMeshWithGPU(posData, colData, vertexCount, context, backgroundColor, paddedWidth, paddedHeight, borderSize) {
-  return _webGPU.draw(posData, colData, vertexCount, context, backgroundColor, paddedWidth, paddedHeight, borderSize);
 }
 
 ;// ./src/display/pattern_helper.js
@@ -16635,34 +15657,38 @@ class TilingPattern {
     if (dependencyTracker) {
       owner.dependencyTracker = new CanvasNestedDependencyTracker(dependencyTracker, opIdx);
     }
-    owner.save();
-    if (useEOFill) {
-      owner.ctx.clip(path, "evenodd");
-    } else {
-      owner.ctx.clip(path);
-    }
-    owner.ctx.setTransform(...this.patternBaseMatrix);
-    owner.ctx.translate(n * this.xstep, m * this.ystep);
-    if (this.needsIsolation || owner.ctx.globalAlpha !== 1 || owner.ctx.globalCompositeOperation !== "source-over" || owner.inSMaskMode) {
-      const bboxWidth = x1 - x0;
-      const bboxHeight = y1 - y0;
-      const [combinedScaleX, combinedScaleY] = this._getCombinedScales();
-      const dimx = this.getSizeAndScale(bboxWidth, this.ctx.canvas.width, combinedScaleX);
-      const dimy = this.getSizeAndScale(bboxHeight, this.ctx.canvas.height, combinedScaleY);
-      const tmpCanvas = this._renderTileCanvas(owner, opIdx, dimx, dimy);
-      owner.ctx.drawImage(tmpCanvas.canvas, x0, y0, bboxWidth, bboxHeight);
-      owner.canvasFactory.destroy(tmpCanvas);
-    } else {
-      this.setFillAndStrokeStyleToContext(owner, this.paintType, this.color);
-      this.clipBbox(owner, x0, y0, x1, y1);
-      owner.baseTransformStack.push(owner.baseTransform);
-      owner.baseTransform = getCurrentTransform(owner.ctx);
-      owner.executeOperatorList(this.operatorList);
-      owner.baseTransform = owner.baseTransformStack.pop();
-    }
-    owner.restore();
-    if (dependencyTracker) {
-      owner.dependencyTracker = dependencyTracker;
+    try {
+      owner.save();
+      if (useEOFill) {
+        owner.ctx.clip(path, "evenodd");
+      } else {
+        owner.ctx.clip(path);
+      }
+      owner.ctx.setTransform(...this.patternBaseMatrix);
+      owner.ctx.translate(n * this.xstep, m * this.ystep);
+      if (this.needsIsolation || owner.ctx.globalAlpha !== 1 || owner.ctx.globalCompositeOperation !== "source-over" || owner.inSMaskMode) {
+        const bboxWidth = x1 - x0;
+        const bboxHeight = y1 - y0;
+        const [combinedScaleX, combinedScaleY] = this._getCombinedScales();
+        const dimx = this.getSizeAndScale(bboxWidth, this.ctx.canvas.width, combinedScaleX);
+        const dimy = this.getSizeAndScale(bboxHeight, this.ctx.canvas.height, combinedScaleY);
+        const tmpCanvas = this._renderTileCanvas(owner, opIdx, dimx, dimy);
+        owner.ctx.drawImage(tmpCanvas.canvas, x0, y0, bboxWidth, bboxHeight);
+        owner.canvasFactory.destroy(tmpCanvas);
+      } else {
+        owner.resetGraphicsState();
+        this.setFillAndStrokeStyleToContext(owner, this.paintType, this.color);
+        this.clipBbox(owner, x0, y0, x1, y1);
+        owner.baseTransformStack.push(owner.baseTransform);
+        owner.baseTransform = getCurrentTransform(owner.ctx);
+        owner.executeOperatorList(this.operatorList);
+        owner.baseTransform = owner.baseTransformStack.pop();
+      }
+      owner.restore();
+    } finally {
+      if (dependencyTracker) {
+        owner.dependencyTracker = dependencyTracker;
+      }
     }
   }
   createPatternCanvas(owner, opIdx) {
@@ -16802,6 +15828,8 @@ class TilingPattern {
 }
 
 ;// ./src/display/canvas.js
+
+
 
 
 
@@ -17050,6 +16078,13 @@ function copyCtxState(sourceCtx, destCtx) {
     destCtx.lineDashOffset = sourceCtx.lineDashOffset;
   }
 }
+function setAnnotationCanvasName(canvas, canvasName) {
+  canvas.setAttribute?.("data-canvas-name", canvasName);
+  canvas._pdfjsCanvasName = canvasName;
+}
+function getAnnotationCanvasName(canvas) {
+  return canvas._pdfjsCanvasName ?? null;
+}
 function resetCtxToDefault(ctx) {
   ctx.strokeStyle = ctx.fillStyle = "#000000";
   ctx.fillRule = "nonzero";
@@ -17075,15 +16110,8 @@ class TransferMapsFallback {
   #maps;
   constructor(maps) {
     const [mapR, mapG = mapR, mapB = mapR] = maps;
-    const {
-      identityMap
-    } = TransferMapsFallback;
+    const identityMap = Util.identity0to256Map.slice();
     this.#maps = [mapR || identityMap, mapG || identityMap, mapB || identityMap];
-  }
-  static get identityMap() {
-    return util_shadow(this, "identityMap", Uint8Array.from({
-      length: 256
-    }, (_, i) => i));
   }
   applyToColor(color) {
     if (typeof color !== "string" || !color.startsWith("#")) {
@@ -17113,12 +16141,12 @@ class TransferMapsFallback {
     ctx.putImageData(imgData, 0, 0);
   }
 }
-function getImageSmoothingEnabled(transform, interpolate) {
+function getImageSmoothingEnabled(transform, interpolate, pixelRatio) {
   if (interpolate) {
     return true;
   }
   Util.singularValueDecompose2dScale(transform, XY);
-  const actualScale = Math.fround(OutputScale.pixelRatio * PixelsPerInch.PDF_TO_CSS_UNITS);
+  const actualScale = Math.fround(pixelRatio * PixelsPerInch.PDF_TO_CSS_UNITS);
   return XY[0] <= actualScale && XY[1] <= actualScale;
 }
 const LINE_CAP_STYLES = ["butt", "round", "square"];
@@ -17127,6 +16155,7 @@ const NORMAL_CLIP = {};
 const EO_CLIP = {};
 class CanvasGraphics {
   static #SCALE_MATRIX = null;
+  static #pathCaches = new WeakMap();
   #knockoutGroupLevel = 0;
   #knockoutElementDepth = 0;
   #knockoutTempCanvasEntry = null;
@@ -17139,7 +16168,8 @@ class CanvasGraphics {
   #groupStackMeta = [];
   constructor(canvasCtx, commonObjs, objs, canvasFactory, filterFactory, {
     optionalContentConfig,
-    markedContentStack = null
+    markedContentStack = null,
+    pixelRatio = OutputScale.pixelRatio
   }, annotationCanvasMap, pageColors, dependencyTracker, imagesTracker) {
     this.ctx = canvasCtx;
     this.current = new CanvasExtraState(this.ctx.canvas.width, this.ctx.canvas.height);
@@ -17166,6 +16196,7 @@ class CanvasGraphics {
     this.contentVisible = true;
     this.markedContentStack = markedContentStack || [];
     this.optionalContentConfig = optionalContentConfig;
+    this.pixelRatio = pixelRatio;
     this.cachedPatterns = new Map();
     this.annotationCanvasMap = annotationCanvasMap;
     this.viewportScale = 1;
@@ -17217,64 +16248,70 @@ class CanvasGraphics {
     this.viewportScale = viewport.scale;
     this.baseTransform = getCurrentTransform(this.ctx);
   }
-  executeOperatorList(operatorList, executionStartIdx, continueCallback, stepper, operationsFilter) {
+  executeOperatorList(operatorList, executionStartIdx, continueCallback, errorCallback, stepper, operationsFilter) {
     const argsArray = operatorList.argsArray;
     const fnArray = operatorList.fnArray;
-    let i = executionStartIdx || 0;
-    const argsArrayLen = argsArray.length;
-    if (argsArrayLen === i) {
-      return i;
-    }
-    const chunkOperations = argsArrayLen - i > EXECUTION_STEPS && typeof continueCallback === "function";
-    const endTime = chunkOperations ? Date.now() + EXECUTION_TIME : 0;
-    let steps = 0;
-    const commonObjs = this.commonObjs;
-    const objs = this.objs;
-    let fnId, fnArgs;
-    while (true) {
-      if (stepper !== undefined) {
-        if (i === stepper.nextBreakPoint) {
-          stepper.breakIt(i, continueCallback);
-          return i;
-        }
-        if (stepper.shouldSkip(i)) {
-          if (++i === argsArrayLen) {
+    const prevPathCache = this._pathCache;
+    this._pathCache = operatorList.pathCache ?? CanvasGraphics.#pathCaches.getOrInsertComputed(operatorList, makeMap);
+    try {
+      let i = executionStartIdx || 0;
+      const argsArrayLen = argsArray.length;
+      if (argsArrayLen === i) {
+        return i;
+      }
+      const chunkOperations = argsArrayLen - i > EXECUTION_STEPS && typeof continueCallback === "function";
+      const endTime = chunkOperations ? Date.now() + EXECUTION_TIME : 0;
+      let steps = 0;
+      const commonObjs = this.commonObjs;
+      const objs = this.objs;
+      let fnId, fnArgs;
+      while (true) {
+        if (stepper !== undefined) {
+          if (i === stepper.nextBreakPoint) {
+            stepper.breakIt(i, continueCallback);
             return i;
           }
-          continue;
-        }
-      }
-      if (!operationsFilter || operationsFilter(i, operatorList)) {
-        fnId = fnArray[i];
-        fnArgs = argsArray[i] ?? null;
-        if (fnId !== OPS.dependency) {
-          if (fnArgs === null) {
-            this[fnId](i);
-          } else {
-            this[fnId](i, ...fnArgs);
-          }
-        } else {
-          for (const depObjId of fnArgs) {
-            this.dependencyTracker?.recordNamedData(depObjId, i);
-            const objsPool = depObjId.startsWith("g_") ? commonObjs : objs;
-            if (!objsPool.has(depObjId)) {
-              objsPool.get(depObjId, continueCallback);
+          if (stepper.shouldSkip(i)) {
+            if (++i === argsArrayLen) {
               return i;
+            }
+            continue;
+          }
+        }
+        if (!operationsFilter || operationsFilter(i, operatorList)) {
+          fnId = fnArray[i];
+          fnArgs = argsArray[i] ?? null;
+          if (fnId !== OPS.dependency) {
+            if (fnArgs === null) {
+              this[fnId](i);
+            } else {
+              this[fnId](i, ...fnArgs);
+            }
+          } else {
+            for (const depObjId of fnArgs) {
+              this.dependencyTracker?.recordNamedData(depObjId, i);
+              const objsPool = depObjId.startsWith("g_") ? commonObjs : objs;
+              if (!objsPool.has(depObjId)) {
+                objsPool.get(depObjId, continueCallback, errorCallback);
+                return i;
+              }
             }
           }
         }
-      }
-      i++;
-      if (i === argsArrayLen) {
-        return i;
-      }
-      if (chunkOperations && ++steps > EXECUTION_STEPS) {
-        if (Date.now() > endTime) {
-          continueCallback();
+        i++;
+        if (i === argsArrayLen) {
           return i;
         }
-        steps = 0;
+        if (chunkOperations && ++steps > EXECUTION_STEPS) {
+          if (Date.now() > endTime) {
+            continueCallback();
+            return i;
+          }
+          steps = 0;
+        }
       }
+    } finally {
+      this._pathCache = prevPathCache;
     }
   }
   #restoreInitialState() {
@@ -17471,7 +16508,7 @@ class CanvasGraphics {
         maskCanvas = null;
       }
     }
-    fillCtx.imageSmoothingEnabled = getImageSmoothingEnabled(getCurrentTransform(fillCtx), img.interpolate);
+    fillCtx.imageSmoothingEnabled = getImageSmoothingEnabled(getCurrentTransform(fillCtx), img.interpolate, this.pixelRatio);
     drawImageAtIntegerCoords(fillCtx, scaled, 0, 0, scaled.width, scaled.height, 0, 0, width, height);
     if (scaledEntry) {
       this.canvasFactory.destroy(scaledEntry);
@@ -18067,15 +17104,39 @@ class CanvasGraphics {
     this.pendingClip = null;
     this._cachedScaleForStroking[0] = -1;
   }
+  resetGraphicsState() {
+    const {
+      clipBox,
+      transferMaps,
+      transferMapsFallback
+    } = this.current;
+    const current = this.current = new CanvasExtraState(0, 0);
+    current.clipBox = clipBox;
+    current.transferMaps = transferMaps;
+    current.transferMapsFallback = transferMapsFallback;
+    const ctx = this.ctx;
+    ctx.lineWidth = 1;
+    ctx.lineCap = "butt";
+    ctx.lineJoin = "miter";
+    ctx.miterLimit = 10;
+    if (ctx.setLineDash !== undefined) {
+      ctx.setLineDash([]);
+      ctx.lineDashOffset = 0;
+    }
+    this._cachedScaleForStroking[0] = -1;
+  }
   transform(opIdx, a, b, c, d, e, f) {
     this.dependencyTracker?.recordIncrementalData("transform", opIdx);
     this.ctx.transform(a, b, c, d, e, f);
     this._cachedScaleForStroking[0] = -1;
   }
   constructPath(opIdx, op, data, minMax) {
-    let [path] = data;
+    let path = this._pathCache.get(opIdx);
     if (!minMax) {
-      path ||= data[0] = new Path2D();
+      if (!path) {
+        path = new Path2D();
+        this._pathCache.set(opIdx, path);
+      }
       if (op !== OPS.stroke && op !== OPS.closeStroke) {
         this.current.tilingPatternDims = null;
       }
@@ -18086,8 +17147,9 @@ class CanvasGraphics {
       const outerExtraSize = op === OPS.stroke ? this.current.lineWidth / 2 : 0;
       this.dependencyTracker.resetBBox(opIdx).recordBBox(opIdx, this.ctx, minMax[0] - outerExtraSize, minMax[2] + outerExtraSize, minMax[1] - outerExtraSize, minMax[3] + outerExtraSize).recordDependencies(opIdx, ["transform"]);
     }
-    if (!(path instanceof Path2D)) {
-      path = data[0] = makePathFromDrawOPS(path);
+    if (!path) {
+      path = makePathFromDrawOPS(data[0]);
+      this._pathCache.set(opIdx, path);
     }
     Util.axialAlignedBoundingBox(minMax, getCurrentTransform(this.ctx), this.current.minMax);
     const tilingDims = this.current.tilingPatternDims;
@@ -18148,8 +17210,14 @@ class CanvasGraphics {
       const dims = this.current.tilingPatternDims;
       const tileIdx = dims && fillColor.canSkipPatternCanvas(dims);
       if (tileIdx) {
-        fillColor.drawPattern(this, path, this.pendingEOFill, tileIdx, opIdx);
+        const {
+          pendingClip,
+          pendingEOFill
+        } = this;
+        this.pendingClip = null;
         this.pendingEOFill = false;
+        fillColor.drawPattern(this, path, pendingEOFill, tileIdx, opIdx);
+        this.pendingClip = pendingClip;
         if (consumePath) {
           this.consumePath(opIdx, path, intersect);
         }
@@ -18440,6 +17508,14 @@ class CanvasGraphics {
     }
     return util_shadow(this, "isFontSubpixelAAEnabled", enabled);
   }
+  #getTextPattern(color, pathType, opIdx) {
+    const ctx = this.ctx;
+    ctx.save();
+    const pattern = color.getPattern(ctx, this, getCurrentTransformInverse(ctx), pathType, opIdx);
+    const transform = getCurrentTransform(ctx);
+    ctx.restore();
+    return [pattern, transform];
+  }
   showText(opIdx, glyphs) {
     if (this.dependencyTracker) {
       this.dependencyTracker.recordDependencies(opIdx, Dependencies.showText).resetBBox(opIdx);
@@ -18502,18 +17578,10 @@ class CanvasGraphics {
     }
     ctx.lineWidth = lineWidth;
     if (needsFill && current.patternFill) {
-      ctx.save();
-      const pattern = current.fillColor.getPattern(ctx, this, getCurrentTransformInverse(ctx), PathType.FILL, opIdx);
-      patternFillTransform = getCurrentTransform(ctx);
-      ctx.restore();
-      ctx.fillStyle = pattern;
+      [ctx.fillStyle, patternFillTransform] = this.#getTextPattern(current.fillColor, PathType.FILL, opIdx);
     }
     if (needsStroke && current.patternStroke) {
-      ctx.save();
-      const pattern = current.strokeColor.getPattern(ctx, this, getCurrentTransformInverse(ctx), PathType.STROKE, opIdx);
-      patternStrokeTransform = getCurrentTransform(ctx);
-      ctx.restore();
-      ctx.strokeStyle = pattern;
+      [ctx.strokeStyle, patternStrokeTransform] = this.#getTextPattern(current.strokeColor, PathType.STROKE, opIdx);
     }
     if (font.isInvalidPDFjsFont) {
       const chars = [];
@@ -18535,7 +17603,8 @@ class CanvasGraphics {
       return;
     }
     let x = 0,
-      i;
+      i,
+      glyphPatterns = null;
     for (i = 0; i < glyphsLength; ++i) {
       const glyph = glyphs[i];
       if (typeof glyph === "number") {
@@ -18546,7 +17615,7 @@ class CanvasGraphics {
       const spacing = (glyph.isSpace ? wordSpacing : 0) + charSpacing;
       const character = glyph.fontChar;
       const accent = glyph.accent;
-      let scaledX, scaledY;
+      let scaledX, scaledY, measure;
       let width = glyph.width;
       if (vertical) {
         const vmetric = glyph.vmetric;
@@ -18555,23 +17624,41 @@ class CanvasGraphics {
         width = -vmetric[0];
         scaledX = vx / fontSizeScale;
         scaledY = (x + vy) / fontSizeScale;
+        if (glyph.isRotated) {
+          measure = ctx.measureText(character);
+          const glyphScale = widthAdvanceScale / fontSizeScale;
+          const halfWidth = glyph.width / 2 * glyphScale;
+          const centerX = scaledX + halfWidth;
+          scaledX = scaledY - ((/* inlined export .DEFAULT_VERTICAL_ORIGIN_Y */880) - (/* inlined export .DEFAULT_VERTICAL_ADVANCE */1000) / 2) * glyphScale - halfWidth;
+          scaledY = (measure.actualBoundingBoxAscent - measure.actualBoundingBoxDescent) / 2 - centerX;
+          restoreNeeded = true;
+          ctx.save();
+          ctx.rotate(Math.PI / 2);
+        }
       } else {
         scaledX = x / fontSizeScale;
         scaledY = 0;
       }
-      let measure;
-      if (font.remeasure && width > 0) {
-        measure = ctx.measureText(character);
+      const glyphWidth = glyph.isRotated ? glyph.width : width;
+      let characterScaleX = 1;
+      if ((font.remeasure || glyph.isRotated) && glyphWidth > 0) {
+        measure ??= ctx.measureText(character);
         const measuredWidth = measure.width * 1000 / fontSize * fontSizeScale;
-        if (width < measuredWidth && this.isFontSubpixelAAEnabled) {
-          const characterScaleX = width / measuredWidth;
-          restoreNeeded = true;
-          ctx.save();
+        if (glyphWidth < measuredWidth && this.isFontSubpixelAAEnabled) {
+          characterScaleX = glyphWidth / measuredWidth;
+          if (!restoreNeeded) {
+            restoreNeeded = true;
+            ctx.save();
+          }
           ctx.scale(characterScaleX, 1);
           scaledX /= characterScaleX;
-        } else if (width !== measuredWidth) {
-          scaledX += (width - measuredWidth) / 2000 * fontSize / fontSizeScale;
+        } else if (glyphWidth !== measuredWidth) {
+          scaledX += (glyphWidth - measuredWidth) / 2000 * fontSize / fontSizeScale;
         }
+      }
+      if (restoreNeeded && font.missingFile && (patternFillTransform || patternStrokeTransform)) {
+        glyphPatterns ||= new Map();
+        [ctx.fillStyle, ctx.strokeStyle] = glyphPatterns.getOrInsertComputed(glyph.isRotated ? -characterScaleX : characterScaleX, () => [patternFillTransform ? this.#getTextPattern(current.fillColor, PathType.FILL, opIdx)[0] : ctx.fillStyle, patternStrokeTransform ? this.#getTextPattern(current.strokeColor, PathType.STROKE, opIdx)[0] : ctx.strokeStyle]);
       }
       if (this.contentVisible && (glyph.isInFont || font.missingFile)) {
         if (simpleFillText && !accent) {
@@ -18616,9 +17703,9 @@ class CanvasGraphics {
     const textHScale = current.textHScale * fontDirection;
     const fontMatrix = current.fontMatrix || FONT_IDENTITY_MATRIX;
     const glyphsLength = glyphs.length;
-    const isTextInvisible = current.textRenderingMode === TextRenderingMode.INVISIBLE;
+    const isTextVisible = current.textRenderingMode !== TextRenderingMode.INVISIBLE;
     let i, glyph, width, spacingLength;
-    if (isTextInvisible || fontSize === 0) {
+    if (fontSize === 0) {
       return;
     }
     this._cachedScaleForStroking[0] = -1;
@@ -18630,39 +17717,36 @@ class CanvasGraphics {
     ctx.scale(textHScale, fontDirection);
     const dependencyTracker = this.dependencyTracker;
     this.dependencyTracker = dependencyTracker ? new CanvasNestedDependencyTracker(dependencyTracker, opIdx) : null;
-    for (i = 0; i < glyphsLength; ++i) {
-      glyph = glyphs[i];
-      if (typeof glyph === "number") {
-        spacingLength = spacingDir * glyph * fontSize / 1000;
-        this.ctx.translate(spacingLength, 0);
-        current.x += spacingLength * textHScale;
-        continue;
-      }
-      const spacing = (glyph.isSpace ? wordSpacing : 0) + charSpacing;
-      const operatorList = font.charProcOperatorList.get(glyph.operatorListId);
-      if (!operatorList) {
-        warn(`Type3 character "${glyph.operatorListId}" is not available.`);
-      } else if (this.contentVisible) {
-        this.save();
-        if (operatorList.fnArray[0] === OPS.setCharWidth) {
-          current.fillAlpha = current.strokeAlpha = 1;
-          ctx.globalAlpha = 1;
+    try {
+      for (i = 0; i < glyphsLength; ++i) {
+        glyph = glyphs[i];
+        if (typeof glyph === "number") {
+          spacingLength = spacingDir * glyph * fontSize / 1000;
+          this.ctx.translate(spacingLength, 0);
+          current.x += spacingLength * textHScale;
+          continue;
         }
-        ctx.scale(fontSize, fontSize);
-        ctx.transform(...fontMatrix);
-        this.executeOperatorList(operatorList);
-        this.restore();
+        const spacing = (glyph.isSpace ? wordSpacing : 0) + charSpacing;
+        const operatorList = font.charProcOperatorList.get(glyph.operatorListId);
+        if (!operatorList) {
+          warn(`Type3 character "${glyph.operatorListId}" is not available.`);
+        } else if (this.contentVisible && isTextVisible) {
+          this.save();
+          ctx.scale(fontSize, fontSize);
+          ctx.transform(...fontMatrix);
+          this.executeOperatorList(operatorList);
+          this.restore();
+        }
+        width = glyph.width * fontMatrix[0] * fontSize + spacing * fontDirection;
+        ctx.translate(width, 0);
+        current.x += width * textHScale;
       }
-      const p = [glyph.width, 0];
-      Util.applyTransform(p, fontMatrix);
-      width = p[0] * fontSize + spacing;
-      ctx.translate(width, 0);
-      current.x += width * textHScale;
+    } finally {
+      if (dependencyTracker) {
+        this.dependencyTracker = dependencyTracker;
+      }
     }
     ctx.restore();
-    if (dependencyTracker) {
-      this.dependencyTracker = dependencyTracker;
-    }
   }
   setCharWidth(opIdx, xWidth, yWidth) {}
   setCharWidthAndBounds(opIdx, xWidth, yWidth, llx, lly, urx, ury) {
@@ -18679,7 +17763,8 @@ class CanvasGraphics {
       const canvasGraphicsFactory = {
         createCanvasGraphics: (ctx, renderingOpIdx) => new CanvasGraphics(ctx, this.commonObjs, this.objs, this.canvasFactory, this.filterFactory, {
           optionalContentConfig: this.optionalContentConfig,
-          markedContentStack: this.markedContentStack
+          markedContentStack: this.markedContentStack,
+          pixelRatio: this.pixelRatio
         }, undefined, undefined, this.dependencyTracker ? new CanvasNestedDependencyTracker(this.dependencyTracker, renderingOpIdx, true) : null)
       };
       pattern = new TilingPattern(IR, this.ctx, canvasGraphicsFactory, baseTransform);
@@ -19089,8 +18174,8 @@ class CanvasGraphics {
         } = this.annotationCanvas;
         if (canvasName) {
           const canvases = this.annotationCanvasMap.getOrInsertComputed(id, makeArr);
-          canvas.setAttribute("data-canvas-name", canvasName);
-          const index = canvases.findIndex(c => c.getAttribute("data-canvas-name") === canvasName);
+          setAnnotationCanvasName(canvas, canvasName);
+          const index = canvases.findIndex(c => getAnnotationCanvasName(c) === canvasName);
           if (index === -1) {
             canvases.push(canvas);
           } else {
@@ -19313,7 +18398,7 @@ class CanvasGraphics {
       inlineImgCanvas = tmpCanvas;
     }
     const scaled = this._scaleImage(imgToPaint, getCurrentTransformInverse(ctx));
-    ctx.imageSmoothingEnabled = getImageSmoothingEnabled(getCurrentTransform(ctx), imgData.interpolate);
+    ctx.imageSmoothingEnabled = getImageSmoothingEnabled(getCurrentTransform(ctx), imgData.interpolate, this.pixelRatio);
     if (this.dependencyTracker) {
       this.dependencyTracker.resetBBox(opIdx).recordBBox(opIdx, ctx, 0, width, -height, 0).recordDependencies(opIdx, Dependencies.imageXObject).recordOperation(opIdx);
       this.imagesTracker?.record(ctx, width, height, this.dependencyTracker.clipBox);
@@ -19535,6 +18620,803 @@ class CanvasGraphics {
 for (const op in OPS) {
   if (CanvasGraphics.prototype[op] !== undefined) {
     CanvasGraphics.prototype[OPS[op]] = CanvasGraphics.prototype[op];
+  }
+}
+
+;// ./src/display/dom_canvas_factory.js
+
+class DOMCanvasFactory extends BaseCanvasFactory {
+  constructor({
+    ownerDocument = globalThis.document,
+    enableHWA = false
+  }) {
+    super({
+      enableHWA
+    });
+    this._document = ownerDocument;
+  }
+  _createCanvas(width, height) {
+    const canvas = this._document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    return canvas;
+  }
+}
+
+;// ./src/display/dom_filter_factory.js
+
+
+
+
+
+
+
+
+class DOMFilterFactory extends BaseFilterFactory {
+  #baseUrl;
+  #_cache;
+  #_defs;
+  #docId;
+  #document;
+  #_hcmCache;
+  #id = 0;
+  constructor({
+    docId,
+    ownerDocument = globalThis.document
+  }) {
+    super();
+    this.#docId = docId;
+    this.#document = ownerDocument;
+  }
+  get #cache() {
+    return this.#_cache ||= new Map();
+  }
+  get #hcmCache() {
+    return this.#_hcmCache ||= new Map();
+  }
+  get #defs() {
+    if (!this.#_defs) {
+      const div = this.#document.createElement("div");
+      const {
+        style
+      } = div;
+      style.colorScheme = "only light";
+      style.visibility = "hidden";
+      style.contain = "strict";
+      style.width = style.height = 0;
+      style.position = "absolute";
+      style.top = style.left = 0;
+      style.zIndex = -1;
+      const svg = this.#document.createElementNS(SVG_NS, "svg");
+      svg.setAttribute("width", 0);
+      svg.setAttribute("height", 0);
+      this.#_defs = this.#document.createElementNS(SVG_NS, "defs");
+      div.append(svg);
+      svg.append(this.#_defs);
+      this.#document.body.append(div);
+    }
+    return this.#_defs;
+  }
+  #createTables(maps) {
+    const toTable = map => map && Array.from(map, v => v / 255).join(",");
+    if (maps.length === 1) {
+      const table = toTable(maps[0]);
+      return [table, table, table];
+    }
+    const [mapR, mapG, mapB] = maps;
+    return [toTable(mapR), toTable(mapG), toTable(mapB)];
+  }
+  #createUrl(id) {
+    if (this.#baseUrl === undefined) {
+      this.#baseUrl = "";
+      const url = this.#document.URL;
+      if (url !== this.#document.baseURI) {
+        if (isDataScheme(url)) {
+          warn('#createUrl: ignore "data:"-URL for performance reasons.');
+        } else {
+          this.#baseUrl = updateUrlHash(url, "");
+        }
+      }
+    }
+    return `url(${this.#baseUrl}#${id})`;
+  }
+  addFilter(maps) {
+    if (!maps) {
+      return "none";
+    }
+    let value = this.#cache.get(maps);
+    if (value) {
+      return value;
+    }
+    const [tableR, tableG, tableB] = this.#createTables(maps);
+    const key = maps.length === 1 ? tableR : `${tableR}${tableG}${tableB}`;
+    value = this.#cache.get(key);
+    if (value) {
+      this.#cache.set(maps, value);
+      return value;
+    }
+    const id = `g_${this.#docId}_transfer_map_${this.#id++}`;
+    const url = this.#createUrl(id);
+    this.#cache.set(maps, url);
+    this.#cache.set(key, url);
+    const filter = this.#createFilter(id);
+    this.#addTransferMapConversion(tableR, tableG, tableB, filter);
+    return url;
+  }
+  addHCMFilter(fgColor, bgColor) {
+    const key = `${fgColor}-${bgColor}`;
+    const filterName = "base";
+    let info = this.#hcmCache.get(filterName);
+    if (info?.key === key) {
+      return info.url;
+    }
+    if (info) {
+      info.filter?.remove();
+      info.key = key;
+      info.url = "none";
+      info.filter = null;
+    } else {
+      info = {
+        key,
+        url: "none",
+        filter: null
+      };
+      this.#hcmCache.set(filterName, info);
+    }
+    if (!fgColor || !bgColor) {
+      return info.url;
+    }
+    const fgRGB = this.#getRGB(fgColor);
+    fgColor = Util.makeHexColor(...fgRGB);
+    const bgRGB = this.#getRGB(bgColor);
+    bgColor = Util.makeHexColor(...bgRGB);
+    this.#resetDefsColor();
+    if (fgColor === "#000000" && bgColor === "#ffffff" || fgColor === bgColor) {
+      return info.url;
+    }
+    const map = Array.from({
+      length: 256
+    }, (_, i) => computeLuminance(i / 255));
+    const table = map.join(",");
+    const id = `g_${this.#docId}_hcm_filter`;
+    const filter = info.filter = this.#createFilter(id);
+    this.#addTransferMapConversion(table, table, table, filter);
+    this.#addGrayConversion(filter);
+    const getSteps = (c, n) => {
+      const start = fgRGB[c] / 255;
+      const end = bgRGB[c] / 255;
+      const arr = new Array(n + 1);
+      for (let i = 0; i <= n; i++) {
+        arr[i] = start + i / n * (end - start);
+      }
+      return arr.join(",");
+    };
+    this.#addTransferMapConversion(getSteps(0, 5), getSteps(1, 5), getSteps(2, 5), filter);
+    info.url = this.#createUrl(id);
+    return info.url;
+  }
+  addSelectionHCMFilter(fgColor, bgColor) {
+    return this.addHighlightHCMFilter("selection", fgColor, bgColor, "HighlightText", "Highlight");
+  }
+  addSelectionFilter() {
+    return this.addHighlightHCMFilter("selection_default", "black", "white", "HighlightText", "Highlight");
+  }
+  createSelectionStyle(pageColors = null) {
+    const filter = pageColors ? this.addSelectionHCMFilter(pageColors.foreground, pageColors.background) : this.addSelectionFilter();
+    if (filter === "none" || !FeatureTest.platform.isFirefox) {
+      return null;
+    }
+    return {
+      "backdrop-filter": filter,
+      "background-color": "transparent"
+    };
+  }
+  addAlphaFilter(map) {
+    let value = this.#cache.get(map);
+    if (value) {
+      return value;
+    }
+    const [tableA] = this.#createTables([map]);
+    const key = `alpha_${tableA}`;
+    value = this.#cache.get(key);
+    if (value) {
+      this.#cache.set(map, value);
+      return value;
+    }
+    const id = `g_${this.#docId}_alpha_map_${this.#id++}`;
+    const url = this.#createUrl(id);
+    this.#cache.set(map, url);
+    this.#cache.set(key, url);
+    const filter = this.#createFilter(id);
+    this.#addTransferMapAlphaConversion(tableA, filter);
+    return url;
+  }
+  addLuminosityFilter(map) {
+    let value = this.#cache.get(map || "luminosity");
+    if (value) {
+      return value;
+    }
+    let tableA, key;
+    if (map) {
+      [tableA] = this.#createTables([map]);
+      key = `luminosity_${tableA}`;
+    } else {
+      key = "luminosity";
+    }
+    value = this.#cache.get(key);
+    if (value) {
+      this.#cache.set(map, value);
+      return value;
+    }
+    const id = `g_${this.#docId}_luminosity_map_${this.#id++}`;
+    const url = this.#createUrl(id);
+    this.#cache.set(map, url);
+    this.#cache.set(key, url);
+    const filter = this.#createFilter(id);
+    this.#addLuminosityConversion(filter);
+    if (map) {
+      this.#addTransferMapAlphaConversion(tableA, filter);
+    }
+    return url;
+  }
+  addKnockoutFilter(alpha = 0) {
+    const slope = alpha > 0 ? Math.min(1 / alpha, 1e6) : 1e6;
+    const key = `knockout_${slope}`;
+    const value = this.#cache.get(key);
+    if (value) {
+      return value;
+    }
+    const id = `g_${this.#docId}_knockout_filter_${this.#id++}`;
+    const url = this.#createUrl(id);
+    this.#cache.set(key, url);
+    const filter = this.#createFilter(id);
+    const feComponentTransfer = this.#document.createElementNS(SVG_NS, "feComponentTransfer");
+    filter.append(feComponentTransfer);
+    const feFuncA = this.#document.createElementNS(SVG_NS, "feFuncA");
+    feFuncA.setAttribute("type", "linear");
+    feFuncA.setAttribute("slope", `${slope}`);
+    feFuncA.setAttribute("intercept", "0");
+    feComponentTransfer.append(feFuncA);
+    return url;
+  }
+  addHighlightHCMFilter(filterName, fgColor, bgColor, newFgColor, newBgColor) {
+    const key = `${fgColor}-${bgColor}-${newFgColor}-${newBgColor}`;
+    let info = this.#hcmCache.get(filterName);
+    if (info?.key === key) {
+      return info.url;
+    }
+    if (info) {
+      info.filter?.remove();
+      info.key = key;
+      info.url = "none";
+      info.filter = null;
+    } else {
+      info = {
+        key,
+        url: "none",
+        filter: null
+      };
+      this.#hcmCache.set(filterName, info);
+    }
+    if (!fgColor || !bgColor) {
+      return info.url;
+    }
+    const [fgRGB, bgRGB] = [fgColor, bgColor].map(this.#getRGB.bind(this));
+    let fgGray = Math.round(0.2126 * fgRGB[0] + 0.7152 * fgRGB[1] + 0.0722 * fgRGB[2]);
+    let bgGray = Math.round(0.2126 * bgRGB[0] + 0.7152 * bgRGB[1] + 0.0722 * bgRGB[2]);
+    let [newFgRGB, newBgRGB] = [newFgColor, newBgColor].map(this.#getOpaqueTextColor.bind(this));
+    if (bgGray < fgGray) {
+      [fgGray, bgGray, newFgRGB, newBgRGB] = [bgGray, fgGray, newBgRGB, newFgRGB];
+    }
+    this.#resetDefsColor();
+    const getSteps = (fg, bg, n) => {
+      const arr = new Array(256);
+      const step = (bgGray - fgGray) / n;
+      const newStart = fg / 255;
+      const newStep = (bg - fg) / (255 * n);
+      let prev = 0;
+      for (let i = 0; i <= n; i++) {
+        const k = Math.round(fgGray + i * step);
+        const value = newStart + i * newStep;
+        for (let j = prev; j <= k; j++) {
+          arr[j] = value;
+        }
+        prev = k + 1;
+      }
+      for (let i = prev; i < 256; i++) {
+        arr[i] = arr[prev - 1];
+      }
+      return arr.join(",");
+    };
+    const id = `g_${this.#docId}_hcm_${filterName}_filter`;
+    const filter = info.filter = this.#createFilter(id);
+    this.#addGrayConversion(filter);
+    this.#addTransferMapConversion(getSteps(newFgRGB[0], newBgRGB[0], 5), getSteps(newFgRGB[1], newBgRGB[1], 5), getSteps(newFgRGB[2], newBgRGB[2], 5), filter);
+    info.url = this.#createUrl(id);
+    return info.url;
+  }
+  destroy(keepHCM = false) {
+    if (keepHCM && this.#_hcmCache?.size) {
+      return;
+    }
+    this.#_defs?.parentNode.parentNode.remove();
+    this.#_defs = null;
+    this.#_cache?.clear();
+    this.#_cache = null;
+    this.#_hcmCache?.clear();
+    this.#_hcmCache = null;
+    this.#id = 0;
+  }
+  #addLuminosityConversion(filter) {
+    const feColorMatrix = this.#document.createElementNS(SVG_NS, "feColorMatrix");
+    feColorMatrix.setAttribute("type", "matrix");
+    feColorMatrix.setAttribute("values", "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0.59 0.11 0 0");
+    filter.append(feColorMatrix);
+  }
+  #addGrayConversion(filter) {
+    const feColorMatrix = this.#document.createElementNS(SVG_NS, "feColorMatrix");
+    feColorMatrix.setAttribute("type", "matrix");
+    feColorMatrix.setAttribute("values", "0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0");
+    filter.append(feColorMatrix);
+  }
+  #createFilter(id) {
+    const filter = this.#document.createElementNS(SVG_NS, "filter");
+    filter.setAttribute("color-interpolation-filters", "sRGB");
+    filter.setAttribute("id", id);
+    this.#defs.append(filter);
+    return filter;
+  }
+  #appendFeFunc(feComponentTransfer, func, table) {
+    if (!table) {
+      return;
+    }
+    const feFunc = this.#document.createElementNS(SVG_NS, func);
+    feFunc.setAttribute("type", "discrete");
+    feFunc.setAttribute("tableValues", table);
+    feComponentTransfer.append(feFunc);
+  }
+  #addTransferMapConversion(rTable, gTable, bTable, filter) {
+    const feComponentTransfer = this.#document.createElementNS(SVG_NS, "feComponentTransfer");
+    filter.append(feComponentTransfer);
+    this.#appendFeFunc(feComponentTransfer, "feFuncR", rTable);
+    this.#appendFeFunc(feComponentTransfer, "feFuncG", gTable);
+    this.#appendFeFunc(feComponentTransfer, "feFuncB", bTable);
+  }
+  #addTransferMapAlphaConversion(aTable, filter) {
+    const feComponentTransfer = this.#document.createElementNS(SVG_NS, "feComponentTransfer");
+    filter.append(feComponentTransfer);
+    this.#appendFeFunc(feComponentTransfer, "feFuncA", aTable);
+  }
+  #getRGB(color) {
+    this.#defs.style.color = "CanvasText";
+    this.#defs.style.backgroundColor = color;
+    return getRGB(getComputedStyle(this.#defs).getPropertyValue("background-color"));
+  }
+  #getRGBA(color) {
+    this.#defs.style.color = "CanvasText";
+    this.#defs.style.backgroundColor = color;
+    return getRGBA(getComputedStyle(this.#defs).getPropertyValue("background-color"));
+  }
+  #resetDefsColor() {
+    this.#defs.style.color = "";
+    this.#defs.style.backgroundColor = "";
+  }
+  #getOpaqueTextColor(color) {
+    const [r, g, b, alpha] = this.#getRGBA(color);
+    if (alpha === 1) {
+      return [r, g, b];
+    }
+    const [canvasR, canvasG, canvasB] = this.#getRGB("Canvas");
+    return [blend(r, canvasR, alpha), blend(g, canvasG, alpha), blend(b, canvasB, alpha)];
+  }
+}
+function blend(fg, bg, alpha) {
+  return Math.round(alpha * fg + (1 - alpha) * bg);
+}
+
+;// ./src/shared/css_utils.js
+const CONTROL_CHAR_REGEXP = /\p{Cc}/u;
+function isCSSString(str) {
+  const quote = str[0];
+  if (str.length < 2 || quote !== `"` && quote !== `'` || str.at(-1) !== quote) {
+    return false;
+  }
+  const end = str.length - 1;
+  for (let i = 1; i < end; i++) {
+    const char = str[i];
+    if (char === quote || CONTROL_CHAR_REGEXP.test(char)) {
+      return false;
+    }
+    if (char === "\\") {
+      if (++i >= end || CONTROL_CHAR_REGEXP.test(str[i])) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+function serializeFontFamily(fontFamily) {
+  if (isCSSString(fontFamily)) {
+    return fontFamily;
+  }
+  const escaped = fontFamily.replaceAll(/["\\\p{Cc}]/gu, char => char === `"` || char === "\\" ? `\\${char}` : `\\${char.codePointAt(0).toString(16)} `);
+  return `"${escaped}"`;
+}
+
+;// ./src/display/font_loader.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class FontLoader {
+  #nativeFontFaces = new Set();
+  #systemFonts = new Set();
+  #styleSheet = null;
+  constructor({
+    ownerDocument = globalThis.document,
+    styleElement = null
+  }) {
+    this._document = ownerDocument;
+    this.styleElement = null;
+    this.loadingRequests = [];
+    this.loadTestFontId = 0;
+  }
+  addNativeFontFace(nativeFontFace) {
+    this.#nativeFontFaces.add(nativeFontFace);
+    this._document.fonts.add(nativeFontFace);
+  }
+  removeNativeFontFace(nativeFontFace) {
+    this.#nativeFontFaces.delete(nativeFontFace);
+    this._document.fonts.delete(nativeFontFace);
+  }
+  insertRule(rule) {
+    const styleSheet = this.#getStyleSheet();
+    styleSheet.insertRule(rule, styleSheet.cssRules.length);
+  }
+  #getStyleSheet() {
+    if (this.#styleSheet) {
+      return this.#styleSheet;
+    }
+    const StyleSheet = this._document.defaultView?.CSSStyleSheet || globalThis.CSSStyleSheet;
+    if (!this.styleElement && StyleSheet) {
+      const {
+        adoptedStyleSheets
+      } = this._document;
+      if (adoptedStyleSheets) {
+        const styleSheet = new StyleSheet();
+        adoptedStyleSheets.push(styleSheet);
+        return this.#styleSheet = styleSheet;
+      }
+    }
+    if (!this.styleElement) {
+      this.styleElement = this._document.createElement("style");
+      this._document.documentElement.getElementsByTagName("head")[0].append(this.styleElement);
+    }
+    return this.#styleSheet = this.styleElement.sheet;
+  }
+  clear() {
+    for (const nativeFontFace of this.#nativeFontFaces) {
+      this._document.fonts.delete(nativeFontFace);
+    }
+    this.#nativeFontFaces.clear();
+    this.#systemFonts.clear();
+    if (this.#styleSheet) {
+      const {
+        adoptedStyleSheets
+      } = this._document;
+      if (adoptedStyleSheets?.includes(this.#styleSheet)) {
+        this._document.adoptedStyleSheets = adoptedStyleSheets.filter(styleSheet => styleSheet !== this.#styleSheet);
+      }
+      this.#styleSheet = null;
+    }
+    this.styleElement?.remove();
+    this.styleElement = null;
+  }
+  async loadSystemFont({
+    systemFontInfo: info,
+    disableFontFace,
+    _inspectFont
+  }) {
+    if (!info || this.#systemFonts.has(info.loadedName)) {
+      return;
+    }
+    util_assert(!disableFontFace, "loadSystemFont shouldn't be called when `disableFontFace` is set.");
+    if (this.isFontLoadingAPISupported) {
+      const {
+        loadedName,
+        src,
+        style
+      } = info;
+      const fontFace = new FontFace(loadedName, src, style);
+      this.addNativeFontFace(fontFace);
+      try {
+        await fontFace.load();
+        this.#systemFonts.add(loadedName);
+        _inspectFont?.(info);
+      } catch {
+        warn(`Cannot load system font: ${info.baseFontName}, installing it could help to improve PDF rendering.`);
+        this.removeNativeFontFace(fontFace);
+      }
+      return;
+    }
+    unreachable("Not implemented: loadSystemFont without the Font Loading API.");
+  }
+  async bind(font) {
+    if (font.attached || font.missingFile && !font.systemFontInfo) {
+      return;
+    }
+    font.attached = true;
+    if (font.systemFontInfo) {
+      await this.loadSystemFont(font);
+      return;
+    }
+    if (this.isFontLoadingAPISupported) {
+      const nativeFontFace = font.createNativeFontFace();
+      if (nativeFontFace) {
+        this.addNativeFontFace(nativeFontFace);
+        try {
+          await nativeFontFace.loaded;
+        } catch (ex) {
+          warn(`Failed to load font '${nativeFontFace.family}': '${ex}'.`);
+          font.disableFontFace = true;
+          throw ex;
+        }
+      }
+      return;
+    }
+    const rule = font.createFontFaceRule();
+    if (rule) {
+      this.insertRule(rule);
+      if (this.isSyncFontLoadingSupported) {
+        return;
+      }
+      await this.#testFontLoaded(font);
+    }
+  }
+  get isFontLoadingAPISupported() {
+    return util_shadow(this, "isFontLoadingAPISupported", !!this._document?.fonts);
+  }
+  get isSyncFontLoadingSupported() {
+    return util_shadow(this, "isSyncFontLoadingSupported", isNodeJS || FeatureTest.platform.isFirefox);
+  }
+  #testFontLoaded(font) {
+    function completeRequest() {
+      util_assert(!request.done, "completeRequest() cannot be called twice.");
+      request.done = true;
+      while (loadingRequests.length > 0 && loadingRequests[0].done) {
+        const otherRequest = loadingRequests.shift();
+        setTimeout(otherRequest.resolve, 0);
+      }
+    }
+    const {
+      loadingRequests
+    } = this;
+    const {
+      promise,
+      resolve
+    } = Promise.withResolvers();
+    const request = {
+      done: false,
+      resolve
+    };
+    loadingRequests.push(request);
+    this._loadTestFont ??= atob("T1RUTwALAIAAAwAwQ0ZGIDHtZg4AAAOYAAAAgUZGVE1lkzZwAAAEHAAAABxHREVGABQA" + "FQAABDgAAAAeT1MvMlYNYwkAAAEgAAAAYGNtYXABDQLUAAACNAAAAUJoZWFk/xVFDQAA" + "ALwAAAA2aGhlYQdkA+oAAAD0AAAAJGhtdHgD6AAAAAAEWAAAAAZtYXhwAAJQAAAAARgA" + "AAAGbmFtZVjmdH4AAAGAAAAAsXBvc3T/hgAzAAADeAAAACAAAQAAAAEAALZRFsRfDzz1" + "AAsD6AAAAADOBOTLAAAAAM4KHDwAAAAAA+gDIQAAAAgAAgAAAAAAAAABAAADIQAAAFoD" + "6AAAAAAD6AABAAAAAAAAAAAAAAAAAAAAAQAAUAAAAgAAAAQD6AH0AAUAAAKKArwAAACM" + "AooCvAAAAeAAMQECAAACAAYJAAAAAAAAAAAAAQAAAAAAAAAAAAAAAFBmRWQAwAAuAC4D" + "IP84AFoDIQAAAAAAAQAAAAAAAAAAACAAIAABAAAADgCuAAEAAAAAAAAAAQAAAAEAAAAA" + "AAEAAQAAAAEAAAAAAAIAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAQAAQAAAAEAAAAAAAUA" + "AQAAAAEAAAAAAAYAAQAAAAMAAQQJAAAAAgABAAMAAQQJAAEAAgABAAMAAQQJAAIAAgAB" + "AAMAAQQJAAMAAgABAAMAAQQJAAQAAgABAAMAAQQJAAUAAgABAAMAAQQJAAYAAgABWABY" + "AAAAAAAAAwAAAAMAAAAcAAEAAAAAADwAAwABAAAAHAAEACAAAAAEAAQAAQAAAC7//wAA" + "AC7////TAAEAAAAAAAABBgAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + "AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAD/gwAyAAAAAQAAAAAAAAAAAAAAAAAA" + "AAABAAQEAAEBAQJYAAEBASH4DwD4GwHEAvgcA/gXBIwMAYuL+nz5tQXkD5j3CBLnEQAC" + "AQEBIVhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYAAABAQAADwACAQEEE/t3" + "Dov6fAH6fAT+fPp8+nwHDosMCvm1Cvm1DAz6fBQAAAAAAAABAAAAAMmJbzEAAAAAzgTj" + "FQAAAADOBOQpAAEAAAAAAAAADAAUAAQAAAABAAAAAgABAAAAAAAAAAAD6AAAAAAAAA==");
+    function int32(data, offset) {
+      return data.charCodeAt(offset) << 24 | data.charCodeAt(offset + 1) << 16 | data.charCodeAt(offset + 2) << 8 | data.charCodeAt(offset + 3) & 0xff;
+    }
+    function string32(value) {
+      return String.fromCharCode(value >> 24 & 0xff, value >> 16 & 0xff, value >> 8 & 0xff, value & 0xff);
+    }
+    function spliceString(s, offset, remove, insert) {
+      const chunk1 = s.substring(0, offset);
+      const chunk2 = s.substring(offset + remove);
+      return chunk1 + insert + chunk2;
+    }
+    let i, ii;
+    const canvas = this._document.createElement("canvas");
+    canvas.width = 1;
+    canvas.height = 1;
+    const ctx = canvas.getContext("2d");
+    let called = 0;
+    function isFontReady(name, callback) {
+      if (++called > 30) {
+        warn("Load test font never loaded.");
+        callback();
+        return;
+      }
+      ctx.font = "30px " + name;
+      ctx.fillText(".", 0, 20);
+      const imageData = ctx.getImageData(0, 0, 1, 1);
+      if (imageData.data[3] > 0) {
+        callback();
+        return;
+      }
+      setTimeout(isFontReady.bind(null, name, callback));
+    }
+    const loadTestFontId = `lt${Date.now()}${this.loadTestFontId++}`;
+    let data = this._loadTestFont;
+    const COMMENT_OFFSET = 976;
+    data = spliceString(data, COMMENT_OFFSET, loadTestFontId.length, loadTestFontId);
+    const CFF_CHECKSUM_OFFSET = 16;
+    const XXXX_VALUE = 0x58585858;
+    let checksum = int32(data, CFF_CHECKSUM_OFFSET);
+    for (i = 0, ii = loadTestFontId.length - 3; i < ii; i += 4) {
+      checksum = checksum - XXXX_VALUE + int32(loadTestFontId, i) | 0;
+    }
+    if (i < loadTestFontId.length) {
+      checksum = checksum - XXXX_VALUE + int32(loadTestFontId + "XXX", i) | 0;
+    }
+    data = spliceString(data, CFF_CHECKSUM_OFFSET, 4, string32(checksum));
+    const url = `url(data:font/opentype;base64,${btoa(data)});`;
+    const rule = `@font-face {font-family:"${loadTestFontId}";src:${url}}`;
+    this.insertRule(rule);
+    const div = this._document.createElement("div");
+    div.style.visibility = "hidden";
+    div.style.width = div.style.height = "10px";
+    div.style.position = "absolute";
+    div.style.top = div.style.left = "0px";
+    for (const name of [font.loadedName, loadTestFontId]) {
+      const span = this._document.createElement("span");
+      span.textContent = "Hi";
+      span.style.fontFamily = name;
+      div.append(span);
+    }
+    this._document.body.append(div);
+    isFontReady(loadTestFontId, () => {
+      div.remove();
+      completeRequest();
+    });
+    return promise;
+  }
+}
+class FontFaceObject {
+  #compiledPaths = new Map();
+  #fontData;
+  constructor(translatedData, inspectFont = null, charProcOperatorList, extra) {
+    this.#fontData = translatedData;
+    this._inspectFont = inspectFont;
+    if (charProcOperatorList) {
+      this.charProcOperatorList = charProcOperatorList;
+    }
+    if (extra) {
+      Object.assign(this, extra);
+    }
+  }
+  createNativeFontFace() {
+    const {
+      data
+    } = this;
+    if (!data || this.disableFontFace) {
+      return null;
+    }
+    let nativeFontFace;
+    if (!this.cssFontInfo) {
+      nativeFontFace = new FontFace(this.loadedName, data, {});
+    } else {
+      const css = {
+        weight: this.cssFontInfo.fontWeight
+      };
+      if (this.cssFontInfo.italicAngle) {
+        css.style = `oblique ${this.cssFontInfo.italicAngle}deg`;
+      }
+      nativeFontFace = new FontFace(serializeFontFamily(this.cssFontInfo.fontFamily), data, css);
+    }
+    this._inspectFont?.(this);
+    return nativeFontFace;
+  }
+  createFontFaceRule() {
+    const {
+      data
+    } = this;
+    if (!data || this.disableFontFace) {
+      return null;
+    }
+    const url = `url(data:${this.mimetype};base64,${data.toBase64()});`;
+    let rule;
+    if (!this.cssFontInfo) {
+      rule = `@font-face {font-family:"${this.loadedName}";src:${url}}`;
+    } else {
+      let css = `font-weight: ${this.cssFontInfo.fontWeight};`;
+      if (this.cssFontInfo.italicAngle) {
+        css += `font-style: oblique ${this.cssFontInfo.italicAngle}deg;`;
+      }
+      const fontFamily = serializeFontFamily(this.cssFontInfo.fontFamily);
+      rule = `@font-face {font-family:${fontFamily};${css}src:${url}}`;
+    }
+    this._inspectFont?.(this, url);
+    return rule;
+  }
+  getPathGenerator(objs, character) {
+    let path = this.#compiledPaths.get(character);
+    if (path) {
+      return path;
+    }
+    const objId = `${this.loadedName}_path_${character}`;
+    let cmds;
+    try {
+      cmds = objs.get(objId);
+    } catch (ex) {
+      warn(`getPathGenerator - ignoring character: "${ex}".`);
+    }
+    path = makePathFromDrawOPS(cmds?.path);
+    if (!this.fontExtraProperties) {
+      objs.delete(objId);
+    }
+    this.#compiledPaths.set(character, path);
+    return path;
+  }
+  get black() {
+    return this.#fontData.black;
+  }
+  get bold() {
+    return this.#fontData.bold;
+  }
+  get disableFontFace() {
+    return this.#fontData.disableFontFace;
+  }
+  set disableFontFace(value) {
+    util_shadow(this, "disableFontFace", !!value);
+  }
+  get fontExtraProperties() {
+    return this.#fontData.fontExtraProperties;
+  }
+  get isInvalidPDFjsFont() {
+    return this.#fontData.isInvalidPDFjsFont;
+  }
+  get isType3Font() {
+    return this.#fontData.isType3Font;
+  }
+  get italic() {
+    return this.#fontData.italic;
+  }
+  get missingFile() {
+    return this.#fontData.missingFile;
+  }
+  get remeasure() {
+    return this.#fontData.remeasure;
+  }
+  get vertical() {
+    return this.#fontData.vertical;
+  }
+  get bbox() {
+    return this.#fontData.bbox;
+  }
+  get fontMatrix() {
+    return this.#fontData.fontMatrix;
+  }
+  get fallbackName() {
+    return this.#fontData.fallbackName;
+  }
+  get loadedName() {
+    return this.#fontData.loadedName;
+  }
+  get mimetype() {
+    return this.missingFile ? null : "font/opentype";
+  }
+  get data() {
+    return this.#fontData.data;
+  }
+  clearData() {
+    this.#fontData.clearData();
+  }
+  get cssFontInfo() {
+    return this.#fontData.cssFontInfo;
+  }
+  get systemFontInfo() {
+    return this.#fontData.systemFontInfo;
   }
 }
 
@@ -19945,7 +19827,7 @@ class PDFFetchStreamReader extends BasePDFStreamReader {
     };
   }
   cancel(reason) {
-    this._reader?.cancel(reason);
+    this._reader?.cancel(reason).catch(() => {});
     this._abortController.abort();
   }
 }
@@ -19968,6 +19850,7 @@ class PDFFetchStreamRangeReader extends BasePDFStreamRangeReader {
       this._reader = response.body.getReader();
       this._readCapability.resolve();
     }).catch(this._readCapability.reject);
+    this._readCapability.promise.catch(() => {});
   }
   async read() {
     await this._readCapability.promise;
@@ -19984,7 +19867,7 @@ class PDFFetchStreamRangeReader extends BasePDFStreamRangeReader {
     };
   }
   cancel(reason) {
-    this._reader?.cancel(reason);
+    this._reader?.cancel(reason).catch(() => {});
     this._abortController.abort();
   }
 }
@@ -20582,7 +20465,7 @@ class PDFNodeStreamReader extends BasePDFStreamReader {
     };
   }
   cancel(reason) {
-    this._reader?.cancel(reason);
+    this._reader?.cancel(reason).catch(() => {});
   }
 }
 class PDFNodeStreamRangeReader extends BasePDFStreamRangeReader {
@@ -20603,6 +20486,7 @@ class PDFNodeStreamRangeReader extends BasePDFStreamRangeReader {
     } catch (error) {
       this._readCapability.reject(error);
     }
+    this._readCapability.promise.catch(() => {});
   }
   async read() {
     await this._readCapability.promise;
@@ -20619,7 +20503,7 @@ class PDFNodeStreamRangeReader extends BasePDFStreamRangeReader {
     };
   }
   cancel(reason) {
-    this._reader?.cancel(reason);
+    this._reader?.cancel(reason).catch(() => {});
   }
 }
 
@@ -20634,9 +20518,31 @@ function getNetworkStream(url) {
 }
 
 ;// ./src/display/worker_options.js
+
+
 class GlobalWorkerOptions {
   static #port = null;
+  static #rendererPorts = [];
+  static #rendererSrc = "";
   static #src = "";
+  static get rendererPorts() {
+    return this.#rendererPorts;
+  }
+  static set rendererPorts(val) {
+    if (!Array.isArray(val) || !val.every(port => typeof Worker !== "undefined" && port instanceof Worker)) {
+      throw new Error("Invalid `rendererPorts` type.");
+    }
+    this.#rendererPorts = val;
+  }
+  static get rendererSrc() {
+    return this.#rendererSrc;
+  }
+  static set rendererSrc(val) {
+    if (typeof val !== "string") {
+      throw new Error("Invalid `rendererSrc` type.");
+    }
+    this.#rendererSrc = val;
+  }
   static get workerPort() {
     return this.#port;
   }
@@ -20676,6 +20582,493 @@ class Metadata {
   }
   [Symbol.iterator]() {
     return this.#map.entries();
+  }
+}
+
+;// ./src/shared/obj_bin_transform_utils.js
+
+class CSS_FONT_INFO {
+  static strings = ["fontFamily", "fontWeight", "italicAngle"];
+}
+class SYSTEM_FONT_INFO {
+  static strings = ["css", "loadedName", "baseFontName", "src"];
+}
+class FONT_INFO {
+  static bools = ["black", "bold", "disableFontFace", "fontExtraProperties", "isInvalidPDFjsFont", "isType3Font", "italic", "missingFile", "remeasure", "vertical"];
+  static strings = ["fallbackName", "loadedName"];
+  static OFFSET_BBOX = Math.ceil(this.bools.length * 2 / 8);
+  static OFFSET_FONT_MATRIX = this.OFFSET_BBOX + 1 + 2 * 4;
+  static OFFSET_STRINGS = this.OFFSET_FONT_MATRIX + 1 + 8 * 6;
+}
+class PATTERN_INFO {
+  static KIND = 0;
+  static HAS_BBOX = 1;
+  static HAS_BACKGROUND = 2;
+  static SHADING_TYPE = 3;
+  static N_COORD = 4;
+  static N_COLOR = 8;
+  static N_STOP = 12;
+  static N_FIGURES = 16;
+}
+class InfoUtils {
+  static get decoder() {
+    return util_shadow(this, "decoder", new TextDecoder());
+  }
+  static get encoder() {
+    return util_shadow(this, "encoder", new TextEncoder());
+  }
+}
+
+;// ./src/display/obj_bin_transform_display.js
+
+
+
+
+
+
+
+
+function readString(buffer, view, index, offset = 0) {
+  const {
+    decoder
+  } = InfoUtils;
+  for (let i = 0; i < index; i++) {
+    offset += view.getUint32(offset) + 4;
+  }
+  const length = view.getUint32(offset);
+  return decoder.decode(new Uint8Array(buffer, offset + 4, length));
+}
+class CssFontInfo {
+  #buffer;
+  #view;
+  constructor(buffer) {
+    this.#buffer = buffer;
+    this.#view = new DataView(buffer);
+  }
+  #readString(index) {
+    util_assert(index < CSS_FONT_INFO.strings.length, "Invalid string index");
+    return readString(this.#buffer, this.#view, index);
+  }
+  get fontFamily() {
+    return util_shadow(this, "fontFamily", this.#readString(0));
+  }
+  get fontWeight() {
+    return util_shadow(this, "fontWeight", this.#readString(1));
+  }
+  get italicAngle() {
+    return util_shadow(this, "italicAngle", this.#readString(2));
+  }
+}
+class SystemFontInfo {
+  #buffer;
+  #view;
+  constructor(buffer) {
+    this.#buffer = buffer;
+    this.#view = new DataView(buffer);
+  }
+  #readString(index) {
+    util_assert(index < SYSTEM_FONT_INFO.strings.length, "Invalid string index");
+    return readString(this.#buffer, this.#view, index, 4);
+  }
+  get css() {
+    return util_shadow(this, "css", this.#readString(0));
+  }
+  get loadedName() {
+    return util_shadow(this, "loadedName", this.#readString(1));
+  }
+  get baseFontName() {
+    return util_shadow(this, "baseFontName", this.#readString(2));
+  }
+  get src() {
+    return util_shadow(this, "src", this.#readString(3));
+  }
+  get style() {
+    let offset = 0;
+    offset += 4 + this.#view.getUint32(offset);
+    const style = readString(this.#buffer, this.#view, 0, offset),
+      weight = readString(this.#buffer, this.#view, 1, offset);
+    return util_shadow(this, "style", {
+      style,
+      weight
+    });
+  }
+}
+class FontInfo {
+  #buffer;
+  #view;
+  constructor(buffer) {
+    this.#buffer = buffer;
+    this.#view = new DataView(buffer);
+  }
+  #readBoolean(index) {
+    util_assert(index < FONT_INFO.bools.length, "Invalid boolean index");
+    const byteOffset = Math.floor(index / 4);
+    const bitOffset = index * 2 % 8;
+    const value = this.#view.getUint8(byteOffset) >> bitOffset & 0x03;
+    return value === 0x00 ? undefined : value === 0x02;
+  }
+  get black() {
+    return util_shadow(this, "black", this.#readBoolean(0));
+  }
+  get bold() {
+    return util_shadow(this, "bold", this.#readBoolean(1));
+  }
+  get disableFontFace() {
+    return util_shadow(this, "disableFontFace", this.#readBoolean(2));
+  }
+  get fontExtraProperties() {
+    return util_shadow(this, "fontExtraProperties", this.#readBoolean(3));
+  }
+  get isInvalidPDFjsFont() {
+    return util_shadow(this, "isInvalidPDFjsFont", this.#readBoolean(4));
+  }
+  get isType3Font() {
+    return util_shadow(this, "isType3Font", this.#readBoolean(5));
+  }
+  get italic() {
+    return util_shadow(this, "italic", this.#readBoolean(6));
+  }
+  get missingFile() {
+    return util_shadow(this, "missingFile", this.#readBoolean(7));
+  }
+  get remeasure() {
+    return util_shadow(this, "remeasure", this.#readBoolean(8));
+  }
+  get vertical() {
+    return util_shadow(this, "vertical", this.#readBoolean(9));
+  }
+  #readArray(offset, arrLen, lookupName, increment) {
+    const len = this.#view.getUint8(offset++);
+    if (len === 0) {
+      return undefined;
+    }
+    util_assert(len === arrLen, "Invalid array length.");
+    const arr = new Array(len);
+    for (let i = 0; i < len; i++) {
+      arr[i] = this.#view[lookupName](offset, true);
+      offset += increment;
+    }
+    return arr;
+  }
+  get bbox() {
+    return util_shadow(this, "bbox", this.#readArray(FONT_INFO.OFFSET_BBOX, 4, "getInt16", 2));
+  }
+  get fontMatrix() {
+    return util_shadow(this, "fontMatrix", this.#readArray(FONT_INFO.OFFSET_FONT_MATRIX, 6, "getFloat64", 8));
+  }
+  #readString(index) {
+    util_assert(index < FONT_INFO.strings.length, "Invalid string index");
+    return readString(this.#buffer, this.#view, index, FONT_INFO.OFFSET_STRINGS + 4);
+  }
+  get fallbackName() {
+    return util_shadow(this, "fallbackName", this.#readString(0));
+  }
+  get loadedName() {
+    return util_shadow(this, "loadedName", this.#readString(1));
+  }
+  #getBufferOffset(index) {
+    let offset = FONT_INFO.OFFSET_STRINGS;
+    for (let i = 0; i <= index; i++) {
+      offset += 4 + this.#view.getUint32(offset);
+    }
+    const length = this.#view.getUint32(offset);
+    return {
+      offset,
+      length
+    };
+  }
+  get data() {
+    const {
+      offset,
+      length
+    } = this.#getBufferOffset(2);
+    return !length ? undefined : new Uint8Array(this.#buffer, offset + 4, length);
+  }
+  clearData() {
+    const {
+      offset,
+      length
+    } = this.#getBufferOffset(2);
+    if (!length) {
+      return;
+    }
+    this.#view.setUint32(offset, 0);
+    this.#buffer = new Uint8Array(this.#buffer, 0, offset + 4).slice().buffer;
+    this.#view = new DataView(this.#buffer);
+  }
+  get cssFontInfo() {
+    const {
+      offset,
+      length
+    } = this.#getBufferOffset(1);
+    let info = null;
+    if (length) {
+      const data = new Uint8Array(this.#buffer, offset + 4, length).slice();
+      info = new CssFontInfo(data.buffer);
+    }
+    return util_shadow(this, "cssFontInfo", info);
+  }
+  get systemFontInfo() {
+    const {
+      offset,
+      length
+    } = this.#getBufferOffset(0);
+    let info = null;
+    if (length) {
+      const data = new Uint8Array(this.#buffer, offset + 4, length).slice();
+      info = new SystemFontInfo(data.buffer);
+    }
+    return util_shadow(this, "systemFontInfo", info);
+  }
+}
+class PatternInfo {
+  constructor(buffer) {
+    this.buffer = buffer;
+    this.view = new DataView(buffer);
+    this.data = new Uint8Array(buffer);
+  }
+  getIR() {
+    const dataView = this.view;
+    const kind = this.data[PATTERN_INFO.KIND];
+    const hasBBox = !!this.data[PATTERN_INFO.HAS_BBOX];
+    const hasBackground = !!this.data[PATTERN_INFO.HAS_BACKGROUND];
+    const nCoord = dataView.getUint32(PATTERN_INFO.N_COORD, true);
+    const nColor = dataView.getUint32(PATTERN_INFO.N_COLOR, true);
+    const nStop = dataView.getUint32(PATTERN_INFO.N_STOP, true);
+    let offset = 20;
+    const coords = new Float32Array(this.buffer, offset, nCoord * 2);
+    offset += nCoord * 8;
+    const colors = new Uint8Array(this.buffer, offset, nColor * 4);
+    offset += nColor * 4;
+    const stops = [];
+    for (let i = 0; i < nStop; ++i) {
+      const p = dataView.getFloat32(offset, true);
+      offset += 4;
+      const rgb = dataView.getUint32(offset, true);
+      offset += 4;
+      stops.push([p, `#${rgb.toString(16).padStart(6, "0")}`]);
+    }
+    let bbox = null;
+    if (hasBBox) {
+      bbox = [];
+      for (let i = 0; i < 4; ++i) {
+        bbox.push(dataView.getFloat32(offset, true));
+        offset += 4;
+      }
+    }
+    let background = null;
+    if (hasBackground) {
+      background = new Uint8Array(this.buffer, offset, 3);
+      offset += 3;
+    }
+    if (kind === 1) {
+      return ["RadialAxial", "axial", bbox, stops, [coords[0], coords[1]], [coords[2], coords[3]], null, null];
+    }
+    if (kind === 2) {
+      return ["RadialAxial", "radial", bbox, stops, [coords[0], coords[1]], [coords[3], coords[4]], coords[2], coords[5]];
+    }
+    if (kind === 3) {
+      const shadingType = this.data[PATTERN_INFO.SHADING_TYPE];
+      let bounds = null;
+      if (coords.length > 0) {
+        bounds = BBOX_INIT.slice();
+        for (let i = 0, ii = coords.length; i < ii; i += 2) {
+          Util.pointBoundingBox(coords[i], coords[i + 1], bounds);
+        }
+      }
+      return ["Mesh", shadingType, coords, colors, nCoord, bounds, bbox, background];
+    }
+    throw new Error(`Unsupported pattern kind: ${kind}`);
+  }
+}
+class FontPathInfo {
+  #buffer;
+  constructor(buffer) {
+    this.#buffer = buffer;
+  }
+  get path() {
+    if (FeatureTest.isFloat16ArraySupported) {
+      return new Float16Array(this.#buffer);
+    }
+    return new Float32Array(this.#buffer);
+  }
+}
+
+;// ./src/display/pdf_objects.js
+
+
+const INITIAL_DATA = Symbol("INITIAL_DATA");
+const dataObj = () => ({
+  ...Promise.withResolvers(),
+  data: INITIAL_DATA
+});
+class PDFObjects {
+  #objs = new Map();
+  get(objId, callback = null, errorCallback = null) {
+    if (callback) {
+      const obj = this.#objs.getOrInsertComputed(objId, dataObj);
+      obj.promise.then(() => callback(obj.data), errorCallback);
+      return null;
+    }
+    const obj = this.#objs.get(objId);
+    if (!obj || obj.data === INITIAL_DATA) {
+      throw new Error(`Requesting object that isn't resolved yet ${objId}.`);
+    }
+    return obj.data;
+  }
+  has(objId) {
+    const obj = this.#objs.get(objId);
+    return !!obj && obj.data !== INITIAL_DATA;
+  }
+  delete(objId) {
+    const obj = this.#objs.get(objId);
+    if (!obj || obj.data === INITIAL_DATA) {
+      return false;
+    }
+    this.#objs.delete(objId);
+    return true;
+  }
+  resolve(objId, data = null) {
+    const obj = this.#objs.getOrInsertComputed(objId, dataObj);
+    if (obj.data !== INITIAL_DATA) {
+      throw new Error(`Object already resolved ${objId}.`);
+    }
+    obj.data = data;
+    obj.resolve();
+  }
+  reject(objId, reason) {
+    const obj = this.#objs.getOrInsertComputed(objId, dataObj);
+    if (obj.data !== INITIAL_DATA) {
+      return;
+    }
+    obj.promise.catch(() => {});
+    obj.reject(reason);
+  }
+  clear() {
+    for (const {
+      data
+    } of this.#objs.values()) {
+      data?.bitmap?.close();
+    }
+    this.#objs.clear();
+  }
+  *[Symbol.iterator]() {
+    for (const [objId, {
+      data
+    }] of this.#objs) {
+      if (data !== INITIAL_DATA) {
+        yield [objId, data];
+      }
+    }
+  }
+}
+
+;// ./src/display/object_handler.js
+
+
+
+
+
+class ObjectHandler {
+  constructor({
+    messageHandler,
+    commonObjs,
+    fontLoader,
+    pageCache,
+    pdfBug = false,
+    shouldCreatePageObjs = false
+  }) {
+    this.messageHandler = messageHandler;
+    this.commonObjs = commonObjs;
+    this.fontLoader = fontLoader;
+    this.pageCache = pageCache;
+    this.pdfBug = pdfBug;
+    this.shouldCreatePageObjs = shouldCreatePageObjs;
+  }
+  resolveCommonObject(id, type, exportedData) {
+    if (type === "CopyLocalImage") {
+      const {
+        imageRef
+      } = exportedData;
+      util_assert(imageRef, "The imageRef must be defined.");
+      for (const pageOrObjs of this.pageCache.values()) {
+        const objs = pageOrObjs.objs || pageOrObjs;
+        for (const [, data] of objs) {
+          if (data?.ref !== imageRef) {
+            continue;
+          }
+          if (!data.dataLen) {
+            return null;
+          }
+          const copy = structuredClone(data);
+          this.commonObjs.resolve(id, copy);
+          return data.dataLen;
+        }
+      }
+      return null;
+    }
+    switch (type) {
+      case "Font":
+        if ("error" in exportedData) {
+          const exportedError = exportedData.error;
+          warn(`Error during font loading: ${exportedError}`);
+          this.commonObjs.resolve(id, exportedError);
+          break;
+        }
+        const fontData = new FontInfo(exportedData.buffer);
+        const inspectFont = this.pdfBug && globalThis.FontInspector?.enabled ? (font, url) => globalThis.FontInspector.fontAdded(font, url) : null;
+        const font = new FontFaceObject(fontData, inspectFont, exportedData.charProcOperatorList, exportedData.extra);
+        this.fontLoader.bind(font).catch(() => this.messageHandler.sendWithPromise("FontFallback", {
+          id
+        }).catch(reason => {
+          warn(`FontFallback failed for "${id}": ${reason}`);
+        })).finally(() => {
+          if (!font.fontExtraProperties) {
+            font.clearData();
+          }
+          this.commonObjs.resolve(id, font);
+        });
+        break;
+      case "FontPath":
+        this.commonObjs.resolve(id, new FontPathInfo(exportedData));
+        break;
+      case "Image":
+        this.commonObjs.resolve(id, exportedData);
+        break;
+      case "Pattern":
+        const pattern = new PatternInfo(exportedData);
+        this.commonObjs.resolve(id, pattern.getIR());
+        break;
+      default:
+        throw new Error(`Got unknown common object type ${type}`);
+    }
+    return null;
+  }
+  resolveObject(id, pageProxyId, type, exportedData) {
+    let pageOrObjs = this.pageCache.get(pageProxyId);
+    if (!pageOrObjs) {
+      if (!this.shouldCreatePageObjs) {
+        return false;
+      }
+      pageOrObjs = new PDFObjects();
+      this.pageCache.set(pageProxyId, pageOrObjs);
+    }
+    const objs = pageOrObjs.objs || pageOrObjs;
+    if (objs.has(id)) {
+      return false;
+    }
+    if (pageOrObjs._intentStates?.size === 0) {
+      exportedData?.bitmap?.close();
+      return false;
+    }
+    switch (type) {
+      case "Image":
+      case "Pattern":
+        objs.resolve(id, exportedData);
+        return true;
+      default:
+        throw new Error(`Got unknown object type ${type}`);
+    }
   }
 }
 
@@ -20997,6 +21390,7 @@ class PagesMapper {
   #pageNumberToId = null;
   #prevPageNumbers = null;
   #pagesNumber = 0;
+  #initialPagesNumber = 0;
   #clipboard = null;
   #savedData = null;
   get pagesNumber() {
@@ -21006,7 +21400,7 @@ class PagesMapper {
     if (this.#pagesNumber === n) {
       return;
     }
-    this.#pagesNumber = n;
+    this.#pagesNumber = this.#initialPagesNumber = n;
     this.#pageNumberToId = null;
     this.#prevPageNumbers = null;
   }
@@ -21063,7 +21457,7 @@ class PagesMapper {
     prevPageNumbers.copyWithin(adjustedTarget + movedCount, adjustedTarget, remainingLen);
     prevPageNumbers.set(pagesToMove, adjustedTarget);
     this.#prevPageNumbers = prevPageNumbers;
-    if (pageNumberToId.every((id, i) => id === i + 1)) {
+    if (pagesNumber === this.#initialPagesNumber && pageNumberToId.every((id, i) => id === i + 1)) {
       this.#pageNumberToId = null;
     }
   }
@@ -21249,68 +21643,541 @@ class PagesMapper {
   }
 }
 
-;// ./src/display/pdf_objects.js
+;// ./src/display/renderer_worker_proxy.js
 
 
-const INITIAL_DATA = Symbol("INITIAL_DATA");
-const dataObj = () => ({
-  ...Promise.withResolvers(),
-  data: INITIAL_DATA
-});
-class PDFObjects {
-  #objs = new Map();
-  get(objId, callback = null) {
-    if (callback) {
-      const obj = this.#objs.getOrInsertComputed(objId, dataObj);
-      obj.promise.then(() => callback(obj.data));
-      return null;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const PORT_CONNECTION_TIMEOUT = 5000;
+function closeFrame({
+  bitmap,
+  annotationBitmaps
+}) {
+  bitmap?.close();
+  if (annotationBitmaps) {
+    for (const [,, annotationBitmap] of annotationBitmaps) {
+      annotationBitmap.close();
     }
-    const obj = this.#objs.get(objId);
-    if (!obj || obj.data === INITIAL_DATA) {
-      throw new Error(`Requesting object that isn't resolved yet ${objId}.`);
-    }
-    return obj.data;
   }
-  has(objId) {
-    const obj = this.#objs.get(objId);
-    return !!obj && obj.data !== INITIAL_DATA;
+}
+class WorkerRenderTask {
+  #annotationCanvasMap;
+  #cancelled = false;
+  #canvas;
+  #canvasFactory;
+  #filteredLength = 0;
+  #id;
+  #initParams;
+  #onError;
+  #onFrame;
+  #operatorListState;
+  #rendererWorker;
+  #renderTasks;
+  imageCoordinates = null;
+  recordedBBoxes = null;
+  constructor({
+    rendererWorker,
+    renderTasks,
+    canvas,
+    canvasFactory,
+    annotationCanvasMap,
+    operatorListState,
+    initParams,
+    onFrame,
+    onError
+  }) {
+    this.#rendererWorker = rendererWorker;
+    this.#renderTasks = renderTasks;
+    this.#canvas = canvas;
+    this.#canvasFactory = canvasFactory;
+    this.#annotationCanvasMap = annotationCanvasMap;
+    this.#operatorListState = operatorListState;
+    this.#initParams = initParams;
+    this.#id = initParams.renderTaskId;
+    this.#onFrame = onFrame;
+    this.#onError = onError;
   }
-  delete(objId) {
-    const obj = this.#objs.get(objId);
-    if (!obj || obj.data === INITIAL_DATA) {
+  async initialize(transparency, optionalContentConfig) {
+    try {
+      await this.#rendererWorker.promise;
+    } catch {
       return false;
     }
-    this.#objs.delete(objId);
+    if (!this.#rendererWorker.messageHandler || this.#cancelled) {
+      return false;
+    }
+    try {
+      await this.#rendererWorker.sendWithPromise("InitializeGraphics", {
+        ...this.#initParams,
+        width: this.#canvas.width,
+        height: this.#canvas.height,
+        transparency,
+        optionalContentConfig: optionalContentConfig.serializable
+      });
+    } catch (ex) {
+      if (!this.#cancelled) {
+        warn(`Failed to initialize graphics in renderer worker: ${ex.message}. ` + "Falling back to main-thread rendering.");
+      }
+      return false;
+    }
+    if (!this.#cancelled) {
+      this.#renderTasks.set(this.#id, this);
+    }
     return true;
   }
-  resolve(objId, data = null) {
-    const obj = this.#objs.getOrInsertComputed(objId, dataObj);
-    if (obj.data !== INITIAL_DATA) {
-      throw new Error(`Object already resolved ${objId}.`);
+  async executeOperatorList(operatorList, operatorListIdx, operationsFilter) {
+    const handler = this.#rendererWorker.messageHandler;
+    if (!handler) {
+      throw new Error("Renderer worker was destroyed during rendering.");
     }
-    obj.data = data;
-    obj.resolve();
-  }
-  clear() {
-    for (const {
-      data
-    } of this.#objs.values()) {
-      data?.bitmap?.close();
+    const {
+      lastChunk
+    } = operatorList;
+    const end = operatorList.argsArray.length;
+    const operatorListState = this.#operatorListState;
+    if (operatorListState.sentLength < end) {
+      const start = operatorListState.sentLength;
+      handler.send("AppendOperatorList", {
+        pageProxyId: this.#initParams.pageProxyId,
+        operatorListId: operatorListState.id,
+        fnArray: operatorList.fnArray.slice(start, end),
+        argsArray: operatorList.argsArray.slice(start, end)
+      });
+      operatorListState.sentLength = end;
     }
-    this.#objs.clear();
+    let operationsFilterMask = null;
+    if (operationsFilter && this.#filteredLength < end) {
+      const start = this.#filteredLength;
+      operationsFilterMask = new Uint8Array(end - start);
+      for (let i = start; i < end; i++) {
+        operationsFilterMask[i - start] = operationsFilter(i, operatorList) ? 1 : 0;
+      }
+      this.#filteredLength = end;
+    }
+    const response = await this.#rendererWorker.sendWithPromise("ExecuteOperatorList", {
+      renderTaskId: this.#id,
+      operatorListIdx,
+      operatorListLength: end,
+      operationsFilterMask,
+      lastChunk
+    }).catch(reason => {
+      if (!this.#cancelled) {
+        throw reason;
+      }
+      return {
+        operatorListIdx,
+        aborted: true
+      };
+    });
+    if (response.aborted && !this.#cancelled) {
+      throw new Error("Render task was aborted in the renderer worker.");
+    }
+    if (lastChunk && response.operatorListIdx === end) {
+      this.#renderTasks.delete(this.#id);
+      const {
+        recordedBBoxesBuffer,
+        imageCoordinates
+      } = response;
+      if (recordedBBoxesBuffer) {
+        this.recordedBBoxes = BBoxReader.fromBuffer(recordedBBoxesBuffer);
+      }
+      this.imageCoordinates = imageCoordinates ?? null;
+    }
+    return response.operatorListIdx;
   }
-  *[Symbol.iterator]() {
-    for (const [objId, {
-      data
-    }] of this.#objs) {
-      if (data !== INITIAL_DATA) {
-        yield [objId, data];
+  cancel() {
+    this.#cancelled = true;
+    this.#renderTasks.delete(this.#id);
+    this.#rendererWorker.messageHandler?.send("CleanupRenderTask", {
+      renderTaskId: this.#id
+    });
+  }
+  drawFrame(frame) {
+    try {
+      if (frame.bitmap) {
+        const ctx = this.#canvasFactory.getNoAlphaContext(this.#canvas);
+        ctx.drawImage(frame.bitmap, 0, 0);
+      }
+      if (frame.annotationBitmaps) {
+        this.#drawAnnotationCanvases(frame.annotationBitmaps);
+      }
+    } catch (ex) {
+      this.#onError(ex);
+      return;
+    } finally {
+      closeFrame(frame);
+    }
+    this.#onFrame();
+  }
+  #drawAnnotationCanvases(annotationBitmaps) {
+    const annotationCanvasMap = this.#annotationCanvasMap;
+    const seen = new Set();
+    for (const [id, canvasName, bitmap] of annotationBitmaps) {
+      const {
+        canvas,
+        context
+      } = this.#canvasFactory.create(bitmap.width, bitmap.height);
+      context.drawImage(bitmap, 0, 0);
+      if (!canvasName) {
+        annotationCanvasMap.set(id, canvas);
+        continue;
+      }
+      setAnnotationCanvasName(canvas, canvasName);
+      if (seen.has(id)) {
+        annotationCanvasMap.get(id).push(canvas);
+      } else {
+        seen.add(id);
+        annotationCanvasMap.set(id, [canvas]);
       }
     }
   }
 }
+class RendererWorker {
+  #capability = Promise.withResolvers();
+  #enableHWA;
+  #enableWebGPU;
+  #messageHandler = null;
+  #operatorListId = 0;
+  #operatorLists = new WeakMap();
+  #pendingMessages = [];
+  #pendingRequests = new Set();
+  #port = null;
+  #portNames = null;
+  #renderTaskId = 0;
+  #renderTasks = new Map();
+  #terminateEarly = null;
+  #webWorker = null;
+  #workerAC = null;
+  static #connectionId = 0;
+  static #usedPorts = new WeakSet();
+  destroyed = false;
+  constructor({
+    port = null,
+    verbosity = getVerbosityLevel(),
+    enableHWA = false,
+    enableWebGPU = false
+  } = {}) {
+    this.verbosity = verbosity;
+    this.#enableHWA = enableHWA;
+    this.#enableWebGPU = enableWebGPU;
+    if (port) {
+      this.#initializeFromPort(port);
+    } else {
+      this.#initialize();
+    }
+  }
+  static get isAvailable() {
+    return (!!GlobalWorkerOptions.rendererSrc || GlobalWorkerOptions.rendererPorts.length > 0) && typeof Worker !== "undefined" && FeatureTest.isOffscreenCanvasSupported && !!globalThis.document?.fonts;
+  }
+  get promise() {
+    return this.#capability.promise;
+  }
+  get messageHandler() {
+    return this.#messageHandler;
+  }
+  get port() {
+    return this.#port;
+  }
+  #resolve() {
+    this.#messageHandler.on("RenderFrame", frame => {
+      const renderTask = this.#renderTasks.get(frame.renderTaskId);
+      if (renderTask) {
+        renderTask.drawFrame(frame);
+      } else {
+        closeFrame(frame);
+      }
+    });
+    this.#capability.resolve();
+    this.#messageHandler.send("configure", {
+      verbosity: this.verbosity,
+      enableHWA: this.#enableHWA,
+      enableWebGPU: this.#enableWebGPU
+    });
+    const pendingMessages = this.#pendingMessages;
+    this.#pendingMessages = null;
+    for (const send of pendingMessages) {
+      send();
+    }
+  }
+  #reject(reason) {
+    this.#pendingMessages = null;
+    this.#capability.reject(reason);
+  }
+  #initializeFromPort(port) {
+    RendererWorker.#usedPorts.add(port);
+    this.#port = port;
+    const id = RendererWorker.#connectionId++;
+    const sourceName = `main${id}`;
+    const targetName = `renderer${id}`;
+    this.#portNames = {
+      sourceName,
+      targetName
+    };
+    const handler = new MessageHandler("main", "renderer", port);
+    handler.send("Connect", {
+      sourceName: targetName,
+      targetName: sourceName
+    });
+    handler.destroy();
+    this.#waitForReady(port, new MessageHandler(sourceName, targetName, port), true);
+  }
+  #initialize() {
+    try {
+      const {
+        rendererSrc
+      } = GlobalWorkerOptions;
+      if (!rendererSrc) {
+        throw new Error('No "GlobalWorkerOptions.rendererSrc" specified.');
+      }
+      const worker = new Worker(getWorkerSrc(rendererSrc), {
+        type: "module"
+      });
+      this.#waitForReady(worker, new MessageHandler("main", "renderer", worker), false);
+    } catch (reason) {
+      this.#reject(reason);
+    }
+  }
+  #waitForReady(worker, messageHandler, isPort) {
+    let timeoutId = null;
+    const terminateEarly = reason => {
+      this.#terminateEarly = null;
+      clearTimeout(timeoutId);
+      ac.abort();
+      messageHandler.destroy();
+      if (isPort) {
+        this.#port = null;
+      } else {
+        worker.terminate();
+      }
+      this.#reject(new Error(`Renderer worker failed to initialize: "${reason?.message ?? reason}".`));
+    };
+    this.#terminateEarly = terminateEarly;
+    const ac = new AbortController();
+    const onError = (event, reason) => {
+      if (!this.#messageHandler) {
+        terminateEarly(reason);
+        return;
+      }
+      event.preventDefault();
+      warn(`Renderer worker failed: "${reason}". ` + "Falling back to main-thread rendering.");
+      this.destroy();
+    };
+    worker.addEventListener("error", event => onError(event, event.error?.message ?? event.message), {
+      signal: ac.signal
+    });
+    worker.addEventListener("messageerror", event => onError(event, "Cannot deserialize a message."), {
+      signal: ac.signal
+    });
+    if (isPort) {
+      timeoutId = setTimeout(() => terminateEarly("Connection timed out."), PORT_CONNECTION_TIMEOUT);
+    }
+    messageHandler.on("ready", data => {
+      if (!(data?.testObj instanceof Uint8Array)) {
+        terminateEarly("TypedArray transfer test failed.");
+        return;
+      }
+      const apiVersion = "6.5.438";
+      if (apiVersion !== data.workerVersion) {
+        terminateEarly(`The API version "${apiVersion}" does not match the Worker version "${data.workerVersion}".`);
+        return;
+      }
+      this.#terminateEarly = null;
+      clearTimeout(timeoutId);
+      this.#messageHandler = messageHandler;
+      if (!isPort) {
+        this.#webWorker = worker;
+      }
+      this.#workerAC = ac;
+      this.#resolve();
+    });
+  }
+  destroy() {
+    this.destroyed = true;
+    if (this.#port) {
+      if (this.#messageHandler) {
+        this.#closeStrayFrames(this.#port);
+        this.#messageHandler.send("Disconnect", null);
+      }
+      RendererWorker.#usedPorts.delete(this.#port);
+      this.#port = null;
+    }
+    this.#terminateEarly?.("Worker was destroyed.");
+    this.#workerAC?.abort();
+    this.#workerAC = null;
+    this.#webWorker?.terminate();
+    this.#webWorker = null;
+    this.#messageHandler?.destroy();
+    this.#messageHandler = null;
+    for (const reject of this.#pendingRequests) {
+      reject(new Error("Renderer worker was destroyed."));
+    }
+    this.#pendingRequests.clear();
+  }
+  #closeStrayFrames(port) {
+    const {
+      sourceName,
+      targetName
+    } = this.#portNames;
+    const ac = new AbortController();
+    const timeoutId = setTimeout(() => ac.abort(), PORT_CONNECTION_TIMEOUT);
+    port.addEventListener("message", ({
+      data
+    }) => {
+      if (data?.targetName !== sourceName || data.sourceName !== targetName) {
+        return;
+      }
+      if (data.action === "RenderFrame") {
+        closeFrame(data.data);
+      } else if (data.action === "Disconnected") {
+        clearTimeout(timeoutId);
+        ac.abort();
+      }
+    }, {
+      signal: ac.signal
+    });
+  }
+  static create({
+    ports = [],
+    ...params
+  } = {}) {
+    const port = ports.find(p => !this.#usedPorts.has(p)) ?? null;
+    if (!port && ports.length > 0) {
+      warn("RendererWorker.create - no unused `rendererPorts` available, " + "falling back to `rendererSrc`.");
+    }
+    return new RendererWorker({
+      ...params,
+      port
+    });
+  }
+  sendWithPromise(action, data) {
+    const handler = this.#messageHandler;
+    if (!handler) {
+      return Promise.reject(new Error("Renderer worker was destroyed."));
+    }
+    const {
+      promise,
+      resolve,
+      reject
+    } = Promise.withResolvers();
+    this.#pendingRequests.add(reject);
+    handler.sendWithPromise(action, data).then(resolve, reject);
+    return promise.finally(() => {
+      this.#pendingRequests.delete(reject);
+    });
+  }
+  #send(action, data) {
+    if (this.#pendingMessages) {
+      this.#pendingMessages.push(() => this.#send(action, data));
+      return;
+    }
+    this.#messageHandler?.send(action, data);
+  }
+  #sendObj(action, data, id, pageProxyId, isFont = false) {
+    try {
+      if (this.#pendingMessages) {
+        const queuedData = isFont ? structuredClone(data) : data;
+        this.#pendingMessages.push(() => this.#sendObj(action, queuedData, id, pageProxyId));
+        return;
+      }
+      this.#messageHandler?.send(action, data);
+    } catch (reason) {
+      warn(`RendererWorker - failed to send "${action}": ${reason}`);
+      this.#send("objFailed", {
+        id,
+        pageProxyId,
+        reason: reason.message
+      });
+    }
+  }
+  sendCommonObj(id, type, data) {
+    this.#sendObj("commonobj", [id, type, data], id, null, type === "Font");
+  }
+  sendObj(id, pageProxyId, type, data) {
+    this.#sendObj("obj", [id, pageProxyId, type, data], id, pageProxyId);
+  }
+  cleanup(keepLoadedFonts) {
+    this.#send("Cleanup", {
+      keepLoadedFonts
+    });
+  }
+  cleanupPage(pageProxyId) {
+    this.#send("cleanupPage", {
+      pageProxyId
+    });
+  }
+  createRenderTask({
+    pageProxyId,
+    operatorList,
+    params,
+    pageColors,
+    canvasFactory,
+    annotationCanvasMap,
+    onFrame,
+    onError
+  }) {
+    const {
+      canvas,
+      canvasContext,
+      background
+    } = params;
+    if (!this.#messageHandler && !this.#pendingMessages || canvasContext || background && typeof background !== "string" || pageColors || params.recordForDebugger) {
+      return null;
+    }
+    const operatorListState = this.#operatorLists.getOrInsertComputed(operatorList, () => ({
+      id: this.#operatorListId++,
+      sentLength: 0
+    }));
+    return new WorkerRenderTask({
+      rendererWorker: this,
+      renderTasks: this.#renderTasks,
+      canvas,
+      canvasFactory,
+      annotationCanvasMap,
+      operatorListState,
+      initParams: {
+        pageProxyId,
+        operatorListId: operatorListState.id,
+        renderTaskId: this.#renderTaskId++,
+        hasAnnotationCanvasMap: !!annotationCanvasMap,
+        recordOperations: params.recordOperations,
+        recordImages: params.recordImages,
+        partialFrames: params.partialFrames,
+        transform: params.transform,
+        viewport: params.viewport,
+        background,
+        pixelRatio: OutputScale.pixelRatio
+      },
+      onFrame,
+      onError
+    });
+  }
+}
 
 ;// ./src/display/text_layer.js
+
 
 
 
@@ -21346,7 +22213,6 @@ class TextLayer {
   #textContentItemsStr = [];
   #textContentSource = null;
   #textDivs = [];
-  #textDivProperties = new WeakMap();
   #transform = null;
   static #ascentCache = new Map();
   static #canvasContexts = new Map();
@@ -21430,32 +22296,19 @@ class TextLayer {
     return this.#capability.promise;
   }
   update({
-    viewport,
-    onBefore = null
+    viewport
   }) {
     const scale = viewport.scale * OutputScale.pixelRatio;
     const rotation = viewport.rotation;
     if (rotation !== this.#rotation) {
-      onBefore?.();
       this.#rotation = rotation;
       setLayerDimensions(this.#rootContainer, {
         rotation
       });
     }
     if (scale !== this.#scale) {
-      onBefore?.();
       this.#scale = scale;
       this.#pixelRatio = OutputScale.pixelRatio;
-      const params = {
-        div: null,
-        properties: null,
-        ctx: TextLayer.#getCtx(this.#lang)
-      };
-      for (const div of this.#textDivs) {
-        params.properties = this.#textDivProperties.get(div);
-        params.div = div;
-        this.#layout(params);
-      }
     }
   }
   cancel() {
@@ -21561,7 +22414,6 @@ class TextLayer {
     if (shouldScaleText) {
       textDivProperties.canvasWidth = style.vertical ? geom.height : geom.width;
     }
-    this.#textDivProperties.set(textDiv, textDivProperties);
     this.#layoutTextParams.div = textDiv;
     this.#layoutTextParams.properties = textDivProperties;
     this.#layout(this.#layoutTextParams);
@@ -21779,12 +22631,15 @@ function getDocument(src = {}) {
   const BinaryDataFactory = src.BinaryDataFactory || (isNodeJS ? NodeBinaryDataFactory : DOMBinaryDataFactory);
   const enableHWA = src.enableHWA === true;
   const enableWebGPU = src.enableWebGPU === true;
-  const gpuPromise = enableWebGPU ? initGPU() : Promise.resolve(false);
+  if (enableWebGPU) {
+    initGPU();
+  }
   const useWasm = src.useWasm !== false;
   const pagesMapper = src.pagesMapper || new PagesMapper();
+  const styleElement = null;
   const useSystemFonts = typeof src.useSystemFonts === "boolean" ? src.useSystemFonts : !isNodeJS && !disableFontFace;
   const useWorkerFetch = typeof src.useWorkerFetch === "boolean" ? src.useWorkerFetch : !!(BinaryDataFactory === DOMBinaryDataFactory && cMapUrl && cMapPacked && standardFontDataUrl && wasmUrl && isValidFetchUrl(cMapUrl, document.baseURI) && isValidFetchUrl(standardFontDataUrl, document.baseURI) && isValidFetchUrl(wasmUrl, document.baseURI));
-  const styleElement = null;
+  const disableWorkerRendering = src.disableWorkerRendering === true || !isOffscreenCanvasSupported || ownerDocument !== globalThis.document || !!styleElement || !RendererWorker.isAvailable;
   setVerbosityLevel(verbosity);
   const transportFactory = {
     canvasFactory: new CanvasFactory({
@@ -21808,9 +22663,24 @@ function getDocument(src = {}) {
     });
     task._worker = worker;
   }
+  if (!disableWorkerRendering) {
+    const rendererWorker = RendererWorker.create({
+      verbosity,
+      enableHWA,
+      enableWebGPU,
+      ports: GlobalWorkerOptions.rendererPorts
+    });
+    rendererWorker.promise.catch(reason => {
+      if (!rendererWorker.destroyed) {
+        warn(`Renderer worker disabled: ${reason.message}`);
+        rendererWorker.destroy();
+      }
+    });
+    task._rendererWorker = rendererWorker;
+  }
   const docParams = {
     docId,
-    apiVersion: "6.4.299",
+    apiVersion: "6.5.438",
     data,
     password,
     disableAutoFetch,
@@ -21832,25 +22702,24 @@ function getDocument(src = {}) {
       cMapPacked,
       iccUrl,
       standardFontDataUrl,
-      wasmUrl,
-      hasGPU: false
+      wasmUrl
     }
   };
   const transportParams = {
     ownerDocument,
     pdfBug,
     styleElement,
-    enableHWA,
+    rendererWorker: task._rendererWorker,
+    enableWebGPU,
     loadingParams: {
       disableAutoFetch,
       enableXfa
     }
   };
-  Promise.all([worker.promise, gpuPromise]).then(function ([, hasGPU]) {
+  worker.promise.then(function () {
     if (worker.destroyed) {
       throw new Error("Worker was destroyed");
     }
-    docParams.evaluatorOptions.hasGPU = hasGPU;
     const workerIdPromise = worker.messageHandler.sendWithPromise("GetDocRequest", docParams, data ? [data.buffer] : null);
     let networkStream;
     if (data) {} else if (rangeTransport) {
@@ -21893,6 +22762,7 @@ class PDFDocumentLoadingTask {
   _setupCapability = Promise.withResolvers();
   _transport = null;
   _worker = null;
+  _rendererWorker = null;
   docId = `d${PDFDocumentLoadingTask.#docId++}`;
   destroyed = false;
   onPassword = null;
@@ -21914,6 +22784,9 @@ class PDFDocumentLoadingTask {
         delete this._worker._pendingDestroy;
       }
       throw ex;
+    } finally {
+      this._rendererWorker?.destroy();
+      this._rendererWorker = null;
     }
     this._transport = null;
     this._worker?.destroy();
@@ -22187,6 +23060,7 @@ class PDFPageProxy {
     isEditing = false,
     recordImages = false,
     recordOperations = false,
+    partialFrames = false,
     operationsFilter = null
   }) {
     this._stats?.time("Overall");
@@ -22220,16 +23094,18 @@ class PDFPageProxy {
     const complete = error => {
       intentState.renderTasks.delete(internalRenderTask);
       if (shouldRecordOperations) {
-        const recordedBBoxes = internalRenderTask.gfx?.dependencyTracker.take();
+        const {
+          recordedBBoxes
+        } = internalRenderTask;
         if (recordedBBoxes) {
-          internalRenderTask.stepper?.setOperatorBBoxes(recordedBBoxes, internalRenderTask.gfx.dependencyTracker.takeDebugMetadata());
+          internalRenderTask.stepper?.setOperatorBBoxes(recordedBBoxes, internalRenderTask.debugMetadata);
           if (recordOperations) {
             this.recordedBBoxes = recordedBBoxes;
           }
         }
       }
       if (shouldRecordImages && !error) {
-        this.imageCoordinates = internalRenderTask.gfx?.imagesTracker.take();
+        this.imageCoordinates = internalRenderTask.imageCoordinates;
       }
       if (intentPrint) {
         this.#pendingCleanup = true;
@@ -22252,41 +23128,37 @@ class PDFPageProxy {
         }
       }
     };
-    let dependencyTracker = null;
-    let bboxTracker = null;
-    if (shouldRecordOperations || shouldRecordImages) {
-      bboxTracker = new CanvasBBoxTracker(canvas, intentState.operatorList.length);
-    }
-    if (shouldRecordOperations) {
-      dependencyTracker = new CanvasDependencyTracker(bboxTracker, recordForDebugger);
-    }
     const internalRenderTask = new InternalRenderTask({
       callback: complete,
       params: {
         canvas,
         canvasContext,
-        dependencyTracker: dependencyTracker ?? bboxTracker,
-        imagesTracker: shouldRecordImages ? new CanvasImagesTracker(canvas) : null,
         viewport,
         transform,
-        background
+        background,
+        recordOperations: shouldRecordOperations,
+        recordImages: shouldRecordImages,
+        partialFrames,
+        recordForDebugger
       },
       objs: this.objs,
       commonObjs: this.commonObjs,
       annotationCanvasMap,
       operatorList: intentState.operatorList,
       pageIndex: this._pageIndex,
+      pageProxyId: this._id,
       canvasFactory: this._transport.canvasFactory,
       filterFactory: this._transport.filterFactory,
       useRequestAnimationFrame: !intentPrint,
       pdfBug: this._pdfBug,
       pageColors,
-      enableHWA: this._transport.enableHWA,
-      operationsFilter
+      operationsFilter,
+      rendererWorker: this._transport.rendererWorker,
+      waitForGPU: () => this._transport.waitForGPU()
     });
     (intentState.renderTasks ||= new Set()).add(internalRenderTask);
     const renderTask = internalRenderTask.task;
-    Promise.all([intentState.displayReadyCapability.promise, optionalContentConfigPromise]).then(([transparency, optionalContentConfig]) => {
+    Promise.all([intentState.displayReadyCapability.promise, optionalContentConfigPromise]).then(async ([transparency, optionalContentConfig]) => {
       if (this.destroyed) {
         complete();
         return;
@@ -22295,7 +23167,7 @@ class PDFPageProxy {
       if (!(optionalContentConfig.renderingIntent & renderingIntent)) {
         throw new Error("Must use the same `intent`-argument when calling the `PDFPageProxy.render` " + "and `PDFDocumentProxy.getOptionalContentConfig` methods.");
       }
-      internalRenderTask.initializeGraphics({
+      await internalRenderTask.initializeGraphics({
         transparency,
         optionalContentConfig
       });
@@ -22354,12 +23226,20 @@ class PDFPageProxy {
       return this.getXfa().then(xfa => XfaText.textContent(xfa));
     }
     const readableStream = this.streamTextContent(params);
+    const reader = readableStream.getReader();
     const textContent = {
       items: [],
       styles: Object.create(null),
       lang: null
     };
-    for await (const value of readableStream) {
+    while (true) {
+      const {
+        value,
+        done
+      } = await reader.read();
+      if (done) {
+        break;
+      }
       textContent.lang ??= value.lang;
       Object.assign(textContent.styles, value.styles);
       textContent.items.push(...value.items);
@@ -22387,6 +23267,7 @@ class PDFPageProxy {
       }
     }
     this.objs.clear();
+    this._transport.cleanupPage(this._id);
     this.#pendingCleanup = false;
     return Promise.all(waitOn);
   }
@@ -22412,6 +23293,7 @@ class PDFPageProxy {
     }
     this._intentStates.clear();
     this.objs.clear();
+    this._transport.cleanupPage(this._id);
     this.#pendingCleanup = false;
     return true;
   }
@@ -22558,20 +23440,6 @@ class PDFWorker {
       this.#isWorkerDisabled = true;
       GlobalWorkerOptions.workerSrc ||= "./pdf.worker.mjs";
     }
-    this._isSameOrigin = (baseUrl, otherUrl) => {
-      const base = URL.parse(baseUrl);
-      if (!base?.origin || base.origin === "null") {
-        return false;
-      }
-      const other = new URL(otherUrl, base);
-      return base.origin === other.origin;
-    };
-    this._createCDNWrapper = url => {
-      const wrapper = `await import("${url}");`;
-      return URL.createObjectURL(new Blob([wrapper], {
-        type: "text/javascript"
-      }));
-    };
   }
   constructor({
     name = null,
@@ -22617,14 +23485,11 @@ class PDFWorker {
       this.#setupFakeWorker();
       return;
     }
-    let {
+    const {
       workerSrc
     } = PDFWorker;
     try {
-      if (!PDFWorker._isSameOrigin(window.location, workerSrc)) {
-        workerSrc = PDFWorker._createCDNWrapper(new URL(workerSrc, window.location).href);
-      }
-      const worker = new Worker(workerSrc, {
+      const worker = new Worker(getWorkerSrc(workerSrc), {
         type: "module"
       });
       const messageHandler = new MessageHandler("main", "worker", worker);
@@ -22732,6 +23597,7 @@ class PDFWorker {
 class WorkerTransport {
   downloadInfoCapability = Promise.withResolvers();
   #fullReader = null;
+  #hasMeshPattern = false;
   #methodPromises = new Map();
   #networkStream = null;
   #pageCache = new Map();
@@ -22748,7 +23614,7 @@ class WorkerTransport {
       ownerDocument: params.ownerDocument,
       styleElement: params.styleElement
     });
-    this.enableHWA = params.enableHWA;
+    this.rendererWorker = params.rendererWorker;
     this.loadingParams = params.loadingParams;
     this._params = params;
     this.canvasFactory = factory.canvasFactory;
@@ -22857,6 +23723,7 @@ class WorkerTransport {
       this.#networkStream?.cancelAllRequests(new AbortException("Worker was terminated."));
       this.messageHandler?.destroy();
       this.messageHandler = null;
+      this.rendererWorker = null;
       this.destroyCapability.resolve();
     }, this.destroyCapability.reject);
     return this.destroyCapability.promise;
@@ -22990,64 +23857,39 @@ class WorkerTransport {
       const page = this.#pageCache.get(data.pageProxyId);
       page._startRenderPage(data.transparency, data.cacheKey);
     });
+    const objectHandler = new ObjectHandler({
+      messageHandler,
+      commonObjs: this.commonObjs,
+      fontLoader: this.fontLoader,
+      pageCache: this.#pageCache,
+      pdfBug: this._params.pdfBug
+    });
+    this.rendererWorker?.promise.then(() => {
+      this.rendererWorker?.messageHandler?.on("FontFallback", data => this.destroyed ? null : messageHandler.sendWithPromise("FontFallback", data));
+    }, () => {});
     messageHandler.on("commonobj", ([id, type, exportedData]) => {
       if (this.destroyed) {
         return null;
       }
-      if (this.commonObjs.has(id)) {
-        return null;
+      const {
+        rendererWorker
+      } = this;
+      if (type === "CopyLocalImage") {
+        if (this.commonObjs.has(id)) {
+          return null;
+        }
+        const dataLen = objectHandler.resolveCommonObject(id, type, exportedData);
+        if (dataLen) {
+          rendererWorker?.sendCommonObj(id, "Image", this.commonObjs.get(id));
+        }
+        return dataLen;
       }
-      switch (type) {
-        case "Font":
-          if ("error" in exportedData) {
-            const exportedError = exportedData.error;
-            warn(`Error during font loading: ${exportedError}`);
-            this.commonObjs.resolve(id, exportedError);
-            break;
-          }
-          const fontData = new FontInfo(exportedData.buffer);
-          const inspectFont = this._params.pdfBug && globalThis.FontInspector?.enabled ? (font, url) => globalThis.FontInspector.fontAdded(font, url) : null;
-          const font = new FontFaceObject(fontData, inspectFont, exportedData.charProcOperatorList, exportedData.extra);
-          this.fontLoader.bind(font).catch(() => messageHandler.sendWithPromise("FontFallback", {
-            id
-          })).finally(() => {
-            if (!font.fontExtraProperties) {
-              font.clearData();
-            }
-            this.commonObjs.resolve(id, font);
-          });
-          break;
-        case "CopyLocalImage":
-          const {
-            imageRef
-          } = exportedData;
-          util_assert(imageRef, "The imageRef must be defined.");
-          for (const pageProxy of this.#pageCache.values()) {
-            for (const [, data] of pageProxy.objs) {
-              if (data?.ref !== imageRef) {
-                continue;
-              }
-              if (!data.dataLen) {
-                return null;
-              }
-              const copy = structuredClone(data);
-              this.commonObjs.resolve(id, copy);
-              return data.dataLen;
-            }
-          }
-          break;
-        case "FontPath":
-          this.commonObjs.resolve(id, new FontPathInfo(exportedData));
-          break;
-        case "Image":
-          this.commonObjs.resolve(id, exportedData);
-          break;
-        case "Pattern":
-          const pattern = new PatternInfo(exportedData);
-          this.commonObjs.resolve(id, pattern.getIR());
-          break;
-        default:
-          throw new Error(`Got unknown common object type ${type}`);
+      rendererWorker?.sendCommonObj(id, type, exportedData);
+      if (!this.commonObjs.has(id)) {
+        objectHandler.resolveCommonObject(id, type, exportedData);
+        if (type === "Pattern" && this.commonObjs.get(id)[0] === "Mesh") {
+          this.#hasMeshPattern = true;
+        }
       }
       return null;
     });
@@ -23055,21 +23897,11 @@ class WorkerTransport {
       if (this.destroyed) {
         return;
       }
-      const pageProxy = this.#pageCache.get(pageProxyId);
-      if (pageProxy.objs.has(id)) {
-        return;
+      if (type === "Pattern" && imageData[0] === "Mesh") {
+        this.#hasMeshPattern = true;
       }
-      if (pageProxy._intentStates.size === 0) {
-        imageData?.bitmap?.close();
-        return;
-      }
-      switch (type) {
-        case "Image":
-        case "Pattern":
-          pageProxy.objs.resolve(id, imageData);
-          break;
-        default:
-          throw new Error(`Got unknown object type ${type}`);
+      if (objectHandler.resolveObject(id, pageProxyId, type, imageData)) {
+        this.rendererWorker?.sendObj(id, pageProxyId, type, imageData);
       }
     });
     messageHandler.on("DocProgress", data => {
@@ -23161,6 +23993,9 @@ class WorkerTransport {
     return this.messageHandler.sendWithPromise("ExtractPages", params, transfer).finally(() => {
       this.annotationStorage.resetModified();
     });
+  }
+  waitForGPU() {
+    return this._params.enableWebGPU && this.#hasMeshPattern && !isGPUReady() ? initGPU() : null;
   }
   getPage(pageNumber) {
     if (!Number.isInteger(pageNumber) || pageNumber <= 0 || pageNumber > this.pagesMapper.pagesNumber) {
@@ -23275,7 +24110,11 @@ class WorkerTransport {
     return this.messageHandler.sendWithPromise("GetOutline", null);
   }
   getOptionalContentConfig(renderingIntent) {
-    return this.#cacheSimpleMethod("GetOptionalContentConfig").then(data => new OptionalContentConfig(data, renderingIntent));
+    const name = "GetOptionalContentConfig";
+    return this.#methodPromises.getOrInsertComputed(name, () => this.messageHandler.sendWithPromise(name, null).catch(reason => {
+      warn(`${name}: "${reason}".`);
+      return null;
+    })).then(data => new OptionalContentConfig(data, renderingIntent));
   }
   getPermissions() {
     return this.messageHandler.sendWithPromise("GetPermissions", null);
@@ -23308,9 +24147,18 @@ class WorkerTransport {
     if (!keepLoadedFonts) {
       this.fontLoader.clear();
     }
+    this.rendererWorker?.cleanup(keepLoadedFonts);
     this.#methodPromises.clear();
     this.filterFactory.destroy(true);
     TextLayer.cleanup();
+  }
+  cleanupPage(pageProxyId) {
+    if (!this.destroyed) {
+      this.messageHandler.send("CleanupPage", {
+        pageProxyId
+      });
+    }
+    this.rendererWorker?.cleanupPage(pageProxyId);
   }
   cachedPageNumber(ref) {
     if (!isRefProxy(ref)) {
@@ -23331,6 +24179,7 @@ class RenderTask {
   _internalRenderTask = null;
   onContinue = null;
   onError = null;
+  onFrame = null;
   constructor(internalRenderTask) {
     this._internalRenderTask = internalRenderTask;
   }
@@ -23355,9 +24204,16 @@ class RenderTask {
   get imageCoordinates() {
     return this._internalRenderTask.imageCoordinates || null;
   }
+  get isWorkerRendering() {
+    return this._internalRenderTask.isWorkerRendering;
+  }
 }
 class InternalRenderTask {
+  #dependencyTracker = null;
+  #imagesTracker = null;
   #rAF = null;
+  #rendererTask = null;
+  #waitForGPU = null;
   static #canvasInUse = new WeakSet();
   constructor({
     callback,
@@ -23367,13 +24223,15 @@ class InternalRenderTask {
     annotationCanvasMap,
     operatorList,
     pageIndex,
+    pageProxyId,
     canvasFactory,
     filterFactory,
     useRequestAnimationFrame = false,
     pdfBug = false,
     pageColors = null,
-    enableHWA = false,
-    operationsFilter = null
+    operationsFilter = null,
+    rendererWorker = null,
+    waitForGPU = null
   }) {
     this.callback = callback;
     this.params = params;
@@ -23400,15 +24258,35 @@ class InternalRenderTask {
     this._nextBound = this._next.bind(this);
     this._canvas = params.canvas;
     this._canvasContext = params.canvas ? null : params.canvasContext;
-    this._enableHWA = enableHWA;
-    this._dependencyTracker = params.dependencyTracker;
-    this._imagesTracker = params.imagesTracker;
     this._operationsFilter = operationsFilter;
+    this.#waitForGPU = waitForGPU;
+    this.#rendererTask = rendererWorker?.createRenderTask({
+      pageProxyId,
+      operatorList,
+      params,
+      pageColors,
+      canvasFactory,
+      annotationCanvasMap,
+      onFrame: () => this.task.onFrame?.(),
+      onError: reason => this.cancel(reason)
+    }) ?? null;
   }
   get completed() {
     return this.capability.promise.catch(() => {});
   }
-  initializeGraphics({
+  get isWorkerRendering() {
+    return !!this.#rendererTask;
+  }
+  get imageCoordinates() {
+    return this.#rendererTask ? this.#rendererTask.imageCoordinates : this.#imagesTracker?.take();
+  }
+  get recordedBBoxes() {
+    return this.#rendererTask ? this.#rendererTask.recordedBBoxes : this.#dependencyTracker?.take();
+  }
+  get debugMetadata() {
+    return this.#dependencyTracker?.takeDebugMetadata() ?? null;
+  }
+  async initializeGraphics({
     transparency = false,
     optionalContentConfig
   }) {
@@ -23426,26 +24304,45 @@ class InternalRenderTask {
       this.stepper.init(this.operatorList);
       this.stepper.nextBreakPoint = this.stepper.getNextBreakPoint();
     }
-    const {
-      viewport,
-      transform,
-      background,
-      dependencyTracker,
-      imagesTracker
-    } = this.params;
-    const canvasContext = this._canvasContext || this._canvas.getContext("2d", {
-      alpha: false,
-      willReadFrequently: !this._enableHWA
-    });
-    this.gfx = new CanvasGraphics(canvasContext, this.commonObjs, this.objs, this.canvasFactory, this.filterFactory, {
-      optionalContentConfig
-    }, this.annotationCanvasMap, this.pageColors, dependencyTracker, imagesTracker);
-    this.gfx.beginDrawing({
-      transform,
-      viewport,
-      transparency,
-      background
-    });
+    if (this.#rendererTask) {
+      const initialized = await this.#rendererTask.initialize(transparency, optionalContentConfig);
+      if (this.cancelled) {
+        return;
+      }
+      if (!initialized) {
+        this.#rendererTask = null;
+      }
+    }
+    if (!this.#rendererTask) {
+      const {
+        viewport,
+        transform,
+        background,
+        recordOperations,
+        recordImages,
+        recordForDebugger
+      } = this.params;
+      const canvasContext = this._canvasContext || this.canvasFactory.getNoAlphaContext(this._canvas);
+      const {
+        dependencyTracker,
+        imagesTracker
+      } = createCanvasTrackers(this._canvas, this.operatorList.fnArray.length, {
+        recordOperations,
+        recordImages,
+        recordDebugMetadata: recordForDebugger
+      });
+      this.#dependencyTracker = dependencyTracker;
+      this.#imagesTracker = imagesTracker;
+      this.gfx = new CanvasGraphics(canvasContext, this.commonObjs, this.objs, this.canvasFactory, this.filterFactory, {
+        optionalContentConfig
+      }, this.annotationCanvasMap, this.pageColors, dependencyTracker, imagesTracker);
+      this.gfx.beginDrawing({
+        transform,
+        viewport,
+        transparency,
+        background
+      });
+    }
     this.operatorListIdx = 0;
     this.graphicsReady = true;
     this.graphicsReadyCallback?.();
@@ -23453,6 +24350,7 @@ class InternalRenderTask {
   cancel(error = null, extraDelay = 0) {
     this.running = false;
     this.cancelled = true;
+    this.#rendererTask?.cancel();
     this.gfx?.endDrawing();
     if (this.#rAF) {
       window.cancelAnimationFrame(this.#rAF);
@@ -23468,7 +24366,7 @@ class InternalRenderTask {
       this.graphicsReadyCallback ||= this._continueBound;
       return;
     }
-    this.gfx.dependencyTracker?.growOperationsCount(this.operatorList.fnArray.length);
+    this.#dependencyTracker?.growOperationsCount(this.operatorList.fnArray.length);
     this.stepper?.updateOperatorList(this.operatorList);
     if (this.running) {
       return;
@@ -23500,24 +24398,51 @@ class InternalRenderTask {
     if (this.cancelled) {
       return;
     }
-    this.operatorListIdx = this.gfx.executeOperatorList(this.operatorList, this.operatorListIdx, this._continueBound, this.stepper, this._operationsFilter);
-    if (this.operatorListIdx === this.operatorList.argsArray.length) {
+    if (!this.#rendererTask) {
+      const gpuPromise = this.#waitForGPU?.();
+      if (gpuPromise) {
+        await gpuPromise;
+        if (this.cancelled) {
+          return;
+        }
+      }
+    }
+    const {
+      operatorList
+    } = this;
+    const {
+      lastChunk
+    } = operatorList;
+    if (this.#rendererTask) {
+      this.operatorListIdx = await this.#rendererTask.executeOperatorList(operatorList, this.operatorListIdx, this._operationsFilter);
+      if (this.cancelled) {
+        return;
+      }
+      if (this.operatorListIdx !== operatorList.argsArray.length || lastChunk !== operatorList.lastChunk) {
+        this._continue();
+        return;
+      }
+    } else {
+      this.operatorListIdx = this.gfx.executeOperatorList(operatorList, this.operatorListIdx, this._continueBound, null, this.stepper, this._operationsFilter);
+    }
+    if (this.operatorListIdx === operatorList.argsArray.length) {
       this.running = false;
-      if (this.operatorList.lastChunk) {
-        this.gfx.endDrawing();
+      if (lastChunk) {
+        this.gfx?.endDrawing();
         InternalRenderTask.#canvasInUse.delete(this._canvas);
         this.callback();
       }
     }
   }
 }
-const api_version = "6.4.299";
-const build = "d0991a0d5";
+const api_version = "6.5.438";
+const build = "0a4153349";
 
 ;// ./node_modules/core-js/modules/es.math.sum-precise.js
 es_math_sum_precise_namespaceFn();
 
 ;// ./src/display/editor/color_picker.js
+
 
 
 
@@ -24046,9 +24971,9 @@ class AnnotationElement {
     this.downloadManager = parameters.downloadManager;
     this.imageResourcesPath = parameters.imageResourcesPath;
     this.renderForms = parameters.renderForms;
-    this.svgFactory = parameters.svgFactory;
     this.annotationStorage = parameters.annotationStorage;
     this.enableComment = parameters.enableComment;
+    this.enableAnnotationEditing = parameters.enableAnnotationEditing !== false;
     this.enableScripting = parameters.enableScripting;
     this.hasJSActions = parameters.hasJSActions;
     this._fieldObjects = parameters.fieldObjects;
@@ -24067,8 +24992,11 @@ class AnnotationElement {
   }) {
     return !!(contentsObj?.str || richText?.str);
   }
+  static get _svgFactory() {
+    return util_shadow(this, "_svgFactory", new DOMSVGFactory());
+  }
   get _isEditable() {
-    return this.data.isEditable;
+    return this.enableAnnotationEditing && this.data.isEditable;
   }
   get hasPopupData() {
     return AnnotationElement._hasPopupData(this.data) || this.enableComment && !!this.commentText;
@@ -24496,9 +25424,7 @@ class AnnotationElement {
     }
     const width = rectTrX - rectBlX;
     const height = rectTrY - rectBlY;
-    const {
-      svgFactory
-    } = this;
+    const svgFactory = AnnotationElement._svgFactory;
     const svg = svgFactory.createElement("svg");
     svg.classList.add("quadrilateralsContainer");
     svg.setAttribute("width", 0);
@@ -26565,8 +27491,9 @@ class LineAnnotationElement extends AnnotationElement {
       width,
       height
     } = this;
-    const svg = this.svgFactory.create(width, height, true);
-    const line = this.#line = this.svgFactory.createElement("svg:line");
+    const svgFactory = AnnotationElement._svgFactory;
+    const svg = svgFactory.create(width, height, true);
+    const line = this.#line = svgFactory.createElement("svg:line");
     line.setAttribute("x1", data.rect[2] - data.lineCoordinates[0]);
     line.setAttribute("y1", data.rect[3] - data.lineCoordinates[1]);
     line.setAttribute("x2", data.rect[2] - data.lineCoordinates[2]);
@@ -26604,9 +27531,10 @@ class SquareAnnotationElement extends AnnotationElement {
       width,
       height
     } = this;
-    const svg = this.svgFactory.create(width, height, true);
+    const svgFactory = AnnotationElement._svgFactory;
+    const svg = svgFactory.create(width, height, true);
     const borderWidth = data.borderStyle.width;
-    const square = this.#square = this.svgFactory.createElement("svg:rect");
+    const square = this.#square = svgFactory.createElement("svg:rect");
     square.setAttribute("x", borderWidth / 2);
     square.setAttribute("y", borderWidth / 2);
     square.setAttribute("width", width - borderWidth);
@@ -26644,9 +27572,10 @@ class CircleAnnotationElement extends AnnotationElement {
       width,
       height
     } = this;
-    const svg = this.svgFactory.create(width, height, true);
+    const svgFactory = AnnotationElement._svgFactory;
+    const svg = svgFactory.create(width, height, true);
     const borderWidth = data.borderStyle.width;
-    const circle = this.#circle = this.svgFactory.createElement("svg:ellipse");
+    const circle = this.#circle = svgFactory.createElement("svg:ellipse");
     circle.setAttribute("cx", width / 2);
     circle.setAttribute("cy", height / 2);
     circle.setAttribute("rx", width / 2 - borderWidth / 2);
@@ -26694,7 +27623,8 @@ class PolylineAnnotationElement extends AnnotationElement {
     if (!vertices) {
       return this.container;
     }
-    const svg = this.svgFactory.create(width, height, true);
+    const svgFactory = AnnotationElement._svgFactory;
+    const svg = svgFactory.create(width, height, true);
     let points = [];
     for (let i = 0, ii = vertices.length; i < ii; i += 2) {
       const x = vertices[i] - rect[0];
@@ -26702,7 +27632,7 @@ class PolylineAnnotationElement extends AnnotationElement {
       points.push(`${x},${y}`);
     }
     points = points.join(" ");
-    const polyline = this.#polyline = this.svgFactory.createElement(this.svgElementName);
+    const polyline = this.#polyline = svgFactory.createElement(this.svgElementName);
     polyline.setAttribute("points", points);
     polyline.setAttribute("stroke-width", borderStyle.width || 1);
     polyline.setAttribute("stroke", "transparent");
@@ -26801,8 +27731,9 @@ class InkAnnotationElement extends AnnotationElement {
       width,
       height
     } = this.#getTransform(rotation, rect);
-    const svg = this.svgFactory.create(width, height, true);
-    const g = this.#polylinesGroupElement = this.svgFactory.createElement("svg:g");
+    const svgFactory = AnnotationElement._svgFactory;
+    const svg = svgFactory.create(width, height, true);
+    const g = this.#polylinesGroupElement = svgFactory.createElement("svg:g");
     svg.append(g);
     g.setAttribute("stroke-width", borderStyle.width || 1);
     g.setAttribute("stroke-linecap", "round");
@@ -26812,7 +27743,7 @@ class InkAnnotationElement extends AnnotationElement {
     g.setAttribute("fill", "transparent");
     g.setAttribute("transform", transform);
     for (const inkList of inkLists) {
-      const polyline = this.svgFactory.createElement(this.svgElementName);
+      const polyline = svgFactory.createElement(this.svgElementName);
       this.#polylines.push(polyline);
       polyline.setAttribute("points", inkList.join(","));
       g.append(polyline);
@@ -27238,9 +28169,9 @@ class AnnotationLayer {
       downloadManager: params.downloadManager,
       imageResourcesPath: params.imageResourcesPath || "",
       renderForms: params.renderForms !== false,
-      svgFactory: new DOMSVGFactory(),
       annotationStorage: this.#annotationStorage,
       enableComment: params.enableComment === true,
+      enableAnnotationEditing: params.enableAnnotationEditing !== false,
       enableScripting: params.enableScripting === true,
       hasJSActions: params.hasJSActions,
       fieldObjects: params.fieldObjects,
@@ -27393,7 +28324,6 @@ class AnnotationLayer {
       data: null,
       layer: this.div,
       linkService: this.#linkService,
-      svgFactory: new DOMSVGFactory(),
       parent: this
     };
     for (const data of annotations) {
@@ -28545,7 +29475,7 @@ class DrawingEditor extends AnnotationEditor {
     return true;
   }
   onceAdded(focus) {
-    if (!this.annotationElementId) {
+    if (!this.annotationElementId && this._drawId !== null) {
       this.parent.addUndoableEditor(this);
     }
     this._isDraggable = true;
@@ -28905,7 +29835,7 @@ class DrawingEditor extends AnnotationEditor {
     parent.toggleDrawing();
     uiManager._editorUndoBar?.hide();
     if (DrawingEditor.#currentDraw) {
-      parent.drawLayer.updateProperties(this._currentDrawId, DrawingEditor.#currentDraw.startNew(x, y, parentWidth, parentHeight, rotation));
+      parent.drawLayer.updateProperties(this._currentDrawId, DrawingEditor.#currentDraw.startNew(x, y, parentWidth, parentHeight, rotation, event.timeStamp));
       return;
     }
     uiManager.updateUIForDefaultProperties(this);
@@ -28915,7 +29845,8 @@ class DrawingEditor extends AnnotationEditor {
       box: [boxX, boxY, parentWidth, parentHeight],
       rotation,
       parent,
-      isLTR
+      isLTR,
+      timeStamp: event.timeStamp
     });
     DrawingEditor.#currentDrawingOptions = this.getDefaultDrawingOptions();
     this._currentParent = parent;
@@ -28939,12 +29870,14 @@ class DrawingEditor extends AnnotationEditor {
     const coalesced = event.getCoalescedEvents?.();
     if (coalesced?.length) {
       const points = [];
+      const timeStamps = [];
       for (const sample of coalesced) {
         points.push(...this._getPointerCoords(sample, event));
+        timeStamps.push(sample.timeStamp);
       }
-      properties = DrawingEditor.#currentDraw.addPoints(points);
+      properties = DrawingEditor.#currentDraw.addPoints(points, timeStamps);
     } else {
-      properties = DrawingEditor.#currentDraw.add(...this._getPointerCoords(event));
+      properties = DrawingEditor.#currentDraw.add(...this._getPointerCoords(event), event.timeStamp);
     }
     this._currentParent.drawLayer.updateProperties(this._currentDrawId, properties);
     CurrentPointers.setTimeStamp(event.timeStamp);
@@ -28972,7 +29905,7 @@ class DrawingEditor extends AnnotationEditor {
     }
     parent.toggleDrawing(true);
     this._cleanup(false);
-    parent.drawLayer.updateProperties(this._currentDrawId, event?.target === parent.div ? DrawingEditor.#currentDraw.end(...this._getPointerCoords(event)) : DrawingEditor.#currentDraw.end());
+    parent.drawLayer.updateProperties(this._currentDrawId, event?.target === parent.div ? DrawingEditor.#currentDraw.end(...this._getPointerCoords(event), event.timeStamp) : DrawingEditor.#currentDraw.end());
     if (this.supportMultipleDrawings) {
       const draw = DrawingEditor.#currentDraw;
       const drawId = this._currentDrawId;
@@ -29063,6 +29996,7 @@ class DrawingEditor extends AnnotationEditor {
 ;// ./src/display/editor/drawers/outline.js
 
 
+
 class Outline {
   static PRECISION = 1e-4;
   focusOutline = null;
@@ -29146,20 +30080,30 @@ class Outline {
   static svgRound(x) {
     return Math.round(x * 10000);
   }
-  static _normalizePoint(x, y, parentWidth, parentHeight, rotation) {
+  static _normalizePoint(x, y, parentWidth, parentHeight, rotation, dest = []) {
     switch (rotation) {
       case 90:
-        return [1 - y / parentWidth, x / parentHeight];
+        dest[0] = 1 - y / parentWidth;
+        dest[1] = x / parentHeight;
+        break;
       case 180:
-        return [1 - x / parentWidth, 1 - y / parentHeight];
+        dest[0] = 1 - x / parentWidth;
+        dest[1] = 1 - y / parentHeight;
+        break;
       case 270:
-        return [y / parentWidth, 1 - x / parentHeight];
+        dest[0] = y / parentWidth;
+        dest[1] = 1 - x / parentHeight;
+        break;
       default:
-        return [x / parentWidth, y / parentHeight];
+        dest[0] = x / parentWidth;
+        dest[1] = y / parentHeight;
+        break;
     }
+    return dest;
   }
-  static createBezierPoints(x1, y1, x2, y2, x3, y3) {
-    return [(x1 + 5 * x2) / 6, (y1 + 5 * y2) / 6, (5 * x2 + x3) / 6, (5 * y2 + y3) / 6, (x2 + x3) / 2, (y2 + y3) / 2];
+  static createBezierPoints(x1, y1, x2, y2, x3, y3, dest = []) {
+    dest.push((x1 + 5 * x2) / 6, (y1 + 5 * y2) / 6, (5 * x2 + x3) / 6, (5 * y2 + y3) / 6, (x2 + x3) / 2, (y2 + y3) / 2);
+    return dest;
   }
 }
 
@@ -30459,6 +31403,110 @@ class HighlightEditor extends DrawingEditor {
   }
 }
 
+;// ./src/display/editor/drawers/input_smoother.js
+
+class InputSmoother {
+  static #HALF_WINDOW = 10;
+  static #UPSAMPLING_PERIOD = 1000 / 180;
+  static #MAX_DIVISIONS = 100;
+  static #TIME_EPSILON = 1e-3;
+  #samples;
+  #firstTime;
+  #lastTime;
+  constructor(x, y, timeStamp) {
+    this.#samples = [x, y, timeStamp];
+    this.#firstTime = this.#lastTime = timeStamp;
+  }
+  add(x, y, timeStamp) {
+    const samples = this.#samples;
+    const lastTime = samples.at(-1);
+    timeStamp = timeStamp > lastTime ? timeStamp : lastTime + InputSmoother.#TIME_EPSILON;
+    samples.push(x, y, timeStamp);
+    const points = this.#smooth(timeStamp - InputSmoother.#HALF_WINDOW, true);
+    const start = this.#getSampleIndex(this.#lastTime - InputSmoother.#HALF_WINDOW);
+    if (start >= samples.length / 2) {
+      samples.copyWithin(0, start);
+      samples.length -= start;
+    }
+    return points;
+  }
+  get pendingPoints() {
+    return this.#smooth(Infinity, false);
+  }
+  end() {
+    return this.#smooth(Infinity, true);
+  }
+  #smooth(maxTime, isStable) {
+    const samples = this.#samples;
+    const firstTime = this.#firstTime;
+    const lastTime = samples.at(-1);
+    const points = [];
+    const time = this.#lastTime;
+    for (let i = this.#getSampleIndex(time) + 3; i < samples.length; i += 3) {
+      const startTime = samples[i - 1];
+      const dt = samples[i + 2] - startTime;
+      const n = Math.min(Math.ceil(dt / InputSmoother.#UPSAMPLING_PERIOD), InputSmoother.#MAX_DIVISIONS);
+      for (let k = 1; k <= n; k++) {
+        const t = k === n ? samples[i + 2] : startTime + dt * k / n;
+        if (t <= time) {
+          continue;
+        }
+        if (t > maxTime) {
+          return points;
+        }
+        const halfWindow = Math.min(InputSmoother.#HALF_WINDOW, t - firstTime, lastTime - t);
+        this.#average(t - halfWindow, t + halfWindow, points);
+        if (isStable) {
+          this.#lastTime = t;
+        }
+      }
+    }
+    return points;
+  }
+  #getSampleIndex(time) {
+    const samples = this.#samples;
+    let start = 0;
+    let end = samples.length / 3 - 1;
+    while (start < end) {
+      const middle = start + end + 1 >> 1;
+      if (samples[3 * middle + 2] <= time) {
+        start = middle;
+      } else {
+        end = middle - 1;
+      }
+    }
+    return 3 * start;
+  }
+  #average(startTime, endTime, points) {
+    const samples = this.#samples;
+    const index = this.#getSampleIndex(startTime);
+    let sumX = 0,
+      sumY = 0,
+      duration = 0;
+    for (let i = index; i < samples.length - 3 && samples[i + 2] < endTime; i += 3) {
+      const x1 = samples[i],
+        y1 = samples[i + 1],
+        t1 = samples[i + 2],
+        t2 = samples[i + 5];
+      const start = Math.max(t1, startTime);
+      const end = Math.min(t2, endTime);
+      if (end <= start) {
+        continue;
+      }
+      const dt = end - start;
+      const ratio = (start + end - 2 * t1) / (t2 - t1);
+      sumX += dt * (x1 + ratio * (samples[i + 3] - x1) / 2);
+      sumY += dt * (y1 + ratio * (samples[i + 4] - y1) / 2);
+      duration += dt;
+    }
+    if (duration === 0) {
+      points.push(samples[index], samples[index + 1]);
+    } else {
+      points.push(sumX / duration, sumY / duration);
+    }
+  }
+}
+
 ;// ./src/display/editor/drawers/inkdraw.js
 
 
@@ -30467,143 +31515,188 @@ class HighlightEditor extends DrawingEditor {
 
 
 
+
+function svgPoint(data, i) {
+  return `${Outline.svgRound(data[i])} ${Outline.svgRound(data[i + 1])}`;
+}
+function pushCurves(buffer, line, start) {
+  for (let i = start, ii = line.length; i < ii; i += 6) {
+    buffer.push(`C${svgPoint(line, i)} ${svgPoint(line, i + 2)} ${svgPoint(line, i + 4)}`);
+  }
+}
+function lineToSVGPath(line) {
+  const start = `M${svgPoint(line, 4)}`;
+  if (line.length === 6) {
+    return `${start}Z`;
+  }
+  if (line.length === 12 && isNaN(line[6])) {
+    return `${start}L${svgPoint(line, 10)}`;
+  }
+  const buffer = [start];
+  pushCurves(buffer, line, 6);
+  return buffer.join("");
+}
 class InkDrawOutliner {
   #last = new Float64Array(6);
   #tip = new Float64Array(2);
   #line;
   #lines;
   #rotation;
+  #smoother = null;
   #thickness;
   #points;
+  #inputCount = 1;
+  #lastInput = new Float64Array(2);
   #lastSVGPath = "";
   #lastIndex = 0;
   #outlines = new InkDrawOutline();
   #parentWidth;
   #parentHeight;
-  constructor(x, y, parentWidth, parentHeight, rotation, thickness) {
+  constructor(x, y, parentWidth, parentHeight, rotation, thickness, timeStamp) {
     this.#parentWidth = parentWidth;
     this.#parentHeight = parentHeight;
     this.#rotation = rotation;
     this.#thickness = thickness;
-    [x, y] = this.#normalizePoint(x, y);
+    this.#lines = [];
+    this.#startLine(x, y, timeStamp);
+  }
+  #startLine(x, y, timeStamp) {
+    [x, y] = this.#normalizeToTip(x, y);
     const line = this.#line = [NaN, NaN, NaN, NaN, x, y];
     this.#points = [x, y];
-    this.#lines = [{
-      line,
-      points: this.#points
-    }];
-    this.#last.set(line, 0);
-    this.#tip.set([x, y], 0);
-  }
-  updateProperty(name, value) {
-    if (name === "stroke-width") {
-      this.#thickness = value;
-    }
-  }
-  #normalizePoint(x, y) {
-    return Outline._normalizePoint(x, y, this.#parentWidth, this.#parentHeight, this.#rotation);
-  }
-  isEmpty() {
-    return !this.#lines?.length;
-  }
-  isCancellable() {
-    return this.#points.length <= 10;
-  }
-  add(x, y) {
-    if (this.#add(x, y)) {
-      this.toSVGPath();
-    }
-    return {
-      path: {
-        d: this.#toSVGPathWithTip()
-      }
-    };
-  }
-  addPoints(points) {
-    let needsPathUpdate = false;
-    for (let i = 0, ii = points.length; i < ii; i += 2) {
-      if (!this.#add(points[i], points[i + 1])) {
-        continue;
-      }
-      needsPathUpdate = true;
-      if (this.#points.length <= 6) {
-        this.toSVGPath();
-        needsPathUpdate = false;
-      }
-    }
-    if (needsPathUpdate) {
-      this.toSVGPath();
-    }
-    return {
-      path: {
-        d: this.#toSVGPathWithTip()
-      }
-    };
-  }
-  #add(x, y) {
-    [x, y] = this.#normalizePoint(x, y);
-    this.#tip.set([x, y], 0);
-    const [x1, y1, x2, y2] = this.#last.subarray(2, 6);
-    const diffX = x - x2;
-    const diffY = y - y2;
-    const d = Math.hypot(this.#parentWidth * diffX, this.#parentHeight * diffY);
-    if (d <= 2) {
-      return false;
-    }
-    this.#points.push(x, y);
-    if (isNaN(x1)) {
-      this.#last.set([x2, y2, x, y], 2);
-      this.#line.push(NaN, NaN, NaN, NaN, x, y);
-      return true;
-    }
-    if (isNaN(this.#last[0])) {
-      this.#line.splice(6, 6);
-    }
-    this.#last.set([x1, y1, x2, y2, x, y], 0);
-    this.#line.push(...Outline.createBezierPoints(x1, y1, x2, y2, x, y));
-    return true;
-  }
-  end(x, y) {
-    if (x !== undefined && this.#add(x, y)) {
-      return {
-        path: {
-          d: this.toSVGPath()
-        }
-      };
-    }
-    if (this.#points.length === 2) {
-      return {
-        path: {
-          d: this.toSVGPath()
-        }
-      };
-    }
-    return {
-      path: {
-        d: this.#lastSVGPath
-      }
-    };
-  }
-  startNew(x, y, parentWidth, parentHeight, rotation) {
-    this.#parentWidth = parentWidth;
-    this.#parentHeight = parentHeight;
-    this.#rotation = rotation;
-    [x, y] = this.#normalizePoint(x, y);
-    const line = this.#line = [NaN, NaN, NaN, NaN, x, y];
-    this.#points = [x, y];
-    this.#tip.set([x, y], 0);
-    const last = this.#lines.at(-1);
-    if (last) {
-      last.line = new Float32Array(last.line);
-      last.points = new Float32Array(last.points);
-    }
     this.#lines.push({
       line,
       points: this.#points
     });
     this.#last.set(line, 0);
     this.#lastIndex = 0;
-    this.toSVGPath();
+    this.#inputCount = 1;
+    this.#lastInput.set(this.#tip);
+    this.#smoother = timeStamp === undefined ? null : new InputSmoother(x, y, timeStamp);
+  }
+  updateProperty(name, value) {
+    if (name === "stroke-width") {
+      this.#thickness = value;
+    }
+  }
+  #normalizeToTip(x, y) {
+    return Outline._normalizePoint(x, y, this.#parentWidth, this.#parentHeight, this.#rotation, this.#tip);
+  }
+  isEmpty() {
+    return !this.#lines?.length;
+  }
+  isCancellable() {
+    return this.#inputCount <= 5;
+  }
+  add(x, y, timeStamp) {
+    this.#addSample(x, y, timeStamp);
+    return {
+      path: {
+        d: this.#toSVGPathWithTip()
+      }
+    };
+  }
+  addPoints(points, timeStamps) {
+    for (let i = 0, ii = points.length; i < ii; i += 2) {
+      this.#addSample(points[i], points[i + 1], timeStamps?.[i / 2]);
+    }
+    return {
+      path: {
+        d: this.#toSVGPathWithTip()
+      }
+    };
+  }
+  #addSample(x, y, timeStamp) {
+    [x, y] = this.#normalizeToTip(x, y);
+    const [lastX, lastY] = this.#lastInput;
+    if (!this.#isTooClose(x, y, lastX, lastY)) {
+      this.#inputCount++;
+      this.#lastInput.set(this.#tip);
+    }
+    if (this.#smoother) {
+      this.#addSmoothedPoints(this.#smoother.add(x, y, timeStamp));
+    } else {
+      this.#addPoint(x, y);
+    }
+  }
+  #isTooClose(x, y, lastX, lastY) {
+    return Math.hypot(this.#parentWidth * (x - lastX), this.#parentHeight * (y - lastY)) <= 2;
+  }
+  #addSmoothedPoints(points) {
+    for (let i = 0, ii = points.length; i < ii; i += 2) {
+      this.#addPoint(points[i], points[i + 1]);
+    }
+  }
+  #addPoint(x, y) {
+    const [,, x1, y1, x2, y2] = this.#last;
+    if (this.#isTooClose(x, y, x2, y2)) {
+      return;
+    }
+    this.#points.push(x, y);
+    if (isNaN(x1)) {
+      this.#line.push(NaN, NaN, NaN, NaN, x, y);
+    } else {
+      if (isNaN(this.#last[0])) {
+        this.#line.splice(6, 6);
+      }
+      Outline.createBezierPoints(x1, y1, x2, y2, x, y, this.#line);
+    }
+    this.#last.copyWithin(0, 2);
+    this.#last[4] = x;
+    this.#last[5] = y;
+  }
+  #updatePath() {
+    const line = this.#line;
+    if (this.#points.length < 6 || this.#lastIndex === line.length) {
+      return;
+    }
+    const buffer = [this.#lastSVGPath];
+    if (this.#lastIndex === 0) {
+      buffer.push(`M${svgPoint(line, 4)}`);
+      this.#lastIndex = 6;
+    }
+    pushCurves(buffer, line, this.#lastIndex);
+    this.#lastSVGPath = buffer.join("");
+    this.#lastIndex = line.length;
+  }
+  #endLine() {
+    if (!this.#line) {
+      return;
+    }
+    if (this.#smoother) {
+      this.#addSmoothedPoints(this.#smoother.end());
+      this.#smoother = null;
+    }
+    if (this.#points.length < 6) {
+      this.#lastSVGPath += lineToSVGPath(this.#line);
+    } else {
+      const [,, x1, y1, x2, y2] = this.#last;
+      Outline.createBezierPoints(x1, y1, x2, y2, x2, y2, this.#line);
+      this.#updatePath();
+    }
+    this.#line = this.#points = null;
+  }
+  end(x, y, timeStamp) {
+    if (this.#line && x !== undefined) {
+      this.#addSample(x, y, timeStamp);
+    }
+    this.#endLine();
+    return {
+      path: {
+        d: this.#lastSVGPath
+      }
+    };
+  }
+  startNew(x, y, parentWidth, parentHeight, rotation, timeStamp) {
+    this.#parentWidth = parentWidth;
+    this.#parentHeight = parentHeight;
+    this.#rotation = rotation;
+    const last = this.#lines.at(-1);
+    if (last) {
+      last.line = new Float32Array(last.line);
+      last.points = new Float32Array(last.points);
+    }
+    this.#startLine(x, y, timeStamp);
     return null;
   }
   getLastElement() {
@@ -30614,12 +31707,10 @@ class InkDrawOutliner {
       return this.#outlines.setLastElement(element);
     }
     this.#lines.push(element);
-    this.#line = element.line;
-    this.#points = element.points;
-    this.#lastIndex = 0;
+    this.#lastSVGPath += lineToSVGPath(element.line);
     return {
       path: {
-        d: this.toSVGPath()
+        d: this.#lastSVGPath
       }
     };
   }
@@ -30627,18 +31718,11 @@ class InkDrawOutliner {
     if (!this.#lines) {
       return this.#outlines.removeLastElement();
     }
+    this.#line = this.#points = this.#smoother = null;
     this.#lines.pop();
-    this.#lastSVGPath = "";
-    for (let i = 0, ii = this.#lines.length; i < ii; i++) {
-      const {
-        line,
-        points
-      } = this.#lines[i];
-      this.#line = line;
-      this.#points = points;
-      this.#lastIndex = 0;
-      this.toSVGPath();
-    }
+    this.#lastSVGPath = this.#lines.map(({
+      line
+    }) => lineToSVGPath(line)).join("");
     return {
       path: {
         d: this.#lastSVGPath
@@ -30646,48 +31730,25 @@ class InkDrawOutliner {
     };
   }
   #toSVGPathWithTip() {
-    const tipX = Outline.svgRound(this.#tip[0]);
-    const tipY = Outline.svgRound(this.#tip[1]);
-    if (this.#points.length === 2) {
-      const firstX = Outline.svgRound(this.#line[4]);
-      const firstY = Outline.svgRound(this.#line[5]);
-      return `${this.#lastSVGPath} M ${firstX} ${firstY} L ${tipX} ${tipY}`;
-    }
-    return `${this.#lastSVGPath} L ${tipX} ${tipY}`;
-  }
-  toSVGPath() {
-    const firstX = Outline.svgRound(this.#line[4]);
-    const firstY = Outline.svgRound(this.#line[5]);
-    if (this.#points.length === 2) {
-      this.#lastSVGPath = `${this.#lastSVGPath} M ${firstX} ${firstY} Z`;
-      return this.#lastSVGPath;
-    }
-    if (this.#points.length <= 6) {
-      const i = this.#lastSVGPath.lastIndexOf("M");
-      this.#lastSVGPath = `${this.#lastSVGPath.slice(0, i)} M ${firstX} ${firstY}`;
-      this.#lastIndex = 6;
-    }
-    if (this.#points.length === 4) {
-      const secondX = Outline.svgRound(this.#line[10]);
-      const secondY = Outline.svgRound(this.#line[11]);
-      this.#lastSVGPath = `${this.#lastSVGPath} L ${secondX} ${secondY}`;
-      this.#lastIndex = 12;
-      return this.#lastSVGPath;
-    }
-    const buffer = [];
+    this.#updatePath();
+    const buffer = [this.#lastSVGPath];
     if (this.#lastIndex === 0) {
-      buffer.push(`M ${firstX} ${firstY}`);
-      this.#lastIndex = 6;
+      buffer.push(`M${svgPoint(this.#line, 4)}`);
+      if (this.#points.length === 4) {
+        buffer.push(`L${svgPoint(this.#line, 10)}`);
+      }
     }
-    for (let i = this.#lastIndex, ii = this.#line.length; i < ii; i += 6) {
-      const [c1x, c1y, c2x, c2y, x, y] = this.#line.slice(i, i + 6).map(Outline.svgRound);
-      buffer.push(`C${c1x} ${c1y} ${c2x} ${c2y} ${x} ${y}`);
+    let points = this.#smoother?.pendingPoints;
+    if (!points?.length) {
+      points = this.#tip;
     }
-    this.#lastSVGPath += buffer.join(" ");
-    this.#lastIndex = this.#line.length;
-    return this.#lastSVGPath;
+    for (let i = 0, ii = points.length; i < ii; i += 2) {
+      buffer.push(`L${svgPoint(points, i)}`);
+    }
+    return buffer.join("");
   }
   getOutlines(parentWidth, parentHeight, scale, innerMargin) {
+    this.#endLine();
     const last = this.#lines.at(-1);
     last.line = new Float32Array(last.line);
     last.points = new Float32Array(last.points);
@@ -30750,25 +31811,9 @@ class InkDrawOutline extends Outline {
     };
   }
   toSVGPath() {
-    const buffer = [];
-    for (const {
+    return this.#lines.map(({
       line
-    } of this.#lines) {
-      buffer.push(`M${Outline.svgRound(line[4])} ${Outline.svgRound(line[5])}`);
-      if (line.length === 6) {
-        buffer.push("Z");
-        continue;
-      }
-      if (line.length === 12 && isNaN(line[6])) {
-        buffer.push(`L${Outline.svgRound(line[10])} ${Outline.svgRound(line[11])}`);
-        continue;
-      }
-      for (let i = 6, ii = line.length; i < ii; i += 6) {
-        const [c1x, c1y, c2x, c2y, x, y] = line.subarray(i, i + 6).map(Outline.svgRound);
-        buffer.push(`C${c1x} ${c1y} ${c2x} ${c2y} ${x} ${y}`);
-      }
-    }
-    return buffer.join("");
+    }) => lineToSVGPath(line)).join("");
   }
   serialize([pageX, pageY, pageWidth, pageHeight], isForCopying) {
     const serializedLines = [];
@@ -30886,13 +31931,14 @@ class InkDrawOutline extends Outline {
           lines.push(new Float32Array([NaN, NaN, NaN, NaN, point[0], point[1], NaN, NaN, NaN, NaN, point[2], point[3]]));
           continue;
         }
-        const line = new Float32Array(3 * (len - 2));
+        const line = new Float32Array(3 * len);
         lines.push(line);
         let [x1, y1, x2, y2] = point.subarray(0, 4);
         line.set([NaN, NaN, NaN, NaN, x1, y1], 0);
-        for (let i = 4; i < len; i += 2) {
-          const x = point[i];
-          const y = point[i + 1];
+        for (let i = 4; i <= len; i += 2) {
+          const j = Math.min(i, len - 2);
+          const x = point[j];
+          const y = point[j + 1];
           line.set(Outline.createBezierPoints(x1, y1, x2, y2, x, y), (i - 2) * 3);
           [x1, y1, x2, y2] = [x2, y2, x, y];
         }
@@ -31235,9 +32281,10 @@ class InkEditor extends DrawingEditor {
     x,
     y,
     box: [,, width, height],
-    rotation
+    rotation,
+    timeStamp
   }) {
-    return new InkDrawOutliner(x, y, width, height, rotation, this._defaultDrawingOptions["stroke-width"]);
+    return new InkDrawOutliner(x, y, width, height, rotation, this._defaultDrawingOptions["stroke-width"], timeStamp);
   }
   static deserializeDraw(pageX, pageY, pageWidth, pageHeight, innerMargin, data) {
     return InkDrawOutline.deserialize(pageX, pageY, pageWidth, pageHeight, innerMargin, data);
@@ -32114,6 +33161,7 @@ class SignatureEditor extends DrawingEditor {
   #description = null;
   #signatureData = null;
   #signatureUUID = null;
+  #isWaitingForSignature = false;
   static _type = "signature";
   static _editorType = AnnotationEditorType.SIGNATURE;
   static _defaultDrawingOptions = null;
@@ -32162,6 +33210,10 @@ class SignatureEditor extends DrawingEditor {
   }
   get isResizable() {
     return true;
+  }
+  onceAdded(focus) {
+    this.#isWaitingForSignature = this._drawId === null;
+    super.onceAdded(focus);
   }
   onScaleChanging() {
     if (this._drawId === null) {
@@ -32332,6 +33384,10 @@ class SignatureEditor extends DrawingEditor {
       }
     });
     this.div.hidden = false;
+    if (this.#isWaitingForSignature) {
+      this.#isWaitingForSignature = false;
+      this.parent.addUndoableEditor(this);
+    }
   }
   getFromImage(bitmap) {
     const {
@@ -32438,6 +33494,7 @@ class SignatureEditor extends DrawingEditor {
 }
 
 ;// ./src/display/editor/stamp.js
+
 
 
 
@@ -33080,7 +34137,16 @@ class StampEditor extends AnnotationEditor {
       if (changes.isSameAltText) {
         delete serialized.accessibilityData;
       } else {
-        serialized.accessibilityData.structParent = this._initialData.structParent ?? -1;
+        const structParent = this._initialData.structParent ?? -1;
+        if (serialized.accessibilityData) {
+          serialized.accessibilityData.structParent = structParent;
+        } else if (structParent >= 0) {
+          serialized.accessibilityData = {
+            type: "Figure",
+            alt: "",
+            structParent
+          };
+        }
       }
       serialized.id = this.annotationElementId;
       delete serialized.bitmapId;
@@ -34579,6 +35645,7 @@ class TextLayerImages {
 }
 
 ;// ./src/pdf.js
+
 
 
 

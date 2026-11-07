@@ -64,7 +64,7 @@ The element needs an explicit height. Most attributes apply as soon as they chan
 
 ## Status
 
-Actively maintained. The package bundles PDF.js 6.4.299 and follows PDF.js releases.
+Actively maintained. The package bundles PDF.js 6.5.438 and follows PDF.js releases.
 
 ## Contributing
 
