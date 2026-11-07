@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pdfjs-viewer-element | Worker rendering demo</title>
+    <script type="module" src="../dist/pdfjs-viewer-element.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--
+      Build the package before serving this demo over HTTP.
+      PDF.js can draw pages in a second worker instead of on the main thread. It is off by default;
+      turn it on by setting the `disableWorkerRendering` viewer option to false before the viewer
+      is built.
+
+      `renderer-src` is the URL of that worker's script. It defaults to pdf.renderer.min.mjs next to
+      the element, or inside `assets-base`, so it is only needed when the file is served from
+      somewhere else. Use the file from the same package release as the other runtime files.
+
+      When the worker cannot start, PDF.js logs "Renderer worker disabled" in the console and
+      draws on the main thread.
+    -->
+    <pdfjs-viewer-element
+      src="/public/sample-pdf-with-images.pdf"
+      renderer-src="../dist/pdf.renderer.min.mjs"
+      style="height: 100dvh">
+    </pdfjs-viewer-element>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('pdfjs-viewer-element').setViewerOptions({
+          disableWorkerRendering: false
+        })
+      })
+    </script>
+  </body>
+</html>

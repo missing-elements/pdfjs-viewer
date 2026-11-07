@@ -13,6 +13,10 @@ const DEFAULT_BUILT_IN_WORKER_SRC = import.meta.env.DEV
   ? new URL('./build/pdf.worker.mjs', import.meta.url).href
   : new URL(/* @vite-ignore */ './pdf.worker.min.mjs', import.meta.url).href
 
+const DEFAULT_BUILT_IN_RENDERER_SRC = import.meta.env.DEV
+  ? new URL('./build/pdf.renderer.mjs', import.meta.url).href
+  : new URL(/* @vite-ignore */ './pdf.renderer.min.mjs', import.meta.url).href
+
 const DEFAULT_PDF_SRC = import.meta.env.DEV
   ? new URL('./build/pdf.mjs', import.meta.url).href
   : new URL(/* @vite-ignore */ './pdf.mjs', import.meta.url).href
@@ -28,6 +32,7 @@ const DEFAULT_VIEWER_SRC = import.meta.env.DEV
 // `assets-base` the element applies the same CSS from JS modules instead (`buildViewerEntry`).
 const RUNTIME_FILES = {
   workerSrc: { attribute: 'worker-src', fileName: 'pdf.worker.min.mjs', defaultUrl: DEFAULT_BUILT_IN_WORKER_SRC },
+  rendererSrc: { attribute: 'renderer-src', fileName: 'pdf.renderer.min.mjs', defaultUrl: DEFAULT_BUILT_IN_RENDERER_SRC },
   pdfjsLibSrc: { attribute: 'pdfjs-lib-src', fileName: 'pdf.mjs', defaultUrl: DEFAULT_PDF_SRC },
   viewerSrc: { attribute: 'viewer-src', fileName: 'viewer.mjs', defaultUrl: DEFAULT_VIEWER_SRC },
   viewerCssSrc: { attribute: 'viewer-css-src', fileName: 'viewer.css', defaultUrl: '' },
@@ -35,6 +40,11 @@ const RUNTIME_FILES = {
 } as const
 
 type RuntimeFileUrls = Record<keyof typeof RUNTIME_FILES, string>
+
+// The worker scripts. PDF.js reads their options again each time it opens a document, so a changed
+// attribute applies to the next document. The renderer worker draws pages off the main thread and
+// only starts when the `disableWorkerRendering` viewer option is turned off (`setViewerOptions`).
+const WORKER_FILES = ['workerSrc', 'rendererSrc'] as const
 
 const DEFAULTS = {
   src: '',
@@ -120,7 +130,7 @@ export class PdfjsViewerElement extends HTMLElement {
 
   static get observedAttributes() {
     return[
-      'src', 'locale', 'viewer-css-theme', 'worker-src',
+      'src', 'locale', 'viewer-css-theme', 'worker-src', 'renderer-src',
       'c-map-url', 'icc-url', 'image-resources-path',
       'sandbox-bundle-src', 'standard-font-data-url', 'wasm-url',
       'page', 'search', 'phrase', 'zoom', 'pagemode', 'iframe-title'
@@ -171,6 +181,7 @@ export class PdfjsViewerElement extends HTMLElement {
 
     return {
       workerSrc: resolveFile('workerSrc'),
+      rendererSrc: resolveFile('rendererSrc'),
       pdfjsLibSrc: resolveFile('pdfjsLibSrc'),
       viewerSrc: resolveFile('viewerSrc'),
       viewerCssSrc: resolveFile('viewerCssSrc'),
@@ -435,7 +446,10 @@ export class PdfjsViewerElement extends HTMLElement {
 
   private applyViewerOptions = () => {
     const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-    viewerOptions?.set('workerSrc', this.getRuntimeFileUrls().workerSrc)
+    const runtimeFileUrls = this.getRuntimeFileUrls()
+    for (const field of WORKER_FILES) {
+      viewerOptions?.set(field, runtimeFileUrls[field])
+    }
     for (const [attribute, { key }] of Object.entries(RESOURCE_OPTIONS)) {
       viewerOptions?.set(key, this.getResourceOption(attribute as ResourceAttribute))
     }
@@ -467,7 +481,7 @@ export class PdfjsViewerElement extends HTMLElement {
   }
 
   private buildViewerEntry = async (runtimeFileUrls: RuntimeFileUrls) => {
-    const { pdfjsLibSrc, viewerSrc, viewerCssSrc, themeCssSrc, workerSrc } = runtimeFileUrls
+    const { pdfjsLibSrc, viewerSrc, viewerCssSrc, themeCssSrc, workerSrc, rendererSrc } = runtimeFileUrls
     const [viewerEntry, viewerCss, themeCss] = await Promise.all([
       import('virtual:pdfjs-viewer-html'),
       viewerCssSrc ? undefined : import('virtual:pdfjs-viewer-css'),
@@ -495,6 +509,9 @@ export class PdfjsViewerElement extends HTMLElement {
         value.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
 
       const workerSrcOrigin = resolveHttpOrigin(workerSrc)
+      // PDF.js starts the renderer worker the way it starts the worker, so both origins are
+      // allowed alike.
+      const rendererSrcOrigin = resolveHttpOrigin(rendererSrc)
 
       // Resource attributes are read here once per build like the runtime files: a later change
       // to another origin is not added to the CSP.
@@ -504,6 +521,7 @@ export class PdfjsViewerElement extends HTMLElement {
         resolveHttpOrigin(pdfjsLibSrc),
         resolveHttpOrigin(viewerSrc),
         workerSrcOrigin,
+        rendererSrcOrigin,
         // The scripting sandbox, and the QuickJS module it imports from the WASM folder.
         resolveHttpOrigin(this.getResourceOption('sandbox-bundle-src')),
         resolveHttpOrigin(this.getResourceOption('wasm-url'))
@@ -526,7 +544,8 @@ export class PdfjsViewerElement extends HTMLElement {
         "'self'",
         'blob:',
         window.location.origin,
-        workerSrcOrigin
+        workerSrcOrigin,
+        rendererSrcOrigin
       ])
 
       const srcdocCsp = [
@@ -634,9 +653,10 @@ export class PdfjsViewerElement extends HTMLElement {
     if (oldValue === newValue) return
     if (!this.iframe) return
 
-    if (name === 'worker-src') {
+    const workerFile = WORKER_FILES.find((field) => RUNTIME_FILES[field].attribute === name)
+    if (workerFile) {
       const viewerOptions = this.iframe.contentWindow?.PDFViewerApplicationOptions
-      viewerOptions?.set('workerSrc', this.getRuntimeFileUrls().workerSrc)
+      viewerOptions?.set(workerFile, this.getRuntimeFileUrls()[workerFile])
       return
     }
 

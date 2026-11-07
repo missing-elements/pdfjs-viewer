@@ -30,10 +30,13 @@
         pdfjs-lib-src="{% static 'pdfjs/pdf.mjs' %}"
         viewer-src="{% static 'pdfjs/viewer.mjs' %}"
         worker-src="{% static 'pdfjs/pdf.worker.min.mjs' %}"
+        renderer-src="{% static 'pdfjs/pdf.renderer.min.mjs' %}"
         viewer-css-src="{% static 'pdfjs/viewer.css' %}"
         theme-css-src="{% static 'pdfjs/paper-and-ink.css' %}"
         style="height: 100dvh">
       </pdfjs-viewer-element>
+
+      renderer-src is only used when worker rendering is turned on (see worker-rendering.html).
 
       Resources loaded by directory and filename, such as annotation icons, CMaps,
       fonts, WASM and the scripting sandbox, default to the folders next to
@@ -46,6 +49,7 @@
       pdfjs-lib-src="../dist/pdf.mjs"
       viewer-src="../dist/viewer.mjs"
       worker-src="../dist/pdf.worker.min.mjs"
+      renderer-src="../dist/pdf.renderer.min.mjs"
       viewer-css-src="../dist/viewer.css"
       theme-css-src="../dist/paper-and-ink.css"
       style="height: 100dvh">

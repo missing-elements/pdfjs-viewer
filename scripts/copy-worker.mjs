@@ -5,6 +5,7 @@ import { bundleCss } from './bundle-css.mjs'
 
 const rootDir = resolve(import.meta.dirname, '..')
 const sourceFile = resolve(rootDir, 'src', 'build', 'pdf.worker.min.mjs')
+const sourceRendererFile = resolve(rootDir, 'src', 'build', 'pdf.renderer.min.mjs')
 const sourcePdfFile = resolve(rootDir, 'src', 'build', 'pdf.min.mjs')
 const sourceViewerFile = resolve(rootDir, 'src', 'web', 'viewer.mjs')
 const sourceViewerCssFile = resolve(rootDir, 'src', 'web', 'viewer.css')
@@ -13,6 +14,7 @@ const sourcePaperAndInkCssFile = resolve(rootDir, 'src', 'themes', 'paper-and-in
 const sourceSandboxFile = resolve(rootDir, 'src', 'build', 'pdf.sandbox.min.mjs')
 const distDir = resolve(rootDir, 'dist')
 const targetFile = resolve(distDir, 'pdf.worker.min.mjs')
+const targetRendererFile = resolve(distDir, 'pdf.renderer.min.mjs')
 const targetSandboxFile = resolve(distDir, 'pdf.sandbox.mjs')
 // Resources PDF.js loads only for documents that need them. The element defaults their URLs to
 // these folders next to viewer.mjs.
@@ -51,6 +53,7 @@ const bundleCssFile = async (sourcePath, targetPath) => {
 
 await Promise.all([
 	copyFile(sourceFile, targetFile),
+	copyFile(sourceRendererFile, targetRendererFile),
 	copyFile(sourcePdfFile, targetPdfFile),
 	minifyModuleFile(sourceViewerFile, targetViewerFile),
 	bundleCssFile(sourceViewerCssFile, targetViewerCssFile),

@@ -261,6 +261,20 @@ describe('Basic tests', async () => {
     }
   })
 
+  it('should apply renderer-src option at runtime', async () => {
+    await mountViewer(`
+      <pdfjs-viewer-element src="/sample-pdf-10MB.pdf"></pdfjs-viewer-element>`
+    )
+
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as HTMLElement
+    for (const rendererSrc of ['https://example.com/pdf.renderer.min.mjs', '/static/pdfjs/pdf.renderer.abc.mjs', './pdf.renderer.mjs']) {
+      viewer.setAttribute('renderer-src', rendererSrc)
+
+      const options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
+      expect(options.rendererSrc).eq(new URL(rendererSrc, location.href).href)
+    }
+  })
+
   it('should include external worker origin in CSP script and worker directives', async () => {
     const workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.5.438/build/pdf.worker.min.mjs'
 
@@ -277,6 +291,23 @@ describe('Basic tests', async () => {
     expect(csp).toMatch(/script-src[^;]*https:\/\/cdn\.jsdelivr\.net/)
     expect(csp).toMatch(/script-src-elem[^;]*https:\/\/cdn\.jsdelivr\.net/)
     expect(csp).toMatch(/worker-src[^;]*https:\/\/cdn\.jsdelivr\.net/)
+  })
+
+  it('should include external renderer origin in CSP script and worker directives', async () => {
+    // A host under `.invalid` never resolves; the renderer worker only starts once worker rendering is on.
+    await mountViewer(`
+      <pdfjs-viewer-element
+        src="/sample-pdf-10MB.pdf"
+        renderer-src="https://renderer.invalid/pdf.renderer.min.mjs">
+      </pdfjs-viewer-element>`
+    )
+
+    const cspMeta = getIframe().contentDocument?.querySelector('meta[http-equiv="Content-Security-Policy"]')
+    const csp = cspMeta?.getAttribute('content') || ''
+
+    expect(csp).toMatch(/script-src [^;]*https:\/\/renderer\.invalid/)
+    expect(csp).toMatch(/script-src-elem [^;]*https:\/\/renderer\.invalid/)
+    expect(csp).toMatch(/worker-src [^;]*https:\/\/renderer\.invalid/)
   })
 
   it('should load runtime files from assets-base', async () => {
@@ -340,6 +371,53 @@ describe('Basic tests', async () => {
 
     const options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
     expect(options.workerSrc).contains('/build/pdf.worker.mjs')
+    // PDF.js's own default is relative to its viewer page, which never resolves in the srcdoc frame.
+    expect(options.rendererSrc).eq(new URL('/src/build/pdf.renderer.mjs', location.href).href)
+  })
+
+  it('should draw pages in the renderer worker when worker rendering is enabled', { timeout: 20_000 }, async () => {
+    document.body.innerHTML = '<pdfjs-viewer-element></pdfjs-viewer-element>'
+    const viewer = document.body.querySelector('pdfjs-viewer-element') as PdfjsViewerElement
+    // PDF.js keeps worker rendering off. The option is applied when the viewer is built, so it is
+    // set before the viewer exists.
+    await viewer.setViewerOptions({ disableWorkerRendering: false })
+    const { viewerApp } = await viewer.initPromise
+
+    // Record the workers the viewer starts and what each one sends back.
+    const win = getIframe().contentWindow as unknown as { Worker: typeof Worker, console: Console }
+    const NativeWorker = win.Worker
+    const workers: { url: string, messages: number, errors: number }[] = []
+    win.Worker = class extends NativeWorker {
+      constructor(url: string | URL, options?: WorkerOptions) {
+        super(url, options)
+        const record = { url: String(url), messages: 0, errors: 0 }
+        workers.push(record)
+        this.addEventListener('message', () => { record.messages++ })
+        this.addEventListener('error', () => { record.errors++ })
+      }
+    }
+    // A renderer worker that fails to start is only a warning: PDF.js draws on the main thread.
+    const warnings: string[] = []
+    const nativeWarn = win.console.warn.bind(win.console)
+    win.console.warn = (...args: unknown[]) => {
+      warnings.push(args.map(String).join(' '))
+      nativeWarn(...args)
+    }
+
+    const rendered = new Promise<void>((resolve) => viewerApp!.eventBus.on('pagerendered', () => resolve()))
+    // A PDF that is in the repository, which `public/` is not.
+    await viewerApp!.open({ url: new URL('/src/web/compressed.tracemonkey-pldi-09.pdf', location.href).href })
+    await rendered
+
+    // The frame has no URL of its own, so PDF.js starts each worker from a `blob:` wrapper that
+    // imports the script. Reading the wrapper tells the workers apart.
+    const sources = await Promise.all(workers.map(async ({ url }) =>
+      url.startsWith('blob:') ? (await fetch(url)).text() : url))
+    const renderer = workers[sources.findIndex((source) => source.includes('/build/pdf.renderer.mjs'))]
+    expect(renderer, 'the renderer worker starts from the built-in file').toBeDefined()
+    expect(renderer.errors).eq(0)
+    expect(renderer.messages).toBeGreaterThan(0)
+    expect(warnings.filter((warning) => /renderer/i.test(warning))).toEqual([])
   })
 
   it('should apply extended option attributes at runtime and restore defaults on remove', async () => {
@@ -429,6 +507,7 @@ describe('Basic tests', async () => {
         pdfjs-lib-src="/src/build/pdf.mjs?manifest=123"
         viewer-src="/src/web/viewer.mjs?manifest=123"
         worker-src="/src/build/pdf.worker.mjs?manifest=123"
+        renderer-src="/src/build/pdf.renderer.mjs?manifest=123"
         viewer-css-src="/src/web/viewer.css?manifest=123"
         theme-css-src="/src/themes/paper-and-ink.css?manifest=123">
       </pdfjs-viewer-element>`
@@ -441,8 +520,9 @@ describe('Basic tests', async () => {
     for (const path of ['/src/web/viewer.css', '/src/themes/paper-and-ink.css']) {
       expect(doc.querySelector(`link[href="${location.origin}${path}?manifest=123"]`)).exist
     }
-    expect(getIframe().contentWindow.PDFViewerApplicationOptions.getAll().workerSrc)
-      .eq(new URL('/src/build/pdf.worker.mjs?manifest=123', location.href).href)
+    const options = getIframe().contentWindow.PDFViewerApplicationOptions.getAll()
+    expect(options.workerSrc).eq(new URL('/src/build/pdf.worker.mjs?manifest=123', location.href).href)
+    expect(options.rendererSrc).eq(new URL('/src/build/pdf.renderer.mjs?manifest=123', location.href).href)
     expect(getViewerElement()).exist
   })
 
@@ -601,6 +681,7 @@ describe('Resource URL attributes', () => {
 
     const options = viewer.iframe.contentWindow.PDFViewerApplicationOptions.getAll()
     expect(options.workerSrc).eq(new URL('/src/build/pdf.worker.mjs', location.href).href)
+    expect(options.rendererSrc).eq(new URL('/src/build/pdf.renderer.mjs', location.href).href)
     expect(options.cMapUrl).eq(new URL('/src/web/cmaps/', location.href).href)
     expect(options.sandboxBundleSrc).eq(new URL('/src/build/pdf.sandbox.mjs', location.href).href)
   })
@@ -614,8 +695,18 @@ describe('Resource URL attributes', () => {
 })
 
 describe('Runtime file URL overrides', () => {
+  it('defaults to worker scripts that ship with the viewer files', async () => {
+    const urls = new PdfjsViewerElement()['getRuntimeFileUrls']()
+    for (const url of [urls.workerSrc, urls.rendererSrc]) {
+      // The dev server answers a missing file with its HTML page and a 200, so check the type.
+      const response = await fetch(url, { method: 'HEAD' })
+      expect(response.headers.get('content-type'), url).toMatch(/javascript/)
+    }
+  })
+
   const files = {
     workerSrc: ['worker-src', 'pdf.worker.min.mjs'],
+    rendererSrc: ['renderer-src', 'pdf.renderer.min.mjs'],
     pdfjsLibSrc: ['pdfjs-lib-src', 'pdf.mjs'],
     viewerSrc: ['viewer-src', 'viewer.mjs'],
     viewerCssSrc: ['viewer-css-src', 'viewer.css'],

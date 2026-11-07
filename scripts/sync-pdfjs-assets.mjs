@@ -116,7 +116,10 @@ for (const fileName of [
   'pdf.sandbox.mjs.map',
   'pdf.worker.mjs',
   'pdf.worker.min.mjs',
-  'pdf.worker.mjs.map'
+  'pdf.worker.mjs.map',
+  'pdf.renderer.mjs',
+  'pdf.renderer.min.mjs',
+  'pdf.renderer.mjs.map'
 ]) {
   await copyRequiredFile(
     resolve(selectedBuildDir, fileName),
