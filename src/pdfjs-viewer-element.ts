@@ -62,7 +62,8 @@ const DEFAULTS = {
 // Resources PDF.js loads only for documents that need them. They ship in the package `dist`
 // folder, and each defaults to `fileName` resolved against the runtime file named by `base`, so
 // `assets-base` and the individual runtime URLs carry them along. Bundlers emit the runtime files
-// but not these folders, so bundled apps set `assets-base` or the attributes.
+// but not these folders, so bundled apps add the build plugin (plugins/vite.js), which writes the
+// folders next to the emitted files, or set `assets-base` or the attributes.
 // PDF.js fetches most of them from its worker, which runs from a `blob:` URL where relative paths
 // don't resolve, so attribute values are made absolute, and folder URLs get the trailing slash
 // PDF.js requires.

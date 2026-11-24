@@ -27,4 +27,5 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps firefox
       - run: pnpm test -- --run
-      - run: pnpm build
+      # Builds the package, then tests the Vite plugin on an app bundled from that build.
+      - run: pnpm test:plugin

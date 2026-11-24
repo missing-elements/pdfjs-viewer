@@ -26,7 +26,22 @@ npm install @missing-elements/pdfjs-viewer
 import '@missing-elements/pdfjs-viewer'
 ```
 
-Vite, webpack 5 and Next.js bundle the viewer with no configuration. They don't copy the PDF.js data folders, though, because PDF.js loads those files by name. Without them, scanned pages compressed with JBIG2, CCITT or JPEG 2000 render blank or black, CJK text in fonts the PDF doesn't embed goes missing, and JavaScript in PDFs doesn't run. To support every PDF, copy the package's `dist` folder into your public files, for example in a `postinstall` script, and point [`assets-base`](https://missing-elements.github.io/pdfjs-viewer/#hosting) at it:
+Vite, webpack 5 and Next.js bundle the viewer with no configuration. They don't copy the PDF.js data folders, though, because PDF.js loads those files by name. Without them, scanned pages compressed with JBIG2, CCITT or JPEG 2000 render blank or black, CJK text in fonts the PDF doesn't embed goes missing, and JavaScript in PDFs doesn't run.
+
+With Vite, add the plugin that ships with the package. It writes the data into the build output, next to the viewer files: about 3.4 MB, which a browser downloads only for a document that needs it.
+
+```js
+// vite.config.js
+import { pdfjsViewerData } from '@missing-elements/pdfjs-viewer/vite'
+
+export default {
+  plugins: [pdfjsViewerData()]
+}
+```
+
+The data files keep the names PDF.js asks for, with no hash in them. If your server caches the whole `assets` folder as `immutable`, leave them out of that rule, or browsers keep the old files after you upgrade.
+
+With webpack, Next.js or another bundler, copy the package's `dist` folder into your public files, for example in a `postinstall` script, and point [`assets-base`](https://missing-elements.github.io/pdfjs-viewer/#hosting) at it:
 
 ```html
 <pdfjs-viewer-element src="/file.pdf" assets-base="/pdfjs-viewer/"></pdfjs-viewer-element>

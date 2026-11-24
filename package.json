@@ -32,6 +32,10 @@
       "types": "./types/pdfjs-viewer-element.d.ts",
       "default": "./dist/pdfjs-viewer-element.js"
     },
+    "./vite": {
+      "types": "./plugins/vite.d.ts",
+      "default": "./plugins/vite.js"
+    },
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"
   },
@@ -45,6 +49,7 @@
   },
   "files": [
     "dist",
+    "plugins",
     "types"
   ],
   "publishConfig": {
@@ -55,6 +60,7 @@
     "dev": "vite",
     "build": "pnpm sync:pdfjs && tsc && vite build && node scripts/copy-worker.mjs",
     "test": "pnpm sync:pdfjs && vitest",
+    "test:plugin": "pnpm build && vitest run --config vitest.plugin.config.ts",
     "coverage": "pnpm sync:pdfjs && vitest run --coverage",
     "release": "node scripts/release.mjs",
     "release:dry": "node scripts/release.mjs --dry-run"

@@ -17,7 +17,7 @@ const targetFile = resolve(distDir, 'pdf.worker.min.mjs')
 const targetRendererFile = resolve(distDir, 'pdf.renderer.min.mjs')
 const targetSandboxFile = resolve(distDir, 'pdf.sandbox.mjs')
 // Resources PDF.js loads only for documents that need them. The element defaults their URLs to
-// these folders next to viewer.mjs.
+// these folders next to viewer.mjs, and plugins/vite.js copies the same folders into a bundled app.
 const resourceDirs = ['cmaps', 'iccs', 'standard_fonts', 'wasm']
 const targetPdfFile = resolve(distDir, 'pdf.mjs')
 const targetViewerFile = resolve(distDir, 'viewer.mjs')
