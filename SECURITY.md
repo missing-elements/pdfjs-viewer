@@ -18,7 +18,7 @@ Please report suspected security vulnerabilities privately through a
 Do not open a public issue for a vulnerability.
 
 If private reporting through GitHub is unavailable, email
-alekswebnet@gmail.com with the subject `Security: @missing-elements/pdfjs-viewer`.
+alekswebnet@proton.me with the subject `Security: @missing-elements/pdfjs-viewer`.
 
 Include the affected version, a clear description of the issue, steps to
 reproduce it, and any proof-of-concept or suggested remediation. Reports will
