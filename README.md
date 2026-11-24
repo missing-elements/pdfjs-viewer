@@ -39,7 +39,7 @@ export default {
 }
 ```
 
-The copied files keep the names PDF.js asks for, so an upgrade doesn't rename them. If your host caches the build's asset folder as `immutable`, as SvelteKit, Nuxt and Astro do, read the [Vite plugin](https://missing-elements.github.io/pdfjs-viewer/#vite-plugin) docs before you upgrade. [demo/vite-plugin](./demo/vite-plugin) is a minimal app that uses the plugin.
+The copied files keep the names PDF.js asks for, so an upgrade doesn't rename them. If your host caches the build's asset folder as `immutable`, as SvelteKit, Nuxt and Astro do, serve the data folders with a short cache, or use `assets-base` below. Otherwise browsers can keep the old files after an upgrade, and PDF.js can't use them. See the [Vite plugin](https://missing-elements.github.io/pdfjs-viewer/#vite-plugin) docs. [demo/vite-plugin](./demo/vite-plugin) is a minimal app that uses the plugin.
 
 **webpack, Next.js and other bundlers:** copy the package's `dist` folder into your public files, for example in a `postinstall` script, and point [`assets-base`](https://missing-elements.github.io/pdfjs-viewer/#other-bundlers-and-assets-base) at it:
 

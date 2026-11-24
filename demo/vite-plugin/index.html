@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>pdfjs-viewer | Vite plugin demo</title>
     <style>
+      /* The viewer fills what the text leaves, however many lines the text wraps to. */
       body {
+        display: flex;
+        flex-direction: column;
+        height: 100dvh;
         margin: 0;
         font-family: system-ui, sans-serif;
       }
@@ -15,7 +19,8 @@
       }
 
       pdfjs-viewer-element {
-        height: calc(100dvh - 3.5rem);
+        flex: 1;
+        min-height: 0;
       }
     </style>
   </head>

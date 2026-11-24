@@ -18,8 +18,8 @@
       `assets-base` points at a folder holding the package `dist` files: the runtime files
       (viewer.mjs, pdf.mjs, pdf.worker.min.mjs, pdf.renderer.min.mjs, viewer.css, paper-and-ink.css)
       and the PDF.js data folders. Bundlers emit the runtime files but not the data, so bundled
-      apps point it at a copy of `dist`, unless they use the Vite plugin (see vite-plugin/). It also
-      loads everything from a CDN. Here it simply points back at `dist` for demonstration.
+      apps point it at a copy of `dist`, unless they use the Vite plugin (see vite-plugin/). It can
+      also point at a CDN. Here it simply points back at `dist` for demonstration.
     -->
     <pdfjs-viewer-element
       src="/public/sample-pdf-with-images.pdf"
