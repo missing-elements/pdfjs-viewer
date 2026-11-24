@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>pdfjs-viewer | Vite plugin demo</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+      }
+
+      p {
+        margin: 1rem;
+      }
+
+      pdfjs-viewer-element {
+        height: calc(100dvh - 3.5rem);
+      }
+    </style>
+  </head>
+  <body>
+    <p>The page holds one scanned image, compressed with CCITT. Its left half is black. Built without the plugin, the page stays white.</p>
+    <pdfjs-viewer-element src="/scanned.pdf"></pdfjs-viewer-element>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

@@ -28,7 +28,7 @@ import '@missing-elements/pdfjs-viewer'
 
 Vite, webpack 5 and Next.js bundle the viewer with no configuration. They don't copy the PDF.js data folders, though, because PDF.js loads those files by name. Without them, scanned pages compressed with JBIG2, CCITT or JPEG 2000 render blank or black, CJK text in fonts the PDF doesn't embed goes missing, and JavaScript in PDFs doesn't run.
 
-With Vite, add the plugin that ships with the package. It writes the data into the build output, next to the viewer files: about 3.4 MB, which a browser downloads only for a document that needs it.
+**Vite**, and frameworks built on it such as SvelteKit, Nuxt and Astro: add the plugin that ships with the package. It copies the data into the build output, next to the viewer files. That's 3.4 MB, and browsers download only the files a document needs.
 
 ```js
 // vite.config.js
@@ -39,9 +39,9 @@ export default {
 }
 ```
 
-The data files keep the names PDF.js asks for, with no hash in them. If your server caches the whole `assets` folder as `immutable`, leave them out of that rule, or browsers keep the old files after you upgrade.
+The copied files keep the names PDF.js asks for, so an upgrade doesn't rename them. If your host caches the build's asset folder as `immutable`, as SvelteKit, Nuxt and Astro do, read the [Vite plugin](https://missing-elements.github.io/pdfjs-viewer/#vite-plugin) docs before you upgrade. [demo/vite-plugin](./demo/vite-plugin) is a minimal app that uses the plugin.
 
-With webpack, Next.js or another bundler, copy the package's `dist` folder into your public files, for example in a `postinstall` script, and point [`assets-base`](https://missing-elements.github.io/pdfjs-viewer/#hosting) at it:
+**webpack, Next.js and other bundlers:** copy the package's `dist` folder into your public files, for example in a `postinstall` script, and point [`assets-base`](https://missing-elements.github.io/pdfjs-viewer/#other-bundlers-and-assets-base) at it:
 
 ```html
 <pdfjs-viewer-element src="/file.pdf" assets-base="/pdfjs-viewer/"></pdfjs-viewer-element>
@@ -72,7 +72,7 @@ The element needs an explicit height. Most attributes apply as soon as they chan
 - [Attributes and playground](https://missing-elements.github.io/pdfjs-viewer/#attributes)
 - [Methods and properties](https://missing-elements.github.io/pdfjs-viewer/#methods-and-properties): `initPromise`, `setViewerOptions`, `injectViewerStyles`, `iframe`
 - [Theming](https://missing-elements.github.io/pdfjs-viewer/#theming) and [localization](https://missing-elements.github.io/pdfjs-viewer/#localization)
-- [Hosting](https://missing-elements.github.io/pdfjs-viewer/#hosting): bundlers, `assets-base`, CDN, worker, CSP
+- [Hosting](https://missing-elements.github.io/pdfjs-viewer/#hosting): bundlers, the Vite plugin, `assets-base`, CDN, worker, CSP
 - [React, Vue and Svelte](https://missing-elements.github.io/pdfjs-viewer/#frameworks)
 - [Migrating from `pdfjs-viewer-element`](https://missing-elements.github.io/pdfjs-viewer/#migrating-from-pdfjs-viewer-element), the deprecated former package name
 - [Demo pages](./demo) and the [accessibility guide](./ACCESSIBILITY.md)
