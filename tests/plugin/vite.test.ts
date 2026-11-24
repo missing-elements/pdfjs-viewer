@@ -142,14 +142,16 @@ describe('Vite plugin', () => {
     // scripts/copy-worker.mjs starts to ship has to reach the plugin's list too.
     const dataFiles = listFiles(distDirectory).filter((file) => file.includes('/'))
     expect(dataFiles.length).toBeGreaterThan(200)
-    for (const file of dataFiles) {
-      const emitted = join(pluginOutput, viewerDirectory, file)
-      expect(statSync(emitted, { throwIfNoEntry: false })?.size, file).eq(statSync(join(distDirectory, file)).size)
+    const expected = [
+      ...dataFiles.map((file) => [`${viewerDirectory}/${file}`, file]),
+      [`${libDirectory}/pdf.sandbox.mjs`, 'pdf.sandbox.mjs']
+    ]
+    for (const [emitted, source] of expected) {
+      expect(files, source).toContain(emitted)
+      const sameBytes = readFileSync(join(pluginOutput, emitted)).equals(readFileSync(join(distDirectory, source)))
+      expect(sameBytes, `${source} is copied byte for byte`).eq(true)
     }
-
-    const sandbox = join(pluginOutput, libDirectory, 'pdf.sandbox.mjs')
-    expect(readFileSync(sandbox).equals(readFileSync(join(distDirectory, 'pdf.sandbox.mjs')))).eq(true)
-    expect(files.length).eq(listFiles(plainOutput).length + dataFiles.length + 1)
+    expect(files.length).eq(listFiles(plainOutput).length + expected.length)
   })
 
   it('follows the runtime files when the app renames and moves them', async () => {
