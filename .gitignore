@@ -8,8 +8,11 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-public
+# The PDF.js release the sync script downloads. Only the root one: demos keep their own `public`.
+/public
 dist
+# The Vite plugin demo installs the published package; its lockfile would only go stale here.
+demo/vite-plugin/package-lock.json
 dist-ssr
 *.local
 

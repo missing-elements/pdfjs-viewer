@@ -1,0 +1,41 @@
+%PDF-1.4
+% A page filled by one 8x8 image in CCITT Group 4 (T.6): the left half black, the right half
+% white. PDF.js 6 decodes CCITT and JBIG2 images with wasm/jbig2.wasm, so this page stays blank
+% when the wasm folder is missing. The image data, bit by bit:
+%   row 1     001 00110101 011 1   horizontal mode, white run 0, black run 4, then V0
+%   rows 2-8  111                  V0 three times: the same as the row above
+%   end       000000000001 twice   end of block
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 200 200] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /XObject /Subtype /Image /Width 8 /Height 8 /ColorSpace /DeviceGray /BitsPerComponent 1 /Filter [/ASCIIHexDecode /CCITTFaxDecode] /DecodeParms [null << /K -1 /Columns 8 /Rows 8 >>] /Length 17 >>
+stream
+26AFFFFFF0010010>
+endstream
+endobj
+5 0 obj
+<< /Length 30 >>
+stream
+q 200 0 0 200 0 0 cm /Im0 Do Q
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000472 00000 n 
+0000000521 00000 n 
+0000000578 00000 n 
+0000000708 00000 n 
+0000000962 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1042
+%%EOF
