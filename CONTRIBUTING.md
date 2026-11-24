@@ -39,6 +39,13 @@ Build the package:
 pnpm build
 ```
 
+Test the Vite plugin. This builds the package, bundles a small app from it and opens the app in
+Firefox:
+
+```bash
+pnpm test:plugin
+```
+
 The test and build scripts synchronize the PDF.js runtime assets before
 running. The PDF.js release archive is required because the viewer assets are
 not published in this repository. Do not commit generated `dist` or `public`

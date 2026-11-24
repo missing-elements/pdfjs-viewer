@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
-import { defineConfig } from 'vitest/config'
+import { configDefaults, defineConfig } from 'vitest/config'
 import terser from '@rollup/plugin-terser'
 import { playwright } from '@vitest/browser-playwright'
 import { minify as minifyHtml } from 'html-minifier-terser'
@@ -96,6 +96,8 @@ export default defineConfig({
     copyPublicDir: false
   },
   test: {
+    // The plugin tests run in Node, against the built package (vitest.plugin.config.ts).
+    exclude: [...configDefaults.exclude, 'tests/plugin/**'],
     browser: {
       // Vitest provider overloads can conflict when multiple provider typings exist in the graph.
       provider: playwright(),
