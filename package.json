@@ -69,16 +69,16 @@
     "@rollup/plugin-terser": "^1.0.2",
     "@types/html-minifier-terser": "^7.0.2",
     "@types/node": "^26.6.6",
-    "@vitest/browser-playwright": "^5.1.0",
+    "@vitest/browser-playwright": "^5.1.1",
     "esbuild": "^0.28.2",
     "fflate": "^0.8.3",
     "html-minifier-terser": "^7.2.0",
     "jsdom": "^31.0.1",
     "playwright": "^1.65.1",
-    "terser": "^5.51.2",
+    "terser": "^5.51.4",
     "typescript": "^7.0.2",
     "vite": "^8.3.8",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.1"
   },
   "dependencies": {
     "pdfjs-dist": "^6.5.438"
